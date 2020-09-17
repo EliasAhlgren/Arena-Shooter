@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class SightSelector : MonoBehaviour
 {
     public Sight[] availableSights;
 
+    public Sight[] selectedSights;
+    
     public GameObject[] buttons;
 
     public GameObject emptySlot;
@@ -21,14 +24,34 @@ public class SightSelector : MonoBehaviour
     [SerializeField] private bool placingObject;
 
     public LineRenderer line;
+
+    private Vector3 firstPosition;
+
+    public Transform sightLocalPos;
+
+    private int childCountAtStart;
     
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < availableSights.Length; i++)
+        selectedSights = new Sight[3];
+        
+        childCountAtStart = sightRail.transform.childCount;
+        
+        sightLocalPos = sightRail.transform.GetChild(2);
+        
+        firstPosition = currentSightSlot.transform.GetChild(0).transform.position;
+
+        for (int i = 0; i < selectedSights.Length; i++)
         {
-            buttons[i].GetComponent<Image>().sprite = availableSights[i].Icon;
+            selectedSights[i] = availableSights[Random.Range(0, availableSights.Length)];
         }
+
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            buttons[i].GetComponent<Image>().sprite = selectedSights[i].Icon;
+        }
+        
     }
 
     public void OnChangeCurrent()
@@ -44,15 +67,18 @@ public class SightSelector : MonoBehaviour
 
     public void OnSelectNew(String buttonName)
     {
-        currentSightSlot.GetComponent<Image>().sprite = availableSights[int.Parse(buttonName)].Icon;
-        if (sightRail.transform.childCount > 2)
+        sightLocalPos.localPosition = Vector3.zero;
+
+        currentSightSlot.GetComponent<Image>().sprite = selectedSights[int.Parse(buttonName)].Icon;
+        if (sightRail.transform.childCount > childCountAtStart)
         {
-            Destroy(sightRail.transform.GetChild(2).gameObject);
+            Destroy(sightRail.transform.GetChild(childCountAtStart).gameObject);
         }
 
-        GameObject newSight = Instantiate(availableSights[int.Parse(buttonName)].Prefab, sightRail.transform.GetChild(0).position,
+        GameObject newSight = Instantiate(selectedSights[int.Parse(buttonName)].Prefab, sightRail.transform.GetChild(0).position,
             Quaternion.identity, sightRail.transform);
-
+        newSight.transform.rotation = sightRail.transform.rotation;
+        
         currentSight = newSight;
 
         placingObject = true;
@@ -60,11 +86,15 @@ public class SightSelector : MonoBehaviour
 
     public void OnSelectEmpty()
     {
+        line.SetPosition(0,Vector3.zero);
+        line.SetPosition(1,Vector3.zero);
+
         
         currentSightSlot.GetComponent<Image>().sprite = emptySlot.GetComponent<Button>().image.sprite;
-        if (sightRail.transform.childCount > 2)
+        sightLocalPos.localPosition = Vector3.zero;
+        if (sightRail.transform.childCount > childCountAtStart)
         {
-            Destroy(sightRail.transform.GetChild(2).gameObject);
+            Destroy(sightRail.transform.GetChild(childCountAtStart).gameObject);
         }
     }
 
@@ -73,10 +103,12 @@ public class SightSelector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        line.SetPosition(1,currentSight.transform.position);
         if (placingObject)
         {
-            line.SetPosition(0,currentSightSlot.transform.position);
-            line.SetPosition(1,currentSight.transform.position);
+            
+            line.SetPosition(0,firstPosition);
+            
         }
         
         if (placingObject)
@@ -88,12 +120,25 @@ public class SightSelector : MonoBehaviour
                     if (Physics.Raycast(ray,out hit))
                     {
                         railPos.z = hit.point.z;
+
+                        sightLocalPos.position = hit.point;
+                        
+                        if (sightLocalPos.localPosition.x > 0)
+                        {
+                           
+                            Vector3 v3 = sightLocalPos.position;
+                            v3.z = -sightLocalPos.position.z;
+                            v3.z += 5f;
+                            sightLocalPos.position = v3;
+                        }
                         
                         if (sightRail.transform.GetChild(1).gameObject.GetComponent<Collider>().bounds.Contains(railPos))
                         {
-                            Vector3 newPos = currentSight.transform.position;
-                                                    newPos.z = hit.point.z;
-                                                    currentSight.transform.position = newPos;
+                            
+                            Vector3 newPos = sightLocalPos.position;
+                            newPos.x = 0;
+                            newPos.y = 1.27f;
+                            currentSight.transform.localPosition = newPos;
                         }
                         
                     }

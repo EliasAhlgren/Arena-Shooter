@@ -8,6 +8,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/Mod.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/KeepRotation.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/WeaponRotationScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/Sight.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/SightSelector.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -15,8 +19,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/RedDot1.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/Sight.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/WeaponRotationScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/SightSelector.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/Sight.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/Mod.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/KeepRotation.cs" />
       </list>
     </option>
   </component>
@@ -59,6 +67,9 @@
       <option name="presentableId" value="Default" />
       <updated>1599824172146</updated>
       <workItem from="1599824185428" duration="6612000" />
+      <workItem from="1600079667441" duration="6426000" />
+      <workItem from="1600167734633" duration="653000" />
+      <workItem from="1600257371230" duration="5324000" />
     </task>
     <servers />
   </component>
