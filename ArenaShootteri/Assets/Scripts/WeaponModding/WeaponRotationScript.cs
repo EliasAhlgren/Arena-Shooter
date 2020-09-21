@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+
+// Tää scripti on aseen kääntämistä varten
 public class WeaponRotationScript : MonoBehaviour
 {
     public float rotationSpeed;

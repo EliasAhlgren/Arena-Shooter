@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
+// Tää scripti on melkein sama kun ModSelection tästä puuttuu vain kaikki modin liikuttamiseen liittyvä
+// tää on tukin, piipun ja muiden joita ei tarvi liikuttaa asettamista vartren
+
 public class StockSelection : MonoBehaviour
 {
    public string RailName;
@@ -23,24 +26,37 @@ public class StockSelection : MonoBehaviour
 
     public GameObject ModRail;
 
-    public GameObject currentMod;
+    private GameObject currentMod;
+
+    // defaultModiin voi laittaa modin valmiiksi niin se spawanataan Startissa
+    public Mod defaultMod;
     
     private bool placingObject;
 
     [SerializeField] public LineRenderer line;
 
     private Vector3 firstPosition;
-
-    public Transform ModLocalPos;
+    
 
     private int childCountAtStart;
     
     // Start is called before the first frame update
     void Start()
     {
+        childCountAtStart = ModRail.transform.childCount;
+        
+        
+        if (defaultMod)
+        {
+            Debug.Log("initializing with a mod");
+            GameObject newMod = Instantiate(defaultMod.Prefab, ModRail.transform.GetChild(0).position,
+                Quaternion.identity, ModRail.transform);
+            currentMod = newMod;
+        }
+        
         selectedMods = new Mod[3];
         
-        childCountAtStart = ModRail.transform.childCount;
+        
         
         //ModLocalPos = ModRail.transform.GetChild(2);
         
@@ -72,7 +88,12 @@ public class StockSelection : MonoBehaviour
     public void OnSelectNew(String buttonName)
     {
         //ModLocalPos.localPosition = Vector3.zero;
-
+        if (currentMod)
+        {
+            Debug.Log("Already has a mod");
+            Destroy(currentMod);
+        }
+        
         currentModSlot.GetComponent<Image>().sprite = selectedMods[int.Parse(buttonName)].Icon;
         if (ModRail.transform.childCount > childCountAtStart)
         {
@@ -93,11 +114,13 @@ public class StockSelection : MonoBehaviour
         line.SetPosition(0,Vector3.zero);
         line.SetPosition(1,Vector3.zero);
 
-        
+        Debug.Log("1");
         currentModSlot.GetComponent<Image>().sprite = emptySlot.GetComponent<Button>().image.sprite;
-        ModLocalPos.localPosition = Vector3.zero;
+        //ModLocalPos.localPosition = Vector3.zero;
         if (ModRail.transform.childCount > childCountAtStart)
         {
+            Debug.Log("2");
+
             Destroy(ModRail.transform.GetChild(childCountAtStart).gameObject);
         }
     }
@@ -109,46 +132,8 @@ public class StockSelection : MonoBehaviour
     {
        //line.SetPosition(2,ModRail.transform.GetChild(2).position);
         
-        if (placingObject)
-        {
-            Vector3 railPos = ModRail.transform.GetChild(1).position;
-            
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    RaycastHit hit;
-                    if (Physics.Raycast(ray,out hit))
-                    {
-                        railPos.z = hit.point.z;
+        
 
-                        ModLocalPos.position = hit.point;
-
-                        if (isTwoSided)
-                        {
-                            if (ModLocalPos.localPosition.x > 0)
-                            {
-                                Vector3 v3 = ModLocalPos.position;
-                                v3.z = -ModLocalPos.position.z;
-                                v3.z += 5f;
-                                ModLocalPos.position = v3;
-                            }
-                        }
-                        
-                        
-                        if (ModRail.transform.GetChild(1).gameObject.GetComponent<Collider>().bounds.Contains(railPos))
-                        {
-                            
-                            Vector3 newPos = ModLocalPos.position;
-                            newPos.x = 0;
-                            newPos.y = 1.27f;
-                            currentMod.transform.localPosition = newPos;
-                        }
-                        
-                    }
-                }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            placingObject = false;
-        }
         }
         
 }

@@ -7,6 +7,11 @@ using Random = UnityEngine.Random;
 
 public class SightSelector : MonoBehaviour
 {
+    
+    /////////////////////
+    /// tää scripti on turha ja olemassa vaan jos mun pitää kopioida tästä jotain käytä ModSelectionia
+    ///////////////////  
+    
     public Sight[] availableSights;
 
     public Sight[] selectedSights;

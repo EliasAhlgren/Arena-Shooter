@@ -20,13 +20,13 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/RedDot1.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/WeaponRotationScript.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/SightSelector.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/Sight.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/Mod.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/KeepRotation.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/StockSelection.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/WeaponRotationScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/SightSelector.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" />
       </list>
     </option>
   </component>
@@ -71,7 +71,8 @@
       <workItem from="1599824185428" duration="6612000" />
       <workItem from="1600079667441" duration="6426000" />
       <workItem from="1600167734633" duration="653000" />
-      <workItem from="1600257371230" duration="6402000" />
+      <workItem from="1600257371230" duration="8260000" />
+      <workItem from="1600683709526" duration="1579000" />
     </task>
     <servers />
   </component>

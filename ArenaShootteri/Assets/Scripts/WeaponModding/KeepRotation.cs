@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class KeepRotation : MonoBehaviour
 {
+    
+    //tää on sitä varten että UI elementit osottaa aina kameraa
+    
     private Transform cameraTransform;
     // Start is called before the first frame update
     private void Awake()
