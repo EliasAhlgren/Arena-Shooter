@@ -13,7 +13,7 @@ public class MovingObject : MonoBehaviour
         target.y += 2f;
     }
 
-    private void FixedUpdate()
+    void Update()
     {
         float step = speed * Time.deltaTime; 
         transform.position = Vector3.MoveTowards(transform.position, target, step);
