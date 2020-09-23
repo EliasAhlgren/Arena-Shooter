@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9180030539788706291}
   - component: {fileID: 5312746749933898467}
   - component: {fileID: 274757809314375220}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 7803490054786122831}
   - component: {fileID: 3753470750876321684}
   - component: {fileID: 7795979037916229652}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 3202072585493967340}
   - component: {fileID: 2288783590100933443}
   - component: {fileID: 5526568382608249027}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 2539156984082501057}
   - component: {fileID: 9206339210140529662}
   - component: {fileID: 6800672167054407359}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,8 +392,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8449744565892015228}
-  m_Layer: 0
-  m_Name: CoolAssSight1 1
+  m_Layer: 9
+  m_Name: TeleSight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 7520867101902136980}
   - component: {fileID: 4303651112610843372}
   - component: {fileID: 7769624451116794391}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6269519733335034775}
   - component: {fileID: 6503290916513015550}
   - component: {fileID: 7406330793066500264}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6815238064698511842}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ShortBarrel 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 7239764846675433581}
   - component: {fileID: 8045026248281816969}
   - component: {fileID: 8146043767202385105}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

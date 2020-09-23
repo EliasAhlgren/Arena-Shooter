@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3081149096950118521}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CoolAssSight2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 2566319550031697083}
   - component: {fileID: 5862442316726238738}
   - component: {fileID: 4311559513606657299}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 6061908773828756480}
   - component: {fileID: 7740421910810057335}
   - component: {fileID: 9177780108189388440}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

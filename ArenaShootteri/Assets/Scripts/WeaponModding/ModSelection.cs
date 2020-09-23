@@ -38,6 +38,8 @@ public class ModSelection : MonoBehaviour
     
     // jos siirtää modia
     private bool placingObject;
+
+    public Camera moddingCamera;
     
     [SerializeField] public LineRenderer line;
     
@@ -148,10 +150,11 @@ public class ModSelection : MonoBehaviour
         
         if (placingObject)
         {
+            Debug.Log("Now Placing");
            // railPos on Railin y ja x ja hiiren z positio
             Vector3 railPos = ModRail.transform.GetChild(1).position;
             
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = moddingCamera.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
                     if (Physics.Raycast(ray,out hit))
                     {
@@ -163,6 +166,8 @@ public class ModSelection : MonoBehaviour
                         {
                             if (ModLocalPos.localPosition.x > 0)
                             {
+                                Debug.Log("we fukin");
+                                
                                 Vector3 v3 = ModLocalPos.position;
                                 v3.z = -ModLocalPos.position.z;
                                 v3.z += 5f;
@@ -173,12 +178,12 @@ public class ModSelection : MonoBehaviour
                         // jos hiiren position z käännettynä aseen local spaceen on kiskon colliderin sisällä
                         if (ModRail.transform.GetChild(1).gameObject.GetComponent<Collider>().bounds.Contains(railPos))
                         {
-                            
-                            Vector3 newPos = ModLocalPos.position;
+                            Debug.Log("hittaa kovaa");
+                            Vector3 newPos = ModLocalPos.localPosition;
                             newPos.x = 0;
                             newPos.y = 1.27f;
                             currentMod.transform.localPosition = newPos;
-                        }
+                        }    
                         
                     }
                 }

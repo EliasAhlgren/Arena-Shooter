@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4058430884387045628}
   - component: {fileID: 4926750646992405657}
   - component: {fileID: 7609461376026925985}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 947893327745499967}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Foregrip
   m_TagString: Untagged
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 6828292240006199035}
   - component: {fileID: 5127630754711232632}
   - component: {fileID: 4672766943290421705}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

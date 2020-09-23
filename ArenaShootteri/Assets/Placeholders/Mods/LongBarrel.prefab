@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7315939874923731465}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LongBarrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 4303658931801549219}
   - component: {fileID: 8592745577416273831}
   - component: {fileID: 9055615615393453707}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 2225499911258002793}
   - component: {fileID: 2936968418075280367}
   - component: {fileID: 2378172607720679222}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

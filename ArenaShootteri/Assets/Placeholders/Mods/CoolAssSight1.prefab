@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2479353729532832679}
   - component: {fileID: 9122030590185805208}
   - component: {fileID: 6860210986914238681}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8365171530567467546}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CoolAssSight1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 7569414140522184946}
   - component: {fileID: 4246095261967510666}
   - component: {fileID: 7676326756674511985}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

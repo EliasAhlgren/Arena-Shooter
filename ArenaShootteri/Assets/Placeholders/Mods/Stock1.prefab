@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6520897047176866875}
   - component: {fileID: 8251820953871584346}
   - component: {fileID: 3241775204367898575}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3594133273336331500}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Stock1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 6976093366521235269}
   - component: {fileID: 3438339695090862414}
   - component: {fileID: 3407818598257489270}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

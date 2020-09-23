@@ -12,7 +12,7 @@ public class KeepRotation : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        cameraTransform = Camera.main.transform;
+        cameraTransform = gameObject.GetComponent<Canvas>().worldCamera.transform;
     }
 
     // Update is called once per frame
