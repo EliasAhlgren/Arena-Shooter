@@ -10,14 +10,15 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     public Vector3 groundCheckSize;
 
     public bool isGrounded;
+    public bool isAirborne;
 
 
     public float mouseSensitivity = 100f;
-    
+
     float xRotation = 0f;
 
     public float jumpForce = 10f;
-    float speed = 6f;
+    public float speed = 6f;
 
     float x;
     float z;
@@ -25,8 +26,8 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     float DMLimiter;
 
     Vector3 move;
+    Vector3 jump;
     Vector3 rotation;
-    Vector3 velocity;
 
     void Start()
     {
@@ -54,9 +55,9 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                 DMLimiter = 1f;
             }
         }
-        
 
-        
+
+
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
@@ -64,31 +65,45 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
         rotation = (Vector3.up * mouseX);
-        
+        rotation *= 0f;
+
         rb.rotation *= Quaternion.Euler(0, mouseX, 0);
 
-        
+
 
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
         }
 
-        move = transform.right * x * speed * DMLimiter + transform.forward * z * speed * DMLimiter + transform.up * rb.velocity.y;
+        
 
-        if (!isGrounded)
+        if (isGrounded)
         {
-            velocity.y += -20f * Time.deltaTime;
-            move.y = velocity.y;
-            move -= rotation;
+            if (isAirborne)
+            {
+                isAirborne = false;
+            }
+
+            move = transform.right * x * speed * DMLimiter + transform.forward * z * speed * DMLimiter + transform.up * rb.velocity.y;
         }
         else
         {
-            velocity.y = 0f;
-        }
-        
 
-        
+            if (!isAirborne)
+            {
+                isAirborne = true;
+                jump = move;
+            }
+        }
+
+        if (isAirborne)
+        {
+            move = jump - rotation;
+        }
+
+
+        move.y = rb.velocity.y;
         rb.velocity = move;
         isGrounded = Physics.OverlapBox(groundCheck.transform.position, groundCheckSize).Length > 1;
 
@@ -97,6 +112,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
     void Jump()
     {
+        jump = move;
         rb.AddForce(new Vector3(0, jumpForce));
     }
 
