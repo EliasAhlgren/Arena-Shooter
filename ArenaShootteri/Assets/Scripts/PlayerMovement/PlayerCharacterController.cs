@@ -46,6 +46,7 @@ public class PlayerCharacterController : MonoBehaviour
     float crouchRayDistance;
 
     //character state variables
+    public bool isMoving;
     public bool isGrounded;
     public bool isAirborne;
     public bool isSliding;
@@ -88,6 +89,7 @@ public class PlayerCharacterController : MonoBehaviour
         //shoot
         if (Input.GetMouseButtonDown(0))
         {
+            //trigger pull sound?
             Shoot();
         }
 
@@ -105,6 +107,29 @@ public class PlayerCharacterController : MonoBehaviour
                 isCrouching = false;
                 controller.height = 3f;
             }
+        }
+
+        //running + prevent crouch running
+        if (Input.GetKey(KeyCode.LeftShift) && !isCrouching)
+        {
+            //set running speed for forward movement and multiply other direction movement by 25%
+            isRunning = true;
+            speed = runSpeed * 0.75f;
+
+            if (z > 0)
+            {
+                forwardSpeed = runSpeed;
+            }
+            else
+            {
+                forwardSpeed = runSpeed * 0.75f;
+            }
+        }
+        else
+        {
+            isRunning = false;
+            forwardSpeed = walkSpeed;
+            speed = walkSpeed;
         }
 
         //mouse input
@@ -134,14 +159,26 @@ public class PlayerCharacterController : MonoBehaviour
 
         //player horizontal rotation
         playerBody.Rotate(Vector3.up * mouseX);
+        
+        //store horizontal rotation in 0 length vector
         rotation = (Vector3.up * mouseX);
+        rotation = Vector3.Normalize(rotation);
+        rotation *= 0f;
 
         //if character is touching ground
         if (isGrounded)
         {
-            isAirborne = false;
-            //set sliding false
-            isSliding = false;
+            if (isAirborne || isSliding)
+            {
+                //landing sound
+
+                //set airborne false
+                isAirborne = false;
+                //set sliding false
+                isSliding = false;
+            }
+                
+            
 
             //check if ground normal is over slide limit and set sliding true if it is 
             RaycastHit hit;
@@ -169,6 +206,8 @@ public class PlayerCharacterController : MonoBehaviour
             //if ground normal is over slide limit calclulate slide vector from ground normal 
             if (isSliding)
             {
+                //sliding sound
+
                 Vector3 hitNormal = hit.normal;
                 slide = new Vector3(hitNormal.x, -hitNormal.y, hitNormal.z);
                 Vector3.OrthoNormalize(ref hitNormal, ref slide);
@@ -176,7 +215,7 @@ public class PlayerCharacterController : MonoBehaviour
                 slide *= slideSpeed;
 
                 //set antibump
-                velocity.y = -slideSpeed;
+                velocity.y = -slideSpeed * 10f;
                 slide.y = velocity.y;
 
                 //decouple character rotation from slide vector
@@ -185,7 +224,7 @@ public class PlayerCharacterController : MonoBehaviour
                 //create normalized vector for moving sideways during slide and multiply it by player input
                 Vector3 slidedir = new Vector3(slide.x, 0, slide.z);
                 Vector3 movedir;
-                movedir = transform.right * x + transform.forward * z + transform.up;
+                movedir = transform.right * x * DMLimiter + transform.forward * z * DMLimiter + transform.up;
                 slidedir = Quaternion.Euler(0, 90, 0) * slidedir;
                 slidedir = Vector3.Normalize(slidedir);
                 slidedir = Vector3.Scale(slidedir, -movedir);
@@ -196,34 +235,23 @@ public class PlayerCharacterController : MonoBehaviour
             }
             else
             {
+                if (isCrouching)
+                {
+                    //crouching sound
+                }
+                if (isRunning)
+                {
+                    //running sound
+                }
+                else
+                {
+                    //walking sound
+                }
                 //if grounded and not sliding allow player free movement
                 move = transform.right * x * speed * DMLimiter + transform.forward * z * forwardSpeed * DMLimiter + transform.up * velocity.y;
 
                 //allow jumping
                 playerControl = true;
-            }
-
-            //running + prevent crouch running
-            if (Input.GetKey(KeyCode.LeftShift) && !isCrouching)
-            {
-                //set running speed for forward movement and multiply other direction movement by 25%
-                isRunning = true;
-                speed = runSpeed * 0.75f;
-
-                if (z > 0)
-                {
-                    forwardSpeed = runSpeed;
-                }
-                else
-                {
-                    forwardSpeed = runSpeed * 0.75f;
-                }
-            }
-            else
-            {
-                isRunning = false;
-                forwardSpeed = walkSpeed;
-                speed = walkSpeed;
             }
 
             //anti bump
@@ -236,6 +264,8 @@ public class PlayerCharacterController : MonoBehaviour
             //jump
             if (Input.GetButtonDown("Jump") && playerControl)
             {
+                //jump sound
+
                 isAirborne = true;
                 isGrounded = false;
                 velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
@@ -261,6 +291,8 @@ public class PlayerCharacterController : MonoBehaviour
 
         if (isAirborne)
         {
+            //air sound
+
             airBorne.y = velocity.y;
             //decouple character rotation from airborne vector
             move = airBorne - rotation;
@@ -279,10 +311,19 @@ public class PlayerCharacterController : MonoBehaviour
         //add gravity
         velocity.y += gravity * Time.deltaTime;
 
+        if (move.x > 0f || move.z > 0f)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
         //check if grounded and move character
         isGrounded = (controller.Move(move * Time.deltaTime) & CollisionFlags.Below) != 0;
 
-        debugAS();
+        //movement vector debug
+        //debugAS();
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -293,6 +334,8 @@ public class PlayerCharacterController : MonoBehaviour
     //shoot function
     void Shoot()
     {
+        //shooting sound
+
         RaycastHit hit;
         //raycast from center of screen if tagged enemy destroy target
         if (Physics.Raycast(gun.transform.position, gun.transform.forward, out hit))
@@ -309,6 +352,7 @@ public class PlayerCharacterController : MonoBehaviour
     void debugAS()
     {
         Debug.DrawRay(transform.position, move, Color.green);
+        Debug.DrawRay(transform.position, slide, Color.red);
         //Vector3 forward = gun.transform.TransformDirection(Vector3.forward) * 10;
         //Debug.Log(forward);
         //Vector3 forwardplus = new Vector3(forward.x, 0f, forward.z);
