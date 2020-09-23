@@ -16,8 +16,9 @@ public class Mod : ScriptableObject
 
     public int Ergonomy;
 
-    public int Accuaracy;
+    public int Recoil;
 
-    
+    public float Damage;
+
 
 }

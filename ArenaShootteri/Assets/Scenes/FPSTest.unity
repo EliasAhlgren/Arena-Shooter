@@ -1093,7 +1093,7 @@ MonoBehaviour:
   playerBody: {fileID: 927258015}
   playerCamera: {fileID: 1826701786}
   gun: {fileID: 576947116}
-  mouseSensitivity: 100
+  mouseSensitivity: 169.36
   runSpeed: 12
   walkSpeed: 6
   gravity: -20

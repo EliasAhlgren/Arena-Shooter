@@ -19,7 +19,7 @@ public class PlayerCharacterController : MonoBehaviour
     float mouseX;
     float mouseY;
 
-    //mouse input variable holder
+    //mouse input variable holder      
     float xRotation = 0f;
 
     //diagonal movement limiter variable;

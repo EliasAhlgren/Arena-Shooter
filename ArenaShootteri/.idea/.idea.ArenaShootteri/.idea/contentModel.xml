@@ -6,12 +6,20 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
+          <e p="PlayerMovement" t="Include">
+            <e p="MovingObject.cs" t="Include" />
+            <e p="PlayerCharacterController.cs" t="Include" />
+            <e p="PlayerCharacterControllerRigidBody.cs" t="Include" />
+          </e>
           <e p="WeaponModding" t="Include">
+            <e p="GunAttributes.cs" t="Include" />
             <e p="KeepRotation.cs" t="Include" />
             <e p="Mod.cs" t="Include" />
             <e p="ModSelection.cs" t="Include" />
-            <e p="Sight.cs" t="Include" />
-            <e p="SightSelector.cs" t="Include" />
+            <e p="OLD" t="Include">
+              <e p="Sight.cs" t="Include" />
+              <e p="SightSelector.cs" t="Include" />
+            </e>
             <e p="StockSelection.cs" t="Include" />
             <e p="WeaponRotationScript.cs" t="Include" />
           </e>

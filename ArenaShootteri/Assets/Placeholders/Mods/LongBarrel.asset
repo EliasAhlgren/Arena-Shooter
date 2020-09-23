@@ -18,4 +18,5 @@ MonoBehaviour:
   Prefab: {fileID: 2912446754329314357, guid: 63bf98bdb7cf741d0928c353443789d0, type: 3}
   Icon: {fileID: 21300000, guid: 8ad08f7165c514ec09d9f29738932b66, type: 3}
   Ergonomy: 0
-  Accuaracy: 0
+  Recoil: 0
+  Damage: 0

@@ -30,7 +30,11 @@ public class ModSelection : MonoBehaviour
     // Koko slotin parent objecti
     public GameObject ModRail;
 
+    // nykyisen modin GameObject
     public GameObject currentMod;
+    
+    // nykyisen modin Mod assetti statien ottamista varten
+    public Mod currenModStats;
     
     // jos siirtää modia
     private bool placingObject;
@@ -42,6 +46,10 @@ public class ModSelection : MonoBehaviour
     public Transform ModLocalPos;
 
     private int childCountAtStart;
+    
+    public delegate void ModChosen();
+
+    public event ModChosen OnModChosen;
     
     // Start is called before the first frame update
     void Start()
@@ -83,7 +91,7 @@ public class ModSelection : MonoBehaviour
     }
 
     // OnSelectNew kutsutaan jos valitsee uuden modin 
-    public void OnSelectNew(String buttonName)
+    public void OnSelectNew(String buttonName) // buttonName on stringi jonka UI nappi passaa ku se kutsuu OnClick eventin
     {
         ModLocalPos.localPosition = Vector3.zero;
 
@@ -99,10 +107,15 @@ public class ModSelection : MonoBehaviour
         GameObject newMod = Instantiate(selectedMods[int.Parse(buttonName)].Prefab, ModRail.transform.GetChild(0).position,
             Quaternion.identity, ModRail.transform);
         newMod.transform.rotation = ModRail.transform.rotation;
+
+        //valitse oikea modi currentModStatsiin
+        currenModStats = selectedMods[int.Parse(buttonName)];
         
         currentMod = newMod;
-
+         
         placingObject = true;
+        
+        OnModChosen();
     }
 
     //OnSelectEmpty kutsutaan kun painaa tyhjää UI nappia
@@ -118,6 +131,12 @@ public class ModSelection : MonoBehaviour
         {
             Destroy(ModRail.transform.GetChild(childCountAtStart).gameObject);
         }
+
+        currenModStats = null;
+        
+        OnModChosen();
+
+        
     }
 
     
@@ -168,6 +187,10 @@ public class ModSelection : MonoBehaviour
         {
             // Lopettaa modin liikuttamisen
             placingObject = false;
+           
+            // tähän tulis modin valitsemis ääniefekti
+
+           
         }
         }
         
