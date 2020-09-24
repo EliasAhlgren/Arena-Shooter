@@ -30,7 +30,7 @@ public class GunAttributes : MonoBehaviour
 
         StartCoroutine(CheckDefaultStats());
         
-        moddingCamera.SetActive(false);
+        
     }
 
     void ChangeUI()
@@ -95,6 +95,7 @@ public class GunAttributes : MonoBehaviour
         // For some reason the UI wont work if it starts disabled so I have to call ChangeUI to disable the UI and then manually set gun back to the shooting mode
         
         ChangeUI();
+        moddingCamera.SetActive(false);
         transform.parent = Camera.main.transform;
         Cursor.lockState = CursorLockMode.Locked;
         transform.localPosition = shootyPosition;
