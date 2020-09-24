@@ -9,6 +9,10 @@ public class GunAttributes : MonoBehaviour
     public int totalRecoil;
     public float totalDamage;
 
+    public bool isAiming;
+
+    private Animator _animator;
+    
     private GameObject[] canvases;
 
     public GameObject moddingCamera;
@@ -24,6 +28,8 @@ public class GunAttributes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _animator = gameObject.GetComponent<Animator>();
+        
         _controller = GameObject.FindWithTag("Player").GetComponent<PlayerCharacterController>();
         
         canvases = GameObject.FindGameObjectsWithTag("Canvas");
@@ -60,6 +66,13 @@ public class GunAttributes : MonoBehaviour
         }
     }
 
+    public void AimDownSights()
+    {
+        isAiming = !isAiming;
+        _animator.SetBool("isAiming", isAiming);
+    }
+    
+    
     // Check stats from default mods
     IEnumerator CheckDefaultStats()
     {
@@ -143,9 +156,16 @@ public class GunAttributes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonDown(1))
+        {
+            _animator.enabled = true;
+            AimDownSights();
+        }
+        
         // Disables or enables the Mod selection screen
         if (Input.GetKeyDown(KeyCode.Tab))
         {
+            _animator.enabled = false;
             ChangeUI();
         }
     }
