@@ -6653,6 +6653,18 @@ PrefabInstance:
       propertyPath: moddingCamera
       value: 
       objectReference: {fileID: 1001410288}
+    - target: {fileID: 2551284591601611943, guid: ea7f93d9671234fd3b68aa20e0a78f4b, type: 3}
+      propertyPath: availableMods.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: de9dbeb526c2e48c7a16a40e3ca22da1, type: 2}
+    - target: {fileID: 2551284591601611943, guid: ea7f93d9671234fd3b68aa20e0a78f4b, type: 3}
+      propertyPath: availableMods.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: ea8898823f4f34225b4a35831faad9e1, type: 2}
+    - target: {fileID: 2551284591601611943, guid: ea7f93d9671234fd3b68aa20e0a78f4b, type: 3}
+      propertyPath: availableMods.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: de9dbeb526c2e48c7a16a40e3ca22da1, type: 2}
     - target: {fileID: 2551284591625806810, guid: ea7f93d9671234fd3b68aa20e0a78f4b, type: 3}
       propertyPath: m_Layer
       value: 9

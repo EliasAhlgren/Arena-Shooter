@@ -9,6 +9,8 @@ public class GunAttributes : MonoBehaviour
     public int totalRecoil;
     public float totalDamage;
 
+    public ModSelection sightSelection;
+    
     public bool isAiming;
 
     private Animator _animator;
@@ -24,10 +26,14 @@ public class GunAttributes : MonoBehaviour
     public Vector3 moddingRotation;
 
     private PlayerCharacterController _controller;
+
+    private float cameraStartPos;
     
     // Start is called before the first frame update
     void Start()
     {
+        cameraStartPos = Camera.main.transform.position.y;
+        
         _animator = gameObject.GetComponent<Animator>();
         
         _controller = GameObject.FindWithTag("Player").GetComponent<PlayerCharacterController>();
@@ -68,6 +74,19 @@ public class GunAttributes : MonoBehaviour
 
     public void AimDownSights()
     {
+        if (isAiming)
+        {
+            Vector3 newCamPos = Camera.main.transform.position;
+            newCamPos.y = cameraStartPos;
+        }
+        else 
+        {
+            if (sightSelection.currentMod)
+            {
+                Vector3 newCamPos = Camera.main.transform.position;
+                newCamPos.y = sightSelection.currentMod.transform.position.y;
+            }
+        }
         isAiming = !isAiming;
         _animator.SetBool("isAiming", isAiming);
     }
@@ -156,6 +175,8 @@ public class GunAttributes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        
         if (Input.GetMouseButtonDown(1))
         {
             _animator.enabled = true;
