@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class GunAttributes : MonoBehaviour
 {
-    public int totalErgonomy;
+    // Combined stats of all currently attached mods
+    public float totalErgonomy;
     public int totalRecoil;
     public float totalDamage;
 
@@ -13,10 +14,12 @@ public class GunAttributes : MonoBehaviour
     
     public bool isAiming;
 
+    // animator that handles aiming animation
     private Animator _animator;
     
     private GameObject[] canvases;
 
+    // camera used for rendering when in modding mode
     public GameObject moddingCamera;
 
     public Vector3 shootyPosition;
@@ -28,10 +31,15 @@ public class GunAttributes : MonoBehaviour
     private PlayerCharacterController _controller;
 
     private float cameraStartPos;
+
+    private AnimationClip adsClip;
+
+    public AnimationCurve recoilCurve;
     
     // Start is called before the first frame update
     void Start()
     {
+
         cameraStartPos = Camera.main.transform.position.y;
         
         _animator = gameObject.GetComponent<Animator>();
@@ -45,6 +53,7 @@ public class GunAttributes : MonoBehaviour
         
     }
 
+    // Changes to Modding mode
     void ChangeUI()
     {
         
@@ -138,6 +147,22 @@ public class GunAttributes : MonoBehaviour
     // called everytime a mod is changed in any of the rails
     void UpdateStats()
     {
+
+        /*foreach (var VARIABLE in _animator.)
+        {
+            
+        }*/
+        
+        
+        // sets SightIndex parameter in animator to account for differences in sight heights
+        if (sightSelection.currenModStats)
+        {
+            _animator.SetInteger("SightIndex",sightSelection.currenModStats.animIndex);
+        }
+        else
+        {
+            _animator.SetInteger("SightIndex", 0);
+        }
         
         Vector3 totalStats;
         totalStats.x = totalErgonomy;
@@ -171,13 +196,27 @@ public class GunAttributes : MonoBehaviour
         }
         
     }
+
+    public void Recoil()
+    {
+       
+        
+    }
     
     // Update is called once per frame
     void Update()
     {
+        //Recoil();
+        
+        if (_animator.IsInTransition(0))
+        {
+            _animator.speed = 1f + totalErgonomy;
+        }
         
         
-        if (Input.GetMouseButtonDown(1))
+        
+        
+        if (Input.GetMouseButtonDown(1) && transform.position != moddingPositio)
         {
             _animator.enabled = true;
             AimDownSights();

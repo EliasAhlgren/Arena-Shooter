@@ -28,13 +28,13 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/WeaponRotationScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/SightSelector.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/Mod.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/StockSelection.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/KeepRotation.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/NewSurfaceShader.shader" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/Reflex.shader" />
         <option value="$PROJECT_DIR$/../../../ThePhantomPayne/Assets/Scenes/testi.shader" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/Mod.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/GunAttributes.cs" />
       </list>
     </option>
@@ -45,6 +45,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.3496979" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.29984894" />
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -85,6 +87,11 @@
       <workItem from="1600761868552" duration="5053000" />
       <workItem from="1600852293684" duration="9774000" />
       <workItem from="1600946247464" duration="6694000" />
+      <workItem from="1601376532081" duration="3178000" />
+      <workItem from="1601457080202" duration="1064000" />
+      <workItem from="1601461609583" duration="614000" />
+      <workItem from="1601481076152" duration="71000" />
+      <workItem from="1601543284805" duration="3629000" />
     </task>
     <servers />
   </component>
@@ -97,6 +104,70 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state width="1355" height="313" key="GridCell.Tab.0.bottom" timestamp="1601481146734">
+      <screen x="0" y="23" width="1397" height="877" />
+    </state>
+    <state width="1355" height="313" key="GridCell.Tab.0.bottom/0.23.1397.877@0.23.1397.877" timestamp="1601481146734" />
+    <state width="1355" height="313" key="GridCell.Tab.0.center" timestamp="1601481146732">
+      <screen x="0" y="23" width="1397" height="877" />
+    </state>
+    <state width="1355" height="313" key="GridCell.Tab.0.center/0.23.1397.877@0.23.1397.877" timestamp="1601481146732" />
+    <state width="1355" height="313" key="GridCell.Tab.0.left" timestamp="1601481146732">
+      <screen x="0" y="23" width="1397" height="877" />
+    </state>
+    <state width="1355" height="313" key="GridCell.Tab.0.left/0.23.1397.877@0.23.1397.877" timestamp="1601481146732" />
+    <state width="1355" height="313" key="GridCell.Tab.0.right" timestamp="1601481146733">
+      <screen x="0" y="23" width="1397" height="877" />
+    </state>
+    <state width="1355" height="313" key="GridCell.Tab.0.right/0.23.1397.877@0.23.1397.877" timestamp="1601481146733" />
+    <state width="1355" height="313" key="GridCell.Tab.1.bottom" timestamp="1601481146735">
+      <screen x="0" y="23" width="1397" height="877" />
+    </state>
+    <state width="1355" height="313" key="GridCell.Tab.1.bottom/0.23.1397.877@0.23.1397.877" timestamp="1601481146735" />
+    <state width="1355" height="313" key="GridCell.Tab.1.center" timestamp="1601481146734">
+      <screen x="0" y="23" width="1397" height="877" />
+    </state>
+    <state width="1355" height="313" key="GridCell.Tab.1.center/0.23.1397.877@0.23.1397.877" timestamp="1601481146734" />
+    <state width="1355" height="313" key="GridCell.Tab.1.left" timestamp="1601481146734">
+      <screen x="0" y="23" width="1397" height="877" />
+    </state>
+    <state width="1355" height="313" key="GridCell.Tab.1.left/0.23.1397.877@0.23.1397.877" timestamp="1601481146734" />
+    <state width="1355" height="313" key="GridCell.Tab.1.right" timestamp="1601481146735">
+      <screen x="0" y="23" width="1397" height="877" />
+    </state>
+    <state width="1355" height="313" key="GridCell.Tab.1.right/0.23.1397.877@0.23.1397.877" timestamp="1601481146735" />
+    <state width="1355" height="313" key="GridCell.Tab.2.bottom" timestamp="1601481146736">
+      <screen x="0" y="23" width="1397" height="877" />
+    </state>
+    <state width="1355" height="313" key="GridCell.Tab.2.bottom/0.23.1397.877@0.23.1397.877" timestamp="1601481146736" />
+    <state width="1355" height="313" key="GridCell.Tab.2.center" timestamp="1601481146736">
+      <screen x="0" y="23" width="1397" height="877" />
+    </state>
+    <state width="1355" height="313" key="GridCell.Tab.2.center/0.23.1397.877@0.23.1397.877" timestamp="1601481146736" />
+    <state width="1355" height="313" key="GridCell.Tab.2.left" timestamp="1601481146735">
+      <screen x="0" y="23" width="1397" height="877" />
+    </state>
+    <state width="1355" height="313" key="GridCell.Tab.2.left/0.23.1397.877@0.23.1397.877" timestamp="1601481146735" />
+    <state width="1355" height="313" key="GridCell.Tab.2.right" timestamp="1601481146736">
+      <screen x="0" y="23" width="1397" height="877" />
+    </state>
+    <state width="1355" height="313" key="GridCell.Tab.2.right/0.23.1397.877@0.23.1397.877" timestamp="1601481146736" />
+    <state width="1355" height="313" key="GridCell.Tab.3.bottom" timestamp="1601481146737">
+      <screen x="0" y="23" width="1397" height="877" />
+    </state>
+    <state width="1355" height="313" key="GridCell.Tab.3.bottom/0.23.1397.877@0.23.1397.877" timestamp="1601481146737" />
+    <state width="1355" height="313" key="GridCell.Tab.3.center" timestamp="1601481146736">
+      <screen x="0" y="23" width="1397" height="877" />
+    </state>
+    <state width="1355" height="313" key="GridCell.Tab.3.center/0.23.1397.877@0.23.1397.877" timestamp="1601481146736" />
+    <state width="1355" height="313" key="GridCell.Tab.3.left" timestamp="1601481146736">
+      <screen x="0" y="23" width="1397" height="877" />
+    </state>
+    <state width="1355" height="313" key="GridCell.Tab.3.left/0.23.1397.877@0.23.1397.877" timestamp="1601481146736" />
+    <state width="1355" height="313" key="GridCell.Tab.3.right" timestamp="1601481146737">
+      <screen x="0" y="23" width="1397" height="877" />
+    </state>
+    <state width="1355" height="313" key="GridCell.Tab.3.right/0.23.1397.877@0.23.1397.877" timestamp="1601481146737" />
     <state x="194" y="82" width="678" height="735" key="find.popup" timestamp="1600864016679">
       <screen x="0" y="23" width="1399" height="877" />
     </state>

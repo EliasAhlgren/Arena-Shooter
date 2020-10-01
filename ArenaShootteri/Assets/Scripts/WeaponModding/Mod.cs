@@ -10,11 +10,14 @@ public class Mod : ScriptableObject
     
     public int Level;
 
+    //Determines what ADS animation to use
+    public int animIndex;
+
     public GameObject Prefab;
 
     public Sprite Icon;
 
-    public int Ergonomy;
+    public float Ergonomy;
 
     public int Recoil;
 
