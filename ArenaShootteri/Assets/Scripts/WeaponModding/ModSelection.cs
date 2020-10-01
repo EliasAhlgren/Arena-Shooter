@@ -41,7 +41,7 @@ public class ModSelection : MonoBehaviour
 
     public Camera moddingCamera;
     
-    [SerializeField] public LineRenderer line;
+    
     
     private Vector3 firstPosition;
 
@@ -52,10 +52,14 @@ public class ModSelection : MonoBehaviour
     public delegate void ModChosen();
 
     public event ModChosen OnModChosen;
+
+    public bool isAutoPlaced;
     
     // Start is called before the first frame update
     void Start()
     {
+        
+        
         selectedMods = new Mod[3];
         
         childCountAtStart = ModRail.transform.childCount;
@@ -123,8 +127,7 @@ public class ModSelection : MonoBehaviour
     //OnSelectEmpty kutsutaan kun painaa tyhjää UI nappia
     public void OnSelectEmpty()
     {
-        line.SetPosition(0,Vector3.zero);
-        line.SetPosition(1,Vector3.zero);
+       
 
         
         currentModSlot.GetComponent<Image>().sprite = emptySlot.GetComponent<Button>().image.sprite;
@@ -150,6 +153,7 @@ public class ModSelection : MonoBehaviour
         
         if (placingObject)
         {
+            isAutoPlaced = GameObject.Find("AutoPlaceToggle").GetComponent<Toggle>().isOn;
             Debug.Log("Now Placing");
            // railPos on Railin y ja x ja hiiren z positio
             Vector3 railPos = ModRail.transform.GetChild(1).position;
@@ -188,7 +192,7 @@ public class ModSelection : MonoBehaviour
                     }
                 }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || isAutoPlaced)
         {
             // Lopettaa modin liikuttamisen
             placingObject = false;
