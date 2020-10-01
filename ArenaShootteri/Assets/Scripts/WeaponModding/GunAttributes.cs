@@ -17,7 +17,7 @@ public class GunAttributes : MonoBehaviour
     // animator that handles aiming animation
     private Animator _animator;
     
-    private GameObject[] canvases;
+    public GameObject[] canvases;
 
     // camera used for rendering when in modding mode
     public GameObject moddingCamera;
@@ -58,11 +58,12 @@ public class GunAttributes : MonoBehaviour
     {
         
         _controller.enabled = !_controller.enabled;
+        
         foreach (var canvas in canvases)
         {
             canvas.SetActive(!canvas.activeInHierarchy);
         }
-
+        
         if (Cursor.lockState == CursorLockMode.Locked)
         {
             moddingCamera.SetActive(true);
@@ -79,6 +80,7 @@ public class GunAttributes : MonoBehaviour
             transform.localPosition = shootyPosition;
             transform.localRotation = Quaternion.Euler(shootyRotation);
         }
+        
     }
 
     public void AimDownSights()
@@ -136,22 +138,28 @@ public class GunAttributes : MonoBehaviour
         // For some reason the UI wont work if it starts disabled so I have to call ChangeUI to disable the UI and then manually set gun back to the shooting mode
         
         ChangeUI();
+        //StartCoroutine("wait");
+        
         moddingCamera.SetActive(false);
         transform.parent = Camera.main.transform;
         Cursor.lockState = CursorLockMode.Locked;
         transform.localPosition = shootyPosition;
         transform.localRotation = Quaternion.Euler(shootyRotation);
         _controller.enabled = !_controller.enabled;
+        
+    }
+
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds(0.1f);
+        ChangeUI();
     }
     
     // called everytime a mod is changed in any of the rails
     void UpdateStats()
     {
 
-        /*foreach (var VARIABLE in _animator.)
-        {
-            
-        }*/
+        
         
         
         // sets SightIndex parameter in animator to account for differences in sight heights

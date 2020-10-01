@@ -39,9 +39,11 @@ public class GameManager : MonoBehaviour
                     pauseCanvas.SetActive(true);
                     pauseMenu.SetActive(true);
                     Time.timeScale = 0;
+                    Cursor.lockState = CursorLockMode.None;
                 }
                 else
                 {
+                    Cursor.lockState = CursorLockMode.Locked;
                     paused = false;
                     pauseCanvas.SetActive(false);
                     pauseMenu.SetActive(false);
