@@ -9211,6 +9211,75 @@ MonoBehaviour:
   isGrounded: 0
   mouseSensitivity: 100
   jumpForce: 800
+--- !u!1001 &1984624172
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8586498638390084386, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
+      propertyPath: m_Name
+      value: GameManagement
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586498638390084398, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586498638390084398, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586498638390084398, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586498638390084398, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586498638390084398, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586498638390084398, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586498638390084398, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586498638390084398, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586498638390084398, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586498638390084398, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586498638390084398, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586498639088376165, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586498639088376165, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1826701788}
+    - target: {fileID: 8586498639088376165, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
+      propertyPath: m_PixelPerfect
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
 --- !u!1 &2003787438
 GameObject:
   m_ObjectHideFlags: 0
@@ -9735,7 +9804,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &2551284591159485949
 MonoBehaviour:
@@ -11113,7 +11182,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &2551284591648305882
 MonoBehaviour:
@@ -12892,7 +12961,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &2551284592342648025
 MonoBehaviour:
@@ -15058,7 +15127,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &2551284592927058561
 MonoBehaviour:
