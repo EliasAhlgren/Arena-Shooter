@@ -10,6 +10,16 @@ public class PlayerCharacterController : MonoBehaviour
     public Transform playerCamera;
     public GameObject gun;
 
+    public GameObject groundCheck;
+
+    //character height
+    float height;
+
+    Vector3 groundCheckSize = new Vector3(.3f, .7f, .3f);
+    Vector3 wallCheckSize = new Vector3(.6f, .5f, .6f);
+
+    public LayerMask groundLayerMask;
+
     //mouse input multiplier
     public float mouseSensitivity = 100f;
 
@@ -26,15 +36,18 @@ public class PlayerCharacterController : MonoBehaviour
     float DMLimiter;
 
     //movement modifier variables
-    public float runSpeed = 12f;
-    public float walkSpeed = 6f;
-    public float gravity = -9.8f;
+    float gravity = -9.8f;
     public float jumpHeight = 3f;
     public float airMoveModifier = .2f;
 
     //actual movement values
     float speed = 6f;
-    float forwardSpeed;
+    public float runSpeed = 12f;
+    public float walkSpeed = 6f;
+    public float slideSpeedControl = 14f;
+    public float slideDuration = 1f;
+    float slideTime = 1f;
+    //float forwardSpeed;
     float slideSpeed = 17f;
     float slideMovementSpeed = 6f;
 
@@ -43,25 +56,53 @@ public class PlayerCharacterController : MonoBehaviour
 
     //character size raycast length holders
     float rayDistance;
+    float standRayDistance;
     float crouchRayDistance;
+    float crouchToStandRayDistance;
+
+    float rayDistanceMargin;
 
     //character state variables
     public bool isMoving;
     public bool isGrounded;
     public bool isAirborne;
     public bool isSliding;
+    public bool isSlidingControl;
     public bool isCrouching;
     public bool isRunning;
-    public bool playerControl = true;
+    public bool isWallRunning;
+    public bool isDodging;
+    public bool isTouchingWall;
+
+    bool playerControl = true;
+
+    //variables for movement on walls
+    float maxWallDistance = 1.25f;
+    RaycastHit wallHit;
+    Vector3 wallNormal;
+    int wallDirection;
+    Collider[] wallCheck;
+    float wallDot;
+
+    //normal wallrunning or walljumping
+    public bool wallRunninType;
 
     //character movement vector
     Vector3 move;
     //gravity vector
-    Vector3 velocity;
+    Vector3 velocity = new Vector3(0, 0, 0);
 
     //character airbone & slide vector holders
     Vector3 airBorne;
     Vector3 slide;
+    Vector3 slideControl;
+    Vector3 dodge;
+
+    //jump groundcheck delay
+    int jumpTimer = 0;
+
+    //dodge duration in frames
+    int dodgeFrameTime;
 
     //character movement vector when airbone
     Vector3 airMove;
@@ -79,12 +120,19 @@ public class PlayerCharacterController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         //initialize variables
-        rayDistance = controller.height * .5f + controller.radius;
-        crouchRayDistance = controller.height * .5f + 2.26f;
+        height = controller.height;
+        standRayDistance = height * .5f;
+        crouchRayDistance = height * .25f;
+        crouchToStandRayDistance = standRayDistance + height * .25f;
+        rayDistanceMargin = controller.radius;
+
+        //rayDistance = controller.height * .5f + controller.radius;
+
+        gravity = Physics.gravity.y;
         slideLimit = controller.slopeLimit + .1f;
     }
 
-    void Update()
+    private void Update()
     {
         //shoot
         if (Input.GetMouseButtonDown(0))
@@ -93,20 +141,35 @@ public class PlayerCharacterController : MonoBehaviour
             Shoot();
         }
 
-        //crouch
-        if (Input.GetKey(KeyCode.LeftControl))
+        //jump
+        if (Input.GetButtonDown("Jump") && playerControl)
         {
-            isCrouching = true;
-            controller.height = 1.5f;
-        }
-        else
-        {
-            //prevent from standing up if obstacle detected
-            if (!Physics.Raycast(transform.position, Vector3.up, crouchRayDistance))
+            //jump sound
+            if (isGrounded)
             {
-                isCrouching = false;
-                controller.height = 3f;
+                Jump();
             }
+            else if (isWallRunning)
+            {
+                WallJump();
+            }
+        }
+
+        //crouch
+        if (Input.GetKey(KeyCode.C))
+        {
+            Crouch();
+
+        }
+        else if (!isSlidingControl)
+        {
+            UnCrouch();
+        }
+
+        //dodge
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Dodge();
         }
 
         //running + prevent crouch running
@@ -114,21 +177,12 @@ public class PlayerCharacterController : MonoBehaviour
         {
             //set running speed for forward movement and multiply other direction movement by 25%
             isRunning = true;
-            speed = runSpeed * 0.75f;
-
-            if (z > 0)
-            {
-                forwardSpeed = runSpeed;
-            }
-            else
-            {
-                forwardSpeed = runSpeed * 0.75f;
-            }
+            speed = runSpeed;
         }
         else
         {
+            //set walking speed
             isRunning = false;
-            forwardSpeed = walkSpeed;
             speed = walkSpeed;
         }
 
@@ -157,16 +211,25 @@ public class PlayerCharacterController : MonoBehaviour
         //camera vertical rotation
         playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
-        //player horizontal rotation
-        playerBody.Rotate(Vector3.up * mouseX);
-
         //store horizontal rotation in 0 length vector
         rotation = (Vector3.up * mouseX);
         rotation *= 0f;
 
+        //player horizontal rotation
+        playerBody.Rotate(Vector3.up * mouseX);
+    }
+
+    private void FixedUpdate()
+    {
+
         //if character is touching ground
         if (isGrounded)
         {
+            if (isWallRunning)
+            {
+                isWallRunning = false;
+            }
+
             if (isAirborne || isSliding)
             {
                 //landing sound
@@ -182,7 +245,7 @@ public class PlayerCharacterController : MonoBehaviour
             //check if ground normal is over slide limit and set sliding true if it is 
             RaycastHit hit;
             //raycast from center of character
-            if (Physics.Raycast(transform.position, -Vector3.up, out hit, rayDistance))
+            if (Physics.Raycast(transform.position, -Vector3.up, out hit, (rayDistance + rayDistanceMargin + 2f), groundLayerMask))
             {
 
                 if (Vector3.Angle(hit.normal, Vector3.up) > slideLimit)
@@ -232,6 +295,26 @@ public class PlayerCharacterController : MonoBehaviour
                 //prevent jumping from slide
                 playerControl = false;
             }
+            else if (isSlidingControl)
+            {
+                slideTime -= Time.deltaTime;
+
+                move = slideControl - rotation;
+
+                if (slideTime <= 0f)
+                {
+                    isSlidingControl = false;
+                }
+            }
+            else if (isDodging)
+            {
+                dodgeFrameTime -= 1;
+                move = dodge;
+                if (dodgeFrameTime < 1)
+                {
+                    isDodging = false;
+                }
+            }
             else
             {
                 if (isCrouching)
@@ -247,7 +330,7 @@ public class PlayerCharacterController : MonoBehaviour
                     //walking sound
                 }
                 //if grounded and not sliding allow player free movement
-                move = transform.right * x * speed * DMLimiter + transform.forward * z * forwardSpeed * DMLimiter + transform.up * velocity.y;
+                move = transform.right * x * speed * DMLimiter + transform.forward * z * speed * DMLimiter + transform.up * velocity.y;
 
                 //allow jumping
                 playerControl = true;
@@ -256,25 +339,24 @@ public class PlayerCharacterController : MonoBehaviour
             //anti bump
             if (velocity.y < 0)
             {
-                velocity.y = -forwardSpeed;
+                velocity.y = -speed;
                 //velocity.y = -2f;
             }
 
-            //jump
-            if (Input.GetButtonDown("Jump") && playerControl)
-            {
-                //jump sound
-
-                isAirborne = true;
-                isGrounded = false;
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-                //set airborne vector
-                airBorne = move;
-            }
         }
         //!if is grounded 
         else
         {
+            if (isDodging)
+            {
+                isDodging = false;
+                dodgeFrameTime = 0;
+                //move *= .125f;
+                Vector3 norMove = Vector3.Normalize(move);
+                dodge = norMove * runSpeed;
+                //move *= .5f;
+            }
+
             isSliding = false;
 
             //if falling from ledge
@@ -286,19 +368,190 @@ public class PlayerCharacterController : MonoBehaviour
                 //set ariborne vector
                 airBorne = move;
             }
+
+
+            if (!isWallRunning && isTouchingWall && jumpTimer < 1)
+            {
+                //raycasts to detect wall direction when posible to start wallrunning
+                //forward
+                if (Physics.Raycast(transform.position, transform.forward, out wallHit, maxWallDistance, groundLayerMask))
+                {
+                    wallDirection = 1;
+                    isWallRunning = true;
+                    wallNormal = wallHit.normal;
+                    //Debug.Log("wall forward");
+                    //Debug.DrawRay(wallHit.point, wallHit.normal * 20f);
+                }
+                //backwards
+                else if (Physics.Raycast(transform.position, -transform.forward, out wallHit, maxWallDistance, groundLayerMask))
+                {
+                    wallDirection = 2;
+                    isWallRunning = true;
+                    wallNormal = wallHit.normal;
+                    //Debug.Log("wall behind");
+                }
+                //right
+                else if (Physics.Raycast(transform.position, transform.right, out wallHit, maxWallDistance, groundLayerMask))
+                {
+
+                    if (wallRunninType)
+                    {
+                        airBorne = new Vector3(move.x, 0, move.z);
+                        if (Physics.Raycast(transform.position + new Vector3(0, .2f, 0), transform.right, maxWallDistance, groundLayerMask))
+                        {
+                            velocity.y = 5f;
+                        }
+                        else
+                        {
+                            velocity.y = 0f;
+                        }
+
+                    }
+
+                    wallDirection = 3;
+                    isWallRunning = true;
+                    wallNormal = wallHit.normal;
+                    wallNormal = -Vector3.Cross(wallNormal, Vector3.up);
+                    //Debug.Log("wall right");
+                }
+                //left
+                else if (Physics.Raycast(transform.position, -transform.right, out wallHit, maxWallDistance, groundLayerMask))
+                {
+
+                    if (wallRunninType)
+                    {
+                        airBorne = new Vector3(move.x, 0, move.z);
+                        if (Physics.Raycast(transform.position + new Vector3(0, .2f, 0), transform.right, maxWallDistance, groundLayerMask))
+                        {
+                            velocity.y = 5f;
+                        }
+                        else
+                        {
+                            velocity.y = 0f;
+                        }
+
+                    }
+
+                    wallDirection = 4;
+                    isWallRunning = true;
+                    wallNormal = wallHit.normal;
+                    wallNormal = Vector3.Cross(wallNormal, Vector3.up);
+                    //Debug.Log("wall left");
+                }
+                //move = new Vector3(0, 0, 0);
+                //airBorne = move;
+                //isWallRunning = true;
+            }
         }
 
         if (isAirborne)
         {
-            //air sound
+            if (isWallRunning)
+            {
+                if (!isTouchingWall)
+                {
+                    //Debug.Log("start wall running");
+                    isWallRunning = false;
+                    //Debug.Log(wallDirection + " " + z );
+                }
 
-            airBorne.y = velocity.y;
-            //decouple character rotation from airborne vector
-            move = airBorne - rotation;
+                //if wall is either left or right start wallrunning
+                if (wallDirection >= 3 && z > 0 && isRunning && wallRunninType)
+                {
+                    //Debug.Log("wall running");
+                    if (velocity.y >= 0.0f)
+                    {
+                        //airBorne = new Vector3(airBorne.x, airBorne.y, airBorne.z);
+                        velocity.y -= 4.5f * Time.deltaTime;
+                    }
+                    //Debug.DrawRay(transform.position, transform.right * 10f, Color.red);
+                    //Debug.DrawRay(transform.position, -transform.right * 10f, Color.red);
+                    //Debug.Log(wallDirection);
+                    if (wallDirection == 3)
+                    {
+                        Vector3 wallCheckDir = Quaternion.AngleAxis(90, Vector3.up) * wallNormal;
+                        //Debug.DrawRay(transform.position, wallCheckDir * 10f, Color.red);
+                        if (Physics.Raycast(transform.position, wallCheckDir, out wallHit, maxWallDistance, groundLayerMask))
+                        {
+                            if (!Physics.Raycast(transform.position + new Vector3(0, .2f, 0), transform.right, maxWallDistance, groundLayerMask))
+                            {
+                                velocity.y = 0f;
+                            }
 
-            //airborne player movement
-            airMove = transform.right * x * speed * DMLimiter * airMoveModifier + transform.forward * z * speed * DMLimiter * airMoveModifier + transform.up * 0;
-            move += airMove;
+                            //Debug.DrawRay(wallHit.point, wallHit.normal * 10f, Color.red);
+                            wallNormal = wallHit.normal;
+                            wallNormal = -Vector3.Cross(wallNormal, Vector3.up);
+                        }
+                        else
+                        {
+                            isWallRunning = false;
+                        }
+
+                    }
+                    else if (wallDirection == 4)
+                    {
+                        Vector3 wallCheckDir = Quaternion.AngleAxis(-90, Vector3.up) * wallNormal;
+                        if (Physics.Raycast(transform.position, wallCheckDir, out wallHit, maxWallDistance, groundLayerMask))
+                        {
+                            if (!Physics.Raycast(transform.position + new Vector3(0, .2f, 0), transform.right, maxWallDistance, groundLayerMask))
+                            {
+                                velocity.y = 0f;
+                            }
+
+                            //Debug.DrawRay(wallHit.point, wallHit.normal * 10f, Color.red);
+                            wallNormal = wallHit.normal;
+                            wallNormal = Vector3.Cross(wallNormal, Vector3.up);
+                        }
+                        else
+                        {
+                            isWallRunning = false;
+                        }
+
+                    }
+                    //wallNormal = Vector3.Cross(hit.normal, Vector3.up) * -wallDir;
+                    airBorne = wallNormal * speed;
+
+                }
+                else
+                {
+                    velocity.y += gravity * Time.deltaTime;
+
+                    airBorne.y = velocity.y;
+                }
+
+                //move = transform.right * x * speed * DMLimiter + transform.forward * z * speed * DMLimiter + transform.up * velocity.y;
+                //velocity.y = -2f;
+                //playerControl = true;
+                //move = new Vector3(0, 0, 0);
+                //velocity.y = 0f;
+
+                //air sound
+
+                //add gravity
+                //velocity.y += gravity * Time.deltaTime;
+
+                //airBorne.y = velocity.y;
+                //decouple character rotation from airborne vector
+                //Debug.DrawRay(transform.position, airBorne * 10f, Color.red);
+                move = airBorne - rotation;
+
+            }
+            else
+            {
+                //air sound
+
+                //add gravity
+                velocity.y += gravity * Time.deltaTime;
+
+                airBorne.y = velocity.y;
+                //decouple character rotation from airborne vector
+                move = airBorne - rotation;
+
+                //airborne player movement
+                airMove = transform.right * x * walkSpeed * DMLimiter * airMoveModifier + transform.forward * z * walkSpeed * DMLimiter * airMoveModifier + transform.up * 0;
+                move += airMove;
+            }
+
         }
 
         //check if character hit roof and reset upward movement
@@ -307,10 +560,13 @@ public class PlayerCharacterController : MonoBehaviour
             move.y = 0;
         }
 
-        //add gravity
-        velocity.y += gravity * Time.deltaTime;
+        //apply vertical vector to movement vector
+        move.y = velocity.y;
 
-        if (move.x > 0f || move.z > 0f)
+        //add gravity
+        //velocity.y += gravity * Time.deltaTime;
+
+        if (move.x != 0f || move.z != 0f)
         {
             isMoving = true;
         }
@@ -318,8 +574,54 @@ public class PlayerCharacterController : MonoBehaviour
         {
             isMoving = false;
         }
+        //ground check delay when jumping
+        if (jumpTimer >= 1)
+        {
+            jumpTimer -= 1;
+            //Debug.Log(jumpTimer);
+        }
+        else
+        {
+            jumpTimer = 0;
+            isGrounded = Physics.OverlapBox(groundCheck.transform.position, groundCheckSize).Length > 1;
+        }
+
+        controller.Move(move * Time.deltaTime);
+
+        wallCheck = Physics.OverlapBox(transform.position, wallCheckSize, Quaternion.identity, groundLayerMask);
+
+
+        if (wallCheck.Length > 0)
+        {
+            isTouchingWall = true;
+
+            //calculate wall direction
+            /**
+            for (int i = 1; i < wallCheck.Length; i++)
+            {
+                Vector3 wall;
+                Vector3 dirWall;
+                
+                wall = wallCheck[i].gameObject.transform.position;
+
+                dirWall = transform.position - wall;
+                dirWall = new Vector3(dirWall.x, 0, dirWall.z);
+
+                Physics.Raycast(transform.position, dirWall, out wallHit, maxWallDistance, groundLayerMask);
+
+                Vector3 lookDir = Vector3.Normalize(transform.forward);
+                wallDot = Vector3.Dot(wallHit.normal, lookDir);
+
+                Debug.Log(wallDot);
+            }
+            **/
+        }
+        else
+        {
+            isTouchingWall = false;
+        }
         //check if grounded and move character
-        isGrounded = (controller.Move(move * Time.deltaTime) & CollisionFlags.Below) != 0;
+        //isGrounded = (controller.Move(move * Time.deltaTime) & CollisionFlags.Below) != 0;
 
         //movement vector debug
         //debugAS();
@@ -330,20 +632,182 @@ public class PlayerCharacterController : MonoBehaviour
         contactPoint = hit.point;
     }
 
-    //shoot function
     void Shoot()
     {
         //shooting sound
 
         RaycastHit hit;
         //raycast from center of screen if tagged enemy destroy target
-        if (Physics.Raycast(gun.transform.position, gun.transform.forward, out hit))
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit))
         {
             if (hit.transform.CompareTag("Enemy"))
             {
                 Destroy(hit.transform.gameObject);
             }
             Debug.Log(hit.transform.name);
+        }
+    }
+
+    private void Jump()
+    {
+        jumpTimer = 10;
+        isSlidingControl = false;
+        isAirborne = true;
+        isGrounded = false;
+        velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+
+        //set airborne vector
+        airBorne = move;
+    }
+
+    private void WallJump()
+    {
+        //float wallDot;
+        //jump sound
+        Vector3 lookDir = Vector3.Normalize(transform.forward);
+
+        wallDot = Vector3.Dot(wallHit.normal, lookDir);
+
+
+
+        Debug.Log(wallDot);
+
+        //wallrunning type 1 (wallrunning)
+        if (wallRunninType)
+        {
+            if (wallDot > .1f)
+            {
+                jumpTimer = 10;
+                //isAirborne = true;
+                //isGrounded = false;
+
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                //set airborne vector
+                //airBorne = move;
+
+                //Debug.Log("wall jump" + Vector3.Magnitude(transform.forward));
+
+                //if looking away from wall jump forward
+                airBorne = transform.forward * speed;
+                isWallRunning = false;
+
+                //old version using the walldirection variable
+                //if (wallDirection == 5)
+                //{
+                //    airBorne = -transform.forward * speed;
+                //}
+                //else
+                //{
+                //    airBorne = transform.forward * speed;
+                //}
+            }
+            //if looking torwards wall jump behind
+            else if (wallDot < -.1f)
+            {
+                jumpTimer = 10;
+                //Debug.Log("wall jump backwards");
+
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+
+                airBorne = -transform.forward * speed;
+                isWallRunning = false;
+            }
+            else
+            {
+                jumpTimer = 10;
+                Vector3 jumpLimit;
+                //Debug.Log("low angle jump");
+
+                if (wallDirection == 3)
+                {
+                    jumpLimit = Quaternion.AngleAxis(81, Vector3.up) * wallHit.normal;
+                    airBorne = jumpLimit * speed;
+                }
+                else if (wallDirection == 4)
+                {
+                    jumpLimit = Quaternion.AngleAxis(-81f, Vector3.up) * wallHit.normal;
+                    airBorne = jumpLimit * speed;
+                }
+                else
+                {
+                    Debug.Log("jump failed");
+                }
+
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                isWallRunning = false;
+            }
+
+        }
+        //wallrunning type 2 (walljumping)
+        else
+        {
+            //jump backwards if facing at wall
+            if (Physics.Raycast(transform.position, transform.forward, out wallHit, maxWallDistance, groundLayerMask))
+            {
+                airBorne = -transform.forward * speed;
+                isWallRunning = false;
+            }
+            // else jump forward
+            else
+            {
+                airBorne = transform.forward * speed;
+                isWallRunning = false;
+            }
+
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+
+        //airBorne = wallNormal * speed;
+        //airBorne = new Vector3(wallHit.normal.x, 0, wallHit.normal.z);
+        //Debug.DrawRay(wallHit.point, new Vector3(wallHit.normal.x, 0, wallHit.normal.z) * 20f);
+
+
+    }
+
+    private void Dodge()
+    {
+        isDodging = true;
+        dodgeFrameTime = 20;
+        velocity.y = 0f;
+        //dodge = move * 4f *2f;
+        Vector3 norMove = Vector3.Normalize(move);
+        dodge = norMove * runSpeed * 2f;
+    }
+
+    private void Crouch()
+    {
+        if (isRunning && z > 0 && !isSlidingControl)
+        {
+            slideTime = slideDuration;
+            isSlidingControl = true;
+            slideControl = transform.forward * slideSpeedControl;
+        }
+        if (!isCrouching)
+        {
+            rayDistance = crouchRayDistance;
+            //transform.localScale = new Vector3(1, .5f, 1);
+            controller.height = 1.5f;
+            //transform.position += new Vector3(0, -.75f, 0);
+            //controller.height = Mathf.Lerp(controller.height, 1.5f, 5 * Time.deltaTime);
+            //transform.position = transform.position + new Vector3(0, -.75f, 0);
+            //ch.height = Mathf.Lerp(ch.height, newH, 5.0 * Time.deltaTime);
+            isCrouching = true;
+        }
+    }
+
+    private void UnCrouch()
+    {
+        //prevent from standing up if obstacle detected
+        if (!Physics.Raycast(transform.position, Vector3.up, crouchToStandRayDistance))
+        {
+            if (isCrouching)
+            {
+                rayDistance = standRayDistance;
+                //transform.localScale = new Vector3(1, 1, 1);
+                controller.height = 3f;
+                //transform.position = transform.position + new Vector3(0, .75f, 0);
+                isCrouching = false;
+            }
         }
     }
 
