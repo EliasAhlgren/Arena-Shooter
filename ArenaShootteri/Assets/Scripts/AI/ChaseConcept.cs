@@ -63,7 +63,7 @@ public class ChaseConcept : BaseState
             // Direction to next waypoint
             Vector3 dir = (_enemyConcept.path.vectorPath[_enemyConcept.currentWaypoint] - _enemyConcept.transform.position).normalized;
             // Multiply direction with our speed to get a velocity
-            Vector3 velocity = dir * _chaseSpeed * speedFactor;
+            Vector3 velocity = dir * _enemyConcept.speed * speedFactor;
 
             // Use CharacterController component to move the agent
             // SimpleMove takes velocity in meters/second, so no need to multiply by Time.deltaTime
