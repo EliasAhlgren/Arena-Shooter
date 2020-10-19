@@ -84,7 +84,7 @@ public class PlayerCharacterController : MonoBehaviour
         slideLimit = controller.slopeLimit + .1f;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         //shoot
         if (Input.GetMouseButtonDown(0))

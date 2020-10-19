@@ -75,6 +75,7 @@ public class GunAttributes : MonoBehaviour
         else
         {
             moddingCamera.SetActive(false);
+            //transform.parent = null;
             transform.parent = Camera.main.transform;
             Cursor.lockState = CursorLockMode.Locked;
             transform.localPosition = shootyPosition;
@@ -142,6 +143,7 @@ public class GunAttributes : MonoBehaviour
         
         moddingCamera.SetActive(false);
         transform.parent = Camera.main.transform;
+        //transform.parent = null;
         Cursor.lockState = CursorLockMode.Locked;
         transform.localPosition = shootyPosition;
         transform.localRotation = Quaternion.Euler(shootyRotation);
@@ -205,11 +207,7 @@ public class GunAttributes : MonoBehaviour
         
     }
 
-    public void Recoil()
-    {
-       
-        
-    }
+    
     
     // Update is called once per frame
     void Update()
@@ -218,7 +216,7 @@ public class GunAttributes : MonoBehaviour
         
         if (_animator.IsInTransition(0))
         {
-            _animator.speed = 1f + totalErgonomy;
+            _animator.speed = 1f + totalErgonomy / 10;
         }
         
         

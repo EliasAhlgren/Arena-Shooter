@@ -27,6 +27,7 @@
               <e p="Sight.cs" t="Include" />
               <e p="SightSelector.cs" t="Include" />
             </e>
+            <e p="Recoil.cs" t="Include" />
             <e p="Reflex.shader" t="Include" />
             <e p="StockSelection.cs" t="Include" />
             <e p="WeaponRotationScript.cs" t="Include" />
