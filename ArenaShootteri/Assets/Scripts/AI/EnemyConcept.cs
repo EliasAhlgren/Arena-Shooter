@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using UnityEngine.AI;
 
 public class EnemyConcept : MonoBehaviour
 {
@@ -14,10 +15,13 @@ public class EnemyConcept : MonoBehaviour
     public bool reachedEndOfPath;
     public Seeker seeker;
     public CharacterController controller;
+    public float attackRange;
+    public NavMeshAgent agent;
 
 
     public void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
         seeker = GetComponent<Seeker>();
         controller = GetComponent<CharacterController>();
     }
@@ -44,7 +48,8 @@ public class EnemyConcept : MonoBehaviour
         var states = new Dictionary<Type, BaseState>()
        {
             /// Add more states if necessary.
-            {typeof(ChaseConcept), new ChaseConcept(enemyConcept: this) }
+            {typeof(ChaseConcept), new ChaseConcept(enemyConcept: this) },
+            {typeof(AttackState), new AttackState(enemyConcept: this) }
         };
         GetComponent<StateMachine>().SetStates(states);
     }

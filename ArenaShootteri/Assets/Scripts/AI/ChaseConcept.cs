@@ -6,9 +6,8 @@ using Pathfinding;
 
 public class ChaseConcept : BaseState
 {
-    
+
     private EnemyConcept _enemyConcept;
-    private float _chaseSpeed = 1;
 
     public ChaseConcept(EnemyConcept enemyConcept) : base(enemyConcept.gameObject)
     {
@@ -17,69 +16,28 @@ public class ChaseConcept : BaseState
 
     public override Type Tick()
     {
-        Debug.Log("Chase state. Target is " + _enemyConcept._target.name);
-      
+        if (_enemyConcept._target == null)
+        {
+            Debug.Log("Unit doesnt have a target to chase");
+            // return typeof(IdleState);
+        }
+
+
         // Implement what to do when enemy is chasing 
-        if(_enemyConcept._target != null)
+        if (_enemyConcept._target != null)
         {
+            _enemyConcept.agent.SetDestination(_enemyConcept._target.transform.position);
 
-            Seeker seeker = _enemyConcept.seeker;
-            //   seeker.pathCallback += OnPathComplete;
-            seeker.StartPath(_enemyConcept.transform.position, _enemyConcept._target.transform.position, OnPathComplete);
-            
-            if (_enemyConcept.path == null)
+            float distance = Vector3.Distance(_enemyConcept.transform.position, _enemyConcept._target.transform.position);
+            if (distance < _enemyConcept.attackRange)
             {
-                // No path to move on. Return to idle state or something
+                return typeof(AttackState);
             }
-
-            _enemyConcept.reachedEndOfPath = false;
-
-            float distanceToWaypoint;
-            while(true)
-            {
-                distanceToWaypoint = Vector3.Distance(_enemyConcept.transform.position, _enemyConcept.path.vectorPath[_enemyConcept.currentWaypoint]);
-                if (distanceToWaypoint < _enemyConcept.nextWaypointDistance)
-                {
-                    if(_enemyConcept.currentWaypoint + 1 < _enemyConcept.path.vectorPath.Count)
-                    {
-                        _enemyConcept.currentWaypoint++;
-                    } 
-                    else
-                    {
-                        _enemyConcept.reachedEndOfPath = true;
-                        break;
-                    }
-                }
-                else
-                {
-                    break;
-                }
-            }
-
-            // Slow down smoothly when approaching end of path
-            // Value will go from 1 to 0 when approaching the last waypoint of the path
-            var speedFactor = _enemyConcept.reachedEndOfPath ? Mathf.Sqrt(distanceToWaypoint / _enemyConcept.nextWaypointDistance) : 1f;
-
-            // Direction to next waypoint
-            Vector3 dir = (_enemyConcept.path.vectorPath[_enemyConcept.currentWaypoint] - _enemyConcept.transform.position).normalized;
-            // Multiply direction with our speed to get a velocity
-            Vector3 velocity = dir * _enemyConcept.speed * speedFactor;
-
-            // Use CharacterController component to move the agent
-            // SimpleMove takes velocity in meters/second, so no need to multiply by Time.deltaTime
-            _enemyConcept.controller.SimpleMove(velocity);
         }
+
+
         return null;
-        
-    }
-
-    public void OnPathComplete(Path p)
-    {
-        Debug.Log("We have path. Errors? " + p.error);
-        if(!p.error)
-        {
-            _enemyConcept.path = p;
-            _enemyConcept.currentWaypoint = 0;
-        }
     }
 }
+        
+  

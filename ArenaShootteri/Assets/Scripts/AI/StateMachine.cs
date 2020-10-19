@@ -15,14 +15,13 @@ public class StateMachine : MonoBehaviour
     public void SetStates(Dictionary<Type, BaseState> states)
     {
         _availableStates = states;
+        currentState = _availableStates.Values.First();
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentState = _availableStates.Values.First();
-        Debug.Log("States changed to " + currentState.ToString());
-
+               
         var nextState = currentState?.Tick();
 
         if (nextState != null && nextState != currentState?.GetType())
