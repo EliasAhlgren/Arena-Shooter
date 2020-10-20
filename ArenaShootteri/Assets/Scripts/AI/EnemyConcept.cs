@@ -15,8 +15,9 @@ public class EnemyConcept : MonoBehaviour
     public bool reachedEndOfPath;
     public Seeker seeker;
     public CharacterController controller;
-    public float attackRange;
+    public float attackRange = 3;
     public NavMeshAgent agent;
+    public Transform cone;
 
 
     public void Start()
@@ -24,20 +25,15 @@ public class EnemyConcept : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         seeker = GetComponent<Seeker>();
         controller = GetComponent<CharacterController>();
+        cone = transform.Find("ConeShape");
     }
     // Start is called before the first frame update
-    void Awake()
+    public void Awake()
     {
         InitStateMachine();
         _target = GameObject.Find("Player").gameObject;
         Debug.Log("Enemy is alive");
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     /// <summary>
@@ -49,7 +45,8 @@ public class EnemyConcept : MonoBehaviour
        {
             /// Add more states if necessary.
             {typeof(ChaseConcept), new ChaseConcept(enemyConcept: this) },
-            {typeof(AttackState), new AttackState(enemyConcept: this) }
+            {typeof(AttackState), new AttackState(enemyConcept: this) },
+            {typeof(ChargeState), new ChargeState(enemyConcept: this) }
         };
         GetComponent<StateMachine>().SetStates(states);
     }
@@ -65,6 +62,7 @@ public class EnemyConcept : MonoBehaviour
     public void Attack()
     {
         // Implement what enemy does when attack happens
+        Destroy(_target);
 
     }
 

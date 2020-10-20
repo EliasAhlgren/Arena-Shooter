@@ -19,7 +19,7 @@ public class StateMachine : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
                
         var nextState = currentState?.Tick();
