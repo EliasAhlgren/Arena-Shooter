@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Canvas
   - GameManagement
+  - spawnPoints
   layers:
   - Default
   - TransparentFX
