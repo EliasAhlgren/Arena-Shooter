@@ -26,36 +26,60 @@ public class Recoil : MonoBehaviour
     
     public Transform parent;
 
+    [Tooltip("Korkeammalla numerolla aseella kestää pidempään tulla perus asentoon")]
     public float followLazyness;
-    
+
+    public float rotationLazyness;
+
+    public Transform lookatPoint;
+
+    public GameObject debugCube;
+
+    private Vector3 newpoint;
     // Start is called before the first frame update
     void Start()
     {
+        newpoint = lookatPoint.position;
+        
         _GunAttributes = gameObject.GetComponent<GunAttributes>();
 
         posDiff = transform.position - parent.transform.position;
 
+
+        transform.position = parent.position;
     }
 
     
     
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         LazyGun();
-        Recoiling();
+        //Recoiling();
         
     }
 
     public void LazyGun()
     {
-        Vector3 newPos = parent.position + posDiff;
-        Vector3 newRot = parent.localRotation.eulerAngles;
+        if (!_GunAttributes.isModding && !_GunAttributes.isAiming)
+        {
+            Debug.Log("Vibin");
+            
+            //transform.position = (followLazyness * transform.position) + ((1f - followLazyness) * parent.position);
+                transform.position = parent.position;
+            //transform.position += (parent.position - transform.position) * followLazyness;
 
-        transform.position = newPos;
-        transform.eulerAngles = newRot;
+            var position = lookatPoint.position;
+            newpoint += (position - newpoint) * rotationLazyness;
 
-        //transform.eulerAngles += (parent.transform.eulerAngles - transform.eulerAngles) * 0.2f;
+            newpoint.x = Mathf.Clamp(newpoint.x, position.x - 10f, position.x + 10f);
+            
+            debugCube.transform.position = newpoint;
+            
+            transform.LookAt(newpoint);
+        }
+
+        
 
 
     }

@@ -137,15 +137,17 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     void Update()
     {        
         //shoot
+        /*
         if (Input.GetMouseButtonDown(0))
         {
             //trigger pull sound?
             Shoot();
         }
-
+        */
         //jump
         if (Input.GetButtonDown("Jump") && playerControl)
         {
+            //jump sound
             //jump sound
             if (isGrounded)
             {
@@ -220,10 +222,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         //player horizontal rotation
         rb.rotation *= Quaternion.Euler(0, mouseX, 0);
         //playerBody.Rotate(Vector3.up * mouseX);
-    }
-
-    private void FixedUpdate()
-    {
+    
         //if character is touching ground
         if (isGrounded)
         {
