@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCharacterControllerRigidBody : MonoBehaviour
 {
@@ -9,6 +10,17 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     public Transform playerCamera;
     public GameObject groundCheck;
     CapsuleCollider characterCollider;
+
+    public float health = 100f;
+    public float maxHealth = 100f;
+
+    Image deathImage;
+    public GameObject deathCanvas;
+
+    float colorAlpha = 0f;
+    public float minAlpha = 0f;
+    public float maxAlpha = 1f;
+    public float alphaLerp = 0f;
 
     //character height
     float height;
@@ -29,6 +41,13 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
     //mouse input variable holder
     float xRotation = 0f;
+
+    //wallrun camera tilt
+    float tiltAngle = 5;
+    float cameraTilt = 0f;
+    float currentTilt = 0f;
+    float previousTilt = 0f;
+    float tiltLerp = 0f;
 
     //diagonal movement limiter variable;
     float DMLimiter;
@@ -72,7 +91,9 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     public bool isDodging;
     public bool isTouchingWall;
 
-    bool playerControl = true;
+    public bool playerControl = true;
+
+    public bool isAlive = true;
 
     //variables for movement on slopes
     float slopeDot;
@@ -121,6 +142,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
     void Start()
     {
+        deathImage = deathCanvas.GetComponentInChildren<Image>();
         //lock cursor
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -135,66 +157,121 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     }
 
     void Update()
-    {        
-        //shoot
-        if (Input.GetMouseButtonDown(0))
+    {
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            //trigger pull sound?
-            Shoot();
+            health -= 50f;
         }
 
-        //jump
-        if (Input.GetButtonDown("Jump") && playerControl)
+        if (Input.GetKeyDown(KeyCode.L))
         {
-            //jump sound
-            if (isGrounded)
+            if (playerControl)
             {
-                Jump();
+                playerControl = false;
             }
-            else if (isWallRunning)
+            else
             {
-                WallJump();
-            }   
+                playerControl = true;
+            }
         }
 
-        //crouch
-        if (Input.GetKey(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.U))
         {
-            Crouch();
-
-        }
-        else if (!isSlidingControl)
-        {
-            UnCrouch();
-        }
-
-        //dodge
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Dodge();
+            if (isAlive)
+            {
+                killPlayer();
+            }
+            else
+            {
+                RevivePlayer();
+            }
+            
         }
 
-        //running + prevent crouch running
-        if (Input.GetKey(KeyCode.LeftShift) && !isCrouching)
+        if (Input.GetKeyDown(KeyCode.K))
         {
-            //set running speed for forward movement and multiply other direction movement by 25%
-            isRunning = true;
-            speed = runSpeed;
+            if (Time.timeScale == 1.0f)
+            {
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                Time.timeScale = 1.0f;
+            }
+        }
+
+        if (playerControl)
+        {
+
+            //shoot
+            if (Input.GetMouseButtonDown(0))
+            {
+                //trigger pull sound?
+                Shoot();
+            }
+
+            //jump
+            if (Input.GetButtonDown("Jump"))
+            {
+                //jump sound
+                if (isGrounded)
+                {
+                    Jump();
+                }
+                else if (isWallRunning)
+                {
+                    WallJump();
+                }
+            }
+
+            //crouch
+            if (Input.GetKey(KeyCode.C))
+            {
+                Crouch();
+
+            }
+            else if (!isSlidingControl)
+            {
+                UnCrouch();
+            }
+
+            //dodge
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                Dodge();
+            }
+
+            //running + prevent crouch running
+            if (Input.GetKey(KeyCode.LeftShift) && !isCrouching)
+            {
+                //set running speed for forward movement and multiply other direction movement by 25%
+                isRunning = true;
+                speed = runSpeed;
+            }
+            else
+            {
+                //set walking speed
+                isRunning = false;
+                speed = walkSpeed;
+            }
+
+            //mouse input
+            mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+            mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+
+            //keyboard input
+            x = Input.GetAxis("Horizontal");
+            z = Input.GetAxis("Vertical");
         }
         else
         {
-            //set walking speed
-            isRunning = false;
-            speed = walkSpeed;
+            mouseX = 0f;
+            mouseY = 0f;
+
+            x = 0f;
+            z = 0f;
         }
-
-        //mouse input
-        mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
-
-        //keyboard input
-        x = Input.GetAxis("Horizontal");
-        z = Input.GetAxis("Vertical");
+        
 
         //set directional movement limiter
         if (Mathf.Sqrt(x * x + z * z) > 1)
@@ -210,8 +287,39 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
+        if (isAlive)
+        {
+            if (!isWallRunning)
+            {
+                cameraTilt = 0f;
+            }
+
+            if (currentTilt == cameraTilt)
+            {
+                previousTilt = currentTilt;
+                tiltLerp = 0f;
+            }
+            else
+            {
+                tiltLerp += 5f * Time.deltaTime;
+            }
+
+            currentTilt = Mathf.Lerp(previousTilt, cameraTilt, tiltLerp);
+        }
+        else
+        {
+
+            alphaLerp += .3f * Time.deltaTime;
+
+            colorAlpha = Mathf.Lerp(minAlpha, maxAlpha, alphaLerp);
+
+            deathImage.color = new Color(deathImage.color.r, deathImage.color.r, deathImage.color.r, colorAlpha);
+        }
+
         //camera vertical rotation
-        playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, currentTilt);
+
+        //playerCamera.transform.rotation = Quaternion.Euler(0f, 0f, -10f);
 
         //store horizontal rotation in 0 length vector
         rotation = (Vector3.up * mouseX);
@@ -322,8 +430,6 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                 slidedir = Vector3.Scale(slidedir, -movedir);
                 move += slidedir * slideMovementSpeed;
 
-                //prevent jumping from slide
-                playerControl = false;
             }
             else if (isSlidingControl)
             {
@@ -362,9 +468,6 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
                 //if grounded and not sliding allow player free movement
                 move = transform.right * x * speed * DMLimiter + transform.forward * z * speed * DMLimiter + transform.up * velocity.y;
-
-                //allow jumping
-                playerControl = true;
 
                 //set vertical movement depending on ground angle to prevent bumping
                 if (evenGround)
@@ -463,7 +566,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                     if (wallRunninType)
                     {
                         airBorne = new Vector3(move.x, 0, move.z);
-                        if (Physics.Raycast(transform.position + new Vector3(0, .2f, 0), transform.right, maxWallDistance, groundLayerMask))
+                        if (Physics.Raycast(transform.position + new Vector3(0, .2f, 0), -transform.right, maxWallDistance, groundLayerMask))
                         {
                             velocity.y = 5f;
                         }
@@ -523,6 +626,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                             //Debug.DrawRay(wallHit.point, wallHit.normal * 10f, Color.red);
                             wallNormal = wallHit.normal;
                             wallNormal = -Vector3.Cross(wallNormal, Vector3.up);
+                            cameraTilt = tiltAngle;
                         }
                         else
                         {
@@ -535,7 +639,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                         Vector3 wallCheckDir = Quaternion.AngleAxis(-90, Vector3.up) * wallNormal;
                         if (Physics.Raycast(transform.position, wallCheckDir, out wallHit, maxWallDistance, groundLayerMask))
                         {
-                            if (!Physics.Raycast(transform.position + new Vector3(0, .2f, 0), transform.right, maxWallDistance, groundLayerMask))
+                            if (!Physics.Raycast(transform.position + new Vector3(0, .2f, 0), -transform.right, maxWallDistance, groundLayerMask))
                             {
                                 velocity.y = 0f;
                             }
@@ -543,6 +647,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                             //Debug.DrawRay(wallHit.point, wallHit.normal * 10f, Color.red);
                             wallNormal = wallHit.normal;
                             wallNormal = Vector3.Cross(wallNormal, Vector3.up);
+                            cameraTilt = -tiltAngle;
                         }
                         else
                         {
@@ -675,6 +780,17 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
         //movement vector debug
         //debugAS();
+    }
+
+    private void LateUpdate()
+    {
+        if (health <= 0)
+        {
+            if (isAlive)
+            {
+                killPlayer();
+            }
+        }
     }
 
     void Shoot()
@@ -848,6 +964,40 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                 isCrouching = false;
             }
         }
+    }
+
+    public void killPlayer()
+    {
+        alphaLerp = 0f;
+        deathCanvas.SetActive(true);
+
+        rayDistance = crouchRayDistance;
+        transform.localScale = new Vector3(1, .75f, 1);
+        //transform.position = transform.position + new Vector3(0, -.75f, 0);
+
+        currentTilt = 90f;
+
+        isCrouching = false;
+        isAlive = false;
+        playerControl = false;
+    }
+
+    private void RevivePlayer()
+    {
+        health = maxHealth;
+
+        colorAlpha = minAlpha;
+
+        deathCanvas.SetActive(false);
+
+        rayDistance = standRayDistance;
+        transform.localScale = new Vector3(1, 1.5f, 1);
+        transform.position = transform.position + new Vector3(0, .75f, 0);
+
+        currentTilt = 0f;
+
+        isAlive = true;
+        playerControl = true;
     }
 
     private void OnCollisionEnter(Collision collision)
