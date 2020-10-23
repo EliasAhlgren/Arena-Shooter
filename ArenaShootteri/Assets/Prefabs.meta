@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 381c9f18960a342d8aac5b695edc70fc
+=======
+guid: 6ff2becb466efb6468eabf0bb5624843
+>>>>>>> FPSTest
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
