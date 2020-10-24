@@ -796,14 +796,15 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     void Shoot()
     {
         //shooting sound
-
+        int layerMask = LayerMask.GetMask("EnemyHitbox");
         RaycastHit hit;
         //raycast from center of screen if tagged enemy destroy target
-        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit))
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, layerMask))
         {
             if (hit.transform.CompareTag("Enemy"))
             {
-                Destroy(hit.transform.gameObject);
+                hit.transform.parent.transform.GetComponent<Grunt>().StartCoroutine("Die");
+                    
             }
             Debug.Log(hit.transform.name);
         }

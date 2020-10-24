@@ -30,7 +30,7 @@ public class StateMachine : MonoBehaviour
         }
 
     }
-        private void SwitchToState(Type nextState)
+        public void SwitchToState(Type nextState)
         {
             currentState = _availableStates[nextState];
             Debug.Log("State changed to " + currentState.ToString());
