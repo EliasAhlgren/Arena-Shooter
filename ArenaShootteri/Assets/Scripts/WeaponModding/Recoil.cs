@@ -1,52 +1,60 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 
 public class Recoil : MonoBehaviour
 {
-
-    public float baseRecoil;
-
-    public float baseErgo;
     
-    public float endRotX;
-
     public bool isRecoiling;
     
-    [Range(0f,1f)]
-    public float lerpPct;
+    public float recoilTime;
 
-    public float lerpSpeed;
+    public float RateOfFire = 1f;
 
-    public float returnSpeed;
+    public float RecoilAmount = 1f;
 
-    public GunAttributes _GunAttributes;
-
-    private Vector3 posDiff;
+    // How much the head bobs when firing
+    public float FeltRecoil = 1f;
     
-    public Transform parent;
+    public GunAttributes _GunAttributes;
+    
+    // Gun position target
+    public Transform target;
 
-    [Tooltip("Korkeammalla numerolla aseella kestää pidempään tulla perus asentoon")]
-    public float followLazyness;
-
+    // how fast the gun rotates to target rotation
     public float rotationLazyness;
 
+    // how fast the recoil decays
+    public float ReturnTime;
+    
+    // Aiing point
     public Transform lookatPoint;
 
     public GameObject debugCube;
 
     private Vector3 newpoint;
+
+    public Transform cameraTransform;
+
+    public float timer;
+    
+    private Vector3 defaultPos;
+
     // Start is called before the first frame update
     void Start()
     {
+        
+        defaultPos = lookatPoint.localPosition;
+        
         newpoint = lookatPoint.position;
         
         _GunAttributes = gameObject.GetComponent<GunAttributes>();
 
-        posDiff = transform.position - parent.transform.position;
-
-
-        transform.position = parent.position;
+        transform.position = target.position;
+        
     }
 
     
@@ -54,22 +62,39 @@ public class Recoil : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        LazyGun();
-        //Recoiling();
+        timer += Time.deltaTime * 30;
+
+        // resets the timer
+        if (timer > 100000)
+        {
+            timer = 0;
+        }
         
+        LazyGun();
+
+        if (Input.GetMouseButton(0) && !_GunAttributes.isModding)
+        {
+            Recoiling();
+        }
+        else
+        {
+            // return back to normal position
+            lookatPoint.localPosition += (defaultPos - lookatPoint.localPosition) * ReturnTime;
+        }
     }
+
+    
 
     public void LazyGun()
     {
         if (!_GunAttributes.isModding && !_GunAttributes.isAiming)
         {
-            Debug.Log("Vibin");
             
-            //transform.position = (followLazyness * transform.position) + ((1f - followLazyness) * parent.position);
-                transform.position = parent.position;
-            //transform.position += (parent.position - transform.position) * followLazyness;
+            transform.position = target.position;
 
             var position = lookatPoint.position;
+            
+            // newpoint += differnce between aiming point and itself * rotationLazyness ( around 0.5 in normal setup)
             newpoint += (position - newpoint) * rotationLazyness;
 
             newpoint.x = Mathf.Clamp(newpoint.x, position.x - 10f, position.x + 10f);
@@ -80,35 +105,49 @@ public class Recoil : MonoBehaviour
         }
 
         
-
+        
 
     }
     
-    private void Recoiling()
+    public void Recoiling()
     {
-        endRotX = baseRecoil + _GunAttributes.totalRecoil;
-
-        returnSpeed = baseErgo + _GunAttributes.totalErgonomy;
-
-        if (isRecoiling && lerpPct < 0.9f)
+        isRecoiling = true;
+        
+        if (recoilTime < 1)
         {
-            lerpPct += Time.deltaTime * lerpSpeed;
+            recoilTime += Time.deltaTime / 2;    
         }
-
-        if (lerpPct >= 0.9f)
+        else
         {
-            isRecoiling = false;
+            recoilTime = 0;
         }
-
-        if (!isRecoiling && lerpPct > 0f)
+        
+        
+        
+        var localRotation = cameraTransform.localRotation;
+        
+        // get a positive only sine wave and add perlin noise sample
+        float sineValue =  Mathf.Sin(timer);
+        if (sineValue < 0)
         {
-            lerpPct -= Time.deltaTime * returnSpeed;
+            sineValue += -sineValue;
+            sineValue += Mathf.PerlinNoise(timer, Random.Range(0, 50)) * 2;
         }
+        
+        //headbobbipn when firing
+        localRotation.eulerAngles = new Vector3(localRotation.eulerAngles.x + sineValue * FeltRecoil,localRotation.eulerAngles.y + Mathf.Sin(timer) + (Mathf.PerlinNoise(timer, Random.Range(0, 50)) * (FeltRecoil / 2)),localRotation.eulerAngles.z);
+        cameraTransform.localRotation = localRotation;
+        
+        // gun recoil
+        
+        Vector3 randomPos = lookatPoint.localPosition;
 
-        Vector3 newRot = transform.localEulerAngles;
-
-        newRot.x = -Mathf.Lerp(0, endRotX, lerpPct);
-
-        transform.localEulerAngles = newRot;
+        randomPos.y += Mathf.Sin(timer * RateOfFire) * RecoilAmount;
+        randomPos.x += Mathf.Sin(timer) * (RecoilAmount / 2) * Random.Range(-0.5f, 0.5f);
+        
+        lookatPoint.localPosition = randomPos;
+        
+       // Debug.Log(Mathf.Sin(timer));
+        
     }
 }

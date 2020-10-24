@@ -214,7 +214,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
         //camera vertical rotation
         playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-
+        
         //store horizontal rotation in 0 length vector
         rotation = (Vector3.up * mouseX);
         rotation *= 0f;
