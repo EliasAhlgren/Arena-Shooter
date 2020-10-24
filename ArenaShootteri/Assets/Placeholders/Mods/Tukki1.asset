@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3ac60833f6464c78bfff080cc2b59ec, type: 3}
-  m_Name: stock62
+  m_Name: Tukki1
   m_EditorClassIdentifier: 
   Name: 
   Type: 
   Level: 0
   animIndex: 0
-  Prefab: {fileID: 3967751632185135943, guid: ff4fa19af882641eb9c5eabe6d37c646, type: 3}
-  Icon: {fileID: 21300000, guid: d370e902aec4a4f2eb2fa2a48639d773, type: 3}
-  Ergonomy: 20
-  Recoil: -20
+  Prefab: {fileID: 7546790673348196830, guid: 6ab6dd6611ea846afab336e339afa8c5, type: 3}
+  Icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  Ergonomy: 10
+  Recoil: -10
   Damage: 0

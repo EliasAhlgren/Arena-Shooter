@@ -185,7 +185,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             {
                 RevivePlayer();
             }
-            
+
         }
 
         if (Input.GetKeyDown(KeyCode.K))
@@ -271,7 +271,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             x = 0f;
             z = 0f;
         }
-        
+
 
         //set directional movement limiter
         if (Mathf.Sqrt(x * x + z * z) > 1)
@@ -328,10 +328,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         //player horizontal rotation
         rb.rotation *= Quaternion.Euler(0, mouseX, 0);
         //playerBody.Rotate(Vector3.up * mouseX);
-    }
 
-    private void FixedUpdate()
-    {
         //if character is touching ground
         if (isGrounded)
         {
@@ -352,7 +349,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
 
             //Debug.DrawRay(transform.position, -Vector3.up * (rayDistance + rayDistanceMargin + 2f), Color.red);
-            //check if ground normal is over slide limit and set sliding true if it is 
+            //check if ground normal is over slide limit and set sliding true if it is
             RaycastHit hit;
             //raycast from center of character
             if (Physics.Raycast(transform.position, -Vector3.up, out hit, (rayDistance + rayDistanceMargin + 2f), groundLayerMask))
@@ -403,7 +400,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             }
 
 
-            //if ground normal is over slide limit calclulate slide vector from ground normal 
+            //if ground normal is over slide limit calclulate slide vector from ground normal
             if (isSliding)
             {
                 //sliding sound
@@ -489,7 +486,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                 }
             }
         }
-        //!if is grounded 
+        //!if is grounded
         else
         {
             if (isDodging)
@@ -724,7 +721,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         //check if grounded and move character
         //Debug.DrawRay(transform.position, transform.forward * 10f, Color.green);
         //Debug.DrawRay(transform.position, move, Color.red);
-        
+
 
         //ground check delay when jumping
         if (jumpTimer >= 1)
@@ -754,7 +751,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             {
                 Vector3 wall;
                 Vector3 dirWall;
-                
+
                 wall = wallCheck[i].gameObject.transform.position;
 
                 dirWall = transform.position - wall;
@@ -804,7 +801,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             if (hit.transform.CompareTag("Enemy"))
             {
                 hit.transform.parent.transform.GetComponent<Grunt>().StartCoroutine("Die");
-                    
+
             }
             Debug.Log(hit.transform.name);
         }
@@ -1005,7 +1002,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     {
         contactPoint = collision.contacts[0].point;
     }
- 
+
     void OnDrawGizmos()
     {
         //Gizmos.DrawWireCube(transform.position, wallCheckSize*2);

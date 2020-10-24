@@ -8,30 +8,22 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-<<<<<<< Updated upstream
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/Mod.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/Reflex.shader" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/KeepRotation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/WeaponRotationScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/GunAttributes.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/Reflex.shader" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/OLD/SightSelector.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterControllerRigidBody.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///Applications/2020.1.5f1/Unity.app/Contents/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/EventSystem/EventSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../ThePhantomPayne/Assets/Scenes/testi.shader" root0="FORCE_HIGHLIGHTING" />
-=======
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/Recoil.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/Mod.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManagement/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManagement/UIButton.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManagement/PauseMenu.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/KeepRotation.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/WeaponRotationScript.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/OLD/SightSelector.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../../ThePhantomPayne/Assets/Scenes/testi.shader" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManagement/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/Mod.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/GunAttributes.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/Reflex.shader" root0="FORCE_HIGHLIGHTING" />
->>>>>>> Stashed changes
+    <setting file="file://$PROJECT_DIR$/../../../SmoothingTest/Assets/SimpleMovement.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/StockSelection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerMovement/MovingObject.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -40,9 +32,7 @@
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/RedDot1.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/Sight.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/WeaponRotationScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/SightSelector.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/StockSelection.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/KeepRotation.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/NewSurfaceShader.shader" />
@@ -50,7 +40,13 @@
         <option value="$PROJECT_DIR$/../../../ThePhantomPayne/Assets/Scenes/testi.shader" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/Mod.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameManagement/PauseMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/WeaponRotationScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/GunAttributes.cs" />
+        <option value="$PROJECT_DIR$/../../../SmoothingTest/Assets/SimpleMovement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterControllerRigidBody.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/Recoil.cs" />
       </list>
     </option>
   </component>
@@ -107,6 +103,12 @@
       <workItem from="1601461609583" duration="614000" />
       <workItem from="1601481076152" duration="71000" />
       <workItem from="1601543284805" duration="3629000" />
+      <workItem from="1601557476440" duration="1290000" />
+      <workItem from="1601637152344" duration="4924000" />
+      <workItem from="1602937155909" duration="3140000" />
+      <workItem from="1603103478308" duration="370000" />
+      <workItem from="1603367500715" duration="9135000" />
+      <workItem from="1603453301013" duration="9960000" />
     </task>
     <servers />
   </component>
@@ -183,13 +185,18 @@
       <screen x="0" y="23" width="1397" height="877" />
     </state>
     <state width="1355" height="313" key="GridCell.Tab.3.right/0.23.1397.877@0.23.1397.877" timestamp="1601481146737" />
+    <state x="447" y="193" key="RiderGenerateDialog" timestamp="1603370387636">
+      <screen x="0" y="23" width="1397" height="877" />
+    </state>
+    <state x="447" y="193" key="RiderGenerateDialog/0.23.1397.877@0.23.1397.877" timestamp="1603370387636" />
     <state x="194" y="82" width="678" height="735" key="find.popup" timestamp="1600864016679">
       <screen x="0" y="23" width="1399" height="877" />
     </state>
     <state x="194" y="82" width="678" height="735" key="find.popup/0.23.1399.877@0.23.1399.877" timestamp="1600864016679" />
-    <state x="362" y="211" width="672" height="678" key="search.everywhere.popup" timestamp="1600852774455">
-      <screen x="0" y="23" width="1399" height="877" />
+    <state x="361" y="211" width="672" height="678" key="search.everywhere.popup" timestamp="1603379384954">
+      <screen x="0" y="23" width="1397" height="877" />
     </state>
+    <state x="361" y="211" width="672" height="678" key="search.everywhere.popup/0.23.1397.877@0.23.1397.877" timestamp="1603379384954" />
     <state x="362" y="211" width="672" height="678" key="search.everywhere.popup/0.23.1399.877@0.23.1399.877" timestamp="1600852774455" />
   </component>
 </project>
