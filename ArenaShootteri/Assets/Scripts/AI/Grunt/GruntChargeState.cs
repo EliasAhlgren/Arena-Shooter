@@ -17,17 +17,24 @@ public class GruntChargeState : BaseState
 
     public override Type Tick()
     {
+
         lastPosition = grunt.transform.position;
         grunt.agent.ResetPath();
         // Wind up animation
         grunt.animator.speed = 3;
-        
         grunt.transform.Translate(Vector3.forward.normalized * grunt.speed * Time.deltaTime);
+        
+        if(!grunt.isCharging)
+        {
+            grunt.isCharging = true;
+        }
+
         distanceTravelled += Vector3.Distance(grunt.transform.position, lastPosition);
+
         if (distanceTravelled >= grunt.attackRange + 10)
         {
             grunt.agent.ResetPath();
-
+            grunt.isCharging = false;
             distanceTravelled = 0;
             Debug.Log("Charge complete");
             grunt.animator.speed = 1;

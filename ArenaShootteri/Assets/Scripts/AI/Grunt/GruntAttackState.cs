@@ -6,7 +6,7 @@ using System;
 public class GruntAttackState : BaseState 
 {
     private Grunt grunt;
-    private float _attackCooldown = 0.5f;
+    private float _attackCooldown = 2f;
     private float _attackCounter = 0f;
     
 

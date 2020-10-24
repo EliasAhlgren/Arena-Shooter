@@ -12,6 +12,7 @@ public class Grunt : MonoBehaviour
     public NavMeshAgent agent;
     public Transform cone;
     public Animator animator;
+    public bool isCharging = false;
     
     // Start is called before the first frame update
     void Start()
@@ -55,8 +56,9 @@ public class Grunt : MonoBehaviour
 
     public void Attack()
     {
+        Debug.Log("Melee attack");
         // Implement what enemy does when attack happens
-        Destroy(target);
+        target.GetComponent<PlayerCharacterControllerRigidBody>().killPlayer();
 
     }
 
@@ -99,9 +101,7 @@ public class Grunt : MonoBehaviour
             {
                 collider.enabled = !state;
             }
-        }
-
-        
+        }   
     }
-
+   
 }
