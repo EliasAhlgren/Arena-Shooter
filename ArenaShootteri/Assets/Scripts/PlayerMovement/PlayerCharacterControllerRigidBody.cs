@@ -480,12 +480,12 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                 }
                 else if (slopeDot < 0)
                 {
-                    velocity.y = slopeSpeed * slopeDot;
+                    velocity.y = (-slopeSpeed * slopeDot);
                     //velocity.y = 0f;
                 }
                 else if (slopeDot > 0)
                 {
-                    velocity.y = -slopeSpeed * slopeDot;
+                    velocity.y = (-slopeSpeed * slopeDot);
                 }
             }
         }
@@ -969,18 +969,21 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
     public void killPlayer()
     {
-        alphaLerp = 0f;
-        deathCanvas.SetActive(true);
+        if (isAlive)
+        {
+            alphaLerp = 0f;
+            deathCanvas.SetActive(true);
 
-        rayDistance = crouchRayDistance;
-        transform.localScale = new Vector3(1, .75f, 1);
-        //transform.position = transform.position + new Vector3(0, -.75f, 0);
+            rayDistance = crouchRayDistance;
+            transform.localScale = new Vector3(1, .75f, 1);
+            //transform.position = transform.position + new Vector3(0, -.75f, 0);
 
-        currentTilt = 90f;
+            currentTilt = 90f;
 
-        isCrouching = false;
-        isAlive = false;
-        playerControl = false;
+            isCrouching = false;
+            isAlive = false;
+            playerControl = false;
+        }
     }
 
     private void RevivePlayer()
