@@ -101,7 +101,11 @@ public class ModSelection : MonoBehaviour
     {
         ModLocalPos.localPosition = Vector3.zero;
 
-        currentModSlot.GetComponent<Image>().sprite = selectedMods[int.Parse(buttonName)].Icon;
+        if (selectedMods[int.Parse(buttonName)].Icon)
+        {
+            currentModSlot.GetComponent<Image>().sprite = selectedMods[int.Parse(buttonName)].Icon;
+        }
+        
         
         //tuhoa vanha modi 
         if (ModRail.transform.childCount > childCountAtStart)

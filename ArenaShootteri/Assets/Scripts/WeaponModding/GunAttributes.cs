@@ -42,12 +42,14 @@ public class GunAttributes : MonoBehaviour
     public WeaponRotationScript _WeaponRotationScript;
 
     public bool isModding;
+
+    public GameObject mainCamera;
     
     // Start is called before the first frame update
     void Start()
     {
 
-        cameraStartPos = Camera.main.transform.position.y;
+        cameraStartPos = mainCamera.transform.position.y;
         
         _animator = gameObject.GetComponent<Animator>();
         
