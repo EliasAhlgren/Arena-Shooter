@@ -13,10 +13,12 @@ public class GameManager : MonoBehaviour
     public bool acceptPlayerInput = true;
     public bool paused = false;
     public bool playerAlive = true;
-    public int wave = 1;
+    public int wave = 0;
     public int level = 1;
     public int shadowOrbs; //mahdollisen perk systeemin pointsit 
-    //public WaveManager waveManager; 
+
+    public bool waveEnded = false;
+    private bool onCooldown = false;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +56,27 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        if (EnemySpawner.enemyCount == 0)
+        {
+            StartCoroutine(Cooldown());
+            waveEnded = true;
+            if (!onCooldown)
+            {
+                wave += 1;
+                EnemySpawner.wave = wave;
+                EnemySpawner.spawnWave = true;
+            }
 
+        }
+    }
+
+    private IEnumerator Cooldown()
+    {
+        // Start cooldown
+        onCooldown = true;
+        // Wait for time you want
+        yield return new WaitForSeconds(10.0f);
+        // Stop cooldown
+        onCooldown = false;
     }
 }

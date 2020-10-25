@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -9,44 +11,60 @@ public class EnemySpawner : MonoBehaviour
     private int randomSpot;
     private Vector3 spawnPos;
     public GameObject _enemy;
-    public int enemyCount = 0;
-    public int waveMax = 3;
-    public int wave = 1;
+    public static int enemyCount = 0;
+    public static int wave = 0;
     private int last = 0;
+    public GameObject Grunt;
+    public static bool spawnWave = false;
 
     // Start is called before the first frame update
     void Start()
     {
         spawns = GameObject.FindGameObjectWithTag("spawnPoints").GetComponent<spawnPoints>();
-        StartCoroutine(EnemyWave(wave));
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    IEnumerator EnemyWave(int waveNumber)  
-    {
-        while (enemyCount < waveMax)
+        int grunts =  1 + (int)Math.Round(wave * 0.5, MidpointRounding.AwayFromZero);
+        int demons = 2 + (int)Math.Round(wave * 1.5, MidpointRounding.AwayFromZero);
+        int imps = 5 + wave * 3;
+        if (spawnWave == true)
         {
-            int _last = SpawnEnemy(last);
-            yield return new WaitForSeconds(0.1f);
-            enemyCount += 1;
-            last = _last;
+            SpawnWave(grunts, demons, imps);
+
+            spawnWave = false;
         }
     }
 
-    int SpawnEnemy(int lastSpawn) // (EnemyType enemy)
+    void SpawnWave(int gruntNumber, int demonNumber, int impNumber) // määritetään vihollisten määrät ja luodaan niitä oikea määrä
     {
-        randomSpot = Random.Range(0, spawns._spawnPoints.Length);
-        while (randomSpot == lastSpawn)
+        int x = gruntNumber;
+        int y = demonNumber;
+        int z = impNumber;
+        List<Transform> spawnlista = new List<Transform>(spawns._spawnPoints);
+        while (x > 0)
         {
-            randomSpot = Random.Range(0, spawns._spawnPoints.Length);
+            spawnlista = SpawnEnemy(Grunt, spawnlista);
         }
-        spawnPos = spawns._spawnPoints[randomSpot].position;
+        while (y > 0)
+        {
+            spawnlista = SpawnEnemy(Grunt, spawnlista);
+        }
+        while (z > 0)
+        {
+            spawnlista = SpawnEnemy(Grunt, spawnlista);
+        }
+    }
+
+    List<Transform> SpawnEnemy(GameObject _enemy, List<Transform> spawnit) // satunnainen spawn kohta, spawnataan, nostetaan vihollismäärää ja poistetaan spawn listasta
+    {
+        randomSpot = UnityEngine.Random.Range(0, spawnit.Count);
+        spawnPos = spawnit[randomSpot].position;
         Instantiate(_enemy, spawnPos, Quaternion.identity);
-        return randomSpot;
+        enemyCount += 1;
+        spawnit.RemoveAt(randomSpot);
+        return spawnit;
     }
+
 }
