@@ -85,7 +85,7 @@ public class GunAttributes : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             transform.position = moddingPositio;
             transform.rotation = Quaternion.Euler(moddingRotation);
-            Time.timeScale = 0.3f;
+            //Time.timeScale = 0.3f;
         }
         else
         {
@@ -97,7 +97,7 @@ public class GunAttributes : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             //transform.localPosition = shootyPosition;
             //transform.localRotation = Quaternion.Euler(shootyRotation);
-            Time.timeScale = 1f;
+            //Time.timeScale = 1f;
             
         }
         
@@ -169,7 +169,7 @@ public class GunAttributes : MonoBehaviour
         transform.localRotation = Quaternion.Euler(shootyRotation);*/
         //_controller.enabled = !_controller.enabled;
         _WeaponRotationScript.enabled = !_WeaponRotationScript.enabled;
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
         transform.localPosition = shootyPosition;
         recoilScript.enabled = true;
 
@@ -232,6 +232,8 @@ public class GunAttributes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(Time.timeScale);
+        
         //Recoil();
         
         if (_animator.IsInTransition(0))
