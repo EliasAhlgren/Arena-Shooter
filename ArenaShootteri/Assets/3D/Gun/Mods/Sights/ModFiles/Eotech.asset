@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ac60833f6464c78bfff080cc2b59ec, type: 3}
+  m_Name: Eotech
+  m_EditorClassIdentifier: 
+  Name: 
+  Type: 
+  Level: 0
+  animIndex: 0
+  Prefab: {fileID: 3731421050705486531, guid: 6587063f6a9754c4c905559db6209678, type: 3}
+  Icon: {fileID: 21300000, guid: 523d4e8dfe259499c9a399bc5b121411, type: 3}
+  Ergonomy: 0
+  Recoil: 0
+  Damage: 0

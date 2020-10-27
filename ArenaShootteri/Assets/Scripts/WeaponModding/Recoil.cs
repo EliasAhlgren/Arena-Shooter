@@ -16,6 +16,8 @@ public class Recoil : MonoBehaviour
 
     public float RecoilAmount = 1f;
 
+    public float horizontalRecoil;
+    
     // How much the head bobs when firing
     public float FeltRecoil = 1f;
     
@@ -30,7 +32,7 @@ public class Recoil : MonoBehaviour
     // how fast the recoil decays
     public float ReturnTime;
     
-    // Aiing point
+    // Aiming point
     public Transform lookatPoint;
 
     public GameObject debugCube;
@@ -43,6 +45,8 @@ public class Recoil : MonoBehaviour
     
     private Vector3 defaultPos;
 
+    public bool showRecoil;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -62,7 +66,7 @@ public class Recoil : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime * 30;
+        timer += Time.deltaTime * RateOfFire;
 
         // resets the timer
         if (timer > 100000)
@@ -98,8 +102,12 @@ public class Recoil : MonoBehaviour
             newpoint += (position - newpoint) * rotationLazyness;
 
             newpoint.x = Mathf.Clamp(newpoint.x, position.x - 10f, position.x + 10f);
+
+            if (showRecoil)
+            {
+                debugCube.transform.position = newpoint;
+            }
             
-            debugCube.transform.position = newpoint;
             
             transform.LookAt(newpoint);
         }
@@ -135,15 +143,15 @@ public class Recoil : MonoBehaviour
         }
         
         //headbobbipn when firing
-        localRotation.eulerAngles = new Vector3(localRotation.eulerAngles.x + sineValue * FeltRecoil,localRotation.eulerAngles.y + Mathf.Sin(timer) + (Mathf.PerlinNoise(timer, Random.Range(0, 50)) * (FeltRecoil / 2)),localRotation.eulerAngles.z);
+        localRotation.eulerAngles = new Vector3(localRotation.eulerAngles.x + sineValue * FeltRecoil,localRotation.eulerAngles.y + Mathf.Sin(timer) + (Mathf.PerlinNoise(timer, Random.Range(0, 50)) * (FeltRecoil / 2.5f)),localRotation.eulerAngles.z);
         cameraTransform.localRotation = localRotation;
         
         // gun recoil
         
         Vector3 randomPos = lookatPoint.localPosition;
 
-        randomPos.y += Mathf.Sin(timer * RateOfFire) * RecoilAmount;
-        randomPos.x += Mathf.Sin(timer) * (RecoilAmount / 2) * Random.Range(-0.5f, 0.5f);
+        randomPos.y += Mathf.Sin(timer) * RecoilAmount;
+        randomPos.x += Mathf.Sin(timer) * horizontalRecoil * Random.Range(-0.5f, 0.5f);
         
         lookatPoint.localPosition = randomPos;
         

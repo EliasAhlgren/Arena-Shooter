@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 7670998651322866637}
   - component: {fileID: 7819697170758576117}
   - component: {fileID: 4498089725605957429}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6940,6 +6940,7 @@ MonoBehaviour:
   totalErgonomy: 0
   totalRecoil: 0
   totalDamage: 0
+  recoilScript: {fileID: 0}
   sightSelection: {fileID: 4647714981767268157}
   isAiming: 0
   moddingCamera: {fileID: 0}
@@ -6973,6 +6974,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _WeaponRotationScript: {fileID: 0}
   isModding: 0
+  mainCamera: {fileID: 0}
 --- !u!95 &7198999568094152001
 Animator:
   serializedVersion: 3
@@ -7004,17 +7006,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eba1ba96554a74eaeb8d5f25604261fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseRecoil: 100
-  baseErgo: -20
-  endRotX: 100
   isRecoiling: 0
-  lerpPct: 0
-  lerpSpeed: 20
-  returnSpeed: 0
+  recoilTime: 0
+  RateOfFire: 1
+  RecoilAmount: 1
+  horizontalRecoil: 0
+  FeltRecoil: 1
   _GunAttributes: {fileID: 0}
-  parent: {fileID: 0}
-  followLazyness: 0
+  target: {fileID: 0}
   rotationLazyness: 0
+  ReturnTime: 0
+  lookatPoint: {fileID: 0}
+  debugCube: {fileID: 0}
+  cameraTransform: {fileID: 0}
+  timer: 0
+  showRecoil: 0
 --- !u!1 &4647714982852088745
 GameObject:
   m_ObjectHideFlags: 0

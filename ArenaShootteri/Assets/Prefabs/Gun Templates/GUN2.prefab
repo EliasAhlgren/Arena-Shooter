@@ -915,8 +915,8 @@ MonoBehaviour:
   currentMod: {fileID: 0}
   currenModStats: {fileID: 0}
   moddingCamera: {fileID: 0}
-  line: {fileID: 2551284593225732207}
   ModLocalPos: {fileID: 2551284591657158495}
+  isAutoPlaced: 0
 --- !u!1 &2551284591465015213
 GameObject:
   m_ObjectHideFlags: 0
@@ -1673,8 +1673,8 @@ MonoBehaviour:
   currentMod: {fileID: 0}
   currenModStats: {fileID: 0}
   moddingCamera: {fileID: 0}
-  line: {fileID: 0}
   ModLocalPos: {fileID: 2551284591269952614}
+  isAutoPlaced: 0
 --- !u!1 &2551284591625806810
 GameObject:
   m_ObjectHideFlags: 0
@@ -2001,8 +2001,8 @@ MonoBehaviour:
   currentMod: {fileID: 0}
   currenModStats: {fileID: 0}
   moddingCamera: {fileID: 0}
-  line: {fileID: 2551284592119583199}
   ModLocalPos: {fileID: 2551284591269952614}
+  isAutoPlaced: 0
 --- !u!1 &2551284591729091411
 GameObject:
   m_ObjectHideFlags: 0
@@ -5292,6 +5292,7 @@ GameObject:
   - component: {fileID: 2551284592505410458}
   - component: {fileID: 2551284592505410459}
   - component: {fileID: 2551284592505410460}
+  - component: {fileID: -8427545187929038326}
   m_Layer: 9
   m_Name: GUN2
   m_TagString: Untagged
@@ -5342,12 +5343,39 @@ MonoBehaviour:
   totalErgonomy: 0
   totalRecoil: 0
   totalDamage: 0
+  sightSelection: {fileID: 0}
   isAiming: 0
+  canvases: []
   moddingCamera: {fileID: 0}
   shootyPosition: {x: 0, y: 0, z: 0}
   moddingPositio: {x: 0, y: 0, z: 0}
   shootyRotation: {x: 0, y: 0, z: 0}
   moddingRotation: {x: 0, y: 0, z: 0}
+  recoilCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!95 &-8427545187929038326
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2551284592505410457}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2551284592535429602
 GameObject:
   m_ObjectHideFlags: 0
@@ -6229,8 +6257,8 @@ MonoBehaviour:
   currentMod: {fileID: 0}
   currenModStats: {fileID: 0}
   moddingCamera: {fileID: 0}
-  line: {fileID: 2551284592119583199}
   ModLocalPos: {fileID: 2551284592381634476}
+  isAutoPlaced: 0
 --- !u!1 &2551284593006165918
 GameObject:
   m_ObjectHideFlags: 0
@@ -6560,8 +6588,8 @@ MonoBehaviour:
   currentMod: {fileID: 0}
   currenModStats: {fileID: 0}
   moddingCamera: {fileID: 0}
-  line: {fileID: 2551284592119583199}
   ModLocalPos: {fileID: 2551284592381634476}
+  isAutoPlaced: 0
 --- !u!114 &2551284593014802171
 MonoBehaviour:
   m_ObjectHideFlags: 0
