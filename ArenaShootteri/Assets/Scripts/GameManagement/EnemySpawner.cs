@@ -10,7 +10,6 @@ public class EnemySpawner : MonoBehaviour
     private spawnPoints spawns;
     private int randomSpot;
     private Vector3 spawnPos;
-    public GameObject _enemy;
     public static int enemyCount = 0;
     public static int wave = 0;
     private int last = 0;
@@ -27,13 +26,12 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
         int grunts =  1 + (int)Math.Round(wave * 0.5, MidpointRounding.AwayFromZero);
-        int demons = 2 + (int)Math.Round(wave * 1.5, MidpointRounding.AwayFromZero);
-        int imps = 5 + wave * 3;
+        int demons = 0; //2 + (int)Math.Round(wave * 1.5, MidpointRounding.AwayFromZero);
+        int imps = 0; //5 + wave * 3;
         if (spawnWave == true)
         {
-            SpawnWave(grunts, demons, imps);
-
             spawnWave = false;
+            SpawnWave(grunts, demons, imps);
         }
     }
 
@@ -46,14 +44,17 @@ public class EnemySpawner : MonoBehaviour
         while (x > 0)
         {
             spawnlista = SpawnEnemy(Grunt, spawnlista);
+            x--;
         }
         while (y > 0)
         {
             spawnlista = SpawnEnemy(Grunt, spawnlista);
+            y--;
         }
         while (z > 0)
         {
             spawnlista = SpawnEnemy(Grunt, spawnlista);
+            z--;
         }
     }
 

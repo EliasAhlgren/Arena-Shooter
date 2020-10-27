@@ -58,14 +58,10 @@ public class GameManager : MonoBehaviour
 
         if (EnemySpawner.enemyCount == 0)
         {
-            StartCoroutine(Cooldown());
-            waveEnded = true;
-            if (!onCooldown)
-            {
-                wave += 1;
-                EnemySpawner.wave = wave;
-                EnemySpawner.spawnWave = true;
-            }
+            
+            wave += 1;
+            EnemySpawner.wave = wave;
+            EnemySpawner.spawnWave = true;
 
         }
     }
