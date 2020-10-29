@@ -17,6 +17,9 @@ public class Mod : ScriptableObject
 
     public Sprite Icon;
 
+    //Determines if you can move the object on the rail
+    public bool moveable = true;
+    
     public float Ergonomy;
 
     public int Recoil;

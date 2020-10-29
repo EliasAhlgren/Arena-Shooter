@@ -10,6 +10,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/Reflex.shader" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/KeepRotation.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManagement/SoundManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/OLD/SightSelector.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/BaseState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///Applications/2020.1.5f1/Unity.app/Contents/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/EventSystem/EventSystem.cs" root0="SKIP_HIGHLIGHTING" />
@@ -24,6 +25,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/Grunt/Grunt.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/Recoil.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/Grunt/GruntChargeState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ChargeTriggerContoller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/WeaponRotationScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterControllerRigidBody.cs" root0="FORCE_HIGHLIGHTING" />
@@ -46,17 +48,18 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/NewSurfaceShader.shader" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/Reflex.shader" />
         <option value="$PROJECT_DIR$/../../../ThePhantomPayne/Assets/Scenes/testi.shader" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/Mod.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManagement/PauseMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/WeaponRotationScript.cs" />
         <option value="$PROJECT_DIR$/../../../SmoothingTest/Assets/SimpleMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterControllerRigidBody.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/Recoil.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ikTargetScript.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/GunAttributes.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI/Grunt/Grunt.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/Mod.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" />
+        <option value="$PROJECT_DIR$/Assets/MeshGen.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/Recoil.cs" />
       </list>
     </option>
   </component>
@@ -119,6 +122,7 @@
       <workItem from="1603103478308" duration="370000" />
       <workItem from="1603367500715" duration="9135000" />
       <workItem from="1603453301013" duration="9960000" />
+      <workItem from="1603799621790" duration="5702000" />
     </task>
     <servers />
   </component>

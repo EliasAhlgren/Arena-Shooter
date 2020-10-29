@@ -27,7 +27,7 @@ public class Grunt : MonoBehaviour
     private void Awake()
     {
         InitStateMachine();
-        target = GameObject.Find("PlayerRB").gameObject;
+        target = GameObject.FindWithTag("Player").gameObject;
         Debug.Log("Grunt is awake");
     }
     /// <summary>
