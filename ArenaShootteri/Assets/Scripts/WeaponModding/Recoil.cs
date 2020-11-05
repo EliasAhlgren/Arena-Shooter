@@ -135,7 +135,7 @@ public class Recoil : MonoBehaviour
         var localRotation = cameraTransform.localRotation;
         
         // get a positive only sine wave and add perlin noise sample
-        float sineValue =  Mathf.Sin(timer);
+        float sineValue =  Mathf.Sin(timer / 2);
         if (sineValue < 0)
         {
             sineValue += -sineValue;

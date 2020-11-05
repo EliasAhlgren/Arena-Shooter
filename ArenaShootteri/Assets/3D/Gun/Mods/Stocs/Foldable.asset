@@ -16,8 +16,9 @@ MonoBehaviour:
   Type: 
   Level: 0
   animIndex: 0
-  Prefab: {fileID: 7352008034312807893, guid: 4e60d4fbcb1704baeb9228a2499ea783, type: 3}
+  Prefab: {fileID: 1868038333893246103, guid: 59ce1ee8c13b7400c876c58528e94c92, type: 3}
   Icon: {fileID: 21300000, guid: 14a7e4616cd1049bfb65659e1a7b43d1, type: 3}
+  moveable: 0
   Ergonomy: 0
   Recoil: 0
   Damage: 0

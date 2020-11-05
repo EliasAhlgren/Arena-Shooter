@@ -30,6 +30,8 @@ public class ModSelection : MonoBehaviour
     // Koko slotin parent objecti
     public GameObject ModRail;
 
+    public Mod defaultMod;
+    
     // nykyisen modin GameObject
     public GameObject currentMod;
     
@@ -39,11 +41,12 @@ public class ModSelection : MonoBehaviour
     // jos siirtää modia
     private bool placingObject;
 
+    
     public Camera moddingCamera;
-    
-    
-    
-    private Vector3 firstPosition;
+
+    public bool disableEmpty;
+
+        private Vector3 firstPosition;
 
     public Transform ModLocalPos;
 
@@ -55,10 +58,19 @@ public class ModSelection : MonoBehaviour
 
     public bool isAutoPlaced;
     
+    
     // Start is called before the first frame update
     void Start()
     {
         
+        if (defaultMod)
+        {
+            currenModStats = defaultMod;
+            Debug.Log("initializing with a mod");
+            GameObject newMod = Instantiate(defaultMod.Prefab, ModRail.transform.GetChild(0).position,
+                Quaternion.identity, ModRail.transform);
+            currentMod = newMod;
+        }
         
         selectedMods = new Mod[3];
         
@@ -89,16 +101,29 @@ public class ModSelection : MonoBehaviour
         
         foreach (var button in buttons)
         {
+           
             button.SetActive(!button.activeInHierarchy);
         }
-        
-        emptySlot.SetActive(!emptySlot.activeInHierarchy);
+
+        if (!disableEmpty)
+        {
+             emptySlot.SetActive(!emptySlot.activeInHierarchy);
+        }
+       
         Debug.Log("ChangeCurrent");
     }
 
     // OnSelectNew kutsutaan jos valitsee uuden modin 
     public void OnSelectNew(String buttonName) // buttonName on stringi jonka UI nappi passaa ku se kutsuu OnClick eventin
     {
+        
+        //tuhoa vanha modi 
+                if (currentMod)
+                {
+                   // Destroy(ModRail.transform.GetChild(childCountAtStart).gameObject);
+                    Destroy(currentMod);
+                }
+        
         ModLocalPos.localPosition = Vector3.zero;
 
         if (selectedMods[int.Parse(buttonName)].Icon)
@@ -107,11 +132,7 @@ public class ModSelection : MonoBehaviour
         }
         
         
-        //tuhoa vanha modi 
-        if (ModRail.transform.childCount > childCountAtStart)
-        {
-            Destroy(ModRail.transform.GetChild(childCountAtStart).gameObject);
-        }
+        
         
         // Luo uusi modi ModDefaultPosiin
         GameObject newMod = Instantiate(selectedMods[int.Parse(buttonName)].Prefab, ModRail.transform.GetChild(0).position,
@@ -122,8 +143,12 @@ public class ModSelection : MonoBehaviour
         currenModStats = selectedMods[int.Parse(buttonName)];
         
         currentMod = newMod;
-         
-        placingObject = true;
+
+        if (currenModStats.moveable)
+        {
+            placingObject = true;
+        }
+        
         
         OnModChosen();
     }
@@ -136,9 +161,10 @@ public class ModSelection : MonoBehaviour
         
         currentModSlot.GetComponent<Image>().sprite = emptySlot.GetComponent<Button>().image.sprite;
         ModLocalPos.localPosition = Vector3.zero;
-        if (ModRail.transform.childCount > childCountAtStart)
+        if (currentMod)
         {
-            Destroy(ModRail.transform.GetChild(childCountAtStart).gameObject);
+            // Destroy(ModRail.transform.GetChild(childCountAtStart).gameObject);
+            Destroy(currentMod);
         }
 
         currenModStats = null;

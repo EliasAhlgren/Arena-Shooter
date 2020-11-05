@@ -24,6 +24,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
     //character height
     float height;
+    float characterScale;
 
     Vector3 groundCheckSize = new Vector3(.3f, .7f, .3f);
     Vector3 wallCheckSize = new Vector3(.6f, .5f, .6f);
@@ -149,6 +150,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         //initialize variables
         characterCollider = GetComponent<CapsuleCollider>();
         height = characterCollider.height * transform.localScale.y;
+        characterScale = transform.localScale.y;
         standRayDistance = height * .5f;
         crouchRayDistance = standRayDistance * .5f;
         crouchToStandRayDistance = standRayDistance + height * .25f;
@@ -536,7 +538,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                 else if (Physics.Raycast(transform.position, transform.right, out wallHit, maxWallDistance, groundLayerMask))
                 {
 
-                    if (wallRunninType)
+                    if (wallRunninType && isRunning)
                     {
                         airBorne = new Vector3(move.x, 0, move.z);
                         if (Physics.Raycast(transform.position + new Vector3(0, .2f, 0), transform.right, maxWallDistance, groundLayerMask))
@@ -560,7 +562,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                 else if (Physics.Raycast(transform.position, -transform.right, out wallHit, maxWallDistance, groundLayerMask))
                 {
 
-                    if (wallRunninType)
+                    if (wallRunninType && isRunning)
                     {
                         airBorne = new Vector3(move.x, 0, move.z);
                         if (Physics.Raycast(transform.position + new Vector3(0, .2f, 0), -transform.right, maxWallDistance, groundLayerMask))
@@ -925,7 +927,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     private void Dodge()
     {
         isDodging = true;
-        dodgeFrameTime = 20;
+        dodgeFrameTime = 7;
         velocity.y = 0f;
         //dodge = move * 4f *2f;
         Vector3 norMove = Vector3.Normalize(move);
@@ -943,8 +945,10 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         if (!isCrouching)
         {
             rayDistance = crouchRayDistance;
-            transform.localScale = new Vector3(1, .75f, 1);
-            transform.position = transform.position + new Vector3(0, -.75f, 0);
+            //transform.localScale = new Vector3(1, .75f, 1);
+            transform.localScale = new Vector3(transform.localScale.x, characterScale * 0.5f, transform.localScale.z);
+            //transform.position = transform.position + new Vector3(0, -.75f, 0);
+            transform.position = transform.position + new Vector3(0, -characterScale *.5f, 0);
             isCrouching = true;
         }
     }
@@ -957,8 +961,10 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             if (isCrouching)
             {
                 rayDistance = standRayDistance;
-                transform.localScale = new Vector3(1, 1.5f, 1);
-                transform.position = transform.position + new Vector3(0, .75f, 0);
+                //transform.localScale = new Vector3(1, 1.5f, 1);
+                transform.localScale = new Vector3(transform.localScale.x, characterScale, transform.localScale.z);
+                //transform.position = transform.position + new Vector3(0, .75f, 0);
+                transform.position = transform.position + new Vector3(0, characterScale * .5f, 0);
                 isCrouching = false;
             }
         }
@@ -972,7 +978,8 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             deathCanvas.SetActive(true);
 
             rayDistance = crouchRayDistance;
-            transform.localScale = new Vector3(1, .75f, 1);
+            //transform.localScale = new Vector3(1, .75f, 1);
+            transform.localScale = new Vector3(transform.localScale.x, characterScale * 0.5f, transform.localScale.z);
             //transform.position = transform.position + new Vector3(0, -.75f, 0);
 
             currentTilt = 90f;
@@ -992,8 +999,10 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         deathCanvas.SetActive(false);
 
         rayDistance = standRayDistance;
-        transform.localScale = new Vector3(1, 1.5f, 1);
-        transform.position = transform.position + new Vector3(0, .75f, 0);
+        //transform.localScale = new Vector3(1, 1.5f, 1);
+        transform.localScale = new Vector3(transform.localScale.x, characterScale, transform.localScale.z);
+        //transform.position = transform.position + new Vector3(0, .75f, 0);
+        transform.position = transform.position + new Vector3(0, height * .5f, 0);
 
         currentTilt = 0f;
 
