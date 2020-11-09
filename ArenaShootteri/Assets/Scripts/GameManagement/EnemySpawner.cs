@@ -11,10 +11,11 @@ public class EnemySpawner : MonoBehaviour
     private int randomSpot;
     private Vector3 spawnPos;
     public static int enemyCount = 0;
-    public static int wave = 0;
-    private int last = 0;
+    public static int wave = 1;
     public GameObject Grunt;
     public static bool spawnWave = false;
+    public bool onCooldown = false;
+    private GameObject[] enemies;
 
     // Start is called before the first frame update
     void Start()
@@ -25,13 +26,31 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int grunts =  1 + (int)Math.Round(wave * 0.5, MidpointRounding.AwayFromZero);
-        int demons = 0; //2 + (int)Math.Round(wave * 1.5, MidpointRounding.AwayFromZero);
-        int imps = 0; //5 + wave * 3;
+        enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        //Debug.Log("Enemies left: " + enemyCount);
         if (spawnWave == true)
         {
-            spawnWave = false;
-            SpawnWave(grunts, demons, imps);
+            if (wave == 1)
+            {
+                spawnWave = false;
+                SpawnWave(3, 0, 0);
+            }
+            else
+            {
+                int grunts = 1 + (int)Math.Round(wave * 0.5, MidpointRounding.AwayFromZero);
+                int demons = 0; //2 + (int)Math.Round(wave * 1.5, MidpointRounding.AwayFromZero);
+                int imps = 0; //5 + wave * 3;
+                spawnWave = false;
+                SpawnWave(grunts, demons, imps);
+            }
+        }
+        if (spawnWave == false)
+        {
+            if (enemyCount == 0)
+            {
+                GameManager.waveStart = true;
+                GameManager.waveEnd = false;
+            }
         }
     }
 
@@ -66,6 +85,19 @@ public class EnemySpawner : MonoBehaviour
         enemyCount += 1;
         spawnit.RemoveAt(randomSpot);
         return spawnit;
+    }
+
+    private IEnumerator Cooldown()
+    {
+        // Start cooldown
+        onCooldown = true;
+        // Wait for time you want
+        yield return new WaitForSeconds(1.0f);
+        // Stop cooldown
+        onCooldown = false;
+        //Debug.Log("Cooldown Ended");
+        //GameManager.waveStart = true;
+        //GameManager.waveEnd = false;
     }
 
 }
