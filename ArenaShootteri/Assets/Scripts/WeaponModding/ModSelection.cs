@@ -46,7 +46,7 @@ public class ModSelection : MonoBehaviour
 
     public bool disableEmpty;
 
-        private Vector3 firstPosition;
+    private Vector3 firstPosition;
 
     public Transform ModLocalPos;
 

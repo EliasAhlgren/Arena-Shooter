@@ -30,12 +30,21 @@
             <e p="spawnPoints.cs" t="Include" />
             <e p="UIButton.cs" t="Include" />
           </e>
+          <e p="Player Hands" t="Include">
+            <e p="HandPoser.cs" t="Include" />
+            <e p="IKsolver.cs" t="Include" />
+            <e p="Pose.cs" t="Include" />
+          </e>
           <e p="PlayerMovement" t="Include">
             <e p="MovingObject.cs" t="Include" />
             <e p="Perk.cs" t="Include" />
             <e p="PlayerCharacterController.cs" t="Include" />
             <e p="PlayerCharacterControllerRigidBody.cs" t="Include" />
             <e p="PlayerStats.cs" t="Include" />
+          </e>
+          <e p="Weapon" t="Include">
+            <e p="Aiming.cs" t="Include" />
+            <e p="Recoil.cs" t="Include" />
           </e>
           <e p="WeaponModding" t="Include">
             <e p="GunAttributes.cs" t="Include" />
@@ -47,7 +56,6 @@
               <e p="Sight.cs" t="Include" />
               <e p="SightSelector.cs" t="Include" />
             </e>
-            <e p="Recoil.cs" t="Include" />
             <e p="Reflex.shader" t="Include" />
             <e p="StockSelection.cs" t="Include" />
             <e p="WeaponRotationScript.cs" t="Include" />

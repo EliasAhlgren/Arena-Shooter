@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 8324633040537280682}
   - component: {fileID: 8324633040537280681}
   - component: {fileID: 8324633040537280680}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8324633040537280662}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -427,7 +427,7 @@ GameObject:
   - component: {fileID: 8324633040563509921}
   - component: {fileID: 8324633040563509920}
   m_Layer: 9
-  m_Name: CurrentSight
+  m_Name: CurrentMod
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2952,7 +2952,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8324633041071749750}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6333,7 +6333,7 @@ GameObject:
   - component: {fileID: 8324633041639420407}
   - component: {fileID: 8324633041639420406}
   - component: {fileID: 8324633041639420405}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -6914,7 +6914,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8324633041650189594}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LookatPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -8554,7 +8554,7 @@ GameObject:
   - component: {fileID: 8324633041906681042}
   - component: {fileID: 8324633041906681044}
   - component: {fileID: 8324633041906681043}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9020,7 +9020,7 @@ GameObject:
   - component: {fileID: 8324633042033723541}
   - component: {fileID: 8324633042033723540}
   - component: {fileID: 8324633042033723539}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: DeathCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10011,8 +10011,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8324633042182719076}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.039213, z: -0.044644594}
-  m_LocalScale: {x: 0.19262145, y: 0.19262145, z: 0.19262145}
+  m_LocalPosition: {x: 0.000851, y: 0.038847, z: -0.0472}
+  m_LocalScale: {x: 0.24854133, y: 0.21883787, z: 0.25143296}
   m_Children: []
   m_Father: {fileID: 8324633042516964266}
   m_RootOrder: 2
@@ -10849,6 +10849,7 @@ GameObject:
   - component: {fileID: 8324633042294692913}
   - component: {fileID: 8324633042294692912}
   - component: {fileID: 8324633042294692927}
+  - component: {fileID: 791909868}
   m_Layer: 9
   m_Name: GUN2 1
   m_TagString: Untagged
@@ -10971,9 +10972,9 @@ MonoBehaviour:
   isRecoiling: 0
   recoilTime: 0
   RateOfFire: 100
-  RecoilAmount: 4
+  RecoilAmount: 3
   horizontalRecoil: 1
-  FeltRecoil: 0.4
+  FeltRecoil: 0.5
   _GunAttributes: {fileID: 8324633042294692913}
   target: {fileID: 8324633042470368727}
   rotationLazyness: 0.3
@@ -10983,6 +10984,23 @@ MonoBehaviour:
   cameraTransform: {fileID: 8324633041639420404}
   timer: 0
   showRecoil: 0
+--- !u!114 &791909868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8324633042294692925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a69b59c4084fc46bf8638e72b3093da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 8324633041639420404}
+  target: {fileID: 8324633042470368727}
+  isAiming: 0
+  positionDifferenceY: -0.15
+  positionDifferenceZ: 0.72
 --- !u!1 &8324633042309177952
 GameObject:
   m_ObjectHideFlags: 0
@@ -11042,7 +11060,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8324633042312629269}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.27, z: 2.149}
+  m_LocalPosition: {x: 0, y: 1.27, z: 3.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8324633042171933020}
@@ -11545,7 +11563,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8324633042470368727}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GunParent
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -12137,7 +12155,7 @@ MonoBehaviour:
   emptySlot: {fileID: 8324633041363670244}
   currentModSlot: {fileID: 8324633040563509920}
   ModRail: {fileID: 8324633042171933019}
-  defaultMod: {fileID: 0}
+  defaultMod: {fileID: 11400000, guid: 1100fe54d173141c296cc42ac038eac5, type: 2}
   currentMod: {fileID: 0}
   currenModStats: {fileID: 0}
   moddingCamera: {fileID: 8324633041905797638}
