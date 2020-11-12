@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using System;
+using System.Collections;
+
 using UnityEngine;
+
 
 public class GunAttributes : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class GunAttributes : MonoBehaviour
     public int totalRecoil;
     public float totalDamage;
 
+    public Recoil recoilScript;
+    
     public ModSelection sightSelection;
     
     public bool isAiming;
@@ -17,7 +20,7 @@ public class GunAttributes : MonoBehaviour
     // animator that handles aiming animation
     private Animator _animator;
     
-    public GameObject[] canvases;
+    [NonSerialized] public GameObject[] canvases;
 
     // camera used for rendering when in modding mode
     public GameObject moddingCamera;
@@ -28,23 +31,29 @@ public class GunAttributes : MonoBehaviour
     public Vector3 shootyRotation;
     public Vector3 moddingRotation;
 
-    private PlayerCharacterController _controller;
+    private PlayerCharacterControllerRigidBody _controller;
 
     private float cameraStartPos;
 
     private AnimationClip adsClip;
 
     public AnimationCurve recoilCurve;
+
+    public WeaponRotationScript _WeaponRotationScript;
+
+    public bool isModding;
+
+    public GameObject mainCamera;
     
     // Start is called before the first frame update
     void Start()
     {
 
-        cameraStartPos = Camera.main.transform.position.y;
+        cameraStartPos = mainCamera.transform.position.y;
         
         _animator = gameObject.GetComponent<Animator>();
         
-        _controller = GameObject.FindWithTag("Player").GetComponent<PlayerCharacterController>();
+        _controller = GameObject.FindWithTag("Player").GetComponent<PlayerCharacterControllerRigidBody>();
         
         canvases = GameObject.FindGameObjectsWithTag("Canvas");
 
@@ -53,11 +62,14 @@ public class GunAttributes : MonoBehaviour
         
     }
 
+    
+    
     // Changes to Modding mode
     void ChangeUI()
     {
         
-        _controller.enabled = !_controller.enabled;
+        //_controller.enabled = !_controller.enabled;
+        _WeaponRotationScript.enabled = !_WeaponRotationScript.enabled;
         
         foreach (var canvas in canvases)
         {
@@ -66,19 +78,27 @@ public class GunAttributes : MonoBehaviour
         
         if (Cursor.lockState == CursorLockMode.Locked)
         {
+            //This is for enabling modding
+            isModding = true;
             moddingCamera.SetActive(true);
             transform.parent = null;
             Cursor.lockState = CursorLockMode.None;
-            transform.localPosition = moddingPositio;
-            transform.localRotation = Quaternion.Euler(moddingRotation);
+            transform.position = moddingPositio;
+            transform.rotation = Quaternion.Euler(moddingRotation);
+            //Time.timeScale = 0.3f;
         }
         else
         {
+            isModding = false;
+            //this is for disabling modding
             moddingCamera.SetActive(false);
-            transform.parent = Camera.main.transform;
+            transform.parent = null;
+            //transform.parent = Camera.main.transform;
             Cursor.lockState = CursorLockMode.Locked;
-            transform.localPosition = shootyPosition;
-            transform.localRotation = Quaternion.Euler(shootyRotation);
+            //transform.localPosition = shootyPosition;
+            //transform.localRotation = Quaternion.Euler(shootyRotation);
+            //Time.timeScale = 1f;
+            
         }
         
     }
@@ -141,12 +161,18 @@ public class GunAttributes : MonoBehaviour
         //StartCoroutine("wait");
         
         moddingCamera.SetActive(false);
-        transform.parent = Camera.main.transform;
+        isModding = false;
+        //transform.parent = Camera.main.transform;
+        transform.parent = null;
         Cursor.lockState = CursorLockMode.Locked;
+        /*transform.localPosition = shootyPosition;
+        transform.localRotation = Quaternion.Euler(shootyRotation);*/
+        //_controller.enabled = !_controller.enabled;
+        _WeaponRotationScript.enabled = !_WeaponRotationScript.enabled;
+        //Time.timeScale = 1f;
         transform.localPosition = shootyPosition;
-        transform.localRotation = Quaternion.Euler(shootyRotation);
-        _controller.enabled = !_controller.enabled;
-        
+        recoilScript.enabled = true;
+
     }
 
     IEnumerator wait()
@@ -158,10 +184,6 @@ public class GunAttributes : MonoBehaviour
     // called everytime a mod is changed in any of the rails
     void UpdateStats()
     {
-
-        
-        
-        
         // sets SightIndex parameter in animator to account for differences in sight heights
         if (sightSelection.currenModStats)
         {
@@ -205,20 +227,18 @@ public class GunAttributes : MonoBehaviour
         
     }
 
-    public void Recoil()
-    {
-       
-        
-    }
+    
     
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(Time.timeScale);
+        
         //Recoil();
         
         if (_animator.IsInTransition(0))
         {
-            _animator.speed = 1f + totalErgonomy;
+            _animator.speed = 1f + totalErgonomy / 10;
         }
         
         

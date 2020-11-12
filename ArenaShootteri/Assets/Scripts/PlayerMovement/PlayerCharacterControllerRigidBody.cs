@@ -24,6 +24,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
     //character height
     float height;
+    float characterScale;
 
     Vector3 groundCheckSize = new Vector3(.3f, .7f, .3f);
     Vector3 wallCheckSize = new Vector3(.6f, .5f, .6f);
@@ -149,6 +150,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         //initialize variables
         characterCollider = GetComponent<CapsuleCollider>();
         height = characterCollider.height * transform.localScale.y;
+        characterScale = transform.localScale.y;
         standRayDistance = height * .5f;
         crouchRayDistance = standRayDistance * .5f;
         crouchToStandRayDistance = standRayDistance + height * .25f;
@@ -185,7 +187,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             {
                 RevivePlayer();
             }
-            
+
         }
 
         if (Input.GetKeyDown(KeyCode.K))
@@ -271,7 +273,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             x = 0f;
             z = 0f;
         }
-        
+
 
         //set directional movement limiter
         if (Mathf.Sqrt(x * x + z * z) > 1)
@@ -328,10 +330,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         //player horizontal rotation
         rb.rotation *= Quaternion.Euler(0, mouseX, 0);
         //playerBody.Rotate(Vector3.up * mouseX);
-    }
 
-    private void FixedUpdate()
-    {
         //if character is touching ground
         if (isGrounded)
         {
@@ -352,7 +351,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
 
             //Debug.DrawRay(transform.position, -Vector3.up * (rayDistance + rayDistanceMargin + 2f), Color.red);
-            //check if ground normal is over slide limit and set sliding true if it is 
+            //check if ground normal is over slide limit and set sliding true if it is
             RaycastHit hit;
             //raycast from center of character
             if (Physics.Raycast(transform.position, -Vector3.up, out hit, (rayDistance + rayDistanceMargin + 2f), groundLayerMask))
@@ -403,7 +402,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             }
 
 
-            //if ground normal is over slide limit calclulate slide vector from ground normal 
+            //if ground normal is over slide limit calclulate slide vector from ground normal
             if (isSliding)
             {
                 //sliding sound
@@ -480,16 +479,16 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                 }
                 else if (slopeDot < 0)
                 {
-                    velocity.y = slopeSpeed * slopeDot;
+                    velocity.y = (-slopeSpeed * slopeDot);
                     //velocity.y = 0f;
                 }
                 else if (slopeDot > 0)
                 {
-                    velocity.y = -slopeSpeed * slopeDot;
+                    velocity.y = (-slopeSpeed * slopeDot);
                 }
             }
         }
-        //!if is grounded 
+        //!if is grounded
         else
         {
             if (isDodging)
@@ -539,7 +538,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                 else if (Physics.Raycast(transform.position, transform.right, out wallHit, maxWallDistance, groundLayerMask))
                 {
 
-                    if (wallRunninType)
+                    if (wallRunninType && isRunning)
                     {
                         airBorne = new Vector3(move.x, 0, move.z);
                         if (Physics.Raycast(transform.position + new Vector3(0, .2f, 0), transform.right, maxWallDistance, groundLayerMask))
@@ -563,7 +562,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                 else if (Physics.Raycast(transform.position, -transform.right, out wallHit, maxWallDistance, groundLayerMask))
                 {
 
-                    if (wallRunninType)
+                    if (wallRunninType && isRunning)
                     {
                         airBorne = new Vector3(move.x, 0, move.z);
                         if (Physics.Raycast(transform.position + new Vector3(0, .2f, 0), -transform.right, maxWallDistance, groundLayerMask))
@@ -724,7 +723,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         //check if grounded and move character
         //Debug.DrawRay(transform.position, transform.forward * 10f, Color.green);
         //Debug.DrawRay(transform.position, move, Color.red);
-        
+
 
         //ground check delay when jumping
         if (jumpTimer >= 1)
@@ -754,7 +753,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             {
                 Vector3 wall;
                 Vector3 dirWall;
-                
+
                 wall = wallCheck[i].gameObject.transform.position;
 
                 dirWall = transform.position - wall;
@@ -803,8 +802,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         {
             if (hit.transform.CompareTag("Enemy"))
             {
-                // hit.transform.parent.transform.GetComponent<Grunt>().StartCoroutine("Die");
-                hit.transform.GetComponentInParent<Grunt>().StartCoroutine("Die");
+                hit.transform.parent.transform.GetComponent<Grunt>().StartCoroutine("Die");
             }
             Debug.Log(hit.transform.name);
         }
@@ -928,7 +926,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     private void Dodge()
     {
         isDodging = true;
-        dodgeFrameTime = 20;
+        dodgeFrameTime = 7;
         velocity.y = 0f;
         //dodge = move * 4f *2f;
         Vector3 norMove = Vector3.Normalize(move);
@@ -946,8 +944,10 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         if (!isCrouching)
         {
             rayDistance = crouchRayDistance;
-            transform.localScale = new Vector3(1, .75f, 1);
-            transform.position = transform.position + new Vector3(0, -.75f, 0);
+            //transform.localScale = new Vector3(1, .75f, 1);
+            transform.localScale = new Vector3(transform.localScale.x, characterScale * 0.5f, transform.localScale.z);
+            //transform.position = transform.position + new Vector3(0, -.75f, 0);
+            transform.position = transform.position + new Vector3(0, -characterScale *.5f, 0);
             isCrouching = true;
         }
     }
@@ -960,8 +960,10 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             if (isCrouching)
             {
                 rayDistance = standRayDistance;
-                transform.localScale = new Vector3(1, 1.5f, 1);
-                transform.position = transform.position + new Vector3(0, .75f, 0);
+                //transform.localScale = new Vector3(1, 1.5f, 1);
+                transform.localScale = new Vector3(transform.localScale.x, characterScale, transform.localScale.z);
+                //transform.position = transform.position + new Vector3(0, .75f, 0);
+                transform.position = transform.position + new Vector3(0, characterScale * .5f, 0);
                 isCrouching = false;
             }
         }
@@ -969,18 +971,22 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
     public void killPlayer()
     {
-        alphaLerp = 0f;
-        deathCanvas.SetActive(true);
+        if (isAlive)
+        {
+            alphaLerp = 0f;
+            deathCanvas.SetActive(true);
 
-        rayDistance = crouchRayDistance;
-        transform.localScale = new Vector3(1, .75f, 1);
-        //transform.position = transform.position + new Vector3(0, -.75f, 0);
+            rayDistance = crouchRayDistance;
+            //transform.localScale = new Vector3(1, .75f, 1);
+            transform.localScale = new Vector3(transform.localScale.x, characterScale * 0.5f, transform.localScale.z);
+            //transform.position = transform.position + new Vector3(0, -.75f, 0);
 
-        currentTilt = 90f;
+            currentTilt = 90f;
 
-        isCrouching = false;
-        isAlive = false;
-        playerControl = false;
+            isCrouching = false;
+            isAlive = false;
+            playerControl = false;
+        }
     }
 
     private void RevivePlayer()
@@ -992,8 +998,10 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         deathCanvas.SetActive(false);
 
         rayDistance = standRayDistance;
-        transform.localScale = new Vector3(1, 1.5f, 1);
-        transform.position = transform.position + new Vector3(0, .75f, 0);
+        //transform.localScale = new Vector3(1, 1.5f, 1);
+        transform.localScale = new Vector3(transform.localScale.x, characterScale, transform.localScale.z);
+        //transform.position = transform.position + new Vector3(0, .75f, 0);
+        transform.position = transform.position + new Vector3(0, height * .5f, 0);
 
         currentTilt = 0f;
 
@@ -1011,7 +1019,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         }
 
     }
- 
+
     void OnDrawGizmos()
     {
         //Gizmos.DrawWireCube(transform.position, wallCheckSize*2);

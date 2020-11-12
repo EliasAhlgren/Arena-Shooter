@@ -5,21 +5,41 @@
       <e p="ArenaShootteri.sln" t="IncludeFlat" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="ChargeTriggerContoller.cs" t="Include" />
         <e p="Scripts" t="Include">
+          <e p="AI" t="Include">
+            <e p="BaseState.cs" t="Include" />
+            <e p="ConeScript.cs" t="Include" />
+            <e p="DoNothingState.cs" t="Include" />
+            <e p="Grunt" t="Include">
+              <e p="Grunt.cs" t="Include" />
+              <e p="GruntAttackState.cs" t="Include" />
+              <e p="GruntChargeState.cs" t="Include" />
+              <e p="GruntChaseState.cs" t="Include" />
+            </e>
+            <e p="StateMachine.cs" t="Include" />
+          </e>
           <e p="GameManagement" t="Include">
+            <e p="DDOL.cs" t="Include" />
+            <e p="EnemySpawner.cs" t="Include" />
             <e p="GameManager.cs" t="Include" />
             <e p="PauseMenu.cs" t="Include" />
             <e p="ScoreManager.cs" t="Include" />
+            <e p="SetVolume.cs" t="Include" />
             <e p="SoundManager.cs" t="Include" />
+            <e p="spawnPoints.cs" t="Include" />
             <e p="UIButton.cs" t="Include" />
           </e>
           <e p="PlayerMovement" t="Include">
             <e p="MovingObject.cs" t="Include" />
+            <e p="Perk.cs" t="Include" />
             <e p="PlayerCharacterController.cs" t="Include" />
             <e p="PlayerCharacterControllerRigidBody.cs" t="Include" />
+            <e p="PlayerStats.cs" t="Include" />
           </e>
           <e p="WeaponModding" t="Include">
             <e p="GunAttributes.cs" t="Include" />
+            <e p="ikTargetScript.cs" t="Include" />
             <e p="KeepRotation.cs" t="Include" />
             <e p="Mod.cs" t="Include" />
             <e p="ModSelection.cs" t="Include" />
@@ -27,6 +47,7 @@
               <e p="Sight.cs" t="Include" />
               <e p="SightSelector.cs" t="Include" />
             </e>
+            <e p="Recoil.cs" t="Include" />
             <e p="Reflex.shader" t="Include" />
             <e p="StockSelection.cs" t="Include" />
             <e p="WeaponRotationScript.cs" t="Include" />
@@ -64,9 +85,19 @@
           </e>
         </e>
       </e>
+      <e p="LocalPackages" t="Include">
+        <e p="com.unity.render-pipelines.high-definition-config" t="Include">
+          <e p="Runtime" t="Include">
+            <e p="ShaderConfig.cs" t="Include" />
+            <e p="ShaderConfig.cs.hlsl" t="Include" />
+            <e p="Unity.RenderPipelines.HighDefinition.Config.Runtime.asmdef" t="Include" />
+          </e>
+        </e>
+      </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />
       <e p="Temp/bin" t="ExcludeRecursive" />
+      <e p="Unity.RenderPipelines.HighDefinition.Config.Runtime.csproj" t="IncludeRecursive" />
     </e>
     <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.1/extResources" t="IncludeRecursive" />
     <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.1/resharper-host/local/Transient/ReSharperHost/v201/SolutionCaches/_ArenaShootteri.-1744154454.00" t="ExcludeRecursive" />
