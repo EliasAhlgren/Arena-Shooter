@@ -803,8 +803,8 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         {
             if (hit.transform.CompareTag("Enemy"))
             {
-                hit.transform.parent.transform.GetComponent<Grunt>().StartCoroutine("Die");
-                    
+                // hit.transform.parent.transform.GetComponent<Grunt>().StartCoroutine("Die");
+                hit.transform.GetComponentInParent<Grunt>().StartCoroutine("Die");
             }
             Debug.Log(hit.transform.name);
         }
@@ -1004,6 +1004,12 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         contactPoint = collision.contacts[0].point;
+
+        if (collision.transform.CompareTag("Enemy"))
+        {
+            Debug.Log("Player hit");
+        }
+
     }
  
     void OnDrawGizmos()

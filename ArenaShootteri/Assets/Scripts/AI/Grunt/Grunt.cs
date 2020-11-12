@@ -13,6 +13,7 @@ public class Grunt : MonoBehaviour
     public Transform cone;
     public Animator animator;
     public bool isCharging = false;
+    public float chargeForce = 10;
     
     // Start is called before the first frame update
     void Start()
@@ -20,14 +21,16 @@ public class Grunt : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         cone = transform.Find("VisionCone");
+
+        // These might not be necessary
         SetRigidbodyState(true);
-        setColliderState(false);
+        SetColliderState(true); 
     }
 
     private void Awake()
     {
         InitStateMachine();
-        target = GameObject.Find("Player").gameObject;
+        target = GameObject.FindGameObjectWithTag("Player");
         Debug.Log("Grunt is awake");
     }
     /// <summary>
@@ -41,13 +44,14 @@ public class Grunt : MonoBehaviour
             {typeof(GruntChaseState), new GruntChaseState(_grunt: this) },
             {typeof(GruntAttackState), new GruntAttackState(_grunt: this) },
             {typeof(GruntChargeState), new GruntChargeState(_grunt: this) },
-            {typeof(DoNothingState), new DoNothingState(_grunt:this) }
+            {typeof(GruntWindUpState), new GruntWindUpState(_grunt: this) },
+            {typeof(GruntDoNothingState), new GruntDoNothingState(_grunt:this) }
         };
-        GetComponent<StateMachine>().SetStates(states);
+        GetComponent<Grunt_StateMachine>().SetStates(states);
     }
     
      /// <summary>
-     /// method <c>SetTarget</c> set target for enemy
+     /// method <c>SetTarget</c> set target for Grunt
      /// </summary>
     public void SetTarget(GameObject _target)
     {
@@ -58,26 +62,40 @@ public class Grunt : MonoBehaviour
     {
         Debug.Log("Melee attack");
         // Implement what enemy does when attack happens
-        target.GetComponent<PlayerCharacterControllerRigidBody>().killPlayer();
+        // SetColliderState(true);
+        animator.Play("Punch");
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Punch"))
+        {
+            
+        }
+
+        // target.GetComponent<PlayerCharacterControllerRigidBody>().killPlayer();
 
     }
 
 
     public IEnumerator Die()
     {
-        animator.enabled = false;
-        agent.isStopped = true;
-        GetComponent<StateMachine>().enabled = false;
+        // Disable rigidbody and enable Colliders for each body part
+        // for rigidbody death "animation"
         SetRigidbodyState(false);
-        setColliderState(true);
+        SetColliderState(true);
 
+        // Disable all AI components for the Grunt.
+        animator.enabled = false;                           // Stop animator
+        agent.enabled = false;                              // Stop Nav Mesh Agent
+        GetComponent<Grunt_StateMachine>().enabled = false;       // Stop AI
+        Destroy(transform.Find("Hitbox").gameObject);       // Destroy Hitbox
+        Destroy(transform.Find("Vision").gameObject);       // Destory Vision
+
+        // Enemt stays on ground for 2 seconds.
+        // After that set all colliders back to false 
+        // and let body sink throught the floor
+        // Then destroy the whole GameObject
         yield return new WaitForSeconds(2);
-        setColliderState(false);
+        SetColliderState(false);
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
-
-
-
     }
 
     void SetRigidbodyState(bool state)
@@ -90,14 +108,14 @@ public class Grunt : MonoBehaviour
         }
     }
 
-    void setColliderState(bool state)
+    void SetColliderState(bool state)
     {
         Collider[] colliders = GetComponentsInChildren<Collider>();
 
         foreach(Collider collider in colliders)
         {
             collider.enabled = state;
-            if (collider.transform.name.Equals("Hitbox"))
+            if (collider.name.Equals("Hitbox") || collider.name.Equals("VisionCone"))
             {
                 collider.enabled = !state;
             }
