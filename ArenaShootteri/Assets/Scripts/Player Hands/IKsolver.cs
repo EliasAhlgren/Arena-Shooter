@@ -2,10 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+    
 public class IKsolver : MonoBehaviour
 {
+    private int _iterationsLeft;
 
+    private bool _iterating;
+    
     public bool solve;
 
     public float marginOfError = 0.1f;
@@ -16,7 +19,11 @@ public class IKsolver : MonoBehaviour
     
     private float length1, length2;
 
-    public Transform poleTarget;
+    //public Transform poleTarget;
+
+    public bool flip;
+
+    private int flipMultiplier;
     
     public Transform target;
 
@@ -38,15 +45,26 @@ public class IKsolver : MonoBehaviour
         length1 = Vector3.Distance(bone1.position, bone2.position);
         length2 = Vector3.Distance(bone2.position, bone3.position);
         
-        solve = true;
+       // solve = true;
     }
 
     /// <summary>
     ///  Moves the bones so that endpoint reaches target using the FABRIK algorithm
     /// </summary>
     /// <remarks>Called every frame if endpoint is too far from target but can be called anytime as in most situations the endpoint reaches the target in a single pass</remarks>
-    void Solve()
+    public void Solve(int Iterations)
     {
+        if (!_iterating)
+        {
+            _iterationsLeft = Iterations;
+        }
+        
+        _iterating = true;
+        
+        
+        origin = bone1.position;
+
+        
         //Vector3 poleDir = bone2.position - poleTarget.position;
         //bone1.forward = poleDir;
         //bone2.forward = poleDir;
@@ -79,27 +97,51 @@ public class IKsolver : MonoBehaviour
 
 
         Vector3 dir = point2 - point3;
+        
         bone2.right = dir;
-
+        
+        
         dir = point1 - point2;
         bone1.right = dir;
+
+        if (flip)
+        {
+            Vector3 dir1 = point3 - point2;
+        
+            bone2.right = dir1;
+
+            dir1 = point2 - point1;
+            bone1.right = dir1;
+        }
         
         //Draw lines
        
         // Debug.DrawLine(bone1.position,bone2.position,Color.red,Mathf.Infinity);
         // Debug.DrawLine(bone2.position,bone3.position,Color.magenta,Mathf.Infinity);
 
+        if (_iterationsLeft > 0)
+        {
+            _iterationsLeft--;
+            Solve(_iterationsLeft);
+        }
+        else
+        {
+            _iterating = false;
+        }
         
     }
     
-    void FixedUpdate()
+    void Update()
     {
         length1 = Vector3.Distance(bone1.position, bone2.position);
         length2 = Vector3.Distance(bone2.position, bone3.position);
 
         if (solve && Vector3.Distance(bone3.position, target.position) > marginOfError)
         {
-            Solve();
+            Solve(1);
         }
+
+        //bone2.up = bone3.up;
+
     }
 }

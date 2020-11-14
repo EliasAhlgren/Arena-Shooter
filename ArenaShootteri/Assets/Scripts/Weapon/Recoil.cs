@@ -28,6 +28,9 @@ public class Recoil : MonoBehaviour
     // how fast the gun rotates to target rotation
     public float rotationLazyness;
 
+    //temporary value
+    private float _rotationLazyness;
+    
     // how fast the recoil decays
     public float ReturnTime;
     
@@ -47,6 +50,8 @@ public class Recoil : MonoBehaviour
     [NonSerialized] public Vector3 defaultPos;
 
     public bool showRecoil;
+
+    public bool DisableLazyGun;
     
     // Start is called before the first frame update
     void Start()
@@ -84,6 +89,16 @@ public class Recoil : MonoBehaviour
         {
             timer1 = 0;
         }
+
+        //Disables gun lazy rotation
+        if (DisableLazyGun)
+        {
+            _rotationLazyness = 1;
+        }
+        else
+        {
+            _rotationLazyness = rotationLazyness;
+        }
         
         LazyGun();
 
@@ -111,7 +126,7 @@ public class Recoil : MonoBehaviour
             
             // newpoint += differnce between aiming point and itself * rotationLazyness ( around 0.5 in normal setup)
             
-            newpoint += (position - newpoint) * rotationLazyness;
+            newpoint += (position - newpoint) * _rotationLazyness;
 
             //newpoint.x = Mathf.Clamp(newpoint.x, position.x - 10f, position.x + 10f);
 

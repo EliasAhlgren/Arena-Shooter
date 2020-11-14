@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ikTargetScript : MonoBehaviour
+public class GrenadeScript : MonoBehaviour
 {
-    public Transform targetTransform;
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -13,8 +11,8 @@ public class ikTargetScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        transform.position = targetTransform.position;
+        
     }
 }

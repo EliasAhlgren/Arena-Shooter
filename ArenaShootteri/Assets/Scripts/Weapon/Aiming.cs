@@ -20,6 +20,8 @@ public class Aiming : MonoBehaviour
     private Vector3 defaultPosition;
 
     private Recoil _recoil;
+
+    public float defaultDifference;
     
     // Start is called before the first frame update
     void Start()
@@ -35,6 +37,7 @@ public class Aiming : MonoBehaviour
         if (Input.GetButtonDown("Fire2"))
         {
             isAiming = !isAiming;
+            _recoil.DisableLazyGun = true;
         }
         if (isAiming)
         {
@@ -43,6 +46,8 @@ public class Aiming : MonoBehaviour
         else
         {
            target.localPosition = defaultPosition;
+           _recoil.DisableLazyGun = false;
+
         }
     }
 
@@ -54,7 +59,7 @@ public class Aiming : MonoBehaviour
         }
         else
         {
-            positionDifferenceY = -0.58f;
+            positionDifferenceY = defaultDifference;
         }
         
         

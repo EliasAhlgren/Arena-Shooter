@@ -40,7 +40,7 @@ public class GruntChaseState : BaseState
             float distance = Vector3.Distance(grunt.transform.position, grunt.target.transform.position);
 
             timeSinceLastCharge += Time.deltaTime;
-            Debug.Log("Time Since Last Charge: " + timeSinceLastCharge);
+            //Debug.Log("Time Since Last Charge: " + timeSinceLastCharge);
             if (timeSinceLastCharge > chargeCooldown)
             {
                 if (distance > grunt.attackRange + 2 && distance < grunt.attackRange + 10)

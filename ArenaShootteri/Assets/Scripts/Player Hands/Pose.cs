@@ -17,7 +17,7 @@ public class Pose : ScriptableObject
         BoneRotations = new Quaternion[bones.Length];
         for (int i = 0; i < bones.Length; i++)
         {
-            BoneRotations[i] = bones[i].rotation;
+            BoneRotations[i] = bones[i].localRotation;
         }
         
     }
@@ -27,7 +27,7 @@ public class Pose : ScriptableObject
     {
         for (int i = 0; i < bones.Length; i++)
         {
-            bones[i].rotation = BoneRotations[i];
+            bones[i].localRotation = BoneRotations[i];
         }
     }
 }

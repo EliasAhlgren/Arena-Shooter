@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d896d0db39020431fb262e50cf366b2e
+guid: 213fff222732341099363a4770dc0467
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
@@ -7,7 +7,7 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: lambert2
+      name: lambert1
     second: {fileID: 2100000, guid: 336fdcba4ccae4e409fafb81705f7e32, type: 2}
   materials:
     materialImportMode: 1
@@ -71,14 +71,14 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    normalImportMode: 1
+    normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 0
+  importAnimation: 1
   humanDescription:
     serializedVersion: 3
     human: []

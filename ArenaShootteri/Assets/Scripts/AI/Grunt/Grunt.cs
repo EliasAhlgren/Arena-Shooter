@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using AI;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Grunt : MonoBehaviour
+public class Grunt : MonoBehaviour, IDamage
 {
     public GameObject target { get; private set; }
     public float speed = 10;
@@ -13,10 +14,15 @@ public class Grunt : MonoBehaviour
     public Transform cone;
     public Animator animator;
     public bool isCharging = false;
+
     
+    public float IHealth { get; set; } = 100f;
+
     // Start is called before the first frame update
     void Start()
     {
+        
+        
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         cone = transform.Find("VisionCone");
@@ -62,6 +68,15 @@ public class Grunt : MonoBehaviour
 
     }
 
+
+    //IDamage void
+    public void TakeDamage(float damage)
+    {
+        if (IHealth <= 0f)
+        {
+            StartCoroutine(Die());
+        }
+    }
 
     public IEnumerator Die()
     {

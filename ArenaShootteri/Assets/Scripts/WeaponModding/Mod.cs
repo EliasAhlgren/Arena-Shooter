@@ -13,6 +13,8 @@ public class Mod : ScriptableObject
     // How high the gun should be held
     public float AimHeight;
 
+    public int PoseNumber;
+    
     public GameObject Prefab;
 
     public Sprite Icon;
@@ -26,5 +28,6 @@ public class Mod : ScriptableObject
 
     public float Damage;
 
+    public Vector3 posDiff;
 
 }

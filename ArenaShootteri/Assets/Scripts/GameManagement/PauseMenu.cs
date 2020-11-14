@@ -23,6 +23,7 @@ public class PauseMenu : MonoBehaviour
         pausePanel.SetActive(false);
         Time.timeScale = 1;
         gameObject.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
     }
     public void OpenOptions()
     {
