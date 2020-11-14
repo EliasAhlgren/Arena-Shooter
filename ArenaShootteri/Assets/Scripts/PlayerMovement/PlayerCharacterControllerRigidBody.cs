@@ -206,9 +206,9 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         {
 
             /*
-            
-            Siirsin ampumisen aseen scriptiin 
-             
+
+            Siirsin ampumisen aseen scriptiin
+
             //shoot
             if (Input.GetMouseButtonDown(0))
             {
@@ -1018,6 +1018,12 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         contactPoint = collision.contacts[0].point;
+
+        if (collision.transform.CompareTag("Enemy"))
+        {
+            Debug.Log("Player hit");
+        }
+
     }
 
     void OnDrawGizmos()

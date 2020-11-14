@@ -15,22 +15,34 @@ public class GruntAttackState : BaseState
         grunt = _grunt;
     }
 
+    public override void OnStateEnter()
+    {
+        Debug.Log("Attack in.");
+        
+    }
+
+    public override void OnStateExit()
+    {
+       
+        Debug.Log("Attack out.");
+        
+    }
+
     public override Type Tick()
     {
-        if(grunt == null)
+
+
+        if (grunt == null)
         {
-            return typeof(DoNothingState);
+            return typeof(GruntDoNothingState);
         }
 
         _attackCounter -= Time.deltaTime;
 
         if (_attackCounter <= 0)
         {
-            
-            // Do attack stuff
-            grunt.Attack();
             _attackCounter = _attackCooldown;
-            
+            grunt.animator.Play("Punch");
         }
 
         float distance = Vector3.Distance(grunt.transform.position, grunt.target.transform.position);
@@ -38,7 +50,7 @@ public class GruntAttackState : BaseState
         {
             return typeof(GruntChaseState);
         }
-
+       
         return null;
     }
 
