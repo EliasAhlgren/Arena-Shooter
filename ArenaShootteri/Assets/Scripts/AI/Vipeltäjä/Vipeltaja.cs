@@ -7,7 +7,8 @@ using UnityEngine.AI;
 public class Vipeltaja : MonoBehaviour
 {
     public GameObject target { get; private set; }
-    public float speed = 10;
+    public Rigidbody rb;
+    public float speed = 1;
     public float attackRange = 3;
     public NavMeshAgent agent;
     public Animator animator;
@@ -17,11 +18,11 @@ public class Vipeltaja : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-
+        rb = GetComponent<Rigidbody>();
 
         // These might not be necessary
         SetRigidbodyState(true);
-        setColliderState(false);
+        setColliderState(true);
     }
 
     private void Awake()
@@ -38,7 +39,8 @@ public class Vipeltaja : MonoBehaviour
             /// Add more states if necessary.
             {typeof(VipeltajaChaseState), new VipeltajaChaseState(_vipeltaja: this) },
             {typeof(VipeltajaAttackState), new VipeltajaAttackState(_vipeltaja: this) },
-            {typeof(VipeltajaDoNothingState), new VipeltajaDoNothingState(_vipeltaja: this) }
+            {typeof(VipeltajaDoNothingState), new VipeltajaDoNothingState(_vipeltaja: this) },
+            {typeof(VipeltajaEscapeState), new VipeltajaEscapeState(_vipeltaja:this) }
         };
         GetComponent<Vipeltaja_StateMachine>().SetStates(states);
     }

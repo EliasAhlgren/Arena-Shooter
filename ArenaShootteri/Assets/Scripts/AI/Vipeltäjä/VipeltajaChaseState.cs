@@ -14,18 +14,19 @@ public class VipeltajaChaseState : BaseState
 
     public override void OnStateEnter()
     {
-        throw new NotImplementedException();
+        Debug.Log("Chase enter");
     }
 
     public override void OnStateExit()
     {
-        throw new NotImplementedException();
+        Debug.Log("Chase exit");
     }
 
+    
     public override Type Tick()
     {
-
-        if(vipeltaja.target != null)
+        
+        if (vipeltaja.target != null)
         {
             vipeltaja.agent.SetDestination(vipeltaja.target.transform.position);
 
@@ -33,7 +34,12 @@ public class VipeltajaChaseState : BaseState
 
             if(distance < vipeltaja.attackRange)
             {
-                return typeof(VipeltajaAttackState);
+                return typeof(VipeltajaEscapeState);
+            }
+
+            if(Input.GetKeyDown(KeyCode.H))
+            {
+                return typeof(VipeltajaEscapeState);
             }
         }
 
@@ -41,15 +47,4 @@ public class VipeltajaChaseState : BaseState
         return null;
     }
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

@@ -85,7 +85,7 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 280, y: 40, z: 0}
   m_ExitPosition: {x: 890, y: 60, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: -2435825758769945}
+  m_DefaultState: {fileID: -4037634074467953751}
 --- !u!1102 &-2435825758769945
 AnimatorState:
   serializedVersion: 5
@@ -94,7 +94,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Vipeltaja-walk3
-  m_Speed: 1
+  m_Speed: 0.2
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
