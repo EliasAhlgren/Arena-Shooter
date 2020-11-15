@@ -38,7 +38,7 @@ public class GruntChaseState : BaseState
         }
 
 
-        // Implement what to do when enemy is chasing 
+        // Implement what to do when enemy is chasing
         if (grunt.target != null)
         {
             grunt.agent.SetDestination(grunt.target.transform.position);
@@ -49,10 +49,10 @@ public class GruntChaseState : BaseState
             if (timeSinceLastCharge > chargeCooldown)
             {
                 if (distance > grunt.attackRange + 2 && distance < grunt.attackRange + 10)
-                {                   
+                {
                     timeSinceLastCharge = 0f;
                     return typeof(GruntWindUpState);
-                    
+
                 }
             }
 
@@ -66,5 +66,3 @@ public class GruntChaseState : BaseState
         return null;
     }
 }
-
-

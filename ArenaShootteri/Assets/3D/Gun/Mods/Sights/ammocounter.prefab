@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9019096627019368157}
   - component: {fileID: 4873930341272191913}
   - component: {fileID: 1919812430389171746}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ammocounter
   m_TagString: Untagged
   m_Icon: {fileID: 0}

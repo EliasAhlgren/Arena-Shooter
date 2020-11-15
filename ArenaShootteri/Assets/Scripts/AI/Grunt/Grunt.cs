@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using AI;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Grunt : MonoBehaviour
+public class Grunt : MonoBehaviour, IDamage
 {
     public GameObject target { get; private set; }
     public float speed = 10;
@@ -14,17 +15,21 @@ public class Grunt : MonoBehaviour
     public Animator animator;
     public bool isCharging = false;
     public float chargeForce = 10;
-    
+
+    public float IHealth { get; set; } = 100f;
+
     // Start is called before the first frame update
     void Start()
     {
+
+
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         cone = transform.Find("VisionCone");
 
         // These might not be necessary
         SetRigidbodyState(true);
-        SetColliderState(true); 
+        SetColliderState(true);
     }
 
     private void Awake()
@@ -49,7 +54,7 @@ public class Grunt : MonoBehaviour
         };
         GetComponent<Grunt_StateMachine>().SetStates(states);
     }
-    
+
      /// <summary>
      /// method <c>SetTarget</c> set target for Grunt
      /// </summary>
@@ -66,13 +71,22 @@ public class Grunt : MonoBehaviour
         animator.Play("Punch");
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Punch"))
         {
-            
+
         }
 
         // target.GetComponent<PlayerCharacterControllerRigidBody>().killPlayer();
 
     }
 
+
+    //IDamage void
+    public void TakeDamage(float damage)
+    {
+        if (IHealth <= 0f)
+        {
+            StartCoroutine(Die());
+        }
+    }
 
     public IEnumerator Die()
     {
@@ -89,7 +103,7 @@ public class Grunt : MonoBehaviour
         Destroy(transform.Find("Vision").gameObject);       // Destory Vision
 
         // Enemt stays on ground for 2 seconds.
-        // After that set all colliders back to false 
+        // After that set all colliders back to false
         // and let body sink throught the floor
         // Then destroy the whole GameObject
         yield return new WaitForSeconds(2);
@@ -119,7 +133,7 @@ public class Grunt : MonoBehaviour
             {
                 collider.enabled = !state;
             }
-        }   
+        }
     }
-   
+
 }

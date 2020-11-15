@@ -9,33 +9,48 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/Reflex.shader" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player Hands/HandPoser.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/KeepRotation.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/IDamage.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/pulse.shader" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Weapon/Shooting.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManagement/SoundManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/OLD/SightSelector.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/BaseState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///Applications/2020.1.5f1/Unity.app/Contents/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/EventSystem/EventSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/DoNothingState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player Hands/Pose.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManagement/EnemySpawner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManagement/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/Grunt/GruntAttackState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/shaderPulsating.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManagement/UIButton.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/StateMachine.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/NewMods.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/HandSetter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManagement/PauseMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/ConeScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/GunAttributes.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/Grunt/Grunt.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/Recoil.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Weapon/Aiming.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/Grunt/GruntChargeState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/LaserScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Weapon/Recoil.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../jea/Assets/IKsolver.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/Grunt/GruntChaseState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ChargeTriggerContoller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/WeaponRotationScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player Hands/IKsolver.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterControllerRigidBody.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../ThePhantomPayne/Assets/Scenes/testi.shader" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/ikTargetScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/Mod.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Weapon/GrenadeLauncher.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../SmoothingTest/Assets/SimpleMovement.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/StockSelection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerMovement/MovingObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player Hands/ikTargetScript.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -46,20 +61,38 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/StockSelection.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/KeepRotation.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/NewSurfaceShader.shader" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/Reflex.shader" />
         <option value="$PROJECT_DIR$/../../../ThePhantomPayne/Assets/Scenes/testi.shader" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameManagement/PauseMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/WeaponRotationScript.cs" />
         <option value="$PROJECT_DIR$/../../../SmoothingTest/Assets/SimpleMovement.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterControllerRigidBody.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ikTargetScript.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/GunAttributes.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AI/Grunt/Grunt.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/Mod.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" />
         <option value="$PROJECT_DIR$/Assets/MeshGen.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/Recoil.cs" />
+        <option value="$PROJECT_DIR$/../../../jea/Assets/IKsolver.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/Reflex.shader" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/GunAttributes.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI/Grunt/GruntChaseState.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Recoil.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameManagement/PauseMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI/DamageInterface.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI/DamageSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI/IDamage.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterControllerRigidBody.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI/Grunt/Grunt.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Shooting.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameManagement/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/NewMods.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ikTargetScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player Hands/Pose.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player Hands/IKsolver.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/Mod.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player Hands/ikTargetScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/HandSetter.cs" />
+        <option value="$PROJECT_DIR$/Assets/shaderPulsating.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Aiming.cs" />
+        <option value="$PROJECT_DIR$/Assets/LaserScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/SecondaryFire.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/GrenadeLauncher.cs" />
       </list>
     </option>
   </component>
@@ -81,6 +114,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
@@ -122,7 +156,15 @@
       <workItem from="1603103478308" duration="370000" />
       <workItem from="1603367500715" duration="9135000" />
       <workItem from="1603453301013" duration="9960000" />
-      <workItem from="1603799621790" duration="5702000" />
+      <workItem from="1603799621790" duration="9166000" />
+      <workItem from="1604324436916" duration="2323000" />
+      <workItem from="1604407457621" duration="4308000" />
+      <workItem from="1604668821136" duration="22000" />
+      <workItem from="1604937384181" duration="1204000" />
+      <workItem from="1605009622762" duration="5710000" />
+      <workItem from="1605087643138" duration="4702000" />
+      <workItem from="1605187907248" duration="6273000" />
+      <workItem from="1605262470099" duration="9473000" />
     </task>
     <servers />
   </component>
@@ -135,6 +177,10 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="359" y="144" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1605021034377">
+      <screen x="0" y="23" width="1397" height="877" />
+    </state>
+    <state x="359" y="144" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/0.23.1397.877@0.23.1397.877" timestamp="1605021034377" />
     <state width="1355" height="313" key="GridCell.Tab.0.bottom" timestamp="1601481146734">
       <screen x="0" y="23" width="1397" height="877" />
     </state>
@@ -203,6 +249,10 @@
       <screen x="0" y="23" width="1397" height="877" />
     </state>
     <state x="447" y="193" key="RiderGenerateDialog/0.23.1397.877@0.23.1397.877" timestamp="1603370387636" />
+    <state x="200" y="100" key="SettingsEditor" timestamp="1604408143298">
+      <screen x="0" y="23" width="1397" height="877" />
+    </state>
+    <state x="200" y="100" key="SettingsEditor/0.23.1397.877@0.23.1397.877" timestamp="1604408143298" />
     <state x="194" y="82" width="678" height="735" key="find.popup" timestamp="1600864016679">
       <screen x="0" y="23" width="1399" height="877" />
     </state>

@@ -7,7 +7,6 @@ using Random = UnityEngine.Random;
 
 public class Recoil : MonoBehaviour
 {
-    
     public bool isRecoiling;
     
     public float recoilTime;
@@ -29,6 +28,9 @@ public class Recoil : MonoBehaviour
     // how fast the gun rotates to target rotation
     public float rotationLazyness;
 
+    //temporary value
+    private float _rotationLazyness;
+    
     // how fast the recoil decays
     public float ReturnTime;
     
@@ -41,16 +43,20 @@ public class Recoil : MonoBehaviour
 
     public Transform cameraTransform;
 
-    public float timer;
-    
-    private Vector3 defaultPos;
+    public float timer1;
+
+    public float timer2;
+
+    [NonSerialized] public Vector3 defaultPos;
 
     public bool showRecoil;
+
+    public bool DisableLazyGun;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+
         defaultPos = lookatPoint.localPosition;
         
         newpoint = lookatPoint.position;
@@ -60,18 +66,38 @@ public class Recoil : MonoBehaviour
         transform.position = target.position;
         
     }
-
     
+    void UpdateStats()
+    {
+        // stats are divided by 10 to make inputting them in the Mod assets make more sense
+        rotationLazyness += _GunAttributes.totalErgonomy / 10;
+        RecoilAmount += _GunAttributes.totalRecoil / 10;
+
+    }
     
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime * RateOfFire;
-
+        UpdateStats();
+        
+        timer1 += Time.deltaTime * RateOfFire;
+        timer2 += Time.deltaTime / 2;
+        
+        
         // resets the timer
-        if (timer > 100000)
+        if (timer1 > 100000)
         {
-            timer = 0;
+            timer1 = 0;
+        }
+
+        //Disables gun lazy rotation
+        if (DisableLazyGun)
+        {
+            _rotationLazyness = 1;
+        }
+        else
+        {
+            _rotationLazyness = rotationLazyness;
         }
         
         LazyGun();
@@ -99,9 +125,10 @@ public class Recoil : MonoBehaviour
             var position = lookatPoint.position;
             
             // newpoint += differnce between aiming point and itself * rotationLazyness ( around 0.5 in normal setup)
-            newpoint += (position - newpoint) * rotationLazyness;
+            
+            newpoint += (position - newpoint) * _rotationLazyness;
 
-            newpoint.x = Mathf.Clamp(newpoint.x, position.x - 10f, position.x + 10f);
+            //newpoint.x = Mathf.Clamp(newpoint.x, position.x - 10f, position.x + 10f);
 
             if (showRecoil)
             {
@@ -135,23 +162,23 @@ public class Recoil : MonoBehaviour
         var localRotation = cameraTransform.localRotation;
         
         // get a positive only sine wave and add perlin noise sample
-        float sineValue =  Mathf.Sin(timer / 2);
+        float sineValue =  Mathf.Sin(timer2);
         if (sineValue < 0)
         {
             sineValue += -sineValue;
-            sineValue += Mathf.PerlinNoise(timer, Random.Range(0, 50)) * 2;
+            sineValue += Mathf.PerlinNoise(timer2, Random.Range(0, 50)) * 2;
         }
         
         //headbobbipn when firing
-        localRotation.eulerAngles = new Vector3(localRotation.eulerAngles.x + sineValue * FeltRecoil,localRotation.eulerAngles.y + Mathf.Sin(timer) + (Mathf.PerlinNoise(timer, Random.Range(0, 50)) * (FeltRecoil / 2.5f)),localRotation.eulerAngles.z);
+        localRotation.eulerAngles = new Vector3(localRotation.eulerAngles.x + sineValue * FeltRecoil,localRotation.eulerAngles.y + Mathf.Sin(timer2) + (Mathf.PerlinNoise(timer2, Random.Range(0, 50)) * (FeltRecoil / 2.5f)),localRotation.eulerAngles.z);
         cameraTransform.localRotation = localRotation;
         
         // gun recoil
         
         Vector3 randomPos = lookatPoint.localPosition;
 
-        randomPos.y += Mathf.Sin(timer) * RecoilAmount;
-        randomPos.x += Mathf.Sin(timer) * horizontalRecoil * Random.Range(-0.5f, 0.5f);
+        randomPos.y += Mathf.Sin(timer1) * RecoilAmount;
+        randomPos.x += Mathf.Sin(timer1) * horizontalRecoil * Random.Range(-0.5f, 0.5f);
         
         lookatPoint.localPosition = randomPos;
         

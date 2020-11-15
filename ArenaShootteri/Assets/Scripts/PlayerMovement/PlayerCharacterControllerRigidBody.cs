@@ -205,12 +205,17 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         if (playerControl)
         {
 
+            /*
+
+            Siirsin ampumisen aseen scriptiin
+
             //shoot
             if (Input.GetMouseButtonDown(0))
             {
                 //trigger pull sound?
                 Shoot();
             }
+            */
 
             //jump
             if (Input.GetButtonDown("Jump"))
