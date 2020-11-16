@@ -12,9 +12,12 @@ public class Vipeltaja : MonoBehaviour
     public Rigidbody rb;
     public float speed = 1;
     public float attackRange = 3;
-    public bool readyToAttack = true;
     public float attackCounter = 0f;
     public float attackCooldown = 2f;
+    public float jumpDistance;
+    public float jumpSpeed;
+    public float jumpCooldown;
+    public bool readyToAttack = true;
     public NavMeshAgent agent;
     public Animator animator;
 
@@ -45,8 +48,9 @@ public class Vipeltaja : MonoBehaviour
             {typeof(VipeltajaChaseState), new VipeltajaChaseState(_vipeltaja: this) },
             {typeof(VipeltajaAttackState), new VipeltajaAttackState(_vipeltaja: this) },
             {typeof(VipeltajaDoNothingState), new VipeltajaDoNothingState(_vipeltaja: this) },
-            {typeof(VipeltajaEscapeState), new VipeltajaEscapeState(_vipeltaja:this) },
-            {typeof(VipeltajaSpitState), new VipeltajaSpitState(_vipeltaja:this) }
+            {typeof(VipeltajaEscapeState), new VipeltajaEscapeState(_vipeltaja: this) },
+            {typeof(VipeltajaSpitState), new VipeltajaSpitState(_vipeltaja: this) },
+            {typeof(VipeltajaJumpState), new VipeltajaJumpState(_vipeltaja: this) }
         };
         GetComponent<Vipeltaja_StateMachine>().SetStates(states);
     }

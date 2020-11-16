@@ -19,7 +19,7 @@ public class VipeltajaChaseState : BaseState
     }
 
     public override void OnStateExit()
-    {
+    { 
         Debug.Log("Chase exit");
     }
 
@@ -39,6 +39,11 @@ public class VipeltajaChaseState : BaseState
                 {
                     return typeof(VipeltajaAttackState);
                 }
+            }
+
+            if(distance < vipeltaja.jumpDistance+3 && distance > vipeltaja.jumpDistance-3)
+            {
+                return typeof(VipeltajaJumpState);
             }
 
             if(Input.GetKeyDown(KeyCode.H))
