@@ -47,7 +47,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1732054165
 Transform:
   m_ObjectHideFlags: 0
@@ -612,10 +612,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  attackRange: 3
+  attackRange: 6
   agent: {fileID: 313571682}
   cone: {fileID: 3068572115538276854}
   animator: {fileID: 313571683}
+  readyToAttack: 1
+  attackCounter: 0
+  attackCooldown: 2
   isCharging: 0
   chargeForce: 10
 --- !u!195 &313571682

@@ -19,6 +19,8 @@ public class VipeltajaAttackState : BaseState
     public override void OnStateEnter()
     {
         throw new NotImplementedException();
+        // Play attack animation
+
     }
 
     public override void OnStateExit()
@@ -30,23 +32,14 @@ public class VipeltajaAttackState : BaseState
     {
         if(vipeltaja == null)
         {
-            
+            return typeof(VipeltajaDoNothingState);
         }
 
-        _attackCounter -= Time.deltaTime;
-
-        if(_attackCounter <= 0)
+        if (!vipeltaja.animator.GetCurrentAnimatorStateInfo(0).IsName("Punch"))
         {
-            // Attack stuff
-            vipeltaja.Attack();
+            vipeltaja.readyToAttack = false;
+            return typeof(VipeltajaChaseState);
         }
-
-        float distance = Vector3.Distance(vipeltaja.transform.position, vipeltaja.target.transform.position);
-        if(distance > vipeltaja.attackRange)
-        {
-            return typeof(VipeltajaChaseState); 
-        }
-
         return null;
     }
 

@@ -13,6 +13,9 @@ public class Grunt : MonoBehaviour, IDamage
     public NavMeshAgent agent;
     public Transform cone;
     public Animator animator;
+    public bool readyToAttack = true;
+    public float attackCounter = 0f;
+    public float attackCooldown = 2f;
     public bool isCharging = false;
     public float chargeForce = 10;
 
@@ -21,8 +24,6 @@ public class Grunt : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-
-
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         cone = transform.Find("VisionCone");
@@ -76,6 +77,19 @@ public class Grunt : MonoBehaviour, IDamage
 
         // target.GetComponent<PlayerCharacterControllerRigidBody>().killPlayer();
 
+    }
+
+    public void Update()
+    {
+        if (!readyToAttack)
+        {
+            attackCounter += Time.deltaTime;
+            Debug.Log(attackCounter);
+            if(attackCounter > attackCooldown)
+            {
+                readyToAttack = true;
+            }
+        }
     }
 
 

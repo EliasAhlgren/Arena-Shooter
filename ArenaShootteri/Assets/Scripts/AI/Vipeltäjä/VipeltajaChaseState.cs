@@ -15,6 +15,7 @@ public class VipeltajaChaseState : BaseState
     public override void OnStateEnter()
     {
         Debug.Log("Chase enter");
+        vipeltaja.animator.Play("Walk");
     }
 
     public override void OnStateExit()
@@ -34,11 +35,15 @@ public class VipeltajaChaseState : BaseState
 
             if(distance < vipeltaja.attackRange)
             {
-                return typeof(VipeltajaEscapeState);
+                if (vipeltaja.readyToAttack)
+                {
+                    return typeof(VipeltajaAttackState);
+                }
             }
 
             if(Input.GetKeyDown(KeyCode.H))
             {
+                Debug.Log("Escaping");
                 return typeof(VipeltajaEscapeState);
             }
         }

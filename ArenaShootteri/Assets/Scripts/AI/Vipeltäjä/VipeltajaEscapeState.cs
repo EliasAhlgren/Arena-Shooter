@@ -40,11 +40,11 @@ public class VipeltajaEscapeState : BaseState
     {
         vipeltaja.agent.ResetPath();
         timer += Time.deltaTime;
-        // Debug.Log(timer);
+        Debug.Log(timer);
         vipeltaja.transform.Translate(Vector3.forward.normalized * vipeltaja.speed * Time.deltaTime);
         if (timer >= timeToFlee)
         {
-            return typeof(VipeltajaChaseState);
+            return typeof(VipeltajaSpitState);
         }
         return null;        
     }

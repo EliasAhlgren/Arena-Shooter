@@ -58,7 +58,10 @@ public class GruntChaseState : BaseState
 
             if (distance < grunt.attackRange)
             {
-                return typeof(GruntAttackState);
+                if (grunt.readyToAttack)
+                {
+                    return typeof(GruntAttackState);
+                }
             }
         }
 

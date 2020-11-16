@@ -7,9 +7,14 @@ using UnityEngine.AI;
 public class Vipeltaja : MonoBehaviour
 {
     public GameObject target { get; private set; }
+    public GameObject spitPrefab;
+    public Transform spitPosition;
     public Rigidbody rb;
     public float speed = 1;
     public float attackRange = 3;
+    public bool readyToAttack = true;
+    public float attackCounter = 0f;
+    public float attackCooldown = 2f;
     public NavMeshAgent agent;
     public Animator animator;
 
@@ -40,7 +45,8 @@ public class Vipeltaja : MonoBehaviour
             {typeof(VipeltajaChaseState), new VipeltajaChaseState(_vipeltaja: this) },
             {typeof(VipeltajaAttackState), new VipeltajaAttackState(_vipeltaja: this) },
             {typeof(VipeltajaDoNothingState), new VipeltajaDoNothingState(_vipeltaja: this) },
-            {typeof(VipeltajaEscapeState), new VipeltajaEscapeState(_vipeltaja:this) }
+            {typeof(VipeltajaEscapeState), new VipeltajaEscapeState(_vipeltaja:this) },
+            {typeof(VipeltajaSpitState), new VipeltajaSpitState(_vipeltaja:this) }
         };
         GetComponent<Vipeltaja_StateMachine>().SetStates(states);
     }
@@ -83,6 +89,15 @@ public class Vipeltaja : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void SpawnSpit()
+    {
+        Vector3 ballisticVelocity = BallisticVelocity(target.transform, 15);
+        animator.Play("Spit");
+        GameObject spit = Instantiate(spitPrefab, spitPosition.position, Quaternion.identity);
+        spit.GetComponent<Rigidbody>().velocity = ballisticVelocity;
+        
+    }
+
 
     void SetRigidbodyState(bool state)
     {
@@ -106,5 +121,20 @@ public class Vipeltaja : MonoBehaviour
                 collider.enabled = !state;
             }
         }
+    }
+
+    public Vector3 BallisticVelocity(Transform target, float angle)
+    {
+        Vector3 direction = target.position - transform.position;
+        float h = direction.y;
+        direction.y = 0;
+        float distance = direction.magnitude;
+        float rad = angle * Mathf.Deg2Rad;
+        direction.y = distance * Mathf.Tan(rad);
+        distance += h / Mathf.Tan(rad);
+
+        float velocity = Mathf.Sqrt(distance * Physics.gravity.magnitude / Mathf.Sin(2 * rad));
+        return velocity * direction.normalized;
+
     }
 }
