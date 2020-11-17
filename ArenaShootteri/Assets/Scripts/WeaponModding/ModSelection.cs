@@ -46,7 +46,7 @@ public class ModSelection : MonoBehaviour
 
     public bool disableEmpty;
 
-        private Vector3 firstPosition;
+    private Vector3 firstPosition;
 
     public Transform ModLocalPos;
 
@@ -57,7 +57,8 @@ public class ModSelection : MonoBehaviour
     public event ModChosen OnModChosen;
 
     public bool isAutoPlaced;
-    
+
+    public HandSetter handSetter;
     
     // Start is called before the first frame update
     void Start()
@@ -148,9 +149,26 @@ public class ModSelection : MonoBehaviour
         {
             placingObject = true;
         }
+
         
         
         OnModChosen();
+        
+        if (handSetter && currentMod)
+        {
+            handSetter.IkTargetScript.states[currenModStats.PoseNumber].targetObject = currentMod.transform;
+            handSetter.IkTargetScript.index = currenModStats.PoseNumber;
+           
+            handSetter.IkTargetScript.posDiff = currenModStats.posDiff;
+            handSetter.UpdatePose();
+            Debug.Log("Pose set to " + currenModStats.PoseNumber);
+        }else if (handSetter)
+        {
+            handSetter.IkTargetScript.index = 0;
+            handSetter.IkTargetScript.posDiff = Vector3.zero;
+            handSetter.UpdatePose();
+        }
+        
     }
 
     //OnSelectEmpty kutsutaan kun painaa tyhjää UI nappia

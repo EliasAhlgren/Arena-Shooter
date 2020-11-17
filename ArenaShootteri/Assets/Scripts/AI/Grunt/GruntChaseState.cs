@@ -15,16 +15,22 @@ public class GruntChaseState : BaseState
         grunt = _grunt;
     }
 
+    public override void OnStateEnter()
+    {
+        grunt.animator.SetBool("IsWalking", true);
+        grunt.animator.Play("Walk");
+        Debug.Log("Chase in.");
+    }
+
+    public override void OnStateExit()
+    {
+        Debug.Log("Chase Out.");
+        grunt.animator.SetBool("IsWalking", false);
+
+    }
+
     public override Type Tick()
     {
-
-
-        //if (grunt == null)
-        //{
-        //    return typeof(DoNothingState);
-        //}
-
-
         if (grunt.target == null)
         {
             Debug.Log("Unit doesnt have a target to chase");
@@ -32,7 +38,7 @@ public class GruntChaseState : BaseState
         }
 
 
-        // Implement what to do when enemy is chasing 
+        // Implement what to do when enemy is chasing
         if (grunt.target != null)
         {
             grunt.agent.SetDestination(grunt.target.transform.position);
@@ -40,20 +46,22 @@ public class GruntChaseState : BaseState
             float distance = Vector3.Distance(grunt.transform.position, grunt.target.transform.position);
 
             timeSinceLastCharge += Time.deltaTime;
-            Debug.Log("Time Since Last Charge: " + timeSinceLastCharge);
             if (timeSinceLastCharge > chargeCooldown)
             {
                 if (distance > grunt.attackRange + 2 && distance < grunt.attackRange + 10)
-                {                   
+                {
                     timeSinceLastCharge = 0f;
-                    return typeof(GruntChargeState);
-                    
+                    return typeof(GruntWindUpState);
+
                 }
             }
 
             if (distance < grunt.attackRange)
             {
-                return typeof(GruntAttackState);
+                if (grunt.readyToAttack)
+                {
+                    return typeof(GruntAttackState);
+                }
             }
         }
 
@@ -61,5 +69,3 @@ public class GruntChaseState : BaseState
         return null;
     }
 }
-
-

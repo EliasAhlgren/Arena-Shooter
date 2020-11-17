@@ -9,6 +9,7 @@
     {
         _MainTex ("Texture", 2D) = "white" {}
         _TexScale("Texture Scale", Range(0.01, 10)) = 0.1
+        _ColorTint ("Tint", Color) = (1.0, 0.6, 0.6, 1.0)
     }
     SubShader
     {
@@ -16,13 +17,17 @@
         LOD 100
         Blend SrcAlpha OneMinusSrcAlpha
 
+        
+        
+
         Pass
         {
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-
             #include "UnityCG.cginc"
+
+            
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -39,7 +44,8 @@
 
             sampler2D _MainTex;
             float _TexScale;
-
+            float4 _ColorTint;
+            
             v2f vert(appdata v) {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
@@ -65,7 +71,14 @@
                 offset = mul(mat, offset);  //transform offset into tangent space
 
                 float2 uv = offset.xy / _TexScale;              //sample and scale
-                return tex2D(_MainTex, uv + float2(0.5, 0.5));  //shift sample to center of texture
+                //tex2D tex = (_MainTex, uv + float2(0.5, 0.5));
+                
+                float4 col1 = tex2D(_MainTex, uv + float2(0.5, 0.5));
+                col1.x = _ColorTint.x;
+                col1.y = _ColorTint.y;
+                col1.z = _ColorTint.z;
+                
+                return col1;  //shift sample to center of texture
             }
             ENDCG
         }

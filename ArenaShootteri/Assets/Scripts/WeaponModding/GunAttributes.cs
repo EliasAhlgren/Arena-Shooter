@@ -8,7 +8,7 @@ public class GunAttributes : MonoBehaviour
 {
     // Combined stats of all currently attached mods
     public float totalErgonomy;
-    public int totalRecoil;
+    public float totalRecoil;
     public float totalDamage;
 
     public Recoil recoilScript;
@@ -44,6 +44,8 @@ public class GunAttributes : MonoBehaviour
     public bool isModding;
 
     public GameObject mainCamera;
+    
+    
     
     // Start is called before the first frame update
     void Start()
@@ -133,6 +135,7 @@ public class GunAttributes : MonoBehaviour
         {
             Debug.Log("initialising with stats");
             _stockSelection.OnModChosen += UpdateStats;
+           
             if (_stockSelection.currenModStats)
             {
                 
@@ -184,15 +187,7 @@ public class GunAttributes : MonoBehaviour
     // called everytime a mod is changed in any of the rails
     void UpdateStats()
     {
-        // sets SightIndex parameter in animator to account for differences in sight heights
-        if (sightSelection.currenModStats)
-        {
-            _animator.SetInteger("SightIndex",sightSelection.currenModStats.animIndex);
-        }
-        else
-        {
-            _animator.SetInteger("SightIndex", 0);
-        }
+        
         
         Vector3 totalStats;
         totalStats.x = totalErgonomy;
@@ -224,7 +219,10 @@ public class GunAttributes : MonoBehaviour
                 totalDamage += _modSelection.currenModStats.Damage;
             }
         }
+
         
+
+
     }
 
     
@@ -246,8 +244,8 @@ public class GunAttributes : MonoBehaviour
         
         if (Input.GetMouseButtonDown(1) && transform.position != moddingPositio)
         {
-            _animator.enabled = true;
-            AimDownSights();
+            //_animator.enabled = true;
+           // AimDownSights();
         }
         
         // Disables or enables the Mod selection screen

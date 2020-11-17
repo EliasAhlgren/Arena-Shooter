@@ -15,4 +15,7 @@ public abstract class BaseState
     protected Transform transform;
 
     public abstract Type Tick();
+    public abstract void OnStateEnter();
+    public abstract void OnStateExit();
+
 }

@@ -1,14 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Only used for 
+/// </summary>
 public class ChargeTriggerContoller : MonoBehaviour
 { 
     private bool isCharging;
+    private Grunt parent;
 
     private void Start()
     {
-        isCharging = transform.parent.GetComponent<Grunt>().isCharging;
+        parent = transform.parent.GetComponent<Grunt>();
+        isCharging = parent.isCharging;
     }
 
     private void Update()
@@ -22,8 +26,9 @@ public class ChargeTriggerContoller : MonoBehaviour
         {
             if (other.CompareTag("Player"))
             {
-                Debug.Log("Player killed by charge");
+                GetComponent<BoxCollider>().enabled = false;
                 other.GetComponent<PlayerCharacterControllerRigidBody>().killPlayer();
+
             }
         }
     }

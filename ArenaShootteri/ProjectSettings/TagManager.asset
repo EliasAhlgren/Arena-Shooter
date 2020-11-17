@@ -8,6 +8,8 @@ TagManager:
   - Canvas
   - GameManagement
   - spawnPoints
+  - Grunt
+  - Vipeltaja
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - Gun
   - Main PP
   - Secondary PP
-  - 
+  - Player
   - EnemyHitbox
   - 
   - 

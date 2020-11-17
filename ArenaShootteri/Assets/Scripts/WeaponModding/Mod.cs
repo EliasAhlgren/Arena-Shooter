@@ -10,9 +10,11 @@ public class Mod : ScriptableObject
     
     public int Level;
 
-    //Determines what ADS animation to use
-    public int animIndex;
+    // How high the gun should be held
+    public float AimHeight;
 
+    public int PoseNumber;
+    
     public GameObject Prefab;
 
     public Sprite Icon;
@@ -26,5 +28,6 @@ public class Mod : ScriptableObject
 
     public float Damage;
 
+    public Vector3 posDiff;
 
 }
