@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections;
-
+using UnityEditor.Callbacks;
 using UnityEngine;
 
 
@@ -11,14 +11,14 @@ public class GunAttributes : MonoBehaviour
     public float totalRecoil;
     public float totalDamage;
 
+    public int ammoInMag;
+    public int totalAmmo;
+    
     public Recoil recoilScript;
     
     public ModSelection sightSelection;
     
-    public bool isAiming;
-
-    // animator that handles aiming animation
-    private Animator _animator;
+    
     
     [NonSerialized] public GameObject[] canvases;
 
@@ -44,16 +44,15 @@ public class GunAttributes : MonoBehaviour
     public bool isModding;
 
     public GameObject mainCamera;
-    
-    
+
     
     // Start is called before the first frame update
     void Start()
     {
 
+        
         cameraStartPos = mainCamera.transform.position.y;
         
-        _animator = gameObject.GetComponent<Animator>();
         
         _controller = GameObject.FindWithTag("Player").GetComponent<PlayerCharacterControllerRigidBody>();
         
@@ -105,24 +104,7 @@ public class GunAttributes : MonoBehaviour
         
     }
 
-    public void AimDownSights()
-    {
-        if (isAiming)
-        {
-            Vector3 newCamPos = Camera.main.transform.position;
-            newCamPos.y = cameraStartPos;
-        }
-        else 
-        {
-            if (sightSelection.currentMod)
-            {
-                Vector3 newCamPos = Camera.main.transform.position;
-                newCamPos.y = sightSelection.currentMod.transform.position.y;
-            }
-        }
-        isAiming = !isAiming;
-        _animator.SetBool("isAiming", isAiming);
-    }
+    
     
     
     // Check stats from default mods
@@ -233,25 +215,13 @@ public class GunAttributes : MonoBehaviour
         //Debug.Log(Time.timeScale);
         
         //Recoil();
-        
-        if (_animator.IsInTransition(0))
-        {
-            _animator.speed = 1f + totalErgonomy / 10;
-        }
-        
-        
-        
-        
-        if (Input.GetMouseButtonDown(1) && transform.position != moddingPositio)
-        {
-            //_animator.enabled = true;
-           // AimDownSights();
-        }
+
+       
         
         // Disables or enables the Mod selection screen
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            _animator.enabled = false;
+           
             ChangeUI();
         }
     }
