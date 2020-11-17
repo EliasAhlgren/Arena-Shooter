@@ -16,7 +16,6 @@ public class GruntWindUpState : BaseState
     {
         grunt.agent.isStopped = true;
         grunt.animator.Play("WindUp");
-        grunt.animator.SetBool("IsWindUp", true);
         Debug.Log("Wind in.");
     }
 
@@ -33,7 +32,6 @@ public class GruntWindUpState : BaseState
     public override void OnStateExit()
     {
         Debug.Log("Wind out.");
-        grunt.animator.SetBool("IsWindUp", false);
         grunt.agent.isStopped = false;
     }
 

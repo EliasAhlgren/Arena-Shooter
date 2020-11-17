@@ -805,10 +805,13 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         //raycast from center of screen if tagged enemy destroy target
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, layerMask))
         {
-            if (hit.transform.CompareTag("Enemy"))
+            if (hit.transform.CompareTag("Grunt"))
+            {    
+                hit.transform.GetComponentInParent<Grunt>().StartCoroutine("Die");
+            }
+            else if (hit.transform.CompareTag("Vipeltaja"))
             {
-               hit.transform.parent.transform.GetComponent<Grunt>().StartCoroutine("Die");
-
+                hit.transform.GetComponentInParent<Vipeltaja>().StartCoroutine("Die");
             }
             Debug.Log(hit.transform.name);
         }
