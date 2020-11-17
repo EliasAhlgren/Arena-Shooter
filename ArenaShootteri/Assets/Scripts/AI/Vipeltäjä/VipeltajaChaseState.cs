@@ -14,8 +14,9 @@ public class VipeltajaChaseState : BaseState
 
     public override void OnStateEnter()
     {
+        vipeltaja.agent.SetDestination(vipeltaja.target.transform.position);
         Debug.Log("Chase enter");
-        vipeltaja.animator.Play("Walk");
+        vipeltaja.animator.Play("Idle");
     }
 
     public override void OnStateExit()
@@ -26,10 +27,9 @@ public class VipeltajaChaseState : BaseState
     
     public override Type Tick()
     {
-        
+        vipeltaja.agent.SetDestination(vipeltaja.target.transform.position);
         if (vipeltaja.target != null)
         {
-            vipeltaja.agent.SetDestination(vipeltaja.target.transform.position);
 
             float distance = Vector3.Distance(vipeltaja.transform.position, vipeltaja.target.transform.position);
 

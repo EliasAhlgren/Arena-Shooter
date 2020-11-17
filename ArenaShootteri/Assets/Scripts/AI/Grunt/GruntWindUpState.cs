@@ -7,6 +7,8 @@ public class GruntWindUpState : BaseState
 {
     private Grunt grunt;
 
+    public float turnSpeed = 2;
+
     public GruntWindUpState(Grunt _grunt) : base(_grunt.gameObject)
     {
         grunt = _grunt;
@@ -15,31 +17,31 @@ public class GruntWindUpState : BaseState
     public override void OnStateEnter()
     {
         grunt.agent.isStopped = true;
-        grunt.animator.Play("WindUp");
+        grunt.animator.SetTrigger("WindUpTrigger");
         Debug.Log("Wind in.");
+    }
+
+    public override void OnStateExit()
+    {
+        Debug.Log("Wind out.");
+        grunt.animator.ResetTrigger("WindUpTrigger");
+        grunt.agent.isStopped = false;
     }
 
     public override Type Tick()
     {
-        if (!grunt.animator.GetCurrentAnimatorStateInfo(0).IsName("WindUp"))
+        Vector3 targetDirection = grunt.target.transform.position - grunt.transform.position;
+        float step = turnSpeed * Time.deltaTime;
+        Vector3 newDirection = Vector3.RotateTowards(grunt.transform.forward, targetDirection, step, 0.0f);
+        grunt.transform.rotation = Quaternion.LookRotation(newDirection);
+
+
+        if (!grunt.animator.GetCurrentAnimatorStateInfo(0).IsName("WindUp") && !grunt.animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
         {
             return typeof(GruntChargeState);
         }
 
         return null;
     }
-
-    public override void OnStateExit()
-    {
-        Debug.Log("Wind out.");
-        grunt.agent.isStopped = false;
-    }
-
-    public IEnumerator WindUpDelay()
-    {
-        Debug.Log("waiting");
-        yield return new WaitForSeconds(2);
-    }
-
 
 }

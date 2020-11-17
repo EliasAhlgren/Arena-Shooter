@@ -17,7 +17,7 @@ public class GruntChaseState : BaseState
 
     public override void OnStateEnter()
     {
-        grunt.animator.SetBool("IsWalking", true);
+        
         grunt.animator.Play("Walk");
         Debug.Log("Chase in.");
     }
@@ -25,7 +25,7 @@ public class GruntChaseState : BaseState
     public override void OnStateExit()
     {
         Debug.Log("Chase Out.");
-        grunt.animator.SetBool("IsWalking", false);
+        grunt.animator.ResetTrigger("WalkTrigger");
 
     }
 
