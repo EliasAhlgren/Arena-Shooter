@@ -10,6 +10,12 @@ public class GrenadeScript : MonoBehaviour
         
     }
 
+    IEnumerator KillTimer()
+    {
+        yield return new  WaitForSeconds(20f);
+        Destroy(gameObject);
+    }
+    
     // Update is called once per frame
     void Update()
     {
