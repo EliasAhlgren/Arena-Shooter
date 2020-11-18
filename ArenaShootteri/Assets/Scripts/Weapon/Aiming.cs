@@ -22,10 +22,7 @@ public class Aiming : MonoBehaviour
     private Recoil _recoil;
 
     public float defaultDifference;
-
-    public bool isReloading;
-
-    public Transform reloadPos;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -37,73 +34,25 @@ public class Aiming : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            isReloading = true;
-            _recoil.DisableLazyGun = true;
-            //_recoil.RecoilAmount = _recoil.RecoilAmount / 2;
-            StartCoroutine(ReloadDelay(2f));
-        }
-        if (isReloading)
-        {
-            Reload();
-        }
-        
-        
-        
         if (Input.GetButtonDown("Fire2"))
         {
             isAiming = !isAiming;
             _recoil.DisableLazyGun = true;
-            //_recoil.RecoilAmount = _recoil.RecoilAmount / 2;
         }
         if (isAiming)
         {
             AimDownSights();
         }
-        
-
-        if (!isAiming && !isReloading)
-        {
-            _recoil.DisableLazyGun = false;
-            target.localPosition = defaultPosition;
-
-        }
-        
-    }
-
-    private void Reload()
-    {
-        Debug.Log("is reloading");
-        
-        _recoil.DisableLazyGun = true;
-
-        target.transform.localPosition = reloadPos.localPosition;
-    }
-
-    public IEnumerator ReloadDelay(float time)
-    {
-        yield return new WaitForSeconds(time);
-        if (_recoil._GunAttributes.totalAmmo >= 30)
-        {
-            _recoil._GunAttributes.ammoInMag = 30;
-            _recoil._GunAttributes.totalAmmo -= 30;
-        }
         else
         {
-            _recoil._GunAttributes.ammoInMag = _recoil._GunAttributes.totalAmmo;
-            _recoil._GunAttributes.totalAmmo = 0;
+           target.localPosition = defaultPosition;
+           _recoil.DisableLazyGun = false;
+
         }
-        
-        isReloading = false;
     }
-    
+
     private void AimDownSights()
     {
-        _recoil.DisableLazyGun = true;
-
         if (SightSelection.currenModStats)
         {
             positionDifferenceY = SightSelection.currenModStats.AimHeight;
@@ -114,9 +63,9 @@ public class Aiming : MonoBehaviour
         }
         
         
-        //target.transform.localPosition = reloadPos.localPosition;
-
-        target.localPosition = new Vector3(0, positionDifferenceY, defaultPosition.z + positionDifferenceZ);
+        
+        target.localPosition = new Vector3(0,positionDifferenceY,defaultPosition.z + positionDifferenceZ);
+        //target.position = new Vector3(playerCamera.position.x,playerCamera.position.y - positionDifference, playerCamera.position.z + target.localPosition.z);
         
     }
     

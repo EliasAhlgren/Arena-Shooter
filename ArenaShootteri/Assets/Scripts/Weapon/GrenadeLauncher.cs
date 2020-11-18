@@ -9,12 +9,11 @@ public class GrenadeLauncher : MonoBehaviour
     public float speeeed;
     public float damage;
     public Vector3 direction;
-
-    private Transform _gunParent;
+    
     // Start is called before the first frame update
     void Start()
     {
-        _gunParent = GameObject.Find("GUN2 1").transform;
+        
     }
 
     // Update is called once per frame
@@ -22,8 +21,8 @@ public class GrenadeLauncher : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire3"))
         {
-            var _grenade = Instantiate(grenadePrefab, transform.position, quaternion.identity);
-            _grenade.GetComponent<Rigidbody>().AddRelativeForce(_gunParent.forward * speeeed, ForceMode.Impulse);
+            GameObject _grenade = Instantiate(grenadePrefab, transform.position, quaternion.identity);
+            _grenade.GetComponent<Rigidbody>().AddRelativeForce(direction, ForceMode.Impulse);
         }
     }
 }

@@ -7,9 +7,7 @@ public class Shooting : MonoBehaviour
 {
     public GunAttributes Attributes;
     public float DamageStat;
-    public Aiming aiming;
 
-    public Transform shootPosition;
     void Start()
     {
         Attributes = gameObject.GetComponent<GunAttributes>();
@@ -24,9 +22,9 @@ public class Shooting : MonoBehaviour
     {
         DamageStat = Attributes.totalDamage;
         
-        if (Input.GetButton("Fire1") && !aiming.isReloading && Attributes.ammoInMag > 0)
+        if (Input.GetButton("Fire1"))
         {
-            Ray shootRay = new Ray(shootPosition.position, transform.forward);
+            Ray shootRay = new Ray(transform.position, transform.forward);
             RaycastHit hit;
             if (Physics.Raycast(shootRay, out hit))
             {

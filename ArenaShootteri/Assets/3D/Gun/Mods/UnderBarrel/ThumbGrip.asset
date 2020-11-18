@@ -21,6 +21,6 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: cf1fa855bcd8f49d5a7ad66ff5e648d9, type: 3}
   moveable: 1
   Ergonomy: 0
-  Recoil: -10
+  Recoil: 0
   Damage: 0
   posDiff: {x: -0.2, y: -0.3, z: -0.3}
