@@ -17,7 +17,6 @@ public class SoundManager : MonoBehaviour
         PLAYERHIT = Resources.Load<AudioClip>("Oof");
 
         audioSrc = GetComponent<AudioSource>();
-
         audioMixer.SetFloat("Sound", Mathf.Log10(PlayerPrefs.GetFloat("Sound")) * 20);
         audioMixer.SetFloat("Music", Mathf.Log10(PlayerPrefs.GetFloat("Music")) * 20);
     }
