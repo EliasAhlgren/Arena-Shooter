@@ -10,16 +10,12 @@ public class Vipeltaja : MonoBehaviour
     public GameObject spitPrefab;
     public Transform spitPosition;
     public Rigidbody rb;
-
-    // Speed is based on current animation speed. Dont change this value.
-    // Change animation speed instead. // Jump speed not yet implemented.
-    public float walkSpeedBase = 6.0f, jumpSpeedBase = 20.0f;
-    public float walkSpeed, jumpSpeed;
-
+    public float speed = 1;
     public float attackRange = 3;
     public float attackCounter = 0f;
     public float attackCooldown = 2f;
     public float jumpDistance;
+    public float jumpSpeed;
     public float jumpCooldown;
     public bool readyToAttack = true;
     public NavMeshAgent agent;
@@ -41,7 +37,6 @@ public class Vipeltaja : MonoBehaviour
     {
         InitStateMachine();
         target = GameObject.FindGameObjectWithTag("Player");
-        agent.SetDestination(target.transform.position);
         Debug.Log("Vipeltäjä is awake");
     }
 
@@ -58,20 +53,6 @@ public class Vipeltaja : MonoBehaviour
             {typeof(VipeltajaJumpState), new VipeltajaJumpState(_vipeltaja: this) }
         };
         GetComponent<Vipeltaja_StateMachine>().SetStates(states);
-    }
-
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Die();
-        }
-
-        walkSpeed = walkSpeedBase * animator.GetCurrentAnimatorStateInfo(0).speed;
-        agent.speed = walkSpeed;
-        jumpSpeed = jumpSpeedBase * animator.GetCurrentAnimatorStateInfo(0).speed;
-
-
     }
 
     /// <summary>
@@ -91,8 +72,6 @@ public class Vipeltaja : MonoBehaviour
 
     public IEnumerator Die()
     {
-
-
         // Disable rigidbody and enable Colliders for each body part
         // for rigidbody death "animation"
         SetRigidbodyState(false);
@@ -104,29 +83,6 @@ public class Vipeltaja : MonoBehaviour
         GetComponent<Vipeltaja_StateMachine>().enabled = false;       // Stop AI
         Destroy(transform.Find("Hitbox").gameObject);       // Destroy Hitbox
 
-        // I'm dead. Notify others near me
-        //GameObject[] vipeltajat = GameObject.FindGameObjectsWithTag("Vipeltaja");
-        //foreach (GameObject vipeltaja in vipeltajat)
-        //{
-        //    if (Vector3.Distance(vipeltaja.transform.position, transform.position) < 20)
-        //    {
-        //        if (vipeltaja.gameObject != this.gameObject)
-        //        {
-        //            vipeltaja.GetComponent<Vipeltaja>().GetFeared();
-        //            Debug.Log("Feared");
-        //        }
-        //    }
-        //}
-        int layerMask = LayerMask.GetMask("Enemy");
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 20, layerMask);
-        foreach(var collider in colliders)
-        {
-            if (collider.CompareTag("Vipeltaja"))
-            {
-                collider.GetComponentInParent<Vipeltaja>().GetFeared();
-            }
-        }
-
         // Enemy stays on ground for 2 seconds.
         // After that set all colliders back to false 
         // and let body sink throught the floor
@@ -135,24 +91,7 @@ public class Vipeltaja : MonoBehaviour
         setColliderState(false);
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
-
-
     }
-
-    public void GetFeared()
-    {
-        GetComponent<Vipeltaja_StateMachine>().CancelInvoke(GetComponent<Vipeltaja_StateMachine>().currentState.ToString());
-        GetComponent<Vipeltaja_StateMachine>().SwitchToState(typeof(VipeltajaEscapeState));
-    }
-   
-    //public void FearMark()
-    //{
-    //    GameObject mark = Instantiate(fearMark, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), Quaternion.identity);
-    //    mark.transform.SetParent(transform);
-    //    Destroy(mark, 4);
-        
-    //}
-
 
     public void SpawnSpit()
     {

@@ -38,9 +38,8 @@ public class GruntAttackState : BaseState
             return typeof(GruntDoNothingState);
         }
                 
-        if(!grunt.animator.GetCurrentAnimatorStateInfo(0).IsName("Punch") )
+        if(!grunt.animator.GetCurrentAnimatorStateInfo(0).IsName("Punch"))
         {
-            
             grunt.readyToAttack = false;
             return typeof(GruntChaseState);
         }

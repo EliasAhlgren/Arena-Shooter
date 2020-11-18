@@ -17,29 +17,25 @@ public class VipeltajaAttackState : BaseState
     }
 
     public override void OnStateEnter()
-    { 
+    {
+        throw new NotImplementedException();
         // Play attack animation
-        vipeltaja.animator.Play("Hit");
+
     }
 
     public override void OnStateExit()
     {
-
+        throw new NotImplementedException();
     }
 
     public override Type Tick()
     {
-        Vector3 targetDir = vipeltaja.target.transform.position - vipeltaja.transform.position;
-        float turn = 2 * Time.deltaTime;
-        Vector3 newDirection = Vector3.RotateTowards(vipeltaja.transform.forward, targetDir, turn, 0.0f);
-        vipeltaja.transform.rotation = Quaternion.LookRotation(newDirection);
-
         if(vipeltaja == null)
         {
             return typeof(VipeltajaDoNothingState);
         }
 
-        if (!vipeltaja.animator.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
+        if (!vipeltaja.animator.GetCurrentAnimatorStateInfo(0).IsName("Punch"))
         {
             vipeltaja.readyToAttack = false;
             return typeof(VipeltajaChaseState);

@@ -17,14 +17,14 @@ public class GruntChargeState : BaseState
 
     public override void OnStateEnter()
     {
-        // grunt.animator.SetBool("IsRunning", true);
-        // grunt.animator.Play("Run");
+        grunt.animator.SetBool("IsRunning", true);
+        grunt.animator.Play("Run");
         Debug.Log("Charge in");
     }
 
     public override void OnStateExit()
     {
-        // grunt.animator.SetBool("IsRunning", false);
+        grunt.animator.SetBool("IsRunning", false);
         Debug.Log("Charge out.");
         
     }
@@ -34,7 +34,7 @@ public class GruntChargeState : BaseState
         lastPosition = grunt.transform.position;
         grunt.agent.ResetPath();
         
-        grunt.transform.Translate(Vector3.forward.normalized * grunt.runSpeed * Time.deltaTime);
+        grunt.transform.Translate(Vector3.forward.normalized * grunt.speed * Time.deltaTime);
         
         if(!grunt.isCharging)
         {
@@ -49,7 +49,6 @@ public class GruntChargeState : BaseState
             grunt.isCharging = false;
             distanceTravelled = 0;
             Debug.Log("Charge complete");
-            grunt.animator.SetTrigger("WalkTrigger");
             return typeof(GruntChaseState);
         }
        

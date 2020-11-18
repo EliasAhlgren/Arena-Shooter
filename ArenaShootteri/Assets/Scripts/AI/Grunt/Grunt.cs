@@ -8,12 +8,7 @@ using UnityEngine.AI;
 public class Grunt : MonoBehaviour, IDamage
 {
     public GameObject target { get; private set; }
-
-    // Speed is based on current animation speed. Dont change this value.
-    // Change animation speed instead.
-    public float walkSpeedBase = 6.0f, runSpeedBase = 20.0f;
-    public float walkSpeed, runSpeed;
-
+    public float speed = 10;
     public float attackRange = 3;
     public NavMeshAgent agent;
     public Transform cone;
@@ -32,6 +27,7 @@ public class Grunt : MonoBehaviour, IDamage
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         cone = transform.Find("VisionCone");
+
         // These might not be necessary
         SetRigidbodyState(true);
         SetColliderState(true);
@@ -94,12 +90,6 @@ public class Grunt : MonoBehaviour, IDamage
                 readyToAttack = true;
             }
         }
-        // Keep speed updated based on current clip. 
-        
-        walkSpeed = walkSpeedBase * animator.GetCurrentAnimatorStateInfo(0).speed;
-        agent.speed = walkSpeed;
-        runSpeed = runSpeedBase * animator.GetCurrentAnimatorStateInfo(0).speed;
-
     }
 
 

@@ -57,7 +57,7 @@ public class VipeltajaSpitState : BaseState
             vipeltaja.agent.ResetPath();
             vipeltaja.agent.SetDestination(vipeltaja.target.transform.position);
             distanceCounter = Vector3.Distance(startPosition, vipeltaja.transform.position);
-            // Debug.Log("Distance is " + distanceCounter + " Start position was: " + startPosition + " Current position is: " + vipeltaja.transform.position);
+            Debug.Log("Distance is " + distanceCounter + " Start position was: " + startPosition + " Current position is: " + vipeltaja.transform.position);
             if (distanceCounter > distanceBetweenSpits)
             {
 
