@@ -20,6 +20,7 @@ public class VipeltajaAttackState : BaseState
     { 
         // Play attack animation
         vipeltaja.animator.Play("Hit");
+        vipeltaja.readyToAttack = false;
     }
 
     public override void OnStateExit()
@@ -40,10 +41,10 @@ public class VipeltajaAttackState : BaseState
         }
 
         if (!vipeltaja.animator.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
-        {
-            vipeltaja.readyToAttack = false;
+        { 
             return typeof(VipeltajaChaseState);
         }
+
         return null;
     }
 

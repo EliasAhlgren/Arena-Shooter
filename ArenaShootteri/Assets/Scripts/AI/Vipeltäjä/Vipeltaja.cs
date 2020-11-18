@@ -15,7 +15,7 @@ public class Vipeltaja : MonoBehaviour
     // Change animation speed instead. // Jump speed not yet implemented.
     public float walkSpeedBase = 6.0f, jumpSpeedBase = 20.0f;
     public float walkSpeed, jumpSpeed;
-
+    public float speed;
     public float attackRange = 3;
     public float attackCounter = 0f;
     public float attackCooldown = 2f;
