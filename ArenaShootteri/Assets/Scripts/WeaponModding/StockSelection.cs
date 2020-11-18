@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 // ja tässä ei ole mahdollisuutta valita tyhjää modia
 // tää on tukin, piipun ja muiden joita ei tarvi liikuttaa asettamista vartren
 
+//turha
 public class StockSelection : MonoBehaviour
 {
    public string RailName;

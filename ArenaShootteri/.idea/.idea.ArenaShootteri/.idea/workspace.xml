@@ -21,19 +21,17 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/Mod.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/NewMods.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/Grunt/GruntChaseState.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/shaderPulsating.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Weapon/ShotgunScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Weapon/GrenadeScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/CreateNodes.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/Grunt/GruntChargeState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/GunAttributes.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/HandSetter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/Grunt/GruntAttackState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/WeaponRotationScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/KeepRotation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/Reflex.shader" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/AmmoCounter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/OLD/SightSelector.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/LaserScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManagement/SoundManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManagement/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Weapon/Shooting.cs" root0="FORCE_HIGHLIGHTING" />
@@ -70,8 +68,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/AI/IDamage.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterControllerRigidBody.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI/Grunt/Grunt.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameManagement/GameManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/NewMods.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ikTargetScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player Hands/Pose.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player Hands/IKsolver.cs" />
@@ -79,7 +75,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Player Hands/ikTargetScript.cs" />
         <option value="$PROJECT_DIR$/Assets/HandSetter.cs" />
         <option value="$PROJECT_DIR$/Assets/shaderPulsating.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" />
         <option value="$PROJECT_DIR$/Assets/LaserScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/SecondaryFire.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/GrenadeLauncher.cs" />
@@ -87,11 +82,16 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/WeaponRotationScript.cs" />
         <option value="$PROJECT_DIR$/Assets/AmmoCounter.cs" />
         <option value="$PROJECT_DIR$/Assets/Reload.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/StockSelection.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/GunAttributes.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Recoil.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Aiming.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/StockSelection.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameManagement/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/NewMods.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Shooting.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/ShotgunScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/CreateNodes.cs" />
       </list>
     </option>
   </component>
@@ -178,7 +178,8 @@
       <workItem from="1605455933903" duration="5186000" />
       <workItem from="1605520520547" duration="16268000" />
       <workItem from="1605605929937" duration="9169000" />
-      <workItem from="1605632164958" duration="4333000" />
+      <workItem from="1605632164958" duration="7323000" />
+      <workItem from="1605688574554" duration="16871000" />
     </task>
     <servers />
   </component>

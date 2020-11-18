@@ -10,6 +10,8 @@ TagManager:
   - spawnPoints
   - Grunt
   - Vipeltaja
+  - ModSelection
+  - Level
   layers:
   - Default
   - TransparentFX

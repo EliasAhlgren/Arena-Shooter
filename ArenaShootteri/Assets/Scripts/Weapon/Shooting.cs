@@ -24,7 +24,7 @@ public class Shooting : MonoBehaviour
     {
         DamageStat = Attributes.totalDamage;
         
-        if (Input.GetButton("Fire1") && !aiming.isReloading && Attributes.ammoInMag > 0)
+        if (Input.GetButton("Fire3") && !aiming.isReloading && Attributes.ammoInMag > 0)
         {
             Ray shootRay = new Ray(shootPosition.position, transform.forward);
             RaycastHit hit;
