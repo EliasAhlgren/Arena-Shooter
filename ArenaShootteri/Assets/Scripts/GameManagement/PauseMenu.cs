@@ -54,4 +54,9 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(0);
         exitPanel.SetActive(false);
     }
+
+    public void PlayClick()
+    {
+        SoundManager.PlaySound("MenuClick");
+    }
 }

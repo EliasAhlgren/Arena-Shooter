@@ -10,13 +10,12 @@ public class MainMenu : MonoBehaviour
     public GameObject optionsPanel;
     public GameObject creditsPanel;
     public GameObject exitPanel;
-    public GameManager gameManager;
     public GameObject timeline;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = UnityEngine.GameObject.FindGameObjectWithTag("GameManagement").GetComponent<GameManager>();
+
     }
 
     private void Update()
@@ -66,5 +65,10 @@ public class MainMenu : MonoBehaviour
     public void Exit()
     {
         Application.Quit();
+    }
+
+    public void PlayClick()
+    {
+        SoundManager.PlaySound("MenuClick");
     }
 }
