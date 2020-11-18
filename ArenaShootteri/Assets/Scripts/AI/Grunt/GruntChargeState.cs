@@ -2,12 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Charge logic for Grunt AI
+/// </summary>
 public class GruntChargeState : BaseState
 {
     private Grunt grunt;
     private float distanceTravelled = 0;
-    private Vector3 lastPosition;
+    private Vector3 startPosition;
 
 
     public GruntChargeState(Grunt _grunt) : base(_grunt.gameObject)
@@ -17,6 +19,13 @@ public class GruntChargeState : BaseState
 
     public override void OnStateEnter()
     {
+        // Store start position of Grunt at start of charge
+        startPosition = grunt.transform.position;
+
+        // Clear grunt's Navigation Path
+        grunt.agent.ResetPath();
+
+        grunt.isCharging = true;
         // grunt.animator.SetBool("IsRunning", true);
         // grunt.animator.Play("Run");
         Debug.Log("Charge in");
@@ -24,32 +33,34 @@ public class GruntChargeState : BaseState
 
     public override void OnStateExit()
     {
-        // grunt.animator.SetBool("IsRunning", false);
+        grunt.agent.ResetPath();
+        grunt.isCharging = false;
+        distanceTravelled = 0;
+        grunt.animator.SetTrigger("WalkTrigger");
+
         Debug.Log("Charge out.");
         
     }
 
     public override Type Tick()
     {
-        lastPosition = grunt.transform.position;
+        // If Grunt dies, return Nothing state.
+        if (grunt == null)
+        {
+            return typeof(GruntDoNothingState);
+        }
+
         grunt.agent.ResetPath();
         
         grunt.transform.Translate(Vector3.forward.normalized * grunt.runSpeed * Time.deltaTime);
         
-        if(!grunt.isCharging)
-        {
-            grunt.isCharging = true;
-        }
+        // Keep track of the distance travelled with charge
+        // ( Could track time too ) ??? 
+        distanceTravelled = Vector3.Distance(grunt.transform.position, startPosition);
 
-        distanceTravelled += Vector3.Distance(grunt.transform.position, lastPosition);
-
+        // Return back chase state when grunt has traveled enough distance
         if (distanceTravelled >= grunt.attackRange + 10)
         {
-            grunt.agent.ResetPath();
-            grunt.isCharging = false;
-            distanceTravelled = 0;
-            Debug.Log("Charge complete");
-            grunt.animator.SetTrigger("WalkTrigger");
             return typeof(GruntChaseState);
         }
        

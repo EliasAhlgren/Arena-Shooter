@@ -23,21 +23,21 @@ public class Shooting : MonoBehaviour
     void Update()
     {
         DamageStat = Attributes.totalDamage;
-        
-        if (Input.GetButton("Fire3") && !aiming.isReloading && Attributes.ammoInMag > 0)
+        Debug.DrawRay(shootPosition.position, transform.forward*100,Color.red);
+        if (Input.GetButton("Fire1") && !aiming.isReloading && Attributes.ammoInMag > 0)
         {
             Ray shootRay = new Ray(shootPosition.position, transform.forward);
             RaycastHit hit;
             if (Physics.Raycast(shootRay, out hit))
             {
-                var Damageable = hit.transform.parent.GetComponent<IDamage>();
+                var Damageable = hit.transform.root.GetComponent<IDamage>();
                 if (Damageable == null)
                 {
-                    Debug.Log("Not damageable " + hit.transform.parent);
+                    Debug.Log("Not damageable " + hit.transform.root.name);
                     return;
                 }
                 Damageable.TakeDamage(DamageStat);
-                Debug.Log(hit.transform.parent + " Has taken " + DamageStat + "DMG " + Damageable.IHealth + " Left");
+                Debug.Log(hit.transform.name + " Has taken " + DamageStat + "DMG " + Damageable.IHealth + " Left");
             }
         }
     }

@@ -2,23 +2,37 @@
 using System.Collections;
 using System;
 using UnityEngine.AI;
-
+/// <summary>
+/// Escape logic for Vipeltaja's AI
+/// </summary>
 public class VipeltajaEscapeState : BaseState
 {
+    
     private Vipeltaja vipeltaja;
     private float timeToFlee = 4f;
+    /// <summary>
+    /// how long enemy has fleed
+    /// </summary>
     private float timer = 0f;
+    /// <summary>
+    /// how long each run cycle has lasted. One cycle is approx. 1 second
+    /// </summary>
     private float dirTimer = 0f; 
     private float FleeOffset = 5;
     private Vector3 direction;
+    /// <summary>
+    /// Position where enemy will flee
+    /// </summary>
     private Vector3 randomDestination;
+    /// <summary>
+    /// Where enemy should face
+    /// </summary>
     private Vector3 targetDir;
 
 
     public VipeltajaEscapeState(Vipeltaja _vipeltaja) : base(_vipeltaja.gameObject)
     {
         vipeltaja = _vipeltaja;
-
     }
 
     public override void OnStateEnter()
@@ -69,7 +83,7 @@ public class VipeltajaEscapeState : BaseState
             // RandomPointOnNavMesh(vipeltaja.transform.position, FleeOffset, out randomDestination);
             // vipeltaja.agent.SetDestination(randomDestination);
             
-            // Test 2
+            // Test 2 Finds position behind the enemy and runs there.
             targetDir = Quaternion.AngleAxis(UnityEngine.Random.Range(-90, 90), vipeltaja.transform.up) * -vipeltaja.transform.forward;
             targetDir = targetDir.normalized * UnityEngine.Random.Range(10, 20);           
 
@@ -80,16 +94,23 @@ public class VipeltajaEscapeState : BaseState
         timer += Time.deltaTime;
 
         // vipeltaja.transform.Translate(Vector3.forward.normalized * vipeltaja.speed * Time.deltaTime);
+
+        // Go to spit state when Escape time is above maximum flee time
         if (timer >= timeToFlee)
         {
             return typeof(VipeltajaSpitState);
         }
         return null;        
     }
-
+    /// <summary>
+    /// Finds random point on NavMesh. Returns Vector3.zero if false
+    /// </summary>
+    /// <param name="center">Center of search</param>
+    /// <param name="range">Range of search</param>
+    /// <param name="result">Random point on Nav Mesh</param>
+    /// <returns></returns>
     public bool RandomPointOnNavMesh(Vector3 center, float range, out Vector3 result)
     {
-        
         for (int i = 0; i < 20; i++)
         {
             Vector3 randomPoint = center + UnityEngine.Random.insideUnitSphere * range;
