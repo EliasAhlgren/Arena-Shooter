@@ -1,38 +1,48 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerCharacterControllerRigidBody : MonoBehaviour
 {
     //references to GameObjects
-    public Rigidbody rb;
-    public Transform playerCamera;
-    public GameObject groundCheck;
+    Rigidbody rb;
+    Transform playerCamera;
     CapsuleCollider characterCollider;
 
+    [Header("Player Stats")]
+    public bool isAlive = true;
     public float health = 100f;
+    public float defaultMaxHealth = 100f;
     public float maxHealth = 100f;
+    public float stamina = 100f;
+
+    [Header("Player Controls")]
+    public bool playerControl = true;
+    //mouse input multiplier
+    public float mouseSensitivity = 100f;
+
+    public float jumpHeight = 3f;
+    public float airMoveModifier = .2f;
+
+   
 
     Image deathImage;
-    public GameObject deathCanvas;
+    GameObject deathCanvas;
 
     float colorAlpha = 0f;
-    public float minAlpha = 0f;
-    public float maxAlpha = 1f;
-    public float alphaLerp = 0f;
 
     //character height
     float height;
     float characterScale;
 
-    Vector3 groundCheckSize = new Vector3(.3f, .7f, .3f);
+    Vector3 groundCheck = new Vector3(0, -.5f, 0);
+    Vector3 groundCheckSize = new Vector3(.3f, .6f, .3f);
     Vector3 wallCheckSize = new Vector3(.6f, .5f, .6f);
 
-    public LayerMask groundLayerMask;
-
-    //mouse input multiplier
-    public float mouseSensitivity = 100f;
+    LayerMask groundLayerMask;
+    LayerMask wallLayerMask;    
 
     //keyboard & mouse input variables;
     float x;
@@ -53,24 +63,31 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     //diagonal movement limiter variable;
     float DMLimiter;
 
-    //movement modifier variables
+    //gravity
     float gravity;
-    public float jumpHeight = 3f;
-    public float airMoveModifier = .2f;
 
     //actual movement values
     float speed;
-    public float runSpeed = 12f;
-    public float walkSpeed = 6f;
-    public float slideSpeedControl = 14f;
-    public float slideDuration = 1f;
-    float slideTime = 1f;
+    [Space(10)]
+    public float defaultSpeed;
+    float baseSpeed = 6f;
+    [Space(10)]
+    public float runSpeedMod = 2f;
+    public float slideSpeedMod = 1.2f;
+    public float dodgeSpeedMod = 3f;
+
+
+    //public float runSpeed = 12f;
+    //public float walkSpeed = 6f;
+    float dodgeSpeed;
+    float dodgeCooldown;
+    float slideSpeedControl = 14f;
+    float slideDuration = 1f;
+
+    //obsolete
     float slideSpeed = 17f;
     float slideMovementSpeed = 6f;
-
-
-    //character controller slidelimit variable holder
-    public float slideLimit = 45.1f;
+    float slideLimit = 180f;
 
     //character size raycast length holders
     float rayDistance;
@@ -81,20 +98,16 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     float rayDistanceMargin;
 
     //character state variables
-    public bool isMoving;
-    public bool isGrounded;
-    public bool isAirborne;
-    public bool isSliding;
-    public bool isSlidingControl;
-    public bool isCrouching;
-    public bool isRunning;
-    public bool isWallRunning;
-    public bool isDodging;
-    public bool isTouchingWall;
-
-    public bool playerControl = true;
-
-    public bool isAlive = true;
+    bool isMoving;
+    bool isGrounded;
+    bool isAirborne;
+    bool isSliding;
+    bool isSlidingControl;
+    bool isCrouching;
+    bool isRunning;
+    bool isWallRunning;
+    bool isDodging;
+    bool isTouchingWall;
 
     //variables for movement on slopes
     float slopeDot;
@@ -112,9 +125,6 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     Collider[] wallCheck;
     float wallDot;
 
-    //normal wallrunning or walljumping
-    public bool wallRunninType;
-
     //character movement vector
     Vector3 move;
     //gravity vector
@@ -129,8 +139,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     //jump groundcheck delay
     int jumpTimer = 0;
 
-    //dodge duration in frames
-    int dodgeFrameTime;
+    
 
     //character movement vector when airbone
     Vector3 airMove;
@@ -141,14 +150,67 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     //variable for decouplin horizontal rotation from uncontrollable movement
     Vector3 rotation;
 
+    float playerVelocity;
+    Vector3 lastPlayerPosition;
+    Vector3 playerPosition;
+    Vector3 movementVector;
+
+    //RaycastHit testHit;
+    //bool testhitbool = false;
+    //public float testFloat;
+    [Header("Perk Unlock")]
+    public bool doubleJumpUnlocked = false;
+    public bool slideUnlocked = true;
+    public bool dodgeUnlocked = true;
+    public bool wallJumpUnlocked = true;
+    public bool wallRunUnlocked = true;
+    [Space(10)]
+    public bool rageModeUnlocked = false;
+    public bool damageAuraUnlocked = false;
+    [Space(10)]
+    public bool resurectionUnlocked = false;
+    bool resurection = true;
+    public bool divineShieldUnlocked = false;
+    public bool theHolyLightUnlocked = false;
+
+    [Header("Perk Modifiers")]
+    public float speedMod;
+    [Space(10)]
+    public float damageMod;
+    public float fireRateMod;
+    public float releadMod;
+    [Space(10)]
+    public float healthMod;
+    public float spawnRateMod;
+    public float defenseMod;
+
+    bool doubleJump = false;
+
+    public List<float> rageKills = new List<float>();
+    public bool rageMode = false;
+
+    public float invulnerability = 0f;
+    public bool invulnerable = false;
+
     void Start()
     {
+        //get components
+        playerCamera = GetComponentInChildren<Camera>().transform;
+        rb = GetComponent<Rigidbody>();
+        characterCollider = GetComponent<CapsuleCollider>();
+        deathCanvas = GetComponentInChildren<Canvas>(true).gameObject;
         deathImage = deathCanvas.GetComponentInChildren<Image>();
+        groundLayerMask = LayerMask.GetMask("Ground");
+
         //lock cursor
         Cursor.lockState = CursorLockMode.Locked;
 
         //initialize variables
-        characterCollider = GetComponent<CapsuleCollider>();
+        maxHealth = defaultMaxHealth * healthMod;
+        baseSpeed = defaultSpeed * speedMod;
+
+        playerPosition = transform.position;
+        lastPlayerPosition = playerPosition;
         height = characterCollider.height * transform.localScale.y;
         characterScale = transform.localScale.y;
         standRayDistance = height * .5f;
@@ -160,9 +222,23 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
     void Update()
     {
+        RageMode();
+        Invulnerability();
+        DamageAura();
+        Stamina();
+
+        maxHealth = defaultMaxHealth * healthMod;
+        baseSpeed = defaultSpeed * speedMod;
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            AddInvulnerability(5);
+            AddKill();
+        }
+
         if (Input.GetKeyDown(KeyCode.P))
         {
-            health -= 50f;
+            TakeDamage(-50f);
         }
 
         if (Input.GetKeyDown(KeyCode.L))
@@ -202,7 +278,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             }
         }
 
-        if (playerControl)
+        if (playerControl && Time.timeScale > 0)
         {
 
             //shoot
@@ -220,9 +296,17 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                 {
                     Jump();
                 }
-                else if (isWallRunning)
+                else if (isWallRunning && wallJumpUnlocked)
                 {
                     WallJump();
+                }
+                else if (doubleJumpUnlocked)
+                {
+                    if (doubleJump)
+                    {
+                        Jump();
+                        doubleJump = false;
+                    }                   
                 }
             }
 
@@ -238,7 +322,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             }
 
             //dodge
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q) && playerVelocity > 0 && dodgeCooldown <= 0 && dodgeUnlocked)
             {
                 Dodge();
             }
@@ -248,13 +332,15 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             {
                 //set running speed for forward movement and multiply other direction movement by 25%
                 isRunning = true;
-                speed = runSpeed;
+                //speed = runSpeed;
+                speed = baseSpeed * runSpeedMod;
             }
             else
             {
                 //set walking speed
                 isRunning = false;
-                speed = walkSpeed;
+                //speed = walkSpeed;
+                speed = baseSpeed;
             }
 
             //mouse input
@@ -310,12 +396,15 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         }
         else
         {
+            if (colorAlpha <= 1)
+            {
+                colorAlpha += 0.5f * Time.deltaTime;
 
-            alphaLerp += .3f * Time.deltaTime;
-
-            colorAlpha = Mathf.Lerp(minAlpha, maxAlpha, alphaLerp);
-
-            deathImage.color = new Color(deathImage.color.r, deathImage.color.r, deathImage.color.r, colorAlpha);
+                deathImage.color = new Color(deathImage.color.r, deathImage.color.r, deathImage.color.r, colorAlpha);
+            }
+            //alphaLerp += .3f * Time.deltaTime;
+            //colorAlpha = Mathf.Lerp(minAlpha, maxAlpha, alphaLerp);
+            
         }
 
         //camera vertical rotation
@@ -330,10 +419,19 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         //player horizontal rotation
         rb.rotation *= Quaternion.Euler(0, mouseX, 0);
         //playerBody.Rotate(Vector3.up * mouseX);
+    }
 
+    private void FixedUpdate()
+    {
+        
         //if character is touching ground
         if (isGrounded)
         {
+            if (!doubleJump)
+            {
+                doubleJump = true;
+            }
+
             if (isWallRunning)
             {
                 isWallRunning = false;
@@ -432,20 +530,54 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             }
             else if (isSlidingControl)
             {
-                slideTime -= Time.deltaTime;
+                //float deaccerelation = 14f - walkSpeed;
+                float deaccerelation = (baseSpeed * runSpeedMod * slideSpeedMod) - baseSpeed;
 
-                move = slideControl - rotation;
+                slideDuration -= Time.deltaTime * 4f;
 
-                if (slideTime <= 0f)
+                if (slideDuration <= 0)
+                {
+                    slideSpeedControl -= deaccerelation * Time.fixedDeltaTime;
+                }
+
+                //slideTime -= Time.deltaTime;
+
+                if (slideSpeedControl > baseSpeed && playerVelocity > 0)
+                {
+                    move = (slideControl * slideSpeedControl) - rotation;
+                }
+                else
                 {
                     isSlidingControl = false;
                 }
             }
             else if (isDodging)
             {
-                dodgeFrameTime -= 1;
-                move = dodge;
-                if (dodgeFrameTime < 1)
+                float deaccerelation;
+                float stopDodgingSpeed;
+
+                if (isRunning)
+                {
+                    //deaccerelation = (20f - runSpeed) * 4f;
+                    deaccerelation = ((baseSpeed * dodgeSpeedMod) - (baseSpeed * runSpeedMod)) * 4f;
+                    //stopDodgingSpeed = runSpeed;
+                    stopDodgingSpeed = baseSpeed * runSpeedMod;
+                }
+                else
+                {
+                    //deaccerelation = (20f - walkSpeed) * 4f;
+                    deaccerelation = ((baseSpeed * dodgeSpeedMod) - baseSpeed) * 4f;
+                    //stopDodgingSpeed = walkSpeed;
+                    stopDodgingSpeed = baseSpeed;
+                }
+
+                dodgeSpeed -= deaccerelation * Time.deltaTime;
+
+                if (dodgeSpeed > stopDodgingSpeed)
+                {
+                    move = dodge * dodgeSpeed - rotation;
+                }
+                else
                 {
                     isDodging = false;
                 }
@@ -494,10 +626,9 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             if (isDodging)
             {
                 isDodging = false;
-                dodgeFrameTime = 0;
                 //move *= .125f;
-                Vector3 norMove = Vector3.Normalize(move);
-                dodge = norMove * runSpeed;
+                //Vector3 norMove = Vector3.Normalize(move);
+                //dodge = norMove * runSpeed;
                 //move *= .5f;
             }
 
@@ -538,7 +669,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                 else if (Physics.Raycast(transform.position, transform.right, out wallHit, maxWallDistance, groundLayerMask))
                 {
 
-                    if (wallRunninType && isRunning)
+                    if (wallRunUnlocked && isRunning)
                     {
                         airBorne = new Vector3(move.x, 0, move.z);
                         if (Physics.Raycast(transform.position + new Vector3(0, .2f, 0), transform.right, maxWallDistance, groundLayerMask))
@@ -562,7 +693,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                 else if (Physics.Raycast(transform.position, -transform.right, out wallHit, maxWallDistance, groundLayerMask))
                 {
 
-                    if (wallRunninType && isRunning)
+                    if (wallRunUnlocked && isRunning)
                     {
                         airBorne = new Vector3(move.x, 0, move.z);
                         if (Physics.Raycast(transform.position + new Vector3(0, .2f, 0), -transform.right, maxWallDistance, groundLayerMask))
@@ -595,12 +726,11 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             {
                 if (!isTouchingWall)
                 {
-                    Debug.Log("start wall running");
                     isWallRunning = false;
                 }
 
                 //if wall is either left or right start wallrunning
-                if (wallDirection >= 3 && z > 0 && isRunning && wallRunninType)
+                if (wallDirection >= 3 && z > 0 && playerVelocity > 10 && wallRunUnlocked)
                 {
                     //Debug.Log("wall running");
                     if (velocity.y >= 0.0f)
@@ -617,15 +747,33 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                         //Debug.DrawRay(transform.position, wallCheckDir * 10f, Color.red);
                         if (Physics.Raycast(transform.position, wallCheckDir, out wallHit, maxWallDistance, groundLayerMask))
                         {
-                            if (!Physics.Raycast(transform.position + new Vector3(0, .2f, 0), transform.right, maxWallDistance, groundLayerMask))
+                            //Vector3 wallNormalNormal = Vector3.Normalize(wallNormal);
+                            Vector3 wallHitNormal = new Vector3(wallHit.normal.x, 0, wallHit.normal.z);
+
+                            float changeInDir = Vector3.Dot(wallNormal, wallHitNormal);
+
+                            changeInDir = Mathf.Round(changeInDir * 100f) / 100f;
+
+                            if(changeInDir <= 0)
                             {
-                                velocity.y = 0f;
+                                if (!Physics.Raycast(transform.position + new Vector3(0, .2f, 0), transform.right, maxWallDistance, groundLayerMask))
+                                {
+                                    velocity.y = 0f;
+                                }
+
+                                //Debug.DrawRay(wallHit.point, wallHit.normal * 10f, Color.red);
+                                wallNormal = wallHit.normal;
+                                wallNormal = -Vector3.Cross(wallNormal, Vector3.up);
+                                cameraTilt = tiltAngle;
+                            }
+                            else
+                            {
+                                //testFloat = bestea;
+                                //Physics.Raycast(transform.position, wallCheckDir, out testHit, maxWallDistance, groundLayerMask);
+                                jumpTimer = 10;
+                                isWallRunning = false;
                             }
 
-                            //Debug.DrawRay(wallHit.point, wallHit.normal * 10f, Color.red);
-                            wallNormal = wallHit.normal;
-                            wallNormal = -Vector3.Cross(wallNormal, Vector3.up);
-                            cameraTilt = tiltAngle;
                         }
                         else
                         {
@@ -638,15 +786,33 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                         Vector3 wallCheckDir = Quaternion.AngleAxis(-90, Vector3.up) * wallNormal;
                         if (Physics.Raycast(transform.position, wallCheckDir, out wallHit, maxWallDistance, groundLayerMask))
                         {
-                            if (!Physics.Raycast(transform.position + new Vector3(0, .2f, 0), -transform.right, maxWallDistance, groundLayerMask))
+                            //Vector3 wallNormalNormal = Vector3.Normalize(wallNormal);
+                            Vector3 wallHitNormal = new Vector3(wallHit.normal.x, 0, wallHit.normal.z);
+
+                            float changeInDir = Vector3.Dot(wallNormal, wallHitNormal);
+
+                            changeInDir = Mathf.Round(changeInDir * 100f) / 100f;
+
+                            if (changeInDir <= 0)
                             {
-                                velocity.y = 0f;
+                                if (!Physics.Raycast(transform.position + new Vector3(0, .2f, 0), -transform.right, maxWallDistance, groundLayerMask))
+                                {
+                                    velocity.y = 0f;
+                                }
+
+                                //Debug.DrawRay(wallHit.point, wallHit.normal * 10f, Color.red);
+                                wallNormal = wallHit.normal;
+                                wallNormal = Vector3.Cross(wallNormal, Vector3.up);
+                                cameraTilt = -tiltAngle;
+                            }
+                            else
+                            {
+                                //testFloat = bestea;
+                                //Physics.Raycast(transform.position, wallCheckDir, out testHit, maxWallDistance, groundLayerMask);
+                                jumpTimer = 10;
+                                isWallRunning = false;
                             }
 
-                            //Debug.DrawRay(wallHit.point, wallHit.normal * 10f, Color.red);
-                            wallNormal = wallHit.normal;
-                            wallNormal = Vector3.Cross(wallNormal, Vector3.up);
-                            cameraTilt = -tiltAngle;
                         }
                         else
                         {
@@ -694,7 +860,8 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                 move = airBorne - rotation;
 
                 //airborne player movement
-                airMove = transform.right * x * walkSpeed * DMLimiter * airMoveModifier + transform.forward * z * walkSpeed * DMLimiter * airMoveModifier + transform.up * 0;
+                //airMove = transform.right * x * walkSpeed * DMLimiter * airMoveModifier + transform.forward * z * walkSpeed * DMLimiter * airMoveModifier + transform.up * 0;
+                airMove = transform.right * x * baseSpeed * DMLimiter * airMoveModifier + transform.forward * z * baseSpeed * DMLimiter * airMoveModifier + transform.up * 0;
                 move += airMove;
             }
 
@@ -734,7 +901,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         else
         {
             jumpTimer = 0;
-            isGrounded = Physics.OverlapBox(groundCheck.transform.position, groundCheckSize).Length > 1;
+            isGrounded = Physics.OverlapBox(transform.position + groundCheck, groundCheckSize).Length > 1;
         }
 
         rb.velocity = move;
@@ -779,17 +946,110 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
         //movement vector debug
         //debugAS();
+        dodgeCooldown -= Time.fixedDeltaTime;
+
+        PlayerVelocity();
     }
 
-    private void LateUpdate()
+    void Stamina()
     {
-        if (health <= 0)
+        if (isSlidingControl || isAirborne)
         {
-            if (isAlive)
+
+        }
+        else if (playerVelocity > 0 && isRunning)
+        {
+            stamina += -10 * Time.deltaTime;
+        }
+        else if (stamina < 100)
+        //if (stamina < 100 && isRunning && playerVelocity > 0)
+        {
+            stamina += 10 * Time.deltaTime;
+        }
+        
+        if (stamina > 100)
+        {
+            stamina = 100;
+        }
+    }
+
+    public void AddKill()
+    {
+        if (rageModeUnlocked)
+        {
+            rageKills.Add(Time.time);
+        }
+    }
+    private void RageMode()
+    {
+        if (rageKills.Count >= 3)
+        {
+            rageMode = true;
+        }
+        else
+        {
+            rageMode = false;
+        }
+
+        if (rageKills.Count > 0)
+        {
+            if (Time.time - rageKills[0] > 10)
             {
-                killPlayer();
+                rageKills.RemoveAt(0);
             }
         }
+    }
+    public void AddInvulnerability(float time)
+    {
+        invulnerability += time;
+    }
+
+    private void Invulnerability()
+    {
+        if (invulnerability > 0)
+        {
+            invulnerable = true;
+            invulnerability -= Time.deltaTime;
+        }
+        else
+        {
+            invulnerable = false;
+        }
+    }
+
+    private void DamageAura()
+    {
+        if (damageAuraUnlocked)
+        {
+            //Physics.OverlapSphere(transform.position, 5f);
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        if (!invulnerable)
+        {
+            health += damage;
+
+            if (health <= 0)
+            {
+                if (isAlive)
+                {
+                    killPlayer();
+                }
+            }
+        }
+    }
+
+    private void PlayerVelocity()
+    {
+        playerPosition = transform.position;
+
+        movementVector = new Vector3(playerPosition.x,0,playerPosition.z) - new Vector3(lastPlayerPosition.x,0, lastPlayerPosition.z);
+
+        playerVelocity = Vector3.Magnitude(movementVector);
+        playerVelocity *= 50f;
+        lastPlayerPosition = playerPosition;
     }
 
     void Shoot()
@@ -828,74 +1088,75 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         Vector3 lookDir = Vector3.Normalize(transform.forward);
         wallDot = Vector3.Dot(wallHit.normal, lookDir);
 
+        if (wallDot > .1f)
+        {
+            jumpTimer = 10;
+            //isAirborne = true;
+            //isGrounded = false;
 
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            //set airborne vector
+            //airBorne = move;
 
+            //Debug.Log("wall jump" + Vector3.Magnitude(transform.forward));
+
+            //if looking away from wall jump forward
+            airBorne = transform.forward * speed;
+            isWallRunning = false;
+
+            //old version using the walldirection variable
+            //if (wallDirection == 5)
+            //{
+            //    airBorne = -transform.forward * speed;
+            //}
+            //else
+            //{
+            //    airBorne = transform.forward * speed;
+            //}
+        }
+        //if looking torwards wall jump behind
+        else if (wallDot < -.1f)
+        {
+            jumpTimer = 10;
+            //Debug.Log("wall jump backwards");
+
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+
+            airBorne = -transform.forward * speed;
+            isWallRunning = false;
+        }
+        else
+        {
+            jumpTimer = 10;
+            Vector3 jumpLimit;
+            //Debug.Log("low angle jump");
+
+            if (wallDirection == 3)
+            {
+                jumpLimit = Quaternion.AngleAxis(81, Vector3.up) * wallHit.normal;
+                airBorne = jumpLimit * speed;
+            }
+            else if (wallDirection == 4)
+            {
+                jumpLimit = Quaternion.AngleAxis(-81f, Vector3.up) * wallHit.normal;
+                airBorne = jumpLimit * speed;
+            }
+            else
+            {
+                Debug.Log("jump failed");
+            }
+
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            isWallRunning = false;
+        }
+
+        /**
         //Debug.Log(wallDot);
 
         //wallrunning type 1 (wallrunning)
         if (wallRunninType)
         {
-            if (wallDot > .1f)
-            {
-                jumpTimer = 10;
-                //isAirborne = true;
-                //isGrounded = false;
-
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-                //set airborne vector
-                //airBorne = move;
-
-                //Debug.Log("wall jump" + Vector3.Magnitude(transform.forward));
-
-                //if looking away from wall jump forward
-                airBorne = transform.forward * speed;
-                isWallRunning = false;
-
-                //old version using the walldirection variable
-                //if (wallDirection == 5)
-                //{
-                //    airBorne = -transform.forward * speed;
-                //}
-                //else
-                //{
-                //    airBorne = transform.forward * speed;
-                //}
-            }
-            //if looking torwards wall jump behind
-            else if (wallDot < -.1f)
-            {
-                jumpTimer = 10;
-                //Debug.Log("wall jump backwards");
-
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-
-                airBorne = -transform.forward * speed;
-                isWallRunning = false;
-            }
-            else
-            {
-                jumpTimer = 10;
-                Vector3 jumpLimit;
-                //Debug.Log("low angle jump");
-
-                if (wallDirection == 3)
-                {
-                    jumpLimit = Quaternion.AngleAxis(81, Vector3.up) * wallHit.normal;
-                    airBorne = jumpLimit * speed;
-                }
-                else if (wallDirection == 4)
-                {
-                    jumpLimit = Quaternion.AngleAxis(-81f, Vector3.up) * wallHit.normal;
-                    airBorne = jumpLimit * speed;
-                }
-                else
-                {
-                    Debug.Log("jump failed");
-                }
-
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-                isWallRunning = false;
-            }
+            
 
         }
         //wallrunning type 2 (walljumping)
@@ -916,39 +1177,56 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
-
+        **/
         //airBorne = wallNormal * speed;
         //airBorne = new Vector3(wallHit.normal.x, 0, wallHit.normal.z);
         //Debug.DrawRay(wallHit.point, new Vector3(wallHit.normal.x, 0, wallHit.normal.z) * 20f);
-
-
     }
+
+
 
     private void Dodge()
     {
         isDodging = true;
-        dodgeFrameTime = 7;
+        //dodgeSpeed = 20f;
+        dodgeSpeed = baseSpeed * dodgeSpeedMod;
+        dodgeCooldown = 1f;
+        //dodgeFrameTime = 0f;
         velocity.y = 0f;
         //dodge = move * 4f *2f;
-        Vector3 norMove = Vector3.Normalize(move);
-        dodge = norMove * runSpeed * 2f;
+        dodge = Vector3.Normalize(move);
+        //Vector3 norMove = Vector3.Normalize(move);
+        //dodge = norMove * runSpeed * 2f;
     }
-
+    
+    private void Slide()
+    {
+        slideDuration = 1f;
+        isSlidingControl = true;
+        //slideSpeedControl = 14f;
+        slideSpeedControl = baseSpeed * runSpeedMod * slideSpeedMod;
+        slideControl = transform.forward;
+        //slideControl = transform.forward * slideSpeedControl;
+    }
     private void Crouch()
     {
-        if (isRunning && z > 0 && !isSlidingControl)
+        if (isRunning && z > 0 && !isSlidingControl && slideUnlocked)
         {
-            slideTime = slideDuration;
-            isSlidingControl = true;
-            slideControl = transform.forward * slideSpeedControl;
+            Slide();
         }
         if (!isCrouching)
         {
+            
             rayDistance = crouchRayDistance;
+            groundCheck = new Vector3(0, -.25f, 0);
             //transform.localScale = new Vector3(1, .75f, 1);
             transform.localScale = new Vector3(transform.localScale.x, characterScale * 0.5f, transform.localScale.z);
             //transform.position = transform.position + new Vector3(0, -.75f, 0);
-            transform.position = transform.position + new Vector3(0, -characterScale *.5f, 0);
+            if (isGrounded)
+            {
+                transform.position = transform.position + new Vector3(0, -characterScale * .5f, 0);
+            }
+
             isCrouching = true;
         }
     }
@@ -961,10 +1239,24 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             if (isCrouching)
             {
                 rayDistance = standRayDistance;
+                groundCheck = new Vector3(0, -.5f, 0);
                 //transform.localScale = new Vector3(1, 1.5f, 1);
                 transform.localScale = new Vector3(transform.localScale.x, characterScale, transform.localScale.z);
                 //transform.position = transform.position + new Vector3(0, .75f, 0);
-                transform.position = transform.position + new Vector3(0, characterScale * .5f, 0);
+                if (isGrounded)
+                {
+                    transform.position = transform.position + new Vector3(0, characterScale * .5f, 0);
+                }
+                else
+                {
+                    if (Physics.Raycast(transform.position, -Vector3.up, rayDistance))
+                    {
+                        transform.position = transform.position + new Vector3(0, characterScale * .5f, 0);
+                    }
+
+                }
+                
+                
                 isCrouching = false;
             }
         }
@@ -974,19 +1266,30 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     {
         if (isAlive)
         {
-            alphaLerp = 0f;
-            deathCanvas.SetActive(true);
+            if (resurectionUnlocked && resurection)
+            {
+                health = 10f;
+                resurection = false;
+            }
+            else
+            {
+                //alphaLerp = 0f;
+                deathCanvas.SetActive(true);
+                colorAlpha = 0.3f;
 
-            rayDistance = crouchRayDistance;
-            //transform.localScale = new Vector3(1, .75f, 1);
-            transform.localScale = new Vector3(transform.localScale.x, characterScale * 0.5f, transform.localScale.z);
-            //transform.position = transform.position + new Vector3(0, -.75f, 0);
+                rayDistance = crouchRayDistance;
+                groundCheck = new Vector3(0, -.25f, 0);
+                //transform.localScale = new Vector3(1, .75f, 1);
+                transform.localScale = new Vector3(transform.localScale.x, characterScale * 0.5f, transform.localScale.z);
+                //transform.position = transform.position + new Vector3(0, -.75f, 0);
 
-            currentTilt = 90f;
+                currentTilt = 90f;
 
-            isCrouching = false;
-            isAlive = false;
-            playerControl = false;
+                isCrouching = false;
+                isAlive = false;
+                playerControl = false;
+            }
+            
         }
     }
 
@@ -994,11 +1297,12 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     {
         health = maxHealth;
 
-        colorAlpha = minAlpha;
+        colorAlpha = 0f;
 
         deathCanvas.SetActive(false);
 
         rayDistance = standRayDistance;
+        groundCheck = new Vector3(0, -.5f, 0);
         //transform.localScale = new Vector3(1, 1.5f, 1);
         transform.localScale = new Vector3(transform.localScale.x, characterScale, transform.localScale.z);
         //transform.position = transform.position + new Vector3(0, .75f, 0);
@@ -1017,8 +1321,16 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        //Gizmos.DrawWireCube(transform.position, wallCheckSize*2);
-        //Gizmos.DrawWireCube(groundCheck.transform.position, groundCheckSize *2);
+        Gizmos.DrawWireCube(transform.position, wallCheckSize*2);
+        if (isCrouching)
+        {
+            Gizmos.DrawWireCube(transform.position + groundCheck, new Vector3(groundCheckSize.x, groundCheckSize.y * .5f, groundCheckSize.z) * 2);
+        }
+        else
+        {
+            Gizmos.DrawWireCube(transform.position + groundCheck, groundCheckSize * 2);
+        }
+        
     }
         //debug function
     void debugAS()
