@@ -5,4 +5,5 @@ using UnityEngine;
 public class spawnPoints : MonoBehaviour
 {
     public Transform[] _spawnPoints;
+
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections;
-
+using UnityEditor.Callbacks;
 using UnityEngine;
 
 
@@ -8,17 +8,17 @@ public class GunAttributes : MonoBehaviour
 {
     // Combined stats of all currently attached mods
     public float totalErgonomy;
-    public int totalRecoil;
+    public float totalRecoil;
     public float totalDamage;
 
+    public int ammoInMag;
+    public int totalAmmo;
+    
     public Recoil recoilScript;
     
     public ModSelection sightSelection;
     
-    public bool isAiming;
-
-    // animator that handles aiming animation
-    private Animator _animator;
+    
     
     [NonSerialized] public GameObject[] canvases;
 
@@ -44,14 +44,15 @@ public class GunAttributes : MonoBehaviour
     public bool isModding;
 
     public GameObject mainCamera;
+
     
     // Start is called before the first frame update
     void Start()
     {
 
+        
         cameraStartPos = mainCamera.transform.position.y;
         
-        _animator = gameObject.GetComponent<Animator>();
         
         _controller = GameObject.FindWithTag("Player").GetComponent<PlayerCharacterControllerRigidBody>();
         
@@ -85,7 +86,7 @@ public class GunAttributes : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             transform.position = moddingPositio;
             transform.rotation = Quaternion.Euler(moddingRotation);
-            Time.timeScale = 0.3f;
+            //Time.timeScale = 0.3f;
         }
         else
         {
@@ -97,30 +98,13 @@ public class GunAttributes : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             //transform.localPosition = shootyPosition;
             //transform.localRotation = Quaternion.Euler(shootyRotation);
-            Time.timeScale = 1f;
+            //Time.timeScale = 1f;
             
         }
         
     }
 
-    public void AimDownSights()
-    {
-        if (isAiming)
-        {
-            Vector3 newCamPos = Camera.main.transform.position;
-            newCamPos.y = cameraStartPos;
-        }
-        else 
-        {
-            if (sightSelection.currentMod)
-            {
-                Vector3 newCamPos = Camera.main.transform.position;
-                newCamPos.y = sightSelection.currentMod.transform.position.y;
-            }
-        }
-        isAiming = !isAiming;
-        _animator.SetBool("isAiming", isAiming);
-    }
+    
     
     
     // Check stats from default mods
@@ -133,6 +117,7 @@ public class GunAttributes : MonoBehaviour
         {
             Debug.Log("initialising with stats");
             _stockSelection.OnModChosen += UpdateStats;
+           
             if (_stockSelection.currenModStats)
             {
                 
@@ -169,7 +154,7 @@ public class GunAttributes : MonoBehaviour
         transform.localRotation = Quaternion.Euler(shootyRotation);*/
         //_controller.enabled = !_controller.enabled;
         _WeaponRotationScript.enabled = !_WeaponRotationScript.enabled;
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
         transform.localPosition = shootyPosition;
         recoilScript.enabled = true;
 
@@ -184,15 +169,7 @@ public class GunAttributes : MonoBehaviour
     // called everytime a mod is changed in any of the rails
     void UpdateStats()
     {
-        // sets SightIndex parameter in animator to account for differences in sight heights
-        if (sightSelection.currenModStats)
-        {
-            _animator.SetInteger("SightIndex",sightSelection.currenModStats.animIndex);
-        }
-        else
-        {
-            _animator.SetInteger("SightIndex", 0);
-        }
+        
         
         Vector3 totalStats;
         totalStats.x = totalErgonomy;
@@ -224,7 +201,10 @@ public class GunAttributes : MonoBehaviour
                 totalDamage += _modSelection.currenModStats.Damage;
             }
         }
+
         
+
+
     }
 
     
@@ -232,26 +212,16 @@ public class GunAttributes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(Time.timeScale);
+        
         //Recoil();
-        
-        if (_animator.IsInTransition(0))
-        {
-            _animator.speed = 1f + totalErgonomy / 10;
-        }
-        
-        
-        
-        
-        if (Input.GetMouseButtonDown(1) && transform.position != moddingPositio)
-        {
-            _animator.enabled = true;
-            AimDownSights();
-        }
+
+       
         
         // Disables or enables the Mod selection screen
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            _animator.enabled = false;
+           
             ChangeUI();
         }
     }

@@ -281,12 +281,17 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         if (playerControl && Time.timeScale > 0)
         {
 
+            
+
+            // Siirsin ampumisen aseen scriptiin
+
             //shoot
             if (Input.GetMouseButtonDown(0))
             {
                 //trigger pull sound?
                 Shoot();
             }
+            
 
             //jump
             if (Input.GetButtonDown("Jump"))
@@ -1054,19 +1059,22 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
     void Shoot()
     {
-        //shooting sound
-        int layerMask = LayerMask.GetMask("EnemyHitbox");
-        RaycastHit hit;
-        //raycast from center of screen if tagged enemy destroy target
-        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, layerMask))
-        {
-            if (hit.transform.CompareTag("Enemy"))
-            {
-                hit.transform.parent.transform.GetComponent<Grunt>().StartCoroutine("Die");
-
-            }
-            Debug.Log(hit.transform.name);
-        }
+        ////shooting sound
+        //int layerMask = LayerMask.GetMask("EnemyHitbox");
+        //RaycastHit hit;
+        ////raycast from center of screen if tagged enemy destroy target
+        //if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, layerMask))
+        //{
+        //    if (hit.transform.CompareTag("Grunt"))
+        //    {    
+        //        hit.transform.GetComponentInParent<Grunt>().StartCoroutine("Die");
+        //    }
+        //    else if (hit.transform.CompareTag("Vipeltaja"))
+        //    {
+        //        hit.transform.GetComponentInParent<Vipeltaja>().StartCoroutine("Die");
+        //    }
+        //    Debug.Log(hit.transform.name);
+        //}
     }
 
     private void Jump()
@@ -1317,6 +1325,16 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         contactPoint = collision.contacts[0].point;
+
+        if (collision.transform.CompareTag("EnemyAttackHitbox"))
+        {
+            Debug.Log("Player hit by " + collision.transform.name);
+        }
+        else if (collision.transform.CompareTag("Vipeltaja"))
+        {
+            Debug.Log("Player hit");
+        }
+
     }
 
     void OnDrawGizmos()

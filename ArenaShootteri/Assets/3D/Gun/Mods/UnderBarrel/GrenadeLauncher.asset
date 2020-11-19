@@ -15,9 +15,12 @@ MonoBehaviour:
   Name: 
   Type: 
   Level: 0
-  animIndex: 0
-  Prefab: {fileID: 7981560967183892879, guid: cefc5394a80624366aad50d42e7a1076, type: 3}
+  AimHeight: 0
+  PoseNumber: 3
+  Prefab: {fileID: 2170062511972499559, guid: 36e217d6dba864b91821d31f89039dda, type: 3}
   Icon: {fileID: 21300000, guid: d7ecb8e2edf0a44dcab6ae3ef977a6cd, type: 3}
+  moveable: 0
   Ergonomy: 0
   Recoil: 0
   Damage: 0
+  posDiff: {x: -0.2, y: -0.5, z: -0.9}
