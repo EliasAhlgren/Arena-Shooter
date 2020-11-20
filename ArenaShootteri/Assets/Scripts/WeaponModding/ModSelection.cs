@@ -72,8 +72,9 @@ public class ModSelection : MonoBehaviour
                 Quaternion.identity, ModRail.transform);
             currentMod = newMod;
         }
+       
         
-        selectedMods = new Mod[3];
+        selectedMods = new Mod[1];
         
         childCountAtStart = ModRail.transform.childCount;
         
@@ -82,29 +83,30 @@ public class ModSelection : MonoBehaviour
         firstPosition = currentModSlot.transform.GetChild(0).transform.position;
 
         //tää on vaan väliaikanen
+        /*
         for (int i = 0; i < selectedMods.Length; i++)
         {
             selectedMods[i] = availableMods[Random.Range(0, availableMods.Length)];
         }
+        */
 
-        // laita oikeat ikonit UI nappeihin
-        for (int i = 0; i < buttons.Length; i++)
-        {
-            buttons[i].GetComponent<Image>().sprite = selectedMods[i].Icon;
-        }
+        
         
     }
 
     // OnChangeCurrent kutsutaan jos painaa CurrentMod UI nappia
     public void OnChangeCurrent()
     {
-        
-        
-        foreach (var button in buttons)
+
+        if (selectedMods[0])
         {
-           
-            button.SetActive(!button.activeInHierarchy);
+            foreach (var button in buttons)
+            {
+                       
+                button.SetActive(!button.activeInHierarchy);
+            }
         }
+        
 
         if (!disableEmpty)
         {
@@ -112,6 +114,16 @@ public class ModSelection : MonoBehaviour
         }
        
         Debug.Log("ChangeCurrent");
+
+        if (selectedMods[0] != null)
+        {
+            for (int i = 0; i < buttons.Length; i++)
+                    {
+                        buttons[0].GetComponent<Image>().sprite = selectedMods[0].Icon;
+                    }
+        }
+        
+        
     }
 
     // OnSelectNew kutsutaan jos valitsee uuden modin 
