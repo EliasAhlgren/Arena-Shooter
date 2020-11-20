@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
-    public static AudioClip PLAYERHIT, ENEMYHIT, MenuClick;
+    public static AudioClip PLAYERHIT, ENEMYHIT, MenuClick, FootStep;
 
     static AudioSource audioSrc;
     public AudioMixer audioMixer;
@@ -16,6 +16,7 @@ public class SoundManager : MonoBehaviour
         ENEMYHIT = Resources.Load<AudioClip>("Hitmarker");
         PLAYERHIT = Resources.Load<AudioClip>("Oof");
         MenuClick = Resources.Load<AudioClip>("ButtonClick1");
+        FootStep = Resources.Load<AudioClip>("FootStep1");
 
         audioSrc = GetComponent<AudioSource>();
         audioMixer.SetFloat("Sound", Mathf.Log10(PlayerPrefs.GetFloat("Sound")) * 20);
@@ -48,6 +49,13 @@ public class SoundManager : MonoBehaviour
                 audioSrc.Stop();
                 audioSrc.loop = false;
                 audioSrc.clip = MenuClick;
+                audioSrc.Play();
+                break;
+            case "WalkStep":
+                audioSrc.Stop();
+                audioSrc.loop = false;
+                audioSrc.clip = FootStep;
+                audioSrc.pitch = Random.Range(1.0f - 0.15f, 1.0f + 0.15f);
                 audioSrc.Play();
                 break;
         }

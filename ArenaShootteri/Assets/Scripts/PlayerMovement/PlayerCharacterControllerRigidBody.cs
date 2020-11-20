@@ -141,6 +141,8 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     //variable for decouplin horizontal rotation from uncontrollable movement
     Vector3 rotation;
 
+    bool onCooldown = false;
+
     void Start()
     {
         deathImage = deathCanvas.GetComponentInChildren<Image>();
@@ -464,10 +466,20 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                 else if (isRunning)
                 {
                     //running sound
+                    if (!onCooldown)
+                    {
+                        SoundManager.PlaySound("WalkStep");
+                        StartCoroutine(Cooldown(0.25f));
+                    }
                 }
                 else
                 {
                     //walking sound
+                    if (!onCooldown)
+                    {
+                        SoundManager.PlaySound("WalkStep");
+                        StartCoroutine(Cooldown(0.45f));
+                    }
                 }
 
                 //if grounded and not sliding allow player free movement
@@ -1046,6 +1058,17 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         //forwardplus = Vector3.Normalize(forwardplus);
         //Debug.DrawRay(gun.transform.position, forward, Color.green);
         //Debug.DrawRay(gun.transform.position, forwardplus, Color.blue);
+    }
+
+    private IEnumerator Cooldown(float time)
+    {
+        // Start cooldown
+        onCooldown = true;
+        // Wait for time you want
+        yield return new WaitForSeconds(time);
+        // Stop cooldown
+        onCooldown = false;
+        //Debug.Log("Cooldown Ended");
     }
 
 }
