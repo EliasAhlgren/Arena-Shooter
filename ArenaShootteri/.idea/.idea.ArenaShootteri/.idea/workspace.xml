@@ -27,6 +27,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/CreateNodes.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/Grunt/GruntChargeState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/GunAttributes.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/DIsableRail.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/Grunt/GruntAttackState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/WeaponRotationScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/KeepRotation.cs" root0="FORCE_HIGHLIGHTING" />
@@ -83,15 +84,21 @@
         <option value="$PROJECT_DIR$/Assets/AmmoCounter.cs" />
         <option value="$PROJECT_DIR$/Assets/Reload.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/GunAttributes.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Recoil.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Aiming.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/StockSelection.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManagement/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/NewMods.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI/Vipeltäjä/VipeltajaEscapeState.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI/Vipeltäjä/Vipeltaja.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/CreateNodes.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Recoil.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Shooting.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/ShotgunScript.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/CreateNodes.cs" />
+        <option value="$PROJECT_DIR$/Assets/DIsableRail.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/EnemyState.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/Search.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Aiming.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/LentoSaatana.cs" />
       </list>
     </option>
   </component>
@@ -179,7 +186,9 @@
       <workItem from="1605520520547" duration="16268000" />
       <workItem from="1605605929937" duration="9169000" />
       <workItem from="1605632164958" duration="7323000" />
-      <workItem from="1605688574554" duration="16871000" />
+      <workItem from="1605688574554" duration="21143000" />
+      <workItem from="1605780224368" duration="11267000" />
+      <workItem from="1605862615925" duration="6747000" />
     </task>
     <servers />
   </component>
@@ -260,6 +269,10 @@
       <screen x="0" y="23" width="1397" height="877" />
     </state>
     <state width="1355" height="313" key="GridCell.Tab.3.right/0.23.1397.877@0.23.1397.877" timestamp="1601481146737" />
+    <state x="552" y="252" key="Rider.ProjectTemplateDialog.Size" timestamp="1605805521946">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="252" key="Rider.ProjectTemplateDialog.Size/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605805521946" />
     <state x="447" y="193" key="RiderGenerateDialog" timestamp="1603370387636">
       <screen x="0" y="23" width="1397" height="877" />
     </state>

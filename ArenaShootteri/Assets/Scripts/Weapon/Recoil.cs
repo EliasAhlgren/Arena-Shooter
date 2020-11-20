@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 using Random = UnityEngine.Random;
 
 
@@ -60,6 +61,9 @@ public class Recoil : MonoBehaviour
     public bool isAiming;
 
     private bool _canFire = true;
+
+    public Shooting shooting;
+    public VisualEffect muzzleFlash;
     
     // Start is called before the first frame update
     void Start()
@@ -175,6 +179,8 @@ public class Recoil : MonoBehaviour
     {
         _canFire = false;
         yield return new WaitForSeconds(0.041f);
+        shooting.Shoot();
+        muzzleFlash.Play();
         _GunAttributes.ammoInMag--;
         _canFire = true;
     }

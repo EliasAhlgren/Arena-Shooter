@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Aiming : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class Aiming : MonoBehaviour
     public bool isReloading;
 
     public Transform reloadPos;
+
+    public Text ammoText;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,13 +47,13 @@ public class Aiming : MonoBehaviour
             isReloading = true;
             _recoil.DisableLazyGun = true;
             //_recoil.RecoilAmount = _recoil.RecoilAmount / 2;
-            StartCoroutine(ReloadDelay(2f));
+            StartCoroutine(ReloadDelay(2f, gameObject.GetComponentInChildren<DIsableRail>() == true ? 60 : 30));
         }
         if (isReloading)
         {
             Reload();
         }
-        
+
         
         
         if (Input.GetButtonDown("Fire2"))
@@ -83,22 +86,29 @@ public class Aiming : MonoBehaviour
         target.transform.localPosition = reloadPos.localPosition;
     }
 
-    public IEnumerator ReloadDelay(float time)
+    public IEnumerator ReloadDelay(float time, int amount)
     {
-        yield return new WaitForSeconds(time);
-        if (_recoil._GunAttributes.totalAmmo >= 30)
+        
+        if (_recoil._GunAttributes.totalAmmo >= amount)
         {
-            _recoil._GunAttributes.ammoInMag = 30;
-            _recoil._GunAttributes.totalAmmo -= 30;
+            _recoil._GunAttributes.ammoInMag = amount;
+            _recoil._GunAttributes.totalAmmo -= amount;
         }
         else
         {
             _recoil._GunAttributes.ammoInMag = _recoil._GunAttributes.totalAmmo;
             _recoil._GunAttributes.totalAmmo = 0;
         }
+
+        ammoText.text = ("Ammo Left: " + _recoil._GunAttributes.ammoInMag + " / " + _recoil._GunAttributes.totalAmmo);
+        ammoText.enabled = true;
         
+        yield return new WaitForSeconds(time);
+        
+        ammoText.enabled = false;
         isReloading = false;
     }
+
     
     private void AimDownSights()
     {

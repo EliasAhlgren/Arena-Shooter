@@ -25,6 +25,7 @@ public class Vipeltaja : MonoBehaviour
     public NavMeshAgent agent;
     public Animator animator;
 
+    public float speed;
     // Start is called before the first frame update
     void Start()
     {

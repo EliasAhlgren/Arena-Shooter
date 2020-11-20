@@ -13,7 +13,7 @@ public class VipeltajaEscapeState : BaseState
     private Vector3 direction;
     private Vector3 randomDestination;
     private Vector3 targetDir;
-
+    
 
     public VipeltajaEscapeState(Vipeltaja _vipeltaja) : base(_vipeltaja.gameObject)
     {
