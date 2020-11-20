@@ -1,12 +1,19 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using AI;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Vipeltaja : MonoBehaviour
-{
+public class Vipeltaja : MonoBehaviour, IDamage
+{    /// <summary>
+     /// Vipeltaja's Target
+     /// </summary>
     public GameObject target { get; private set; }
+
+    // IDamage variables
+    public float IHealth { get; set; } = 100f;
+
     public GameObject spitPrefab;
     public Transform spitPosition;
     public Rigidbody rb;
@@ -15,14 +22,36 @@ public class Vipeltaja : MonoBehaviour
     // Change animation speed instead. // Jump speed not yet implemented.
     public float walkSpeedBase = 6.0f, jumpSpeedBase = 20.0f;
     public float walkSpeed, jumpSpeed;
+    public float speed;
 
+    /// <summary>
+    /// Attack range of Vipeltaja
+    /// </summary>
     public float attackRange = 3;
     public float attackCounter = 0f;
+    /// <summary>
+    /// <c>Vipeltaja</c> attack cooldown
+    /// </summary>
     public float attackCooldown = 2f;
+    /// <summary>
+    /// <c>Vipeltaja</c> jumping distance 
+    /// </summary>
     public float jumpDistance;
+    /// <summary>
+    /// <c>Vipeltaja</c> Jump cooldown
+    /// </summary>
     public float jumpCooldown;
+    /// <summary>
+    /// is <c>Vipeltaja</c> ready to attack?
+    /// </summary>
     public bool readyToAttack = true;
+    /// <summary>
+    /// Reference to NavMeshAgent component
+    /// </summary>
     public NavMeshAgent agent;
+    /// <summary>
+    /// Reference to Animator compontent
+    /// </summary>
     public Animator animator;
 
     public float speed;
@@ -39,10 +68,16 @@ public class Vipeltaja : MonoBehaviour
     }
 
     private void Awake()
-    {
+    {   
+        // Initialize State Machine
         InitStateMachine();
+
+        // Assign the target to be player object
         target = GameObject.FindGameObjectWithTag("Player");
+        
+        // what for... Not really sure. 
         agent.SetDestination(target.transform.position);
+
         Debug.Log("Vipeltäjä is awake");
     }
 
@@ -50,7 +85,7 @@ public class Vipeltaja : MonoBehaviour
     {
         var states = new Dictionary<Type, BaseState>()
        {
-            /// Add more states if necessary.
+            // All States for Vipeltaja.
             {typeof(VipeltajaChaseState), new VipeltajaChaseState(_vipeltaja: this) },
             {typeof(VipeltajaAttackState), new VipeltajaAttackState(_vipeltaja: this) },
             {typeof(VipeltajaDoNothingState), new VipeltajaDoNothingState(_vipeltaja: this) },
@@ -63,6 +98,17 @@ public class Vipeltaja : MonoBehaviour
 
     public void Update()
     {
+        // Track if vipeltaja is ready to attack
+        if (!readyToAttack)
+        {
+            attackCounter += Time.deltaTime;
+            Debug.Log(attackCounter);
+            if (attackCounter > attackCooldown)
+            {
+                readyToAttack = true;
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.L))
         {
             Die();
@@ -82,7 +128,9 @@ public class Vipeltaja : MonoBehaviour
     {
         target = _target;
     }
-
+    /// <summary>
+    /// Runs Vipeltaja's attack logic
+    /// </summary>
     public void Attack()
     {
         Debug.Log("Vipeltäjä melee attack");
@@ -90,10 +138,14 @@ public class Vipeltaja : MonoBehaviour
         target.GetComponent<PlayerCharacterControllerRigidBody>().killPlayer();
     }
 
+    /// <summary>
+    /// Launch death logic when Vipeltaja dies.
+    /// Runs Ragdoll death "animation". Disables AI
+    /// and sets layer to "Dead Enemy".
+    /// </summary>
+
     public IEnumerator Die()
     {
-
-
         // Disable rigidbody and enable Colliders for each body part
         // for rigidbody death "animation"
         SetRigidbodyState(false);
@@ -104,6 +156,10 @@ public class Vipeltaja : MonoBehaviour
         agent.enabled = false;                              // Stop Nav Mesh Agent
         GetComponent<Vipeltaja_StateMachine>().enabled = false;       // Stop AI
         Destroy(transform.Find("Hitbox").gameObject);       // Destroy Hitbox
+
+        // Change layer for enemy and all of it's children to "Dead Enemy" layer.
+        // This layer doesnt interact with anything else than the Map itself.
+        SetLayerRecursively(transform.gameObject, 9);
 
         // I'm dead. Notify others near me
         //GameObject[] vipeltajat = GameObject.FindGameObjectsWithTag("Vipeltaja");
@@ -118,6 +174,8 @@ public class Vipeltaja : MonoBehaviour
         //        }
         //    }
         //}
+        
+        // tell other Vipeltaja enemies that this unit is dead. other should start to panic
         int layerMask = LayerMask.GetMask("Enemy");
         Collider[] colliders = Physics.OverlapSphere(transform.position, 20, layerMask);
         foreach(var collider in colliders)
@@ -139,21 +197,30 @@ public class Vipeltaja : MonoBehaviour
 
 
     }
+    // AI.IDamage TakeDamage function
+    public void TakeDamage(float damage)
+    {
+        IHealth -= damage;
 
+        if (IHealth <= 0f)
+        {
+            StartCoroutine(Die());
+        }
+    }
+
+
+    /// <summary>
+    /// force Vipeltaja to escape state
+    /// </summary>
     public void GetFeared()
     {
         GetComponent<Vipeltaja_StateMachine>().CancelInvoke(GetComponent<Vipeltaja_StateMachine>().currentState.ToString());
         GetComponent<Vipeltaja_StateMachine>().SwitchToState(typeof(VipeltajaEscapeState));
     }
-   
-    //public void FearMark()
-    //{
-    //    GameObject mark = Instantiate(fearMark, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), Quaternion.identity);
-    //    mark.transform.SetParent(transform);
-    //    Destroy(mark, 4);
-        
-    //}
-
+    /// <summary>
+    /// Used to spawn Spit object. 
+    /// </summary>
+    /// !!!NEEDS MODIFICATIONS!!!
 
     public void SpawnSpit()
     {
@@ -161,10 +228,12 @@ public class Vipeltaja : MonoBehaviour
         animator.Play("Spit");
         GameObject spit = Instantiate(spitPrefab, spitPosition.position, Quaternion.identity);
         spit.GetComponent<Rigidbody>().velocity = ballisticVelocity;
-        
+
     }
-
-
+    /// <summary>
+    /// Sets rigidbodys in children to <c>state</c> 
+    /// </summary>
+    /// <param name="state">Boolean state for the rigidbody </param>
     void SetRigidbodyState(bool state)
     {
         Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
@@ -174,7 +243,10 @@ public class Vipeltaja : MonoBehaviour
             rb.isKinematic = state;
         }
     }
-
+    /// <summary>
+    /// Sets colliders in children to <c>state</c> 
+    /// </summary>
+    /// <param name="state">Boolean state for the colliders</param>
     void setColliderState(bool state)
     {
         Collider[] colliders = GetComponentsInChildren<Collider>();
@@ -188,7 +260,13 @@ public class Vipeltaja : MonoBehaviour
             }
         }
     }
-
+    
+    /// <summary>
+    /// Count ballistics for spit gameobject.
+    /// </summary>
+    /// <param name="target">where spit should land</param>
+    /// <param name="angle">angle used to launch spit</param>
+    /// <returns>Velocity for spit so it lands on player</returns>
     public Vector3 BallisticVelocity(Transform target, float angle)
     {
         Vector3 direction = target.position - transform.position;
@@ -203,4 +281,29 @@ public class Vipeltaja : MonoBehaviour
         return velocity * direction.normalized;
 
     }
+    /// <summary>
+    /// Recursively sets Layer of each Game Object to newLayer
+    /// </summary>
+    /// <param name="obj">Parent GameObject</param>
+    /// <param name="newLayer">number for new layer</param>
+    public void SetLayerRecursively(GameObject obj, int newLayer)
+    {
+        if (null == obj)
+        {
+            return;
+        }
+
+        obj.layer = newLayer;
+
+        foreach (Transform child in obj.transform)
+        {
+            if (null == child)
+            {
+                continue;
+            }
+            SetLayerRecursively(child.gameObject, newLayer);
+        }
+    }
+
+
 }

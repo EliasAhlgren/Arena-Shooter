@@ -12,7 +12,7 @@ public class Shooting : MonoBehaviour
 
     public VisualEffect sparks;
     public ParticleSystem blood;
-    
+
     public Transform shootPosition;
     void Start()
     {
@@ -43,7 +43,7 @@ public class Shooting : MonoBehaviour
 
                         blood.transform.position = hit.point;
                         blood.transform.forward = hit.normal;
-                        
+
                         Damageable.TakeDamage(DamageStat);
                         Debug.Log(hit.transform.parent + " Has taken " + DamageStat + "DMG " + Damageable.IHealth + " Left");
                     }
@@ -51,11 +51,23 @@ public class Shooting : MonoBehaviour
 
     private void Update()
     {
-       
-        
+        DamageStat = Attributes.totalDamage;
+        Debug.DrawRay(shootPosition.position, transform.forward*100,Color.red);
         if (Input.GetButton("Fire1") && !aiming.isReloading && Attributes.ammoInMag > 0)
         {
-            
+            Ray shootRay = new Ray(shootPosition.position, transform.forward);
+            RaycastHit hit;
+            if (Physics.Raycast(shootRay, out hit))
+            {
+                var Damageable = hit.transform.root.GetComponent<IDamage>();
+                if (Damageable == null)
+                {
+                    Debug.Log("Not damageable " + hit.transform.root.name);
+                    return;
+                }
+                Damageable.TakeDamage(DamageStat);
+                Debug.Log(hit.transform.name + " Has taken " + DamageStat + "DMG " + Damageable.IHealth + " Left");
+            }
         }
     }
 }
