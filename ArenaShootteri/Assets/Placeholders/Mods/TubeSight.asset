@@ -10,17 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3ac60833f6464c78bfff080cc2b59ec, type: 3}
-  m_Name: ShotGun
+  m_Name: TubeSight
   m_EditorClassIdentifier: 
   Name: 
   Type: 
   Level: 0
-  AimHeight: 0
-  PoseNumber: 4
-  Prefab: {fileID: 5438015958663205118, guid: 8c42ee87e89f943748cff79cb642e44c, type: 3}
-  Icon: {fileID: 21300000, guid: df5a830be43604213a2829a1f2b168c6, type: 3}
-  moveable: 0
-  Ergonomy: 0
+  animIndex: 1
+  Prefab: {fileID: 5758255900856511812, guid: 4589c85f8ef094eff87039b8ae7d1fc8, type: 3}
+  Icon: {fileID: 21300000, guid: 2de22b6f63dbe4da089e4e1e441c9758, type: 3}
+  Ergonomy: -0.2
   Recoil: 0
   Damage: 0
-  posDiff: {x: -0.2, y: -0.5, z: -0.9}

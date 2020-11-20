@@ -10,17 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3ac60833f6464c78bfff080cc2b59ec, type: 3}
-  m_Name: ShotGun
+  m_Name: Tukki1
   m_EditorClassIdentifier: 
   Name: 
   Type: 
   Level: 0
-  AimHeight: 0
-  PoseNumber: 4
-  Prefab: {fileID: 5438015958663205118, guid: 8c42ee87e89f943748cff79cb642e44c, type: 3}
-  Icon: {fileID: 21300000, guid: df5a830be43604213a2829a1f2b168c6, type: 3}
-  moveable: 0
-  Ergonomy: 0
-  Recoil: 0
+  animIndex: 0
+  Prefab: {fileID: 7546790673348196830, guid: 6ab6dd6611ea846afab336e339afa8c5, type: 3}
+  Icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  Ergonomy: 10
+  Recoil: -10
   Damage: 0
-  posDiff: {x: -0.2, y: -0.5, z: -0.9}
