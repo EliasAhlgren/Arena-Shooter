@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ac60833f6464c78bfff080cc2b59ec, type: 3}
   m_Name: 30rdMag
   m_EditorClassIdentifier: 
-  Name: 
-  Type: 
-  Level: 0
+  rail: Magazine
   AimHeight: 0
   PoseNumber: 0
   Prefab: {fileID: 3183765001974662383, guid: c201b7d1a318dde40afec5b211faa2f5, type: 3}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3451341286473880267}
   - component: {fileID: 6787649600679432533}
   - component: {fileID: 2323663915363407041}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: haulikko1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

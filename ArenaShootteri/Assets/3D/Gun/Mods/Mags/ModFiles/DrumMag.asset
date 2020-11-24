@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ac60833f6464c78bfff080cc2b59ec, type: 3}
   m_Name: DrumMag
   m_EditorClassIdentifier: 
-  Name: 
-  Type: 
-  Level: 0
+  rail: Magazine
   AimHeight: 0
   PoseNumber: 5
   Prefab: {fileID: 5600719487275376723, guid: 0faff8f30f9cef049b3a66a0d6106224, type: 3}
   Icon: {fileID: 21300000, guid: 0dcac5a38737b8441a3a2e61c216a278, type: 3}
   moveable: 0
-  Ergonomy: 0
-  Recoil: 0
+  Ergonomy: -10
+  Recoil: -3
   Damage: 0
   posDiff: {x: -0.74, y: -0.25, z: -0.45}

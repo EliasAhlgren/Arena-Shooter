@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8990843617180141449}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Lipas1
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 3799423145255498691}
   - component: {fileID: 6465086689735127758}
   - component: {fileID: 6620825846105713460}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: lipas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

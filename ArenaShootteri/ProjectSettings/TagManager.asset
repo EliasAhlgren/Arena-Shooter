@@ -10,6 +10,9 @@ TagManager:
   - Grunt
   - EnemyAttackHitbox
   - ModSelection
+  - GameManagement
+  - spawnPoints
+  - Level
   layers:
   - Default
   - TransparentFX
@@ -21,10 +24,10 @@ TagManager:
   - 
   - Map
   - DeadEnemy
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - Main PP
+  - Secondary PP
+  - Gun
   - 
   - 
   - 

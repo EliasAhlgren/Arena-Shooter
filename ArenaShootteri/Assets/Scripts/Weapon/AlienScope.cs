@@ -3,21 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DIsableRail : MonoBehaviour
+public class AlienScope : MonoBehaviour
 {
-    [NonSerialized] public GameObject targetRail;
-    public string rail;
+    public GameObject _camera;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        targetRail = GameObject.Find(rail);        
-        targetRail.SetActive(false);
+        _camera = GameObject.Find("AlienScopeCamera");
+        _camera.SetActive(true);
     }
 
     private void OnDestroy()
     {
-        targetRail.SetActive(true);
+        _camera.SetActive(false);
     }
 
     // Update is called once per frame

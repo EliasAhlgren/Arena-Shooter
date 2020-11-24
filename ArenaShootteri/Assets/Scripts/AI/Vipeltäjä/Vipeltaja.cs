@@ -54,7 +54,6 @@ public class Vipeltaja : MonoBehaviour, IDamage
     /// </summary>
     public Animator animator;
 
-    public float speed;
     // Start is called before the first frame update
     void Start()
     {

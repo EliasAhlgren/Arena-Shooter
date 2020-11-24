@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2113073847018267445}
   - component: {fileID: -8580592516383098666}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: DrumMag
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cb23a6bf1d539249bd63f50c7d34086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rail: D_ModRail
 --- !u!1 &7262400516291675328
 GameObject:
   m_ObjectHideFlags: 0
@@ -55,7 +56,7 @@ GameObject:
   - component: {fileID: 7017764100820384285}
   - component: {fileID: 8005274733487525612}
   - component: {fileID: 1815622952604662519}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: rumpulipas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
