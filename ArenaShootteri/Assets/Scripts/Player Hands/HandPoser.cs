@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+//using UnityEditor;
 using UnityEngine;
 
 
-
+/*
 [CustomEditor(typeof(HandPoser))]
 public class customInspector : Editor
 {
@@ -26,7 +26,7 @@ public class customInspector : Editor
     }
 
 }
-
+*/
 
 public class HandPoser : MonoBehaviour
 {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7461758164949101606}
   - component: {fileID: 8469756451530110702}
   - component: {fileID: 2031444042251280540}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: eotech_ase_kaikki:polySurface1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7155556768129945585}
   - component: {fileID: 7155556768129945584}
   - component: {fileID: 7155556768129945587}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7155556768812538324}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: RedDotFinal1
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}

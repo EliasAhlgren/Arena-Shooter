@@ -4,12 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
   - Canvas
+  - Vipeltaja
+  - Enemy
+  - Grunt
+  - EnemyAttackHitbox
+  - ModSelection
   - GameManagement
   - spawnPoints
-  - Grunt
-  - Vipeltaja
+  - Level
   layers:
   - Default
   - TransparentFX
@@ -19,12 +22,12 @@ TagManager:
   - UI
   - 
   - 
-  - Ground
-  - Gun
+  - Map
+  - DeadEnemy
+  - Enemy
   - Main PP
   - Secondary PP
-  - Player
-  - EnemyHitbox
+  - Gun
   - 
   - 
   - 

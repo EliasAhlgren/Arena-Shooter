@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ac60833f6464c78bfff080cc2b59ec, type: 3}
   m_Name: ThumbGrip
   m_EditorClassIdentifier: 
-  Name: 
-  Type: 
-  Level: 0
+  rail: Bottom Mod Rail
   AimHeight: 0
   PoseNumber: 1
   Prefab: {fileID: 2899940892408837810, guid: 50e86d596aecf4aa7883946b3c293862, type: 3}
-  Icon: {fileID: 21300000, guid: cf1fa855bcd8f49d5a7ad66ff5e648d9, type: 3}
+  Icon: {fileID: 21300000, guid: 033ae13195943fa4e8c9e229ca1f98f6, type: 3}
   moveable: 1
-  Ergonomy: 0
-  Recoil: 0
+  Ergonomy: 5
+  Recoil: -10
   Damage: 0
   posDiff: {x: -0.2, y: -0.3, z: -0.3}

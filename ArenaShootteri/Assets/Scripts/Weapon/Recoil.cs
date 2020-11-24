@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 using Random = UnityEngine.Random;
 
 
@@ -15,6 +16,10 @@ public class Recoil : MonoBehaviour
 
     public float RecoilAmount = 1f;
 
+    public float aimingRecoil;
+
+    private float _recoil;
+    
     public float horizontalRecoil;
     
     // How much the head bobs when firing
@@ -52,6 +57,13 @@ public class Recoil : MonoBehaviour
     public bool showRecoil;
 
     public bool DisableLazyGun;
+
+    public bool isAiming;
+
+    private bool _canFire = true;
+
+    public Shooting shooting;
+    public VisualEffect muzzleFlash;
     
     // Start is called before the first frame update
     void Start()
@@ -73,11 +85,21 @@ public class Recoil : MonoBehaviour
         rotationLazyness += _GunAttributes.totalErgonomy / 10;
         RecoilAmount += _GunAttributes.totalRecoil / 10;
 
+        if (isAiming)
+        {
+            _recoil = aimingRecoil;
+        }
+        else
+        {
+            _recoil = RecoilAmount;
+        }
     }
     
     // Update is called once per frame
     void Update()
     {
+        
+        
         UpdateStats();
         
         timer1 += Time.deltaTime * RateOfFire;
@@ -102,9 +124,10 @@ public class Recoil : MonoBehaviour
         
         LazyGun();
 
-        if (Input.GetMouseButton(0) && !_GunAttributes.isModding)
+        if (Input.GetMouseButton(0) && !_GunAttributes.isModding && _GunAttributes.ammoInMag > 0)
         {
             Recoiling();
+            Firing();
         }
         else
         {
@@ -117,7 +140,7 @@ public class Recoil : MonoBehaviour
 
     public void LazyGun()
     {
-        if (!_GunAttributes.isModding && !_GunAttributes.isAiming)
+        if (!_GunAttributes.isModding)
         {
             
             transform.position = target.position;
@@ -143,9 +166,29 @@ public class Recoil : MonoBehaviour
         
 
     }
+
+    public void Firing()
+    {
+        if (_canFire)
+        {
+            StartCoroutine(Fire());
+        }
+    }
+
+    private IEnumerator Fire()
+    {
+        _canFire = false;
+        yield return new WaitForSeconds(0.041f);
+        shooting.Shoot();
+        muzzleFlash.Play();
+        _GunAttributes.ammoInMag--;
+        _canFire = true;
+    }
     
     public void Recoiling()
     {
+        
+        
         isRecoiling = true;
         
         if (recoilTime < 1)
@@ -177,7 +220,7 @@ public class Recoil : MonoBehaviour
         
         Vector3 randomPos = lookatPoint.localPosition;
 
-        randomPos.y += Mathf.Sin(timer1) * RecoilAmount;
+        randomPos.y += Mathf.Sin(timer1) * _recoil;
         randomPos.x += Mathf.Sin(timer1) * horizontalRecoil * Random.Range(-0.5f, 0.5f);
         
         lookatPoint.localPosition = randomPos;

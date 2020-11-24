@@ -2,39 +2,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class NewMods : MonoBehaviour
 {
-    [Serializable]
-    public struct AvailableModsStruct
-    {
-        public Mod Mod;
-        public String railName;
-        public int Level;
-    }
-    public AvailableModsStruct[] AvailableMods;
+    public List<Mod> modPool = new List<Mod>();
+    
+    public List<Mod> level1 = new List<Mod>();
 
-    private ModSelection[] _modSelections;
-    
-    public void CheckWave(int currentWave)
+    public List<Mod> level2 = new List<Mod>();
+
+    public List<Mod> level3 = new List<Mod>();
+
+    public ModSelection[] modSelections;
+
+    public void Start()
     {
+        modSelections = Component.FindObjectsOfType<ModSelection>();
         
-    }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        GameObject[] objects = GameObject.FindGameObjectsWithTag("ModSelection");
-        _modSelections = new ModSelection[objects.Length];
-        for (int i = 0; i < objects.Length; i++)
+        
+        foreach (var instance in modSelections)
         {
-            _modSelections[i] = objects[i].GetComponent<ModSelection>();
+            List<Mod> mods = new List<Mod>();
+            
+            foreach (var mod in modPool)
+            {
+                if (mod.rail == instance.RailName)
+                {
+                    mods.Add(mod);
+                }
+            }
+
+            instance.selectedMods[0] = mods[Random.Range(0, mods.Count)];
+
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

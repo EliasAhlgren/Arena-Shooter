@@ -4,12 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewSight")]
 public class Mod : ScriptableObject
 {
-    public String Name;
+    public String rail;
     
-    public string Type;
-    
-    public int Level;
-
     // How high the gun should be held
     public float AimHeight;
 

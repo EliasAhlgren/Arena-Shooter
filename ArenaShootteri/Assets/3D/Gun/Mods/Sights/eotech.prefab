@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7630834925076943909}
   - component: {fileID: 7100000365630750327}
   - component: {fileID: 6770934099699405355}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: eotech
   m_TagString: Untagged
   m_Icon: {fileID: 0}

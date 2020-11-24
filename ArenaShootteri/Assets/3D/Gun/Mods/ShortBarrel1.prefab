@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4595434775821528905}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: ShortBarrel1
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 7559511918640799579}
   - component: {fileID: 8314327612269318974}
   - component: {fileID: 2950409991965933114}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: piippu
   m_TagString: Untagged
   m_Icon: {fileID: 0}

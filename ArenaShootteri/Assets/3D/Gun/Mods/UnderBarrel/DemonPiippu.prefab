@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8658288269219529779}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: DemonPiippu
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4355742889241859457}
   - component: {fileID: 3097592143811414678}
   - component: {fileID: 3843675691224319488}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: OSAT_F_UNITY:group1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 5690253096932941730}
   - component: {fileID: 4087221721121805667}
   - component: {fileID: 3843675691224319500}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: OSAT_F_UNITY:lowpolySurface5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
