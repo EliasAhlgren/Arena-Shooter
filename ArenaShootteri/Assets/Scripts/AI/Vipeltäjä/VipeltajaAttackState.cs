@@ -9,14 +9,29 @@ using System;
 public class VipeltajaAttackState : BaseState
 {
     private Vipeltaja vipeltaja;
+    public List<Collider> attackColliders = new List<Collider>();
 
     public VipeltajaAttackState(Vipeltaja _vipeltaja) : base(_vipeltaja.gameObject)
     {
         vipeltaja = _vipeltaja;
+        
+        Collider[] AllColliders = vipeltaja.transform.GetComponentsInChildren<Collider>();
+
+        foreach(Collider collider in AllColliders)
+        {
+            
+            if (collider.transform.CompareTag("VipeltajaAttackHitbox"))
+            { 
+                attackColliders.Add(collider);
+                collider.enabled = false;
+            }
+        }
     }
 
     public override void OnStateEnter()
-    { 
+    {
+        
+        SetAttackColliders(true);
         // Play attack animation
         vipeltaja.animator.Play("Hit");
         vipeltaja.readyToAttack = false;
@@ -24,7 +39,7 @@ public class VipeltajaAttackState : BaseState
 
     public override void OnStateExit()
     {
-
+        SetAttackColliders(false);
     }
 
     public override Type Tick()
@@ -49,6 +64,17 @@ public class VipeltajaAttackState : BaseState
 
         return null;
     }
+
+    void SetAttackColliders(bool state)
+    {
+        foreach(Collider collider in attackColliders)
+        {
+            collider.enabled = state;
+        }
+    }
+
+    
+    
 
 }
 

@@ -10,6 +10,9 @@ TagManager:
   - Grunt
   - EnemyAttackHitbox
   - ModSelection
+  - VipeltajaAttackHitbox
+  - GruntAttackHitbox
+  - ImpAttackHitbox
   layers:
   - Default
   - TransparentFX

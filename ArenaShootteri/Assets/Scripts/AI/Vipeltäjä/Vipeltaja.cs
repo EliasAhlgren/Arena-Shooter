@@ -7,16 +7,19 @@ using UnityEngine.AI;
 
 public class Vipeltaja : MonoBehaviour, IDamage
 {    /// <summary>
-     /// Vipeltaja's Target
+     /// Vipeltaja's target
      /// </summary>
     public GameObject target { get; private set; }
 
-    // IDamage variables
+    // IDamage variable
     public float IHealth { get; set; } = 100f;
+
+    public bool canAttack = true;
 
     public GameObject spitPrefab;
     public Transform spitPosition;
     public Rigidbody rb;
+
 
     // Speed is based on current animation speed. Dont change this value.
     // Change animation speed instead. // Jump speed not yet implemented.
@@ -67,13 +70,13 @@ public class Vipeltaja : MonoBehaviour, IDamage
     }
 
     private void Awake()
-    {   
+    {
         // Initialize State Machine
         InitStateMachine();
 
         // Assign the target to be player object
         target = GameObject.FindGameObjectWithTag("Player");
-        
+
         // what for... Not really sure. 
         agent.SetDestination(target.transform.position);
 
@@ -97,14 +100,16 @@ public class Vipeltaja : MonoBehaviour, IDamage
 
     public void Update()
     {
+        animator.SetFloat("velocity", agent.velocity.magnitude / agent.speed);
         // Track if vipeltaja is ready to attack
         if (!readyToAttack)
         {
             attackCounter += Time.deltaTime;
-            Debug.Log(attackCounter);
             if (attackCounter > attackCooldown)
             {
                 readyToAttack = true;
+                canAttack = true;
+                attackCounter = 0f;
             }
         }
 
@@ -173,11 +178,11 @@ public class Vipeltaja : MonoBehaviour, IDamage
         //        }
         //    }
         //}
-        
+
         // tell other Vipeltaja enemies that this unit is dead. other should start to panic
         int layerMask = LayerMask.GetMask("Enemy");
         Collider[] colliders = Physics.OverlapSphere(transform.position, 20, layerMask);
-        foreach(var collider in colliders)
+        foreach (var collider in colliders)
         {
             if (collider.CompareTag("Vipeltaja"))
             {
@@ -259,7 +264,7 @@ public class Vipeltaja : MonoBehaviour, IDamage
             }
         }
     }
-    
+
     /// <summary>
     /// Count ballistics for spit gameobject.
     /// </summary>
@@ -305,4 +310,8 @@ public class Vipeltaja : MonoBehaviour, IDamage
     }
 
 
-}
+    
+}    
+
+
+

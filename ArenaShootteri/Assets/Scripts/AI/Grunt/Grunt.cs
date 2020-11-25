@@ -28,6 +28,7 @@ public class Grunt : MonoBehaviour, IDamage
     public float attackCounter = 0f;
     public float attackCooldown = 2f;
 
+    public bool canAttack = true;
     public bool readyToAttack = true;
     public bool isCharging = false;
     public float chargeForce = 10;
@@ -109,6 +110,7 @@ public class Grunt : MonoBehaviour, IDamage
             if(attackCounter > attackCooldown)
             {
                 readyToAttack = true;
+                canAttack = true;
             }
         }
         // Keep speed updated based on current clip. 

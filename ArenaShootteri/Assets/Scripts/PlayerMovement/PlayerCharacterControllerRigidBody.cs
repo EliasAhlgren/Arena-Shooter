@@ -1020,15 +1020,30 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        contactPoint = collision.contacts[0].point;
-
-        if (collision.transform.CompareTag("EnemyAttackHitbox"))
+        // contactPoint = collision.contacts[0].point;
+        
+        if (collision.transform.CompareTag("VipeltajaAttackHitbox"))
         {
-            Debug.Log("Player hit by " + collision.transform.name);
+            Debug.Log("Can attack " + collision.transform.root.GetComponent<Vipeltaja>().canAttack);
+            if (collision.transform.root.GetComponent<Vipeltaja>().canAttack) 
+            {
+                Debug.Log("Player hit by " + collision.transform.name);
+                collision.transform.root.GetComponent<Vipeltaja>().canAttack = false;
+            }
         }
-        else if (collision.transform.CompareTag("Vipeltaja"))
+
+        if(collision.transform.CompareTag("GruntAttackHitbox"))
         {
-            Debug.Log("Player hit");
+            if(collision.transform.root.GetComponent<Grunt>().canAttack)
+            {
+                Debug.Log("Player hit by " + collision.transform.name);
+                collision.transform.root.GetComponent<Grunt>().canAttack = false;
+            }
+        }
+
+        if(collision.transform.name.Equals("ChargeHandle"))
+        {
+            Debug.Log("Charge hit" + collision.transform.name);
         }
 
     }
