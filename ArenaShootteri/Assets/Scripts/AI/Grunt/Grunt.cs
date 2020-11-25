@@ -24,6 +24,7 @@ public class Grunt : MonoBehaviour, IDamage
     public Transform cone;
     public Animator animator;
 
+<<<<<<< HEAD
     public float attackCounter = 0f;
     public float attackCooldown = 2f;
 
@@ -32,6 +33,14 @@ public class Grunt : MonoBehaviour, IDamage
     public bool readyToAttack = true;
 
     public float chargeDamage = 20;
+=======
+    
+    public float attackCounter = 0f;
+    public float attackCooldown = 2f;
+
+    public bool canAttack = true;
+    public bool readyToAttack = true;
+>>>>>>> parent of 08ca5100... Merge branch 'master' of https://github.com/EliasAhlgren/Arena-Shooter
     public bool isCharging = false;
     public float chargeForce = 10;
     
@@ -86,10 +95,16 @@ public class Grunt : MonoBehaviour, IDamage
     {
         target = _target;
     }
+<<<<<<< HEAD
 
     /// <summary>
     /// Runs Grunt's attack logic
     /// </summary>   MAYBE OBSOLETE
+=======
+    /// <summary>
+    /// Runs Grunt's attack logic
+    /// </summary>
+>>>>>>> parent of 08ca5100... Merge branch 'master' of https://github.com/EliasAhlgren/Arena-Shooter
     public void Attack()
     {
         Debug.Log("Melee attack");
@@ -135,7 +150,10 @@ public class Grunt : MonoBehaviour, IDamage
             StartCoroutine(Die());
         }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 08ca5100... Merge branch 'master' of https://github.com/EliasAhlgren/Arena-Shooter
     /// <summary>
     /// Launch death logic when Grunt dies.
     /// Runs Ragdoll death "animation". Disables AI
@@ -168,7 +186,10 @@ public class Grunt : MonoBehaviour, IDamage
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 08ca5100... Merge branch 'master' of https://github.com/EliasAhlgren/Arena-Shooter
     /// <summary>
     /// Sets rigidbodys in children to <c>state</c> 
     /// </summary>
@@ -182,7 +203,10 @@ public class Grunt : MonoBehaviour, IDamage
             rb.isKinematic = state;
         }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 08ca5100... Merge branch 'master' of https://github.com/EliasAhlgren/Arena-Shooter
     /// <summary>
     /// Sets colliders in children to <c>state</c> 
     /// </summary>
@@ -198,6 +222,29 @@ public class Grunt : MonoBehaviour, IDamage
             {
                 collider.enabled = !state;
             }
+        }
+    }
+    /// <summary>
+    /// Recursively sets Layer of each Game Object to newLayer
+    /// </summary>
+    /// <param name="obj">Parent GameObject</param>
+    /// <param name="newLayer">number for new layer</param>
+    void SetLayerRecursively(GameObject obj, int newLayer)
+    {
+        if (null == obj)
+        {
+            return;
+        }
+
+        obj.layer = newLayer;
+
+        foreach (Transform child in obj.transform)
+        {
+            if (null == child)
+            {
+                continue;
+            }
+            SetLayerRecursively(child.gameObject, newLayer);
         }
     }
 

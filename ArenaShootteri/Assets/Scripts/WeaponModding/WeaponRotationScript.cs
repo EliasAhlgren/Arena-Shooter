@@ -8,7 +8,10 @@ using UnityEngine.UIElements;
 public class WeaponRotationScript : MonoBehaviour
 {
     public float rotationSpeed;
-    
+    public float mouseX;
+    public float minValue, maxValue;
+
+    public float yRotation;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,9 +21,14 @@ public class WeaponRotationScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
+        
+        mouseX = Input.GetAxis("Mouse X");
         if (Input.GetMouseButton(2))
         {
-            transform.Rotate(0,Input.GetAxis("Mouse X")* rotationSpeed,0);
+            yRotation += mouseX;
+            yRotation = Mathf.Clamp(yRotation, minValue, maxValue);
+            transform.localRotation = Quaternion.Euler(0,yRotation,0);
         }
     }
 }

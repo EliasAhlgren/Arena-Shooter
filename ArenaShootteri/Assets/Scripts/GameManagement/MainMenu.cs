@@ -10,14 +10,13 @@ public class MainMenu : MonoBehaviour
     public GameObject optionsPanel;
     public GameObject creditsPanel;
     public GameObject exitPanel;
-    public GameObject controlsPanel;
-    public GameObject highscorePanel;
+    public GameManager gameManager;
     public GameObject timeline;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        gameManager = UnityEngine.GameObject.FindGameObjectWithTag("GameManagement").GetComponent<GameManager>();
     }
 
     private void Update()
@@ -31,7 +30,7 @@ public class MainMenu : MonoBehaviour
         timeline.SetActive(false);
         SceneManager.LoadScene(1);
     }
-    //Settings buttons
+
     public void OpenSettings()
     {
         mainPanel.SetActive(false);
@@ -42,7 +41,7 @@ public class MainMenu : MonoBehaviour
         mainPanel.SetActive(true);
         optionsPanel.SetActive(false);
     }
-    //Credits buttons
+
     public void OpenCredits()
     {
         mainPanel.SetActive(false);
@@ -53,29 +52,7 @@ public class MainMenu : MonoBehaviour
         mainPanel.SetActive(true);
         creditsPanel.SetActive(false);
     }
-    //Controls buttons
-    public void OpenControls()
-    {
-        mainPanel.SetActive(false);
-        controlsPanel.SetActive(true);
-    }
-    public void CloseControls()
-    {
-        mainPanel.SetActive(true);
-        controlsPanel.SetActive(false);
-    }
-    //Highscore buttons
-    public void OpenHighScore()
-    {
-        mainPanel.SetActive(false);
-        highscorePanel.SetActive(true);
-    }
-    public void CloseHighScore()
-    {
-        mainPanel.SetActive(true);
-        highscorePanel.SetActive(false);
-    }
-    //QuitGame buttons
+
     public void OpenExit()
     {
         mainPanel.SetActive(false);
@@ -89,10 +66,5 @@ public class MainMenu : MonoBehaviour
     public void Exit()
     {
         Application.Quit();
-    }
-
-    public void PlayClick()
-    {
-        SoundManager.PlaySound("MenuClick");
     }
 }

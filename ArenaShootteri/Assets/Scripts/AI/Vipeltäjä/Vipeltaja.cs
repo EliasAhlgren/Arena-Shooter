@@ -14,7 +14,10 @@ public class Vipeltaja : MonoBehaviour, IDamage
     // IDamage variable
     public float IHealth { get; set; } = 100f;
 
+<<<<<<< HEAD
     public float damage = 5;
+=======
+>>>>>>> parent of 08ca5100... Merge branch 'master' of https://github.com/EliasAhlgren/Arena-Shooter
     public bool canAttack = true;
 
     public GameObject spitPrefab;
