@@ -38,8 +38,8 @@ public class GruntWindUpState : BaseState
         Vector3 newDirection = Vector3.RotateTowards(grunt.transform.forward, targetDirection, step, 0.0f);
         grunt.transform.rotation = Quaternion.LookRotation(newDirection);
 
-        // After wind up animation is complete..
-        // ..go to Charge state
+        // After wind up animation is complete...
+        // ...go to Charge state
         // Also tracks walk animation, so charge State is not returned before wind up animation even starts.
         if (!grunt.animator.GetCurrentAnimatorStateInfo(0).IsName("WindUp") && !grunt.animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
         {

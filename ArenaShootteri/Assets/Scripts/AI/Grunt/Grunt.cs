@@ -157,7 +157,7 @@ public class Grunt : MonoBehaviour, IDamage
         // Change layer for enemy and all of it's children to "Dead Enemy" layer.
         // This layer doesnt interact with anything else than the Map itself.
         int layerMask = LayerMask.GetMask("DeadEnemy");
-        SetLayerRecursively(transform.gameObject, 9);
+        SetLayerRecursively(transform.gameObject, layerMask);
 
         // Enemy stays on ground for 2 seconds.
         // After that set all colliders back to false
