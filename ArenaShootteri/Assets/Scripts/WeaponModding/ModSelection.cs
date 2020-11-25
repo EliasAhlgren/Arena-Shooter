@@ -119,7 +119,7 @@ public class ModSelection : MonoBehaviour
         {
             for (int i = 0; i < buttons.Length; i++)
                     {
-                        buttons[0].GetComponent<Image>().sprite = selectedMods[0].Icon;
+                        buttons[i].GetComponent<Image>().sprite = selectedMods[i].Icon;
                     }
         }
         

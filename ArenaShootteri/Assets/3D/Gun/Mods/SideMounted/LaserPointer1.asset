@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ac60833f6464c78bfff080cc2b59ec, type: 3}
   m_Name: LaserPointer1
   m_EditorClassIdentifier: 
-  Name: Laser
-  Type: 
-  Level: 0
-  animIndex: 0
+  rail: Left Mod Rail
+  AimHeight: 0
+  PoseNumber: 0
   Prefab: {fileID: 6863277821837746515, guid: 6d5e12a84bc35426e94b4cc1d26f65ee, type: 3}
-  Icon: {fileID: 21300000, guid: c77d2c88ecff24053965c83ca571a0a5, type: 3}
+  Icon: {fileID: 21300000, guid: e7672fb3cf88542479d1248b80da5c0f, type: 3}
   moveable: 1
   Ergonomy: 0
   Recoil: 0
   Damage: 0
+  posDiff: {x: 0, y: 0, z: 0}

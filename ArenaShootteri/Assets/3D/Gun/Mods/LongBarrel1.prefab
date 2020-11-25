@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6362579223660336054}
   - component: {fileID: 5191872650125163928}
   - component: {fileID: 846102790424412688}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: polySurface123
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 154252353117744577}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: LongBarrel1
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}

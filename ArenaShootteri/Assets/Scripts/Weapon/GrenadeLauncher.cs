@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class GrenadeLauncher : MonoBehaviour
@@ -22,7 +21,7 @@ public class GrenadeLauncher : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire3"))
         {
-            var _grenade = Instantiate(grenadePrefab, transform.position, quaternion.identity);
+            var _grenade = Instantiate(grenadePrefab, transform.position, Quaternion.identity);
             _grenade.GetComponent<Rigidbody>().AddRelativeForce(_gunParent.forward * speeeed, ForceMode.Impulse);
         }
     }

@@ -7,9 +7,8 @@ public class CreateNodes : MonoBehaviour
 {
     public Vector3[] positions;
     private Collider[] _mapColliders;
-
     private GameObject[] _map;
-
+    
     private int _nodeCount;
     
     int x, z, indexer;
@@ -26,6 +25,7 @@ public class CreateNodes : MonoBehaviour
         
         positions = new Vector3[_nodeCount];
         
+        
         _map = GameObject.FindGameObjectsWithTag("Level");
         _mapColliders = new Collider[_map.Length];
         for (int i = 0; i < _mapColliders.Length; i++)
@@ -37,11 +37,14 @@ public class CreateNodes : MonoBehaviour
         hasCreated = true;
     }
 
+    
+
     private void CreatePositions()
     {
         if (indexer < _nodeCount)
         {
-            positions[indexer] = transform.position + new Vector3(x * scale, 0, z * scale);
+            
+            positions[indexer] = transform.position + new Vector3(x * scale, Mathf.PerlinNoise(10.2f * x, 10.2f * z) * 15, z * scale);
             x++;
             if (x == xCount)
             {

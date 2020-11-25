@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 711645435654875838}
-  m_Layer: 9
+  - component: {fileID: -3280590051249499001}
+  m_Layer: 13
   m_Name: PersReikaScope
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -31,6 +32,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-3280590051249499001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711645435654875837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82e876047dab94033b0901f90d365668, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3674392643950059342
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,7 +56,7 @@ GameObject:
   - component: {fileID: 2191418183703161620}
   - component: {fileID: 4231968884438997380}
   - component: {fileID: 5412372572603031960}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: OSAT_F_UNITY:lowpolySurface3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3709114744994967714}
   - component: {fileID: 5575387339823818544}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: EYE
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -188,7 +201,7 @@ GameObject:
   - component: {fileID: 7262407000371096802}
   - component: {fileID: 5325046769588612316}
   - component: {fileID: 7068620358544513531}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: OSAT_F_UNITY:group3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +283,7 @@ GameObject:
   - component: {fileID: 3727900684835187950}
   - component: {fileID: 8626406281416042436}
   - component: {fileID: 4513161934386306552}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

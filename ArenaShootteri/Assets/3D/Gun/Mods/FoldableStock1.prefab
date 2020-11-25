@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1743925017050383373}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: FoldableStock1
   m_TagString: Untagged
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 9038999661158763219}
   - component: {fileID: 7354708180329645645}
   - component: {fileID: 2486506640516119985}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: polySurface154
   m_TagString: Untagged
   m_Icon: {fileID: 0}
