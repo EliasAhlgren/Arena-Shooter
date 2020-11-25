@@ -63,8 +63,6 @@ public class GameManager : MonoBehaviour
             Debug.Log("wave: " + wave);
             wave += 1;
             waveStart = false;
-
-            gameObject.GetComponent<NewMods>().CheckWave(wave);
         }
     }
 
