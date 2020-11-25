@@ -1,23 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using System;
+using System.Collections;
+//using UnityEditor.Callbacks;
 using UnityEngine;
+
 
 public class GunAttributes : MonoBehaviour
 {
     // Combined stats of all currently attached mods
     public float totalErgonomy;
-    public int totalRecoil;
+    public float totalRecoil;
     public float totalDamage;
 
+    public int ammoInMag;
+    public int totalAmmo;
+    
+    public Recoil recoilScript;
+    
     public ModSelection sightSelection;
     
-    public bool isAiming;
-
-    // animator that handles aiming animation
-    private Animator _animator;
     
-    private GameObject[] canvases;
+    
+    [NonSerialized] public GameObject[] canvases;
 
     // camera used for rendering when in modding mode
     public GameObject moddingCamera;
@@ -28,23 +31,30 @@ public class GunAttributes : MonoBehaviour
     public Vector3 shootyRotation;
     public Vector3 moddingRotation;
 
-    private PlayerCharacterController _controller;
+    private PlayerCharacterControllerRigidBody _controller;
 
     private float cameraStartPos;
 
     private AnimationClip adsClip;
 
     public AnimationCurve recoilCurve;
+
+    public WeaponRotationScript _WeaponRotationScript;
+
+    public bool isModding;
+
+    public GameObject mainCamera;
+
     
     // Start is called before the first frame update
     void Start()
     {
 
-        cameraStartPos = Camera.main.transform.position.y;
         
-        _animator = gameObject.GetComponent<Animator>();
+        cameraStartPos = mainCamera.transform.position.y;
         
-        _controller = GameObject.FindWithTag("Player").GetComponent<PlayerCharacterController>();
+        
+        _controller = GameObject.FindWithTag("Player").GetComponent<PlayerCharacterControllerRigidBody>();
         
         canvases = GameObject.FindGameObjectsWithTag("Canvas");
 
@@ -53,52 +63,48 @@ public class GunAttributes : MonoBehaviour
         
     }
 
+    
+    
     // Changes to Modding mode
     void ChangeUI()
     {
         
-        _controller.enabled = !_controller.enabled;
+        //_controller.enabled = !_controller.enabled;
+        _WeaponRotationScript.enabled = !_WeaponRotationScript.enabled;
+        
         foreach (var canvas in canvases)
         {
             canvas.SetActive(!canvas.activeInHierarchy);
         }
-
+        
         if (Cursor.lockState == CursorLockMode.Locked)
         {
+            //This is for enabling modding
+            isModding = true;
             moddingCamera.SetActive(true);
             transform.parent = null;
             Cursor.lockState = CursorLockMode.None;
-            transform.localPosition = moddingPositio;
-            transform.localRotation = Quaternion.Euler(moddingRotation);
+            transform.position = moddingPositio;
+            transform.rotation = Quaternion.Euler(moddingRotation);
+            //Time.timeScale = 0.3f;
         }
         else
         {
+            isModding = false;
+            //this is for disabling modding
             moddingCamera.SetActive(false);
-            transform.parent = Camera.main.transform;
+            transform.parent = null;
+            //transform.parent = Camera.main.transform;
             Cursor.lockState = CursorLockMode.Locked;
-            transform.localPosition = shootyPosition;
-            transform.localRotation = Quaternion.Euler(shootyRotation);
+            //transform.localPosition = shootyPosition;
+            //transform.localRotation = Quaternion.Euler(shootyRotation);
+            //Time.timeScale = 1f;
+            
         }
+        
     }
 
-    public void AimDownSights()
-    {
-        if (isAiming)
-        {
-            Vector3 newCamPos = Camera.main.transform.position;
-            newCamPos.y = cameraStartPos;
-        }
-        else 
-        {
-            if (sightSelection.currentMod)
-            {
-                Vector3 newCamPos = Camera.main.transform.position;
-                newCamPos.y = sightSelection.currentMod.transform.position.y;
-            }
-        }
-        isAiming = !isAiming;
-        _animator.SetBool("isAiming", isAiming);
-    }
+    
     
     
     // Check stats from default mods
@@ -111,6 +117,7 @@ public class GunAttributes : MonoBehaviour
         {
             Debug.Log("initialising with stats");
             _stockSelection.OnModChosen += UpdateStats;
+           
             if (_stockSelection.currenModStats)
             {
                 
@@ -136,33 +143,33 @@ public class GunAttributes : MonoBehaviour
         // For some reason the UI wont work if it starts disabled so I have to call ChangeUI to disable the UI and then manually set gun back to the shooting mode
         
         ChangeUI();
+        //StartCoroutine("wait");
+        
         moddingCamera.SetActive(false);
-        transform.parent = Camera.main.transform;
+        isModding = false;
+        //transform.parent = Camera.main.transform;
+        transform.parent = null;
         Cursor.lockState = CursorLockMode.Locked;
+        /*transform.localPosition = shootyPosition;
+        transform.localRotation = Quaternion.Euler(shootyRotation);*/
+        //_controller.enabled = !_controller.enabled;
+        _WeaponRotationScript.enabled = !_WeaponRotationScript.enabled;
+        //Time.timeScale = 1f;
         transform.localPosition = shootyPosition;
-        transform.localRotation = Quaternion.Euler(shootyRotation);
-        _controller.enabled = !_controller.enabled;
+        recoilScript.enabled = true;
+
+    }
+
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds(0.1f);
+        ChangeUI();
     }
     
     // called everytime a mod is changed in any of the rails
     void UpdateStats()
     {
-
-        /*foreach (var VARIABLE in _animator.)
-        {
-            
-        }*/
         
-        
-        // sets SightIndex parameter in animator to account for differences in sight heights
-        if (sightSelection.currenModStats)
-        {
-            _animator.SetInteger("SightIndex",sightSelection.currenModStats.animIndex);
-        }
-        else
-        {
-            _animator.SetInteger("SightIndex", 0);
-        }
         
         Vector3 totalStats;
         totalStats.x = totalErgonomy;
@@ -194,38 +201,27 @@ public class GunAttributes : MonoBehaviour
                 totalDamage += _modSelection.currenModStats.Damage;
             }
         }
+
         
+
+
     }
 
-    public void Recoil()
-    {
-       
-        
-    }
+    
     
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(Time.timeScale);
+        
         //Recoil();
-        
-        if (_animator.IsInTransition(0))
-        {
-            _animator.speed = 1f + totalErgonomy;
-        }
-        
-        
-        
-        
-        if (Input.GetMouseButtonDown(1) && transform.position != moddingPositio)
-        {
-            _animator.enabled = true;
-            AimDownSights();
-        }
+
+       
         
         // Disables or enables the Mod selection screen
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            _animator.enabled = false;
+           
             ChangeUI();
         }
     }

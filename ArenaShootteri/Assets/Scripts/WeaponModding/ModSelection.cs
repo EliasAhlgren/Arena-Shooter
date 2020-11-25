@@ -30,6 +30,8 @@ public class ModSelection : MonoBehaviour
     // Koko slotin parent objecti
     public GameObject ModRail;
 
+    public Mod defaultMod;
+    
     // nykyisen modin GameObject
     public GameObject currentMod;
     
@@ -39,10 +41,11 @@ public class ModSelection : MonoBehaviour
     // jos siirtää modia
     private bool placingObject;
 
+    
     public Camera moddingCamera;
-    
-    
-    
+
+    public bool disableEmpty;
+
     private Vector3 firstPosition;
 
     public Transform ModLocalPos;
@@ -54,13 +57,24 @@ public class ModSelection : MonoBehaviour
     public event ModChosen OnModChosen;
 
     public bool isAutoPlaced;
+
+    public HandSetter handSetter;
     
     // Start is called before the first frame update
     void Start()
     {
         
+        if (defaultMod)
+        {
+            currenModStats = defaultMod;
+            Debug.Log("initializing with a mod");
+            GameObject newMod = Instantiate(defaultMod.Prefab, ModRail.transform.GetChild(0).position,
+                Quaternion.identity, ModRail.transform);
+            currentMod = newMod;
+        }
+       
         
-        selectedMods = new Mod[3];
+        selectedMods = new Mod[1];
         
         childCountAtStart = ModRail.transform.childCount;
         
@@ -69,45 +83,69 @@ public class ModSelection : MonoBehaviour
         firstPosition = currentModSlot.transform.GetChild(0).transform.position;
 
         //tää on vaan väliaikanen
+        /*
         for (int i = 0; i < selectedMods.Length; i++)
         {
             selectedMods[i] = availableMods[Random.Range(0, availableMods.Length)];
         }
+        */
 
-        // laita oikeat ikonit UI nappeihin
-        for (int i = 0; i < buttons.Length; i++)
-        {
-            buttons[i].GetComponent<Image>().sprite = selectedMods[i].Icon;
-        }
+        
         
     }
 
     // OnChangeCurrent kutsutaan jos painaa CurrentMod UI nappia
     public void OnChangeCurrent()
     {
-        
-        
-        foreach (var button in buttons)
+
+        if (selectedMods[0])
         {
-            button.SetActive(!button.activeInHierarchy);
+            foreach (var button in buttons)
+            {
+                       
+                button.SetActive(!button.activeInHierarchy);
+            }
         }
         
-        emptySlot.SetActive(!emptySlot.activeInHierarchy);
+
+        if (!disableEmpty)
+        {
+             emptySlot.SetActive(!emptySlot.activeInHierarchy);
+        }
+       
         Debug.Log("ChangeCurrent");
+
+        if (selectedMods[0] != null)
+        {
+            for (int i = 0; i < buttons.Length; i++)
+                    {
+                        buttons[i].GetComponent<Image>().sprite = selectedMods[i].Icon;
+                    }
+        }
+        
+        
     }
 
     // OnSelectNew kutsutaan jos valitsee uuden modin 
     public void OnSelectNew(String buttonName) // buttonName on stringi jonka UI nappi passaa ku se kutsuu OnClick eventin
     {
-        ModLocalPos.localPosition = Vector3.zero;
-
-        currentModSlot.GetComponent<Image>().sprite = selectedMods[int.Parse(buttonName)].Icon;
         
         //tuhoa vanha modi 
-        if (ModRail.transform.childCount > childCountAtStart)
+                if (currentMod)
+                {
+                   // Destroy(ModRail.transform.GetChild(childCountAtStart).gameObject);
+                    Destroy(currentMod);
+                }
+        
+        ModLocalPos.localPosition = Vector3.zero;
+
+        if (selectedMods[int.Parse(buttonName)].Icon)
         {
-            Destroy(ModRail.transform.GetChild(childCountAtStart).gameObject);
+            currentModSlot.GetComponent<Image>().sprite = selectedMods[int.Parse(buttonName)].Icon;
         }
+        
+        
+        
         
         // Luo uusi modi ModDefaultPosiin
         GameObject newMod = Instantiate(selectedMods[int.Parse(buttonName)].Prefab, ModRail.transform.GetChild(0).position,
@@ -118,10 +156,31 @@ public class ModSelection : MonoBehaviour
         currenModStats = selectedMods[int.Parse(buttonName)];
         
         currentMod = newMod;
-         
-        placingObject = true;
+
+        if (currenModStats.moveable)
+        {
+            placingObject = true;
+        }
+
+        
         
         OnModChosen();
+        
+        if (handSetter && currentMod)
+        {
+            handSetter.IkTargetScript.states[currenModStats.PoseNumber].targetObject = currentMod.transform;
+            handSetter.IkTargetScript.index = currenModStats.PoseNumber;
+           
+            handSetter.IkTargetScript.posDiff = currenModStats.posDiff;
+            handSetter.UpdatePose();
+            Debug.Log("Pose set to " + currenModStats.PoseNumber);
+        }else if (handSetter)
+        {
+            handSetter.IkTargetScript.index = 0;
+            handSetter.IkTargetScript.posDiff = Vector3.zero;
+            handSetter.UpdatePose();
+        }
+        
     }
 
     //OnSelectEmpty kutsutaan kun painaa tyhjää UI nappia
@@ -132,9 +191,10 @@ public class ModSelection : MonoBehaviour
         
         currentModSlot.GetComponent<Image>().sprite = emptySlot.GetComponent<Button>().image.sprite;
         ModLocalPos.localPosition = Vector3.zero;
-        if (ModRail.transform.childCount > childCountAtStart)
+        if (currentMod)
         {
-            Destroy(ModRail.transform.GetChild(childCountAtStart).gameObject);
+            // Destroy(ModRail.transform.GetChild(childCountAtStart).gameObject);
+            Destroy(currentMod);
         }
 
         currenModStats = null;

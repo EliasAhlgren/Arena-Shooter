@@ -15,8 +15,9 @@ MonoBehaviour:
   Name: 
   Type: 
   Level: 0
+  animIndex: 0
   Prefab: {fileID: 3967751632185135943, guid: ff4fa19af882641eb9c5eabe6d37c646, type: 3}
   Icon: {fileID: 21300000, guid: d370e902aec4a4f2eb2fa2a48639d773, type: 3}
-  Ergonomy: 100
-  Recoil: -100
+  Ergonomy: 20
+  Recoil: -20
   Damage: 0

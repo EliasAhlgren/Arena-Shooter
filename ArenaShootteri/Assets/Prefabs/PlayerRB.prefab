@@ -419,7 +419,7 @@ MonoBehaviour:
   walkSpeed: 6
   slideSpeedControl: 14
   slideDuration: 1
-  slideLimit: 45.1
+  slideLimit: 180
   isMoving: 0
   isGrounded: 1
   isAirborne: 0

@@ -4,9 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
   - Canvas
-  - Ground
+  - Vipeltaja
+  - Enemy
+  - Grunt
+  - EnemyAttackHitbox
+  - ModSelection
+  - VipeltajaAttackHitbox
+  - GruntAttackHitbox
+  - ImpAttackHitbox
   layers:
   - Default
   - TransparentFX
@@ -16,10 +22,10 @@ TagManager:
   - UI
   - 
   - 
-  - Ground
-  - Gun
-  - Obstacle
-  - Enemy
+  - Map
+  - DeadEnemy
+  - 
+  - 
   - 
   - 
   - 
