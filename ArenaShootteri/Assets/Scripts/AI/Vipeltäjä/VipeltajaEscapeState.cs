@@ -28,7 +28,7 @@ public class VipeltajaEscapeState : BaseState
     /// Where enemy should face
     /// </summary>
     private Vector3 targetDir;
-
+    
 
     public VipeltajaEscapeState(Vipeltaja _vipeltaja) : base(_vipeltaja.gameObject)
     {

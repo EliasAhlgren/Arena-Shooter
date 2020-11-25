@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2766741089124872102}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: AngledGrip1
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 208635209227858819}
   - component: {fileID: 5705105470687863330}
   - component: {fileID: 3515004812924332970}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: thumbgrip
   m_TagString: Untagged
   m_Icon: {fileID: 0}

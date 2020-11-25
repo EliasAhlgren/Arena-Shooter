@@ -3,61 +3,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class NewMods : MonoBehaviour
 {
-    [Serializable]
-    public struct AvailableModsStruct
-    {
-        public Mod Mod;
-        public String railName;
-    }
-    [Serializable]
-    public struct Level
-    {
-        public AvailableModsStruct[] ModsOnThisLevel;
-    }
-
-    public Level[] levels;
+    public List<Mod> modPool = new List<Mod>();
     
-    private ModSelection[] _modSelections;
+    public List<Mod> level1 = new List<Mod>();
 
-    
-    public void CheckWave(int currentWave)
+    public List<Mod> level2 = new List<Mod>();
+
+    public List<Mod> level3 = new List<Mod>();
+
+    public ModSelection[] modSelections;
+
+    public void Start()
     {
-        for (int i = 0; i < _modSelections.Length; i++)
+        modSelections = Component.FindObjectsOfType<ModSelection>();
+        
+        
+        foreach (var instance in modSelections)
         {
-            if (levels.Length >= currentWave)
+            List<Mod> mods = new List<Mod>();
+            
+            foreach (var mod in modPool)
             {
-                foreach (var VARIABLE in levels[currentWave].ModsOnThisLevel)
+                if (mod.rail == instance.RailName)
                 {
-                    if (VARIABLE.railName == _modSelections[i].RailName)
-                    {
-                        _modSelections[i].selectedMods[0] = VARIABLE.Mod;
-                    }
-                    else
-                    {
-                        //_modSelections[i].OnSelectEmpty();
-                    }
+                    mods.Add(mod);
                 }
             }
-        }
-    }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        GameObject[] objects = GameObject.FindGameObjectsWithTag("ModSelection");
-        _modSelections = new ModSelection[objects.Length];
-        for (int i = 0; i < objects.Length; i++)
-        {
-            _modSelections[i] = objects[i].GetComponent<ModSelection>();
+
+            instance.selectedMods[0] = mods[Random.Range(0, mods.Count)];
+
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

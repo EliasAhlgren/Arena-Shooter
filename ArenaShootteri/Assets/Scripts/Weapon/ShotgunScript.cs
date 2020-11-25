@@ -5,11 +5,15 @@ using AI;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.Serialization;
+using UnityEngine.VFX;
 
 public class ShotgunScript : MonoBehaviour
 {
     public Mod shotgunMod;
+    public VisualEffect vfx;
 
+    private bool _canShoot = true;
+    
     public List<GameObject> collidingObjects;
     void Start() {
         collidingObjects = new List<GameObject>();
@@ -29,14 +33,28 @@ public class ShotgunScript : MonoBehaviour
         }
     }
 
+    IEnumerator shooty()
+    {
+        _canShoot = false;
+        yield return new WaitForSeconds(3f);
+        _canShoot = true;
+    }
+    
     private void FixedUpdate()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetButtonDown("Fire3") && _canShoot)
         {
+            vfx.Play();
+            StartCoroutine(shooty());
             foreach (var VARIABLE in collidingObjects)
             {
-                VARIABLE.GetComponent<IDamage>().TakeDamage(shotgunMod.Damage / Vector3.Distance(transform.position,VARIABLE.transform.position));
-                Debug.Log( VARIABLE.gameObject + "" + shotgunMod.Damage / Vector3.Distance(transform.position,VARIABLE.transform.position));
+                var Damageable = VARIABLE.transform.parent.GetComponent<IDamage>();
+                if (Damageable != null)
+                {
+                    Damageable.TakeDamage(shotgunMod.Damage / Vector3.Distance(transform.position, VARIABLE.transform.position));
+                    Debug.Log(VARIABLE.gameObject + "" + shotgunMod.Damage /
+                        Vector3.Distance(transform.position, VARIABLE.transform.position));
+                }
             }
         }
     }

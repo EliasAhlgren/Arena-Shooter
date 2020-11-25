@@ -12,7 +12,7 @@ public class Pose : ScriptableObject
     // Asettaa assetin asetukset
     public void SetPose(Transform[] bones)
     {
-        EditorUtility.SetDirty(this);
+        //EditorUtility.SetDirty(this);
         
         BoneRotations = new Quaternion[bones.Length];
         for (int i = 0; i < bones.Length; i++)

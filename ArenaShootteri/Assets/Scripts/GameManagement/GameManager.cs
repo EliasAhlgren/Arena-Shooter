@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _NewMods.CheckWave(wave);
+        //_NewMods.CheckWave(wave);
         
         
         // PAUSE MENU //
@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
             wave += 1;
             waveStart = false;
 
-            gameObject.GetComponent<NewMods>().CheckWave(wave);
+           // gameObject.GetComponent<NewMods>().CheckWave(wave);
         }
     }
 

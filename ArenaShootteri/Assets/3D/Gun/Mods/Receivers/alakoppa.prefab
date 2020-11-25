@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3512649457561140962}
   - component: {fileID: 1400378074149808848}
   - component: {fileID: 3774132155276309686}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: alakoppa
   m_TagString: Untagged
   m_Icon: {fileID: 0}

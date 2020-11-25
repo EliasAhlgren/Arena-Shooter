@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ac60833f6464c78bfff080cc2b59ec, type: 3}
   m_Name: Scope1
   m_EditorClassIdentifier: 
-  Name: 
-  Type: 
-  Level: 0
+  rail: Top Sight Rail
   AimHeight: -0.25
+  PoseNumber: 0
   Prefab: {fileID: 2382697287326544064, guid: 5240f6962b9834f8088541c3be11c1e2, type: 3}
-  Icon: {fileID: 21300000, guid: 4de2b5a98aeec4e2c9d83d30a79a281b, type: 3}
+  Icon: {fileID: 21300000, guid: f3bc5b8ccfaef4c4696b851cea77cd53, type: 3}
   moveable: 1
   Ergonomy: 0
   Recoil: 0
   Damage: 0
+  posDiff: {x: 0, y: 0, z: 0}
