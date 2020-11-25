@@ -11,12 +11,30 @@ public class HealthPickup : Pickup
             Debug.Log(other.name);
             if (playerScript.health < playerScript.maxHealth)
             {
-                playerScript.TakeDamage(healthRecovered, false);
+                //[SOUND] health pickup sound (pickup sound?) (One Shot)
+
+
+                playerScript.Heal(healthRecovered);
                 Debug.Log("healed " + player.name + " for "+ healthRecovered +" hp");
-                platformSript.PickupRespawn(respawnTime * playerScript.spawnRateModifier);
-                gameObject.SetActive(false);
+
+                if (platfromIS)
+                {
+                    platformSript.PickupRespawn(respawnTime * playerScript.spawnRateModifier);
+                    gameObject.SetActive(false);
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
                 
-                //Destroy(gameObject);
+                
+                
+            }
+            else
+            {
+                //[SOUND] pickup failed sound (One Shot)
+
+                Debug.Log("health full");
             }
         }
     }

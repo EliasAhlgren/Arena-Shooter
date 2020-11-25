@@ -3,14 +3,15 @@
 public class Pickup : MonoBehaviour
 {
     public float verticalFrequency = 1f;
-    public float vertical = 1f;
-    public float rotation = 360f;
+    public float vertical = .1f;
+    public float rotation = 20f;
 
     public GameObject platform;
     protected PickupPlatform platformSript;
+    protected bool platfromIS = false;
 
     protected GameObject player;
-    protected Player playerScript;
+    protected PlayerCharacterControllerRigidBody playerScript;
     public Rigidbody rb;
 
     public float respawnTime = 5;
@@ -21,11 +22,18 @@ public class Pickup : MonoBehaviour
 
     void Start()
     {
-
-        platformSript = platform.GetComponent<PickupPlatform>();
+        if (platform != null)
+        {
+            if (platformSript = platform.GetComponent<PickupPlatform>())
+            {
+                platfromIS = true;
+            }
+        }
+        
+             
 
         player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<Player>();
+        playerScript = player.GetComponent<PlayerCharacterControllerRigidBody>();
 
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
@@ -33,7 +41,8 @@ public class Pickup : MonoBehaviour
         rb.isKinematic = true;
         col.isTrigger = true;
 
-        transform.position = platform.transform.position + Vector3.up;
+        if (platfromIS) transform.position = platform.transform.position + Vector3.up * 1.5f;
+
         position = transform.position;
     }
 

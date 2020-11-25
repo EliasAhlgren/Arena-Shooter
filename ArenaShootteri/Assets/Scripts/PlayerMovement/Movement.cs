@@ -4,27 +4,24 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+public class Movement : MonoBehaviour
 {
     //references to GameObjects
-    Player player;
+    PlayerCharacterControllerRigidBody player;
     public Rigidbody rb;
-    Transform playerCamera;
+    public Transform playerCamera;
+    public Transform cameraHolder;
     CapsuleCollider characterCollider;
 
     public float jumpHeight = 3f;
     public float airMoveModifier = .2f;
 
-    Image deathImage;
-    GameObject deathCanvas;
-
-    float colorAlpha = 0f;
 
     //character height
     float height;
     float characterScale;
 
-    Vector3 groundCheck = new Vector3(0, -.6f, 0);
+    Vector3 groundCheck = new Vector3(0, -1f, 0);
     Vector3 groundCheckSize = new Vector3(.3f, .6f, .3f);
     Vector3 wallCheckSize = new Vector3(.6f, .5f, .6f);
 
@@ -45,7 +42,7 @@ public class PlayerController : MonoBehaviour
     //wallrun camera tilt
     float tiltAngle = 5;
     float cameraTilt = 0f;
-    float currentTilt = 0f;
+    public float currentTilt = 0f;
     float previousTilt = 0f;
     float tiltLerp = 0f;
 
@@ -65,7 +62,7 @@ public class PlayerController : MonoBehaviour
     public float slideSpeedMod = 1.2f;
     public float dodgeSpeedMod = 3f;
 
-
+    public float playerVelocity;
     //public float runSpeed = 12f;
     //public float walkSpeed = 6f;
     float dodgeSpeed;
@@ -118,8 +115,12 @@ public class PlayerController : MonoBehaviour
     Vector3 slide;
     Vector3 dodge;
 
+    float deaccerelation;
+    float stopDodgingSpeed;
+
     //jump groundcheck delay
     int jumpTimer = 0;
+    int dodgeTimer = 0;
 
     //character movement vector when airbone
     Vector3 airMove;
@@ -139,21 +140,16 @@ public class PlayerController : MonoBehaviour
     float movementAcc;
 
     bool addingForce = false;
-
-
-    bool resurection = true;
     bool doubleJump = false;
 
 
     void Start()
     {
         //get components
-        player = GetComponent<Player>();
+        player = GetComponent<PlayerCharacterControllerRigidBody>();
         playerCamera = GetComponentInChildren<Camera>().transform;
         rb = GetComponent<Rigidbody>();
         characterCollider = GetComponent<CapsuleCollider>();
-        deathCanvas = GetComponentInChildren<Canvas>(true).gameObject;
-        deathImage = deathCanvas.GetComponentInChildren<Image>();
         groundLayerMask = LayerMask.GetMask("Map");
 
         //lock cursor
@@ -172,6 +168,8 @@ public class PlayerController : MonoBehaviour
         crouchToStandRayDistance = standRayDistance + height * .25f;
         rayDistanceMargin = characterCollider.radius;
         gravity = Physics.gravity.y;
+
+        PlayerVelocity();
     }
 
     void Update()
@@ -179,18 +177,9 @@ public class PlayerController : MonoBehaviour
 
         if (player.playerControl && Time.timeScale > 0)
         {
-
-            //shoot
-            if (Input.GetMouseButtonDown(0))
-            {
-                //trigger pull sound?
-                Shoot();
-            }
-
             //jump
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump") && !isDodging)
             {
-                //jump sound
                 if (isGrounded)
                 {
                     Jump();
@@ -229,8 +218,9 @@ public class PlayerController : MonoBehaviour
             }
 
             //dodge
-            if (Input.GetKeyDown(KeyCode.Q) && PlayerVelocity() > 0 && dodgeCooldown <= 0 && player.dodgeUnlocked)
+            if (Input.GetKeyDown(KeyCode.Q) && isMoving && dodgeCooldown <= 0 && player.dodgeUnlocked && isGrounded)
             {
+                //Debug.Log(playerVelocity);
                 Dodge();
             }
 
@@ -293,7 +283,7 @@ public class PlayerController : MonoBehaviour
         DirectioanalMovementLimit();
 
         //set directional movement limiter
-       
+
         if (Mathf.Sqrt(x * x + z * z) > 1)
         {
             DMLimiter = 0.7f;
@@ -302,7 +292,7 @@ public class PlayerController : MonoBehaviour
         {
             DMLimiter = 1f;
         }
-       
+
 
         //limit camera vertical movement
         xRotation -= mouseY;
@@ -330,11 +320,11 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (colorAlpha <= 1)
+            if (player.colorAlpha <= 1)
             {
-                colorAlpha += 0.5f * Time.deltaTime;
+                player.colorAlpha += 0.5f * Time.deltaTime;
 
-                deathImage.color = new Color(deathImage.color.r, deathImage.color.r, deathImage.color.r, colorAlpha);
+                player.deathImage.color = new Color(player.deathImage.color.r, player.deathImage.color.r, player.deathImage.color.r, player.colorAlpha);
             }
             //alphaLerp += .3f * Time.deltaTime;
             //colorAlpha = Mathf.Lerp(minAlpha, maxAlpha, alphaLerp);
@@ -342,9 +332,20 @@ public class PlayerController : MonoBehaviour
         }
 
         //camera vertical rotation
-        playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, currentTilt);
+        if (player.shakeRotation)
+        {
+            cameraHolder.localRotation = Quaternion.Euler(xRotation, 0f, currentTilt);
+        }
+        else
+        {
+            playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, currentTilt);
+            //playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, -20);
+            //playerCamera.transform.rotation = Quaternion.Euler(0f, 0f, -10f);
+        }
 
-        //playerCamera.transform.rotation = Quaternion.Euler(0f, 0f, -10f);
+
+
+
 
         //store horizontal rotation in 0 length vector
         rotation = (Vector3.up * mouseX);
@@ -374,7 +375,7 @@ public class PlayerController : MonoBehaviour
 
             if (isAirborne || addingForce)
             {
-                //landing sound
+                //[SOUND] landing sound (One Shot)
 
                 if (player.groundSlamUnlocked)
                 {
@@ -423,7 +424,7 @@ public class PlayerController : MonoBehaviour
 
                     slopeDot = Vector3.Dot(movedir, slopeDir);
                     float vectorlen = Vector3.Magnitude(new Vector3(x, 0, z));
-                    slopeSpeed = speed * movementAcc * vectorlen * (Mathf.Sin((slopeAngle * Mathf.PI) / 180)) / (Mathf.Sin((slopeAngle2 * Mathf.PI) / 180)) ;
+                    slopeSpeed = speed * movementAcc * vectorlen * (Mathf.Sin((slopeAngle * Mathf.PI) / 180)) / (Mathf.Sin((slopeAngle2 * Mathf.PI) / 180));
                     //slopeSpeed = speed * DMLimiter * vectorlen * (Mathf.Sin((slopeAngle * Mathf.PI) / 180)) / (Mathf.Sin((slopeAngle2 * Mathf.PI) / 180));
                     //Debug.Log(speed * movementAcc);
                     //Debug.Log(slopeSpeed);
@@ -476,6 +477,8 @@ public class PlayerController : MonoBehaviour
             //if sliding
             if (isSliding)
             {
+                //[SOUND] sliding sound (Continuous)
+
                 //float deaccerelation = 14f - walkSpeed;
                 float deaccerelation = (baseSpeed * runSpeedMod * slideSpeedMod) - baseSpeed;
 
@@ -488,7 +491,7 @@ public class PlayerController : MonoBehaviour
 
                 //slideTime -= Time.deltaTime;
 
-                if (slideSpeed > baseSpeed && PlayerVelocity() > 0)
+                if (slideSpeed > baseSpeed && playerVelocity > baseSpeed)
                 {
                     move = (slide * slideSpeed) - rotation;
                 }
@@ -501,89 +504,88 @@ public class PlayerController : MonoBehaviour
             //if dodging
             else if (isDodging)
             {
-                float deaccerelation;
-                float stopDodgingSpeed;
-
-                if (isRunning)
-                {
-                    //deaccerelation = (20f - runSpeed) * 4f;
-                    deaccerelation = ((baseSpeed * dodgeSpeedMod) - (baseSpeed * runSpeedMod)) * 4f;
-                    //stopDodgingSpeed = runSpeed;
-                    stopDodgingSpeed = baseSpeed * runSpeedMod;
-                }
-                else
-                {
-                    //deaccerelation = (20f - walkSpeed) * 4f;
-                    deaccerelation = ((baseSpeed * dodgeSpeedMod) - baseSpeed) * 4f;
-                    //stopDodgingSpeed = walkSpeed;
-                    stopDodgingSpeed = baseSpeed;
-                }
+                if (dodgeTimer > 0) dodgeTimer -= 1;
 
                 dodgeSpeed -= deaccerelation * Time.deltaTime;
 
-                if (dodgeSpeed > stopDodgingSpeed)
+                move = dodge * dodgeSpeed - rotation;
+
+                //move.y = velocity.y;
+                velocity.y = 0;
+                //rb.AddForce(move, ForceMode.VelocityChange);
+                //PlayerVelocity();
+
+                if (dodgeTimer == 0)
                 {
-                    move = dodge * dodgeSpeed - rotation;
+                    if (dodgeSpeed <= stopDodgingSpeed || playerVelocity <= baseSpeed)
+                    {
+                        isDodging = false;
+                        dodgeCooldown = .2f;
+                        move = Vector3.ClampMagnitude(transform.right * x + transform.forward * z + transform.up * 0, 1f) * speed * movementAcc;
+                    }  
                 }
-                else
-                {
-                    isDodging = false;
-                }
+
             }
             //if normal movement
             else
             {
-                if (isCrouching)
+                if (isMoving)
                 {
-                    //crouching sound
-                }
-                else if (isRunning)
-                {
-                    //running sound
+                    if (isRunning)
+                    {
+                        //[SOUND] Running sound (Continuous)
+                    }
+                    else if (isCrouching)
+                    {
+                        //[SOUND] crouching sound (Continuous)
+                    }
+                    else
+                    {
+                        //[SOUND] walking sound (Continuous)
+                    }
                 }
                 else
                 {
-                    //walking sound
+
                 }
+                
 
                 //if grounded and not sliding allow player free movement
                 move = Vector3.ClampMagnitude(transform.right * x + transform.forward * z + transform.up * 0, 1f) * speed * movementAcc;
-                
+
                 //Debug.Log(speed * movementAcc);
                 //move = transform.right * x * speed * DMLimiter + transform.forward * z * speed * DMLimiter + transform.up * velocity.y;
 
-                //set vertical movement depending on ground angle to prevent bumping
-                if (evenGround)
-                {
-                    velocity.y = -2f;
-                }
-                else if (!isMoving)
-                {
-                    velocity.y = 0f;
-                }
-                else if (slopeDot < 0)
-                {
-                    //velocity.y = (-slopeSpeed * slopeDot);
-                    velocity.y = 0f;
-                }
-                else if (slopeDot > 0)
-                {
-                    velocity.y = (-slopeSpeed * slopeDot);
-                }
+                
             }
+
+            //set vertical movement depending on ground angle to prevent bumping
+            if (isDodging)
+            {
+                velocity.y = 0f;
+            }
+            else if (evenGround)
+            {
+                velocity.y = -2f;
+            }
+            else if (!isMoving)
+            {
+                velocity.y = 0f;
+            }
+            else if (slopeDot < 0)
+            {
+                //velocity.y = (-slopeSpeed * slopeDot);
+                velocity.y = 0f;
+            }
+            else if (slopeDot > 0)
+            {
+                velocity.y = (-slopeSpeed * slopeDot);
+            }
+
         }
         //if is airborne
         else
         {
-            //canled dodging in air
-            if (isDodging)
-            {
-                isDodging = false;
-                //move *= .125f;
-                //Vector3 norMove = Vector3.Normalize(move);
-                //dodge = norMove * runSpeed;
-                //move *= .5f;
-            }
 
             //if falling from ledge
             if (!isAirborne)
@@ -670,8 +672,33 @@ public class PlayerController : MonoBehaviour
                 //isWallRunning = true;
             }
 
+            if (isDodging)
+            {
+                if (dodgeTimer > 0) dodgeTimer -= 1;
+
+                dodgeSpeed -= deaccerelation * Time.deltaTime;
+
+                airBorne = dodge * dodgeSpeed - rotation;
+
+                //move.y = velocity.y;
+                velocity.y = 0;
+                //rb.AddForce(move, ForceMode.VelocityChange);
+                //PlayerVelocity();
+
+                if (dodgeTimer == 0)
+                {
+                    if (dodgeSpeed <= stopDodgingSpeed || playerVelocity <= baseSpeed)
+                    {
+                        isDodging = false;
+                        dodgeCooldown = .2f;
+                        airBorne = dodge * baseSpeed * runSpeedMod;
+                        velocity.y = -2;
+                    }                         
+                }
+                
+            }
             //if wall running
-            if (isWallRunning)
+            else if (isWallRunning)
             {
                 if (!isTouchingWall)
                 {
@@ -679,7 +706,7 @@ public class PlayerController : MonoBehaviour
                 }
 
                 //if wall is either left or right start wallrunning
-                if (wallDirection >= 3 && z > 0 && PlayerVelocity() > 10 && player.wallRunUnlocked)
+                if (wallDirection >= 3 && z > 0 && playerVelocity > 10 && player.wallRunUnlocked)
                 {
                     //Debug.Log("wall running");
                     if (velocity.y >= 0.0f)
@@ -772,6 +799,8 @@ public class PlayerController : MonoBehaviour
                     //wallNormal = Vector3.Cross(hit.normal, Vector3.up) * -wallDir;
                     airBorne = wallNormal * speed;
 
+                    //[SOUND] Wallrunning sound (Continuous)
+
                 }
                 else
                 {
@@ -786,8 +815,6 @@ public class PlayerController : MonoBehaviour
                 //move = new Vector3(0, 0, 0);
                 //velocity.y = 0f;
 
-                //air sound
-
                 //add gravity
                 //velocity.y += gravity * Time.deltaTime;
 
@@ -800,6 +827,8 @@ public class PlayerController : MonoBehaviour
             //if force is being added
             else if (addingForce)
             {
+                //[SOUND] air sound (Continuous)
+
                 velocity.y += gravity * Time.deltaTime;
 
                 airBorne.y = velocity.y;
@@ -809,14 +838,18 @@ public class PlayerController : MonoBehaviour
             //if in air
             else
             {
-                //air sound
+                //[SOUND] air sound (Continuous)
 
                 //add gravity
                 velocity.y += gravity * Time.deltaTime;
 
                 airBorne.y = velocity.y;
+
+                
+                airMove = Vector3.ClampMagnitude(transform.right * x + transform.forward * z + transform.up * 0, 1f) * speed * airMoveModifier * movementAcc;
+                //airBorne += airMove;
                 //decouple character rotation from airborne vector
-                move = airBorne - rotation;
+                move = (airBorne - rotation) + airMove;
 
                 //airborne player movement
                 //airMove = transform.right * x * walkSpeed * DMLimiter * airMoveModifier + transform.forward * z * walkSpeed * DMLimiter * airMoveModifier + transform.up * 0;
@@ -840,6 +873,8 @@ public class PlayerController : MonoBehaviour
         //check if character hit roof and reset upward movement
         if (move.y > 0 && Physics.Raycast(transform.position, Vector3.up, rayDistance))
         {
+            //[SOUND] hit roof sound (One Shot)
+
             velocity.y = 0;
         }
 
@@ -905,7 +940,16 @@ public class PlayerController : MonoBehaviour
 
         //movement vector debug
         //debugAS();
-        dodgeCooldown -= Time.fixedDeltaTime;
+        if (dodgeCooldown > 0)
+        {
+            dodgeCooldown -= Time.fixedDeltaTime;
+
+            if(dodgeCooldown < 0)
+            {
+                dodgeCooldown = 0;
+            }
+        }
+        
 
         PlayerVelocity();
     }
@@ -931,7 +975,7 @@ public class PlayerController : MonoBehaviour
         //return 
     }
 
-    public float PlayerVelocity()
+    public void PlayerVelocity()
     {
         /*
         playerPosition = transform.position;
@@ -947,28 +991,13 @@ public class PlayerController : MonoBehaviour
         float rbVelocity = Mathf.Sqrt(rb.velocity.x * rb.velocity.x + rb.velocity.z * rb.velocity.z);
         Debug.Log(rbVelocity);
         */
-        return Mathf.Sqrt(rb.velocity.x * rb.velocity.x + rb.velocity.z * rb.velocity.z);
-    }
-
-    void Shoot()
-    {
-        //shooting sound
-        int layerMask = LayerMask.GetMask("EnemyHitbox");
-        RaycastHit hit;
-        //raycast from center of screen if tagged enemy destroy target
-        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, layerMask))
-        {
-            if (hit.transform.CompareTag("Enemy"))
-            {
-                hit.transform.parent.transform.GetComponent<Grunt>().StartCoroutine("Die");
-
-            }
-            Debug.Log(hit.transform.name);
-        }
+        playerVelocity = Mathf.Sqrt(rb.velocity.x * rb.velocity.x + rb.velocity.z * rb.velocity.z);
     }
 
     private void Jump()
     {
+        //[SOUND] jump sound (One Shot)
+
         jumpTimer = 10;
         isSliding = false;
         isAirborne = true;
@@ -978,27 +1007,36 @@ public class PlayerController : MonoBehaviour
         //set airborne vector
         if (isGrounded)
         {
-            airBorne = Vector3.Normalize(transform.right * x + transform.forward * z + transform.up * 0) * PlayerVelocity() * movementAcc;
+            airBorne = Vector3.Normalize(transform.right * x + transform.forward * z + transform.up * 0) * playerVelocity * movementAcc;
         }
         else
         {
-            if(rawX == 0 && rawZ == 0)
+            if (rawX == 0 && rawZ == 0)
             {
                 airBorne = move;
             }
             else
             {
-                airBorne = Vector3.Normalize(transform.right * rawX + transform.forward * rawZ + transform.up * 0) * PlayerVelocity();
+                if (playerVelocity > baseSpeed * runSpeedMod * slideSpeedMod)
+                {
+                    airBorne = Vector3.Normalize(transform.right * rawX + transform.forward * rawZ + transform.up * 0) * baseSpeed * runSpeedMod * slideSpeedMod;
+                }
+                else
+                {
+                    airBorne = Vector3.Normalize(transform.right * rawX + transform.forward * rawZ + transform.up * 0) * playerVelocity;
+                }
+                
             }
         }
-        
+
         //airBorne = move;
     }
 
     private void WallJump()
     {
+        //[SOUND] jump sound (walljump) (One Shot)
+
         //float wallDot;
-        //jump sound
         Vector3 lookDir = Vector3.Normalize(transform.forward);
         wallDot = Vector3.Dot(wallHit.normal, lookDir);
 
@@ -1016,7 +1054,7 @@ public class PlayerController : MonoBehaviour
 
             //if looking away from wall jump forward
             //airBorne = transform.forward * speed;
-            airBorne = transform.forward * PlayerVelocity();
+            airBorne = transform.forward * playerVelocity;
             isWallRunning = false;
 
             //old version using the walldirection variable
@@ -1051,13 +1089,13 @@ public class PlayerController : MonoBehaviour
             {
                 jumpLimit = Quaternion.AngleAxis(81, Vector3.up) * wallHit.normal;
                 //airBorne = jumpLimit * speed;
-                airBorne = jumpLimit * PlayerVelocity();
+                airBorne = jumpLimit * playerVelocity;
             }
             else if (wallDirection == 4)
             {
                 jumpLimit = Quaternion.AngleAxis(-81f, Vector3.up) * wallHit.normal;
                 //airBorne = jumpLimit * speed;
-                airBorne = jumpLimit * PlayerVelocity();
+                airBorne = jumpLimit * playerVelocity;
             }
             else
             {
@@ -1103,16 +1141,26 @@ public class PlayerController : MonoBehaviour
 
     private void Dodge()
     {
+        //[SOUND] dodging sound (jumpsound?) (One Shot)
+
         isDodging = true;
-        //dodgeSpeed = 20f;
+        dodgeTimer = 3;
         dodgeSpeed = baseSpeed * dodgeSpeedMod;
-        dodgeCooldown = .2f;
-        //dodgeFrameTime = 0f;
+
         velocity.y = 0f;
-        //dodge = move * 4f *2f;
-        dodge = Vector3.Normalize(move);
-        //Vector3 norMove = Vector3.Normalize(move);
-        //dodge = norMove * runSpeed * 2f;
+
+        transform.position += new Vector3(0, .1f, 0);
+
+        deaccerelation = ((baseSpeed * dodgeSpeedMod) - (baseSpeed * runSpeedMod)) * 8f;
+
+        stopDodgingSpeed = baseSpeed;
+
+        dodge = Vector3.Normalize(new Vector3(move.x, 0, move.z));
+        move = dodge * dodgeSpeed - rotation;
+
+        move.y = velocity.y;
+
+        rb.AddForce(move, ForceMode.VelocityChange);
     }
 
     private void Slide()
@@ -1122,7 +1170,7 @@ public class PlayerController : MonoBehaviour
         //slideSpeedControl = 14f;
         slideSpeed = baseSpeed * runSpeedMod * slideSpeedMod;
 
-        if (slideSpeed < PlayerVelocity()) slideSpeed = PlayerVelocity();
+        if (slideSpeed < playerVelocity) slideSpeed = playerVelocity;
         //slide = transform.forward;
         slide = Vector3.Normalize(new Vector3(move.x, 0, move.z));
         //slideControl = transform.forward * slideSpeedControl;
@@ -1136,16 +1184,20 @@ public class PlayerController : MonoBehaviour
         }
         if (!isCrouching)
         {
-
+            ChangePlayerSize(false);
+            /*
             rayDistance = crouchRayDistance;
             groundCheck = new Vector3(0, -.25f, 0);
             //transform.localScale = new Vector3(1, .75f, 1);
             transform.localScale = new Vector3(transform.localScale.x, characterScale * 0.5f, transform.localScale.z);
+            */
             //transform.position = transform.position + new Vector3(0, -.75f, 0);
             if (isGrounded)
             {
-                transform.position = transform.position + new Vector3(0, -characterScale * .5f, 0);
+                transform.position = transform.position + new Vector3(0, -height * .25f, 0);
             }
+
+            //[SOUND] start crounching sound???? (One Shot)
 
             isCrouching = true;
         }
@@ -1158,23 +1210,28 @@ public class PlayerController : MonoBehaviour
         {
             if (isCrouching)
             {
+                ChangePlayerSize(true);
+                /*
                 rayDistance = standRayDistance;
                 groundCheck = new Vector3(0, -.5f, 0);
                 //transform.localScale = new Vector3(1, 1.5f, 1);
                 transform.localScale = new Vector3(transform.localScale.x, characterScale, transform.localScale.z);
                 //transform.position = transform.position + new Vector3(0, .75f, 0);
+                */
                 if (isGrounded)
                 {
-                    transform.position = transform.position + new Vector3(0, characterScale * .5f, 0);
+                    transform.position = transform.position + new Vector3(0, height * .25f, 0);
                 }
                 else
                 {
                     if (Physics.Raycast(transform.position, -Vector3.up, rayDistance))
                     {
-                        transform.position = transform.position + new Vector3(0, characterScale * .5f, 0);
+                        transform.position = transform.position + new Vector3(0, height * .25f, 0);
                     }
 
                 }
+
+                //[SOUND] stand up sound???? (One Shot)
 
                 isSliding = false;
                 isCrouching = false;
@@ -1182,6 +1239,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void ChangePlayerSize(bool standing)
+    {
+        if (standing)
+        {
+            rayDistance = standRayDistance;
+            groundCheck = new Vector3(0, -1, 0);
+            characterCollider.height = 3f;
+        }
+        else
+        {
+            rayDistance = crouchRayDistance;
+            groundCheck = new Vector3(0, -0.5f, 0);
+            characterCollider.height = 1.5f;
+        }
+    }
+
+    /*
     public void KillPlayer()
     {
         if (player.isAlive)
@@ -1233,6 +1307,7 @@ public class PlayerController : MonoBehaviour
         player.isAlive = true;
         player.playerControl = true;
     }
+    */
 
     private void OnCollisionStay(Collision collision)
     {
@@ -1240,7 +1315,7 @@ public class PlayerController : MonoBehaviour
         //contactPoints.Clear();
         //for (int i = 0; i < collision.contacts.Length; i++)
         //{
-         //   contactPoints.Add(collision.contacts[i].point);
+        //   contactPoints.Add(collision.contacts[i].point);
         //}
 
         foreach (ContactPoint p in collision.contacts)
@@ -1259,9 +1334,9 @@ public class PlayerController : MonoBehaviour
                 contactPoint = p.point;
                 return;
             }
-                
-                
-                
+
+
+
         }
 
     }

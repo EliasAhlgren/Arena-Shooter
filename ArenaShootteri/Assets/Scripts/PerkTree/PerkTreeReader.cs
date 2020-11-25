@@ -28,8 +28,8 @@ public class PerkTreeReader : MonoBehaviour
     // Variable for caching the currently being inspected perk
     private Perk _perkInspected;
 
-    public Player player;
-    public PerkHub perkHub;
+    public PlayerCharacterControllerRigidBody player;
+    //public PerkHub perkHub;
     public int availablePoints = 100;
 
     void Awake()
@@ -37,7 +37,7 @@ public class PerkTreeReader : MonoBehaviour
         if (_instance == null)
         {
             _instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            //DontDestroyOnLoad(this.gameObject);
             SetUpPerkTree();
         }
         else
@@ -49,7 +49,7 @@ public class PerkTreeReader : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCharacterControllerRigidBody>();
     }
 
     // Use this for initialization of the perk tree
@@ -185,6 +185,107 @@ public class PerkTreeReader : MonoBehaviour
         }
     }
 
+    public int IsPerkCost(int id_perk)
+    {
+        if (_perks.TryGetValue(id_perk, out _perkInspected))
+        {
+            return _perkInspected.cost;
+        }
+
+        return 0;
+    }
+
+    public bool CanActivePerkBeUnlocked(int id_perk)
+    {
+        bool canUnlock = true;
+
+        if (_perks.TryGetValue(id_perk, out _perkInspected)) // The perk exists
+        {
+                for (int i = 0; i < _perkTree.Length; ++i)
+                {
+
+                    if (_perks.TryGetValue(_perkTree[i].id_Perk, out Perk _perkInspecedActive))
+                    {
+                        if (_perkInspecedActive.perktype == PerkType.active)
+                        {
+                            if (_perkInspecedActive.unlocked)
+                            {
+                                Debug.Log("active perk unlocked");
+                                canUnlock = false;
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+        }
+        else // If theperk id doesn't exist, the perk can't be unlocked
+        {
+            return false;
+        }
+
+        return canUnlock;
+    }
+
+    public bool CanPerkBeUnlockedCost(int id_perk)
+    {
+        bool canUnlock = true;
+
+        if (_perks.TryGetValue(id_perk, out _perkInspected)) // The perk exists
+        {
+
+            if (_perkInspected.cost <= availablePoints) // Enough points available
+            {
+
+            }
+            else // If the player doesn't have enough perk points, can't unlock the new perk
+            {
+                return false;
+            }
+
+
+        }
+        else // If theperk id doesn't exist, the perk can't be unlocked
+        {
+            return false;
+        }
+        return canUnlock;
+    }
+
+    public bool CanPerkBeUnlockedDependencies(int id_perk)
+    {
+
+        bool canUnlock = true;
+
+        if (_perks.TryGetValue(id_perk, out _perkInspected)) // The perk exists
+        {
+            int[] dependencies = _perkInspected.perk_Dependencies;
+            for (int i = 0; i < dependencies.Length; ++i)
+            {
+                if (_perks.TryGetValue(dependencies[i], out _perkInspected))
+                {
+                    if (!_perkInspected.unlocked)
+                    {
+                        canUnlock = false;
+                        break;
+                    }
+                }
+                else // If one of the dependencies doesn't exist, the perk can't be unlocked.
+                {
+                    return false;
+                }
+            }
+        }
+        else // If theperk id doesn't exist, the perk can't be unlocked
+        {
+            return false;
+        }
+        return canUnlock;
+    }
+
     public bool CanPerkBeUnlocked(int id_perk)
     {
         bool canUnlock = true;
@@ -194,6 +295,7 @@ public class PerkTreeReader : MonoBehaviour
             
             if (_perkInspected.cost <= availablePoints) // Enough points available
             {
+                
                 if (_perkInspected.perktype == PerkType.active) // is perk type active
                 {
 
@@ -217,6 +319,7 @@ public class PerkTreeReader : MonoBehaviour
                         }
                     }
                 }
+                
 
                 int[] dependencies = _perkInspected.perk_Dependencies;
                 for (int i = 0; i < dependencies.Length; ++i)
@@ -354,6 +457,6 @@ public class PerkTreeReader : MonoBehaviour
     {
         availablePoints += points;
         PlayerPrefs.SetInt("PerkPoints", availablePoints);
-        perkHub.RefreshButtons();
+        //perkHub.RefreshButtons();
     }
 }

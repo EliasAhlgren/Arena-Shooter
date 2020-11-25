@@ -14,6 +14,7 @@ public class Altar : MonoBehaviour
 
     GameObject playerCanvas;
     public GameObject perkCanvas;
+    public GameObject tooltip;
 
     Text text;
 
@@ -39,34 +40,45 @@ public class Altar : MonoBehaviour
 
         //Debug.Log(cameraDot);
 
-        if (Vector3.Distance(player.transform.position, position) < 2)
+        if (Vector3.Distance(player.transform.position, position) < 4)
         {
             float cameraDot = Vector3.Dot(cam.transform.forward, Vector3.Normalize(cam.transform.position - position));
 
             if (cameraDot < -.8)
             {
-                if (!isText)
+                if (!isText && !isAltarActive)
                 {
                     text.text = "press E to activate";
                     isText = true;
+                }
+                else if (isText && isAltarActive)
+                {
+                    text.text = "";
+                    isText = false;
                 }
                 
                 if (Input.GetKeyDown(KeyCode.E) || isAltarActive && Input.GetKeyDown(KeyCode.E))
                 {
                     if (!isAltarActive)
                     {
+                        //[SOUND] perk altar activation sound (One Shot)
+
                         Cursor.lockState = CursorLockMode.Confined;
-                        player.GetComponent<Player>().PlayerControl(false);
+                        player.GetComponent<PlayerCharacterControllerRigidBody>().PlayerControl(false);
                         perkCanvas.SetActive(true);
                         isAltarActive = true;
                         //Debug.Log("Activate Altar");
                     }
                     else
                     {
+                        //[SOUND] perk altar deactivation sound (One Shot)
+
                         Cursor.lockState = CursorLockMode.Locked;
-                        player.GetComponent<Player>().PlayerControl(true);
+                        player.GetComponent<PlayerCharacterControllerRigidBody>().PlayerControl(true);
                         perkCanvas.SetActive(false);
                         isAltarActive = false;
+
+                        tooltip.SetActive(false);
                         //Debug.Log("Deactivate Altar");
                     }
 
