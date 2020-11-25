@@ -152,11 +152,11 @@ public class Grunt : MonoBehaviour, IDamage
         animator.enabled = false;                           // Stop animator
         agent.enabled = false;                              // Stop Nav Mesh Agent
         GetComponent<Grunt_StateMachine>().enabled = false;       // Stop AI
-       // Destroy(transform.Find("Vision").gameObject);       // Destory Vision
+                                                                  // Destroy(transform.Find("Vision").gameObject);       // Destory Vision
 
         // Change layer for enemy and all of it's children to "Dead Enemy" layer.
         // This layer doesnt interact with anything else than the Map itself.
-        int layerMask = LayerMask.GetMask("DeadEnemy");
+        int layerMask = (int)Mathf.Log(LayerMask.GetMask("DeadEnemy"), 2);
         SetLayerRecursively(transform.gameObject, layerMask);
 
         // Enemy stays on ground for 2 seconds.

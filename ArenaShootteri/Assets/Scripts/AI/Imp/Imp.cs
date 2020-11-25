@@ -115,7 +115,7 @@ public class Imp : MonoBehaviour, IDamage
 
         // Change layer for enemy and all of it's children to "Dead Enemy" layer.
         // This layer doesnt interact with anything else than the Map itself.
-        int layerMask = LayerMask.GetMask("DeadEnemy");
+        int layerMask = (int)Mathf.Log(LayerMask.GetMask("DeadEnemy"), 2);
         SetLayerRecursively(transform.gameObject, layerMask);
 
         yield return new WaitForSeconds(2);
