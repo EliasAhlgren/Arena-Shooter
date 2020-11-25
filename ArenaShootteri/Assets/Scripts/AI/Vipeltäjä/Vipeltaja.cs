@@ -164,7 +164,8 @@ public class Vipeltaja : MonoBehaviour, IDamage
 
         // Change layer for enemy and all of it's children to "Dead Enemy" layer.
         // This layer doesnt interact with anything else than the Map itself.
-        SetLayerRecursively(transform.gameObject, 9);
+        int layerMask = LayerMask.GetMask("DeadEnemy");
+        SetLayerRecursively(transform.gameObject, layerMask);
 
         // I'm dead. Notify others near me
         //GameObject[] vipeltajat = GameObject.FindGameObjectsWithTag("Vipeltaja");
@@ -181,8 +182,8 @@ public class Vipeltaja : MonoBehaviour, IDamage
         //}
 
         // tell other Vipeltaja enemies that this unit is dead. other should start to panic
-        int layerMask = LayerMask.GetMask("Enemy");
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 20, layerMask);
+        int layerMask2 = LayerMask.GetMask("Enemy");
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 20, layerMask2);
         foreach (var collider in colliders)
         {
             if (collider.CompareTag("Vipeltaja"))

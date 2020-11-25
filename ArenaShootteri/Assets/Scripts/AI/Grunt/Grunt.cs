@@ -42,7 +42,7 @@ public class Grunt : MonoBehaviour, IDamage
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        cone = transform.Find("VisionCone");
+        cone = transform.Find("Vision");
 
         // These might not be necessary
         // Just in case rigidbody and colliders are not enabled
@@ -152,11 +152,11 @@ public class Grunt : MonoBehaviour, IDamage
         animator.enabled = false;                           // Stop animator
         agent.enabled = false;                              // Stop Nav Mesh Agent
         GetComponent<Grunt_StateMachine>().enabled = false;       // Stop AI
-        Destroy(transform.Find("Hitbox").gameObject);       // Destroy Hitbox
-        Destroy(transform.Find("Vision").gameObject);       // Destory Vision
+       // Destroy(transform.Find("Vision").gameObject);       // Destory Vision
 
         // Change layer for enemy and all of it's children to "Dead Enemy" layer.
         // This layer doesnt interact with anything else than the Map itself.
+        int layerMask = LayerMask.GetMask("DeadEnemy");
         SetLayerRecursively(transform.gameObject, 9);
 
         // Enemy stays on ground for 2 seconds.

@@ -17,7 +17,7 @@ public class GruntChargeState : BaseState
     {
         grunt = _grunt;
 
-        chargeCollider = grunt.transform.root.Find("ChargeHandle").GetComponent<Collider>();
+        chargeCollider = grunt.transform.root.Find("ChargeCollider").GetComponent<Collider>();
         if(chargeCollider != null) {
             Debug.Log("Collider found " + chargeCollider);
         }
