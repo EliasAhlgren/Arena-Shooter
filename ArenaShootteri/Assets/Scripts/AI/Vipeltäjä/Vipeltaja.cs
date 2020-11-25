@@ -1,60 +1,24 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using AI;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Vipeltaja : MonoBehaviour, IDamage
-{    /// <summary>
-     /// Vipeltaja's target
-     /// </summary>
+public class Vipeltaja : MonoBehaviour
+{
     public GameObject target { get; private set; }
-
-    // IDamage variable
-    public float IHealth { get; set; } = 100f;
-
-    public bool canAttack = true;
-
     public GameObject spitPrefab;
     public Transform spitPosition;
     public Rigidbody rb;
-
-
-    // Speed is based on current animation speed. Dont change this value.
-    // Change animation speed instead. // Jump speed not yet implemented.
-    public float walkSpeedBase = 6.0f, jumpSpeedBase = 20.0f;
-    public float walkSpeed, jumpSpeed;
-    public float speed;
-
-    /// <summary>
-    /// Attack range of Vipeltaja
-    /// </summary>
+    public float speed = 1;
     public float attackRange = 3;
     public float attackCounter = 0f;
-    /// <summary>
-    /// <c>Vipeltaja</c> attack cooldown
-    /// </summary>
     public float attackCooldown = 2f;
-    /// <summary>
-    /// <c>Vipeltaja</c> jumping distance 
-    /// </summary>
     public float jumpDistance;
-    /// <summary>
-    /// <c>Vipeltaja</c> Jump cooldown
-    /// </summary>
+    public float jumpSpeed;
     public float jumpCooldown;
-    /// <summary>
-    /// is <c>Vipeltaja</c> ready to attack?
-    /// </summary>
     public bool readyToAttack = true;
-    /// <summary>
-    /// Reference to NavMeshAgent component
-    /// </summary>
     public NavMeshAgent agent;
-    /// <summary>
-    /// Reference to Animator compontent
-    /// </summary>
     public Animator animator;
 
     // Start is called before the first frame update
@@ -71,15 +35,8 @@ public class Vipeltaja : MonoBehaviour, IDamage
 
     private void Awake()
     {
-        // Initialize State Machine
         InitStateMachine();
-
-        // Assign the target to be player object
         target = GameObject.FindGameObjectWithTag("Player");
-
-        // what for... Not really sure. 
-        agent.SetDestination(target.transform.position);
-
         Debug.Log("Vipeltäjä is awake");
     }
 
@@ -87,7 +44,7 @@ public class Vipeltaja : MonoBehaviour, IDamage
     {
         var states = new Dictionary<Type, BaseState>()
        {
-            // All States for Vipeltaja.
+            /// Add more states if necessary.
             {typeof(VipeltajaChaseState), new VipeltajaChaseState(_vipeltaja: this) },
             {typeof(VipeltajaAttackState), new VipeltajaAttackState(_vipeltaja: this) },
             {typeof(VipeltajaDoNothingState), new VipeltajaDoNothingState(_vipeltaja: this) },
@@ -98,33 +55,6 @@ public class Vipeltaja : MonoBehaviour, IDamage
         GetComponent<Vipeltaja_StateMachine>().SetStates(states);
     }
 
-    public void Update()
-    {
-        animator.SetFloat("velocity", agent.velocity.magnitude / agent.speed);
-        // Track if vipeltaja is ready to attack
-        if (!readyToAttack)
-        {
-            attackCounter += Time.deltaTime;
-            if (attackCounter > attackCooldown)
-            {
-                readyToAttack = true;
-                canAttack = true;
-                attackCounter = 0f;
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Die();
-        }
-
-        walkSpeed = walkSpeedBase * animator.GetCurrentAnimatorStateInfo(0).speed;
-        agent.speed = walkSpeed;
-        jumpSpeed = jumpSpeedBase * animator.GetCurrentAnimatorStateInfo(0).speed;
-
-
-    }
-
     /// <summary>
     /// method <c>SetTarget</c> set target for Vipeltaja
     /// </summary>
@@ -132,21 +62,13 @@ public class Vipeltaja : MonoBehaviour, IDamage
     {
         target = _target;
     }
-    /// <summary>
-    /// Runs Vipeltaja's attack logic
-    /// </summary>
+
     public void Attack()
     {
         Debug.Log("Vipeltäjä melee attack");
         // Implement what enemy does when attack happens
         target.GetComponent<PlayerCharacterControllerRigidBody>().killPlayer();
     }
-
-    /// <summary>
-    /// Launch death logic when Vipeltaja dies.
-    /// Runs Ragdoll death "animation". Disables AI
-    /// and sets layer to "Dead Enemy".
-    /// </summary>
 
     public IEnumerator Die()
     {
@@ -161,35 +83,6 @@ public class Vipeltaja : MonoBehaviour, IDamage
         GetComponent<Vipeltaja_StateMachine>().enabled = false;       // Stop AI
         Destroy(transform.Find("Hitbox").gameObject);       // Destroy Hitbox
 
-        // Change layer for enemy and all of it's children to "Dead Enemy" layer.
-        // This layer doesnt interact with anything else than the Map itself.
-        SetLayerRecursively(transform.gameObject, 9);
-
-        // I'm dead. Notify others near me
-        //GameObject[] vipeltajat = GameObject.FindGameObjectsWithTag("Vipeltaja");
-        //foreach (GameObject vipeltaja in vipeltajat)
-        //{
-        //    if (Vector3.Distance(vipeltaja.transform.position, transform.position) < 20)
-        //    {
-        //        if (vipeltaja.gameObject != this.gameObject)
-        //        {
-        //            vipeltaja.GetComponent<Vipeltaja>().GetFeared();
-        //            Debug.Log("Feared");
-        //        }
-        //    }
-        //}
-
-        // tell other Vipeltaja enemies that this unit is dead. other should start to panic
-        int layerMask = LayerMask.GetMask("Enemy");
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 20, layerMask);
-        foreach (var collider in colliders)
-        {
-            if (collider.CompareTag("Vipeltaja"))
-            {
-                collider.GetComponentInParent<Vipeltaja>().GetFeared();
-            }
-        }
-
         // Enemy stays on ground for 2 seconds.
         // After that set all colliders back to false 
         // and let body sink throught the floor
@@ -198,33 +91,7 @@ public class Vipeltaja : MonoBehaviour, IDamage
         setColliderState(false);
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
-
-
     }
-    // AI.IDamage TakeDamage function
-    public void TakeDamage(float damage)
-    {
-        IHealth -= damage;
-
-        if (IHealth <= 0f)
-        {
-            StartCoroutine(Die());
-        }
-    }
-
-
-    /// <summary>
-    /// force Vipeltaja to escape state
-    /// </summary>
-    public void GetFeared()
-    {
-        GetComponent<Vipeltaja_StateMachine>().CancelInvoke(GetComponent<Vipeltaja_StateMachine>().currentState.ToString());
-        GetComponent<Vipeltaja_StateMachine>().SwitchToState(typeof(VipeltajaEscapeState));
-    }
-    /// <summary>
-    /// Used to spawn Spit object. 
-    /// </summary>
-    /// !!!NEEDS MODIFICATIONS!!!
 
     public void SpawnSpit()
     {
@@ -232,12 +99,10 @@ public class Vipeltaja : MonoBehaviour, IDamage
         animator.Play("Spit");
         GameObject spit = Instantiate(spitPrefab, spitPosition.position, Quaternion.identity);
         spit.GetComponent<Rigidbody>().velocity = ballisticVelocity;
-
+        
     }
-    /// <summary>
-    /// Sets rigidbodys in children to <c>state</c> 
-    /// </summary>
-    /// <param name="state">Boolean state for the rigidbody </param>
+
+
     void SetRigidbodyState(bool state)
     {
         Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
@@ -247,10 +112,7 @@ public class Vipeltaja : MonoBehaviour, IDamage
             rb.isKinematic = state;
         }
     }
-    /// <summary>
-    /// Sets colliders in children to <c>state</c> 
-    /// </summary>
-    /// <param name="state">Boolean state for the colliders</param>
+
     void setColliderState(bool state)
     {
         Collider[] colliders = GetComponentsInChildren<Collider>();
@@ -265,12 +127,6 @@ public class Vipeltaja : MonoBehaviour, IDamage
         }
     }
 
-    /// <summary>
-    /// Count ballistics for spit gameobject.
-    /// </summary>
-    /// <param name="target">where spit should land</param>
-    /// <param name="angle">angle used to launch spit</param>
-    /// <returns>Velocity for spit so it lands on player</returns>
     public Vector3 BallisticVelocity(Transform target, float angle)
     {
         Vector3 direction = target.position - transform.position;
@@ -285,33 +141,4 @@ public class Vipeltaja : MonoBehaviour, IDamage
         return velocity * direction.normalized;
 
     }
-    /// <summary>
-    /// Recursively sets Layer of each Game Object to newLayer
-    /// </summary>
-    /// <param name="obj">Parent GameObject</param>
-    /// <param name="newLayer">number for new layer</param>
-    public void SetLayerRecursively(GameObject obj, int newLayer)
-    {
-        if (null == obj)
-        {
-            return;
-        }
-
-        obj.layer = newLayer;
-
-        foreach (Transform child in obj.transform)
-        {
-            if (null == child)
-            {
-                continue;
-            }
-            SetLayerRecursively(child.gameObject, newLayer);
-        }
-    }
-
-
-    
-}    
-
-
-
+}

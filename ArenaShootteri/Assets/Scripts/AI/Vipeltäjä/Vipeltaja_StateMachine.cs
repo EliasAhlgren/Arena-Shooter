@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System;
 using System.Linq;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine;
 public class Vipeltaja_StateMachine : MonoBehaviour
 {
     private Dictionary<Type, BaseState> _availableStates;
+
     public BaseState currentState { get; private set; }
     public event Action<BaseState> OnStateChange;
 
@@ -16,8 +18,10 @@ public class Vipeltaja_StateMachine : MonoBehaviour
         currentState = _availableStates.Values.First();
     }
 
+    // Update is called once per frame
     public void Update()
-    { 
+    {
+
         var nextState = currentState?.Tick();
 
         if (nextState != null && nextState != currentState?.GetType())
@@ -26,7 +30,6 @@ public class Vipeltaja_StateMachine : MonoBehaviour
         }
 
     }
-
     public void SwitchToState(Type nextState)
     {
         // Debug.Log("State changed to " + currentState);
@@ -35,4 +38,7 @@ public class Vipeltaja_StateMachine : MonoBehaviour
         currentState.OnStateEnter();
         OnStateChange?.Invoke(currentState);
     }
+
+
+
 }

@@ -5,1066 +5,654 @@ using UnityEngine.UI;
 
 public class PlayerCharacterControllerRigidBody : MonoBehaviour
 {
-    //references to GameObjects
-    public Rigidbody rb;
-    public Transform playerCamera;
-    public GameObject groundCheck;
-    CapsuleCollider characterCollider;
+    public Text playerHP;
+    public Movement movement;
+    [Header("Test Mode")]
+    public bool testKeys = true;
+    public bool shakeRotation = false;
+    [Space(10)]
+    public float magnitudeTest = 1;
+    public float roughnesTest = 1;
+    public float fadeInTest = 1;
+    public float fadeOutTest = 1;
+    [Space(10)]
+    public float testForce = 10;
+    public Vector3 testForceVector = new Vector3(1, 0, 1);
 
+    [Header("Player Stats")]
+    public bool isAlive = true;
     public float health = 100f;
+    public float defaultMaxHealth = 100f;
     public float maxHealth = 100f;
+    public float stamina = 100f;
+    public float defaultSpeed = 6f;
+    [Space(10)]
+    public float damageModifier = 1;
+    public float reloadModifier = 1;
+    public float defenseModifier = 1;
+    public float fireRateModifier = 1;
+    public float spawnRateModifier = 1;
+    public float rageDamageModifier = 1;
 
-    Image deathImage;
-    public GameObject deathCanvas;
 
-    float colorAlpha = 0f;
-    public float minAlpha = 0f;
-    public float maxAlpha = 1f;
-    public float alphaLerp = 0f;
-
-    //character height
-    float height;
-    float characterScale;
-
-    Vector3 groundCheckSize = new Vector3(.3f, .7f, .3f);
-    Vector3 wallCheckSize = new Vector3(.6f, .5f, .6f);
-
-    public LayerMask groundLayerMask;
+    [Header("Player Controls")]
+    public bool playerControl = true;
 
     //mouse input multiplier
     public float mouseSensitivity = 100f;
-
-    //keyboard & mouse input variables;
-    float x;
-    float z;
-    float mouseX;
-    float mouseY;
-
-    //mouse input variable holder
-    float xRotation = 0f;
-
-    //wallrun camera tilt
-    float tiltAngle = 5;
-    float cameraTilt = 0f;
-    float currentTilt = 0f;
-    float previousTilt = 0f;
-    float tiltLerp = 0f;
-
-    //diagonal movement limiter variable;
-    float DMLimiter;
-
-    //movement modifier variables
-    float gravity;
-    public float jumpHeight = 3f;
-    public float airMoveModifier = .2f;
-
-    //actual movement values
-    float speed;
-    public float runSpeed = 12f;
-    public float walkSpeed = 6f;
-    public float slideSpeedControl = 14f;
-    public float slideDuration = 1f;
-    float slideTime = 1f;
-    float slideSpeed = 17f;
-    float slideMovementSpeed = 6f;
+    public bool rawMouseInput = false;
+    public bool rawMovementInput = false;
 
 
-    //character controller slidelimit variable holder
-    public float slideLimit = 45.1f;
+    // perk cooldowns
+    float rageModeActiveTime = 0;
+    float activePerkCooldown = 0;
+    float activePerkActiveTime = 0;
 
-    //character size raycast length holders
-    float rayDistance;
-    float standRayDistance;
-    float crouchRayDistance;
-    float crouchToStandRayDistance;
 
-    float rayDistanceMargin;
 
-    //character state variables
-    public bool isMoving;
-    public bool isGrounded;
-    public bool isAirborne;
-    public bool isSliding;
-    public bool isSlidingControl;
-    public bool isCrouching;
-    public bool isRunning;
-    public bool isWallRunning;
-    public bool isDodging;
-    public bool isTouchingWall;
+    [Header("Perk Unlock")]
+    public bool doubleJumpUnlocked = false;
+    public bool slideUnlocked = true;
+    public bool dodgeUnlocked = true;
+    public bool wallJumpUnlocked = true;
+    public bool wallRunUnlocked = true;
+    [Space(10)]
+    public bool rageModeUnlocked = false;
+    public bool damageAuraUnlocked = false;
+    public bool groundSlamUnlocked = false;
+    [Space(10)]
+    public bool resurectionUnlocked = false;
+    public bool divineShieldUnlocked = false;
+    public bool theHolyLightUnlocked = false;
 
-    public bool playerControl = true;
+    [Header("Active Perk Modifiers")]
+    public float damageAuraCooldown = 10;
+    public float damageAuraTime = 10;
+    public float theHolyLightCooldown = 10;
+    public float divineShieldCooldown = 10;
+    public float divineShieldTime = 10;
 
-    public bool isAlive = true;
+    [Header("Perk Modifiers")]
+    public float speedMod = .05f;
+    public float damageMod = .05f;
+    public float fireRateMod = -.05f;
+    public float reloadMod = -.05f;
+    public float healthMod = .05f;
+    public float spawnRateMod = -.05f;
+    public float defenseMod = -.05f;
+    [Space(10)]
+    public float resurectionHP = 10;
+    public float damageAuraRange = 5;
+    public float rageMod = 1;
+    public float rageModRegKills = 3;
+    public float rageModTimer = 10;
+    [Space(10)]
 
-    //variables for movement on slopes
-    float slopeDot;
-    float slopeAngle;
-    float slopeAngle2;
-    float slopeSpeed;
-    bool evenGround;
-    Vector3 slopeDir;
+    List<float> rageKills = new List<float>();
+    bool rageMode = false;
 
-    //variables for movement on walls
-    float maxWallDistance = 1.25f;
-    RaycastHit wallHit;
-    Vector3 wallNormal;
-    int wallDirection;
-    Collider[] wallCheck;
-    float wallDot;
+    float invulnerability = 0f;
+    bool invulnerable = false;
 
-    //normal wallrunning or walljumping
-    public bool wallRunninType;
+    [Header("Utility")]
+    //public float velocity;
 
-    //character movement vector
-    Vector3 move;
-    //gravity vector
-    Vector3 velocity = new Vector3(0,0,0);
+    public Image deathImage;
+    public GameObject deathCanvas;
+    public float colorAlpha = 0f;
 
-    //character airbone & slide vector holders
-    Vector3 airBorne;
-    Vector3 slide;
-    Vector3 slideControl;
-    Vector3 dodge;
+    public GameObject damageAuraModel;
+    bool resurection = true;
 
-    //jump groundcheck delay
-    int jumpTimer = 0;
-
-    //dodge duration in frames
-    int dodgeFrameTime;
-
-    //character movement vector when airbone
-    Vector3 airMove;
-
-    //character controller collider hit point
-    Vector3 contactPoint;
-
-    //variable for decouplin horizontal rotation from uncontrollable movement
-    Vector3 rotation;
-
+    // Start is called before the first frame update
     void Start()
     {
-        deathImage = deathCanvas.GetComponentInChildren<Image>();
-        //lock cursor
-        Cursor.lockState = CursorLockMode.Locked;
-
-        //initialize variables
-        characterCollider = GetComponent<CapsuleCollider>();
-        height = characterCollider.height * transform.localScale.y;
-        characterScale = transform.localScale.y;
-        standRayDistance = height * .5f;
-        crouchRayDistance = standRayDistance * .5f;
-        crouchToStandRayDistance = standRayDistance + height * .25f;
-        rayDistanceMargin = characterCollider.radius;
-        gravity = Physics.gravity.y;
+        movement = GetComponent<Movement>();
+        //deathCanvas = GetComponentInChildren<Canvas>(true).gameObject;
+        //deathImage = deathCanvas.GetComponentInChildren<Image>(true);
+        
+        CheckPerks();
+        health = maxHealth;
+        CheckHealth();
     }
 
+    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+
+        //playerController.baseSpeed = defaultSpeed * speedMod;
+
+        //velocity = movement.PlayerVelocity();
+
+        Stamina();
+        Invulnerability();
+
+        if (rageModeUnlocked) RageMode();
+        if (damageAuraUnlocked) DamageAura();
+        if (theHolyLightUnlocked) TheHolyLight();
+
+
+        if (playerControl && Time.timeScale > 0)
         {
-            health -= 50f;
-        }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            if (playerControl)
-            {
-                playerControl = false;
-            }
-            else
-            {
-                playerControl = true;
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            if (isAlive)
-            {
-                killPlayer();
-            }
-            else
-            {
-                RevivePlayer();
-            }
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            if (Time.timeScale == 1.0f)
-            {
-                Time.timeScale = 0f;
-            }
-            else
-            {
-                Time.timeScale = 1.0f;
-            }
-        }
-
-        if (playerControl)
-        {
-
-            
-
-            // Siirsin ampumisen aseen scriptiin
-
+            /*
             //shoot
             if (Input.GetMouseButtonDown(0))
             {
                 //trigger pull sound?
                 Shoot();
             }
-            
+            */
 
-            //jump
-            if (Input.GetButtonDown("Jump"))
+            // activate active perk "Y"
+            if (Input.GetKeyDown(KeyCode.Y))
             {
-                //jump sound
-                if (isGrounded)
+                if (activePerkActiveTime <= 0 && activePerkCooldown <= 0)
                 {
-                    Jump();
-                }
-                else if (isWallRunning)
-                {
-                    WallJump();
-                }
-            }
-
-            //crouch
-            if (Input.GetKey(KeyCode.C))
-            {
-                Crouch();
-
-            }
-            else if (!isSlidingControl)
-            {
-                UnCrouch();
-            }
-
-            //dodge
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                Dodge();
-            }
-
-            //running + prevent crouch running
-            if (Input.GetKey(KeyCode.LeftShift) && !isCrouching)
-            {
-                //set running speed for forward movement and multiply other direction movement by 25%
-                isRunning = true;
-                speed = runSpeed;
-            }
-            else
-            {
-                //set walking speed
-                isRunning = false;
-                speed = walkSpeed;
-            }
-
-            //mouse input
-            mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-            mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
-
-            //keyboard input
-            x = Input.GetAxis("Horizontal");
-            z = Input.GetAxis("Vertical");
-        }
-        else
-        {
-            mouseX = 0f;
-            mouseY = 0f;
-
-            x = 0f;
-            z = 0f;
-        }
-
-
-        //set directional movement limiter
-        if (Mathf.Sqrt(x * x + z * z) > 1)
-        {
-            DMLimiter = 0.7f;
-        }
-        else
-        {
-            DMLimiter = 1f;
-        }
-
-        //limit camera vertical movement
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-        if (isAlive)
-        {
-            if (!isWallRunning)
-            {
-                cameraTilt = 0f;
-            }
-
-            if (currentTilt == cameraTilt)
-            {
-                previousTilt = currentTilt;
-                tiltLerp = 0f;
-            }
-            else
-            {
-                tiltLerp += 5f * Time.deltaTime;
-            }
-
-            currentTilt = Mathf.Lerp(previousTilt, cameraTilt, tiltLerp);
-        }
-        else
-        {
-
-            alphaLerp += .3f * Time.deltaTime;
-
-            colorAlpha = Mathf.Lerp(minAlpha, maxAlpha, alphaLerp);
-
-            deathImage.color = new Color(deathImage.color.r, deathImage.color.r, deathImage.color.r, colorAlpha);
-        }
-
-        //camera vertical rotation
-        playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, currentTilt);
-
-        //playerCamera.transform.rotation = Quaternion.Euler(0f, 0f, -10f);
-
-        //store horizontal rotation in 0 length vector
-        rotation = (Vector3.up * mouseX);
-        rotation *= 0f;
-
-        //player horizontal rotation
-        rb.rotation *= Quaternion.Euler(0, mouseX, 0);
-        //playerBody.Rotate(Vector3.up * mouseX);
-
-        //if character is touching ground
-        if (isGrounded)
-        {
-            if (isWallRunning)
-            {
-                isWallRunning = false;
-            }
-
-            if (isAirborne || isSliding)
-            {
-                //landing sound
-
-                //set airborne false
-                isAirborne = false;
-                //set sliding false
-                isSliding = false;
-            }
-
-
-            //Debug.DrawRay(transform.position, -Vector3.up * (rayDistance + rayDistanceMargin + 2f), Color.red);
-            //check if ground normal is over slide limit and set sliding true if it is
-            RaycastHit hit;
-            //raycast from center of character
-            if (Physics.Raycast(transform.position, -Vector3.up, out hit, (rayDistance + rayDistanceMargin + 2f), groundLayerMask))
-            {
-                //get angles of triangle from raycast to ground normal
-                slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
-                slopeAngle2 = 90 - slopeAngle;
-
-                //if standing on even ground
-                if (slopeAngle == 0)
-                {
-                    evenGround = true;
-                }
-                //if slope angle too high slide
-                else if (slopeAngle > slideLimit)
-                {
-                    evenGround = false;
-                    isSliding = true;
-                }
-                //calculate slope angle to control vertical movement on slopes
-                else
-                {
-                    Vector3 movedir = new Vector3(move.x, 0, move.z);
-                    movedir = Vector3.Normalize(movedir);
-                    slopeDir = new Vector3(hit.normal.x, 0, hit.normal.z);
-                    slopeDir = Vector3.Normalize(slopeDir);
-
-                    slopeDot = Vector3.Dot(movedir, slopeDir);
-                    float vectorlen = Vector3.Magnitude(new Vector3(x, 0, z));
-                    slopeSpeed = speed * DMLimiter * vectorlen * (Mathf.Sin((slopeAngle * Mathf.PI) / 180)) / (Mathf.Sin((slopeAngle2 * Mathf.PI) / 180));
-
-                    evenGround = false;
-                }
-
-            }
-            //if raycast failed due to high incline try again from contact point
-            else
-            {
-                if (Physics.Raycast(contactPoint + Vector3.up, -Vector3.up, out hit, groundLayerMask))
-                {
-                    slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
-                    if (slopeAngle > slideLimit)
+                    if (divineShieldUnlocked)
                     {
-                        evenGround = false;
-                        isSliding = true;
+                        //[SOUND] divine shield perk activation sound (One Shot)
+
+                        DivineShield();
                     }
-                }
-            }
+                    else if (damageAuraUnlocked)
+                    {
+                        //[SOUND] damage aura perk activation sound (One Shot)
 
+                        activePerkActiveTime = damageAuraTime;
+                        activePerkCooldown = damageAuraCooldown;
+                    }
+                    else if (theHolyLightUnlocked)
+                    {
+                        //[SOUND] the holy light perk activation sound (One Shot)
 
-            //if ground normal is over slide limit calclulate slide vector from ground normal
-            if (isSliding)
-            {
-                //sliding sound
-
-                Vector3 hitNormal = hit.normal;
-                slide = new Vector3(hitNormal.x, -hitNormal.y, hitNormal.z);
-                Vector3.OrthoNormalize(ref hitNormal, ref slide);
-                //set slidespeed
-                slide *= slideSpeed;
-
-                //set antibump
-                velocity.y = -slideSpeed;
-                slide.y = velocity.y;
-
-                //decouple character rotation from slide vector
-                move = slide - rotation;
-
-                //create normalized vector for moving sideways during slide and multiply it by player input
-                Vector3 slidedir = new Vector3(slide.x, 0, slide.z);
-                Vector3 movedir;
-                movedir = transform.right * x * DMLimiter + transform.forward * z * DMLimiter + transform.up;
-                slidedir = Quaternion.Euler(0, 90, 0) * slidedir;
-                slidedir = Vector3.Normalize(slidedir);
-                slidedir = Vector3.Scale(slidedir, -movedir);
-                move += slidedir * slideMovementSpeed;
-
-            }
-            else if (isSlidingControl)
-            {
-                slideTime -= Time.deltaTime;
-
-                move = slideControl - rotation;
-
-                if (slideTime <= 0f)
-                {
-                    isSlidingControl = false;
-                }
-            }
-            else if (isDodging)
-            {
-                dodgeFrameTime -= 1;
-                move = dodge;
-                if (dodgeFrameTime < 1)
-                {
-                    isDodging = false;
-                }
-            }
-            else
-            {
-                if (isCrouching)
-                {
-                    //crouching sound
-                }
-                else if (isRunning)
-                {
-                    //running sound
+                        TheHolyLight();
+                    }
+                    
                 }
                 else
                 {
-                    //walking sound
-                }
+                    //[SOUND] perk activation failed sound (One Shot)
 
-                //if grounded and not sliding allow player free movement
-                move = transform.right * x * speed * DMLimiter + transform.forward * z * speed * DMLimiter + transform.up * velocity.y;
-
-                //set vertical movement depending on ground angle to prevent bumping
-                if (evenGround)
-                {
-                    velocity.y = -2f;
-                }
-                else if (!isMoving)
-                {
-                    velocity.y = 0f;
-                }
-                else if (slopeDot < 0)
-                {
-                    velocity.y = (-slopeSpeed * slopeDot);
-                    //velocity.y = 0f;
-                }
-                else if (slopeDot > 0)
-                {
-                    velocity.y = (-slopeSpeed * slopeDot);
                 }
             }
-        }
-        //!if is grounded
-        else
-        {
-            if (isDodging)
-            {
-                isDodging = false;
-                dodgeFrameTime = 0;
-                //move *= .125f;
-                Vector3 norMove = Vector3.Normalize(move);
-                dodge = norMove * runSpeed;
-                //move *= .5f;
-            }
 
-            isSliding = false;
-
-            //if falling from ledge
-            if (!isAirborne)
-            {
-                Debug.Log("this shouldn't show if jumping");
-                isAirborne = true;
-                //make initial falling less floaty
-                velocity.y = -2f;
-                //set ariborne vector
-                airBorne = move;
-            }
-
-            if (!isWallRunning && isTouchingWall && jumpTimer < 1)
-            {
-                //raycasts to detect wall direction when posible to start wallrunning
-                //forward
-                if (Physics.Raycast(transform.position, transform.forward, out wallHit, maxWallDistance, groundLayerMask))
-                {
-                    wallDirection = 1;
-                    isWallRunning = true;
-                    wallNormal = wallHit.normal;
-                    //Debug.Log("wall forward");
-                    //Debug.DrawRay(wallHit.point, wallHit.normal * 20f);
-                }
-                //backwards
-                else if (Physics.Raycast(transform.position, -transform.forward, out wallHit, maxWallDistance, groundLayerMask))
-                {
-                    wallDirection = 2;
-                    isWallRunning = true;
-                    wallNormal = wallHit.normal;
-                    //Debug.Log("wall behind");
-                }
-                //right
-                else if (Physics.Raycast(transform.position, transform.right, out wallHit, maxWallDistance, groundLayerMask))
-                {
-
-                    if (wallRunninType && isRunning)
-                    {
-                        airBorne = new Vector3(move.x, 0, move.z);
-                        if (Physics.Raycast(transform.position + new Vector3(0, .2f, 0), transform.right, maxWallDistance, groundLayerMask))
-                        {
-                            velocity.y = 5f;
-                        }
-                        else
-                        {
-                            velocity.y = 0f;
-                        }
-
-                    }
-
-                    wallDirection = 3;
-                    isWallRunning = true;
-                    wallNormal = wallHit.normal;
-                    wallNormal = -Vector3.Cross(wallNormal, Vector3.up);
-                    //Debug.Log("wall right");
-                }
-                //left
-                else if (Physics.Raycast(transform.position, -transform.right, out wallHit, maxWallDistance, groundLayerMask))
-                {
-
-                    if (wallRunninType && isRunning)
-                    {
-                        airBorne = new Vector3(move.x, 0, move.z);
-                        if (Physics.Raycast(transform.position + new Vector3(0, .2f, 0), -transform.right, maxWallDistance, groundLayerMask))
-                        {
-                            velocity.y = 5f;
-                        }
-                        else
-                        {
-                            velocity.y = 0f;
-                        }
-
-                    }
-
-                    wallDirection = 4;
-                    isWallRunning = true;
-                    wallNormal = wallHit.normal;
-                    wallNormal = Vector3.Cross(wallNormal, Vector3.up);
-                    //Debug.Log("wall left");
-                }
-                //move = new Vector3(0, 0, 0);
-                //airBorne = move;
-                //isWallRunning = true;
-            }
         }
 
-        if (isAirborne)
+
+        // key codes for testing purpose
+        if (testKeys)
         {
-
-            if (isWallRunning)
+            if (Input.GetKeyDown(KeyCode.M))
             {
-                if (!isTouchingWall)
+                StartCoroutine(movement.playerCamera.GetComponent<CameraShake>().Shake(magnitudeTest, roughnesTest, fadeInTest, fadeOutTest, shakeRotation));
+                //StartCoroutine(movement.playerCamera.GetComponent<CameraShake>().Shake(1, 1,1,1, shakeRotation));
+            }
+
+            // add perk points test "N"
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                PerkTreeReader.Instance.AddPerkPoint(10);
+            }
+
+            // add force test "T"
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                movement.PlayerAddForce(testForceVector, testForce);
+            }
+
+            // kill player test "j"
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                if (isAlive)
                 {
-                    Debug.Log("start wall running");
-                    isWallRunning = false;
-                }
-
-                //if wall is either left or right start wallrunning
-                if (wallDirection >= 3 && z > 0 && isRunning && wallRunninType)
-                {
-                    //Debug.Log("wall running");
-                    if (velocity.y >= 0.0f)
-                    {
-                        //airBorne = new Vector3(airBorne.x, airBorne.y, airBorne.z);
-                        velocity.y -= 4.5f * Time.deltaTime;
-                    }
-                    //Debug.DrawRay(transform.position, transform.right * 10f, Color.red);
-                    //Debug.DrawRay(transform.position, -transform.right * 10f, Color.red);
-                    //Debug.Log(wallDirection);
-                    if (wallDirection == 3)
-                    {
-                        Vector3 wallCheckDir = Quaternion.AngleAxis(90, Vector3.up) * wallNormal;
-                        //Debug.DrawRay(transform.position, wallCheckDir * 10f, Color.red);
-                        if (Physics.Raycast(transform.position, wallCheckDir, out wallHit, maxWallDistance, groundLayerMask))
-                        {
-                            if (!Physics.Raycast(transform.position + new Vector3(0, .2f, 0), transform.right, maxWallDistance, groundLayerMask))
-                            {
-                                velocity.y = 0f;
-                            }
-
-                            //Debug.DrawRay(wallHit.point, wallHit.normal * 10f, Color.red);
-                            wallNormal = wallHit.normal;
-                            wallNormal = -Vector3.Cross(wallNormal, Vector3.up);
-                            cameraTilt = tiltAngle;
-                        }
-                        else
-                        {
-                            isWallRunning = false;
-                        }
-
-                    }
-                    else if (wallDirection == 4)
-                    {
-                        Vector3 wallCheckDir = Quaternion.AngleAxis(-90, Vector3.up) * wallNormal;
-                        if (Physics.Raycast(transform.position, wallCheckDir, out wallHit, maxWallDistance, groundLayerMask))
-                        {
-                            if (!Physics.Raycast(transform.position + new Vector3(0, .2f, 0), -transform.right, maxWallDistance, groundLayerMask))
-                            {
-                                velocity.y = 0f;
-                            }
-
-                            //Debug.DrawRay(wallHit.point, wallHit.normal * 10f, Color.red);
-                            wallNormal = wallHit.normal;
-                            wallNormal = Vector3.Cross(wallNormal, Vector3.up);
-                            cameraTilt = -tiltAngle;
-                        }
-                        else
-                        {
-                            isWallRunning = false;
-                        }
-
-                    }
-                    //wallNormal = Vector3.Cross(hit.normal, Vector3.up) * -wallDir;
-                    airBorne = wallNormal * speed;
-
+                    killPlayer();
                 }
                 else
                 {
-                    velocity.y += gravity * Time.deltaTime;
-
-                    airBorne.y = velocity.y;
+                    RevivePlayer();
                 }
 
-                //move = transform.right * x * speed * DMLimiter + transform.forward * z * speed * DMLimiter + transform.up * velocity.y;
-                //velocity.y = -2f;
-                //playerControl = true;
-                //move = new Vector3(0, 0, 0);
-                //velocity.y = 0f;
-
-                //air sound
-
-                //add gravity
-                //velocity.y += gravity * Time.deltaTime;
-
-                //airBorne.y = velocity.y;
-                //decouple character rotation from airborne vector
-                //Debug.DrawRay(transform.position, airBorne * 10f, Color.red);
-                move = airBorne - rotation;
-
             }
-            else
+
+            // player control test "k"
+            if (Input.GetKeyDown(KeyCode.K))
             {
-                //air sound
-
-                //add gravity
-                velocity.y += gravity * Time.deltaTime;
-
-                airBorne.y = velocity.y;
-                //decouple character rotation from airborne vector
-                move = airBorne - rotation;
-
-                //airborne player movement
-                airMove = transform.right * x * walkSpeed * DMLimiter * airMoveModifier + transform.forward * z * walkSpeed * DMLimiter * airMoveModifier + transform.up * 0;
-                move += airMove;
+                if (playerControl)
+                {
+                    PlayerControl(false);
+                }
+                else
+                {
+                    PlayerControl(true);
+                }
             }
 
-        }
-
-        //if moving vertically
-        if (move.x != 0f || move.z != 0f)
-        {
-            isMoving = true;
-        }
-        else
-        {
-            isMoving = false;
-        }
-
-
-        //check if character hit roof and reset upward movement
-        if (move.y > 0 && Physics.Raycast(transform.position, Vector3.up, rayDistance))
-        {
-            velocity.y = 0;
-        }
-
-        //apply vertical vector to movement vector
-        move.y = velocity.y;
-
-        //check if grounded and move character
-        //Debug.DrawRay(transform.position, transform.forward * 10f, Color.green);
-        //Debug.DrawRay(transform.position, move, Color.red);
-
-
-        //ground check delay when jumping
-        if (jumpTimer >= 1)
-        {
-            jumpTimer -= 1;
-            //Debug.Log(jumpTimer);
-        }
-        else
-        {
-            jumpTimer = 0;
-            isGrounded = Physics.OverlapBox(groundCheck.transform.position, groundCheckSize).Length > 1;
-        }
-
-        rb.velocity = move;
-
-        //check if character is trouching wall
-        wallCheck = Physics.OverlapBox(transform.position, wallCheckSize, Quaternion.identity, groundLayerMask);
-
-
-        if (wallCheck.Length > 0)
-        {
-            isTouchingWall = true;
-
-            //calculate wall direction
-            /**
-            for (int i = 1; i < wallCheck.Length; i++)
+            // time scale test "l"
+            if (Input.GetKeyDown(KeyCode.L))
             {
-                Vector3 wall;
-                Vector3 dirWall;
-
-                wall = wallCheck[i].gameObject.transform.position;
-
-                dirWall = transform.position - wall;
-                dirWall = new Vector3(dirWall.x, 0, dirWall.z);
-
-                Physics.Raycast(transform.position, dirWall, out wallHit, maxWallDistance, groundLayerMask);
-
-                Vector3 lookDir = Vector3.Normalize(transform.forward);
-                wallDot = Vector3.Dot(wallHit.normal, lookDir);
-
-                Debug.Log(wallDot);
+                if (Time.timeScale == 1.0f)
+                {
+                    Time.timeScale = 0f;
+                }
+                else
+                {
+                    Time.timeScale = 1.0f;
+                }
             }
-            **/
+
+            // rage mode test "i"
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                AddRageKill();
+            }
+
+            // add invulnerability test "o"
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                AddInvulnerability(5);
+            }
+
+            // take damage test "P"
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                TakeDamage(50f, false);
+            }
+
+        }
+
+        if (activePerkActiveTime <= 0)
+        {
+            if (activePerkCooldown > 0)
+            {
+                activePerkCooldown -= 1 * Time.deltaTime;
+            }
+
         }
         else
         {
-            isTouchingWall = false;
+            activePerkActiveTime -= 1 * Time.deltaTime;
         }
-        //isTouchingWall = Physics.OverlapBox(transform.position, wallCheckSize, Quaternion.identity, groundLayerMask).Length > 0;
-
-
-        //isGrounded = (controller.Move(move * Time.deltaTime) & CollisionFlags.Below) != 0;
-
-        //movement vector debug
-        //debugAS();
     }
 
-    private void LateUpdate()
+    public void CheckPerks()
     {
-        if (health <= 0)
+        //Agility
+        doubleJumpUnlocked = PerkTreeReader.Instance.IsPerkUnlocked(1);
+        slideUnlocked = PerkTreeReader.Instance.IsPerkUnlocked(2);
+        wallJumpUnlocked = PerkTreeReader.Instance.IsPerkUnlocked(3);
+        wallRunUnlocked = PerkTreeReader.Instance.IsPerkUnlocked(4);
+        dodgeUnlocked = PerkTreeReader.Instance.IsPerkUnlocked(5);
+        movement.baseSpeed = defaultSpeed * (1 + speedMod * PerkTreeReader.Instance.IsPerkLevel(6));
+
+        //Offence
+        damageModifier = 1 + damageMod * PerkTreeReader.Instance.IsPerkLevel(7);
+        rageModeUnlocked = PerkTreeReader.Instance.IsPerkUnlocked(8);
+        fireRateModifier = 1 + fireRateMod * PerkTreeReader.Instance.IsPerkLevel(9);
+        reloadModifier = 1 + reloadMod * PerkTreeReader.Instance.IsPerkLevel(10);
+        groundSlamUnlocked = PerkTreeReader.Instance.IsPerkUnlocked(11);
+        damageAuraUnlocked = PerkTreeReader.Instance.IsPerkUnlocked(12);
+
+        //Utility
+        maxHealth = defaultMaxHealth * (1 + healthMod * PerkTreeReader.Instance.IsPerkLevel(13));
+        divineShieldUnlocked = PerkTreeReader.Instance.IsPerkUnlocked(14);
+        resurectionUnlocked = PerkTreeReader.Instance.IsPerkUnlocked(15);
+        defenseModifier = 1 + defenseMod * PerkTreeReader.Instance.IsPerkLevel(16);
+        theHolyLightUnlocked = PerkTreeReader.Instance.IsPerkUnlocked(17);
+        spawnRateModifier = 1 + spawnRateMod * PerkTreeReader.Instance.IsPerkLevel(18);
+
+        CheckHealth();
+        /*
+        if (true) doubleJumpUnlocked = true;
+        if (true) slideUnlocked = true;
+        if (true) dodgeUnlocked = true;
+        if (true) wallJumpUnlocked = true;
+        if (true) wallRunUnlocked = true;
+        if (true) playerController.baseSpeed = defaultSpeed * speedModifier;
+
+        if (true) damageModifier = 1 + damageMod * 1;
+        if (true) rageModeUnlocked = true;
+        if (true) fireRateModifier = 1 + fireRateMod * 1;
+        if (true) reloadModifier = 1 + reloadMod * 1;
+        if (true) damageAuraUnlocked = true;
+        if (true) groundSlamUnlocked = true;
+
+        if (true) maxHealth = defaultMaxHealth * 1 + healthMod * 1;
+        if (true) divineShieldUnlocked = true;
+        if (true) resurectionUnlocked = true;
+        if (true) defenseModifier = 1 + defenseMod * 1;
+        if (true) theHolyLightUnlocked = true;
+        if (true) spawnRateModifier = 1 + spawnRateMod * 1;
+        */
+    }
+
+    // player functions
+    void Stamina()
+    {
+        if (movement.isSliding || movement.isAirborne)
         {
-            if (isAlive)
-            {
-                killPlayer();
-            }
+
+        }
+        else if (movement.playerVelocity > 0 && movement.isRunning)
+        {
+            stamina += -10 * Time.deltaTime;
+        }
+        else if (stamina < 100)
+        //if (stamina < 100 && isRunning && playerVelocity > 0)
+        {
+            stamina += 10 * Time.deltaTime;
+        }
+
+        if (stamina > 100)
+        {
+            stamina = 100;
         }
     }
 
+    public void PlayerControl(bool var)
+    {
+        if (var)
+        {
+            playerControl = true;
+        }
+        else
+        {
+            playerControl = false;
+        }
+    }
+
+    // obsolete
     void Shoot()
     {
-        ////shooting sound
-        //int layerMask = LayerMask.GetMask("EnemyHitbox");
-        //RaycastHit hit;
-        ////raycast from center of screen if tagged enemy destroy target
-        //if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, layerMask))
-        //{
-        //    if (hit.transform.CompareTag("Grunt"))
-        //    {    
-        //        hit.transform.GetComponentInParent<Grunt>().StartCoroutine("Die");
-        //    }
-        //    else if (hit.transform.CompareTag("Vipeltaja"))
-        //    {
-        //        hit.transform.GetComponentInParent<Vipeltaja>().StartCoroutine("Die");
-        //    }
-        //    Debug.Log(hit.transform.name);
-        //}
-    }
-
-    private void Jump()
-    {
-        jumpTimer = 10;
-        isSlidingControl = false;
-        isAirborne = true;
-        isGrounded = false;
-        velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-
-        //set airborne vector
-        airBorne = move;
-    }
-
-    private void WallJump()
-    {
-        //float wallDot;
-        //jump sound
-        Vector3 lookDir = Vector3.Normalize(transform.forward);
-        wallDot = Vector3.Dot(wallHit.normal, lookDir);
-
-
-
-        //Debug.Log(wallDot);
-
-        //wallrunning type 1 (wallrunning)
-        if (wallRunninType)
+        //shooting sound
+        int layerMask = LayerMask.GetMask("EnemyHitbox");
+        RaycastHit hit;
+        //raycast from center of screen if tagged enemy destroy target
+        if (Physics.Raycast(movement.playerCamera.transform.position, movement.playerCamera.transform.forward, out hit, layerMask))
         {
-            if (wallDot > .1f)
+            if (hit.transform.CompareTag("Enemy"))
             {
-                jumpTimer = 10;
-                //isAirborne = true;
-                //isGrounded = false;
+                hit.transform.parent.transform.GetComponent<Grunt>().StartCoroutine("Die");
 
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-                //set airborne vector
-                //airBorne = move;
-
-                //Debug.Log("wall jump" + Vector3.Magnitude(transform.forward));
-
-                //if looking away from wall jump forward
-                airBorne = transform.forward * speed;
-                isWallRunning = false;
-
-                //old version using the walldirection variable
-                //if (wallDirection == 5)
-                //{
-                //    airBorne = -transform.forward * speed;
-                //}
-                //else
-                //{
-                //    airBorne = transform.forward * speed;
-                //}
             }
-            //if looking torwards wall jump behind
-            else if (wallDot < -.1f)
-            {
-                jumpTimer = 10;
-                //Debug.Log("wall jump backwards");
-
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-
-                airBorne = -transform.forward * speed;
-                isWallRunning = false;
-            }
-            else
-            {
-                jumpTimer = 10;
-                Vector3 jumpLimit;
-                //Debug.Log("low angle jump");
-
-                if (wallDirection == 3)
-                {
-                    jumpLimit = Quaternion.AngleAxis(81, Vector3.up) * wallHit.normal;
-                    airBorne = jumpLimit * speed;
-                }
-                else if (wallDirection == 4)
-                {
-                    jumpLimit = Quaternion.AngleAxis(-81f, Vector3.up) * wallHit.normal;
-                    airBorne = jumpLimit * speed;
-                }
-                else
-                {
-                    Debug.Log("jump failed");
-                }
-
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-                isWallRunning = false;
-            }
-
+            Debug.Log(hit.transform.name);
         }
-        //wallrunning type 2 (walljumping)
+    }
+
+    public void CameraShaker(float mag, float smooth, float start, float end)
+    {
+        StartCoroutine(movement.playerCamera.GetComponent<CameraShake>().Shake(mag, smooth, start, end, false));
+    }
+
+    public void PlayerAddForce(Vector3 dir, float force)
+    {
+        movement.PlayerAddForce(dir, force);
+    }
+
+
+    public void AddInvulnerability(float time)
+    {
+        invulnerability += time;
+    }
+
+    private void Invulnerability()
+    {
+        if (invulnerability > 0)
+        {
+            //[SOUND] divine shield sound (Continuous)
+
+            invulnerable = true;
+            invulnerability -= Time.deltaTime;
+        }
         else
         {
-            //jump backwards if facing at wall
-            if (Physics.Raycast(transform.position, transform.forward, out wallHit, maxWallDistance, groundLayerMask))
+            //[SOUND] divine shield deactivation sound (One Shot)
+
+            invulnerable = false;
+        }
+    }
+
+    public void TakeDamage(float damage, bool isRanged)
+    {
+        if (!invulnerable && isAlive)
+        {
+            if (isRanged)
             {
-                airBorne = -transform.forward * speed;
-                isWallRunning = false;
+                //[SOUND] take damage sound (ranged) (One Shot)
+
+                health -= damage * defenseMod;
             }
-            // else jump forward
             else
             {
-                airBorne = transform.forward * speed;
-                isWallRunning = false;
+                //[SOUND] take damage sound (melee) (One Shot)
+
+                health -= damage;
             }
 
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
-
-        //airBorne = wallNormal * speed;
-        //airBorne = new Vector3(wallHit.normal.x, 0, wallHit.normal.z);
-        //Debug.DrawRay(wallHit.point, new Vector3(wallHit.normal.x, 0, wallHit.normal.z) * 20f);
-
-
-    }
-
-    private void Dodge()
-    {
-        isDodging = true;
-        dodgeFrameTime = 7;
-        velocity.y = 0f;
-        //dodge = move * 4f *2f;
-        Vector3 norMove = Vector3.Normalize(move);
-        dodge = norMove * runSpeed * 2f;
-    }
-
-    private void Crouch()
-    {
-        if (isRunning && z > 0 && !isSlidingControl)
-        {
-            slideTime = slideDuration;
-            isSlidingControl = true;
-            slideControl = transform.forward * slideSpeedControl;
-        }
-        if (!isCrouching)
-        {
-            rayDistance = crouchRayDistance;
-            //transform.localScale = new Vector3(1, .75f, 1);
-            transform.localScale = new Vector3(transform.localScale.x, characterScale * 0.5f, transform.localScale.z);
-            //transform.position = transform.position + new Vector3(0, -.75f, 0);
-            transform.position = transform.position + new Vector3(0, -characterScale *.5f, 0);
-            isCrouching = true;
-        }
-    }
-
-    private void UnCrouch()
-    {
-        //prevent from standing up if obstacle detected
-        if (!Physics.Raycast(transform.position, Vector3.up, crouchToStandRayDistance))
-        {
-            if (isCrouching)
+            if (health <= 0)
             {
-                rayDistance = standRayDistance;
-                //transform.localScale = new Vector3(1, 1.5f, 1);
-                transform.localScale = new Vector3(transform.localScale.x, characterScale, transform.localScale.z);
-                //transform.position = transform.position + new Vector3(0, .75f, 0);
-                transform.position = transform.position + new Vector3(0, characterScale * .5f, 0);
-                isCrouching = false;
+                if (isAlive)
+                {
+                    health = 0;
+                    killPlayer();
+                }
             }
+            CheckHealth();
         }
+    }
+
+    public void Heal(float healAmount)
+    {
+        if (isAlive)
+        {
+            health += healAmount;
+
+            CheckHealth();
+        }
+    }
+
+    public void CheckHealth()
+    {
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+
+        playerHP.text = health.ToString();
+
+        playerHP.text = health.ToString() + " / " + maxHealth.ToString();
     }
 
     public void killPlayer()
     {
         if (isAlive)
         {
-            alphaLerp = 0f;
-            deathCanvas.SetActive(true);
+            if (resurectionUnlocked && resurection)
+            {
+                //[SOUND] resurection sound (OneShot)
 
-            rayDistance = crouchRayDistance;
-            //transform.localScale = new Vector3(1, .75f, 1);
-            transform.localScale = new Vector3(transform.localScale.x, characterScale * 0.5f, transform.localScale.z);
-            //transform.position = transform.position + new Vector3(0, -.75f, 0);
+                health = resurectionHP;
+                resurection = false;
+            }
+            else
+            {
+                //[SOUND] player death sound (One Shot)
 
-            currentTilt = 90f;
+                health = 0;
+                CheckHealth();
 
-            isCrouching = false;
-            isAlive = false;
-            playerControl = false;
+                movement.ChangePlayerSize(false);
+                //alphaLerp = 0f;
+                deathCanvas.SetActive(true);
+                colorAlpha = 0.3f;
+                /*
+                rayDistance = crouchRayDistance;
+                groundCheck = new Vector3(0, -.25f, 0);
+                //transform.localScale = new Vector3(1, .75f, 1);
+                transform.localScale = new Vector3(transform.localScale.x, characterScale * 0.5f, transform.localScale.z);
+                //transform.position = transform.position + new Vector3(0, -.75f, 0);
+
+                currentTilt = 90f;
+                */
+                movement.currentTilt = 90;
+                
+                movement.isCrouching = false;
+                isAlive = false;
+                playerControl = false;
+            }
+
         }
     }
 
-    private void RevivePlayer()
+    //test function
+    public void RevivePlayer()
     {
         health = maxHealth;
+        CheckHealth();
 
-        colorAlpha = minAlpha;
+        movement.ChangePlayerSize(true);
+
+        colorAlpha = 0f;
 
         deathCanvas.SetActive(false);
-
+        /*
         rayDistance = standRayDistance;
+        groundCheck = new Vector3(0, -.5f, 0);
         //transform.localScale = new Vector3(1, 1.5f, 1);
         transform.localScale = new Vector3(transform.localScale.x, characterScale, transform.localScale.z);
         //transform.position = transform.position + new Vector3(0, .75f, 0);
         transform.position = transform.position + new Vector3(0, height * .5f, 0);
 
         currentTilt = 0f;
-
+        */
+        movement.currentTilt = 0;
         isAlive = true;
         playerControl = true;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    // Perk functions
+    public void AddRageKill()
     {
-        // contactPoint = collision.contacts[0].point;
-        
-        if (collision.transform.CompareTag("VipeltajaAttackHitbox"))
+        if (rageModeUnlocked)
         {
-            Debug.Log("Can attack " + collision.transform.root.GetComponent<Vipeltaja>().canAttack);
-            if (collision.transform.root.GetComponent<Vipeltaja>().canAttack) 
+            if (!rageMode)
             {
-                Debug.Log("Player hit by " + collision.transform.name);
-                collision.transform.root.GetComponent<Vipeltaja>().canAttack = false;
+                rageKills.Add(Time.time);
             }
         }
+    }
 
-        if(collision.transform.CompareTag("GruntAttackHitbox"))
+    private void RageMode()
+    {
+        if (rageModeActiveTime <= 0)
         {
-            if(collision.transform.root.GetComponent<Grunt>().canAttack)
+            if (rageKills.Count >= rageModRegKills)
             {
-                Debug.Log("Player hit by " + collision.transform.name);
-                collision.transform.root.GetComponent<Grunt>().canAttack = false;
+                //[SOUND] rage mode activation sound (One Shot)
+
+                rageModeActiveTime = 10;
+                rageMode = true;
+                rageDamageModifier = 1 + rageMod;
+                rageKills.Clear();
+            }
+            else
+            {
+                rageMode = false;
+                rageDamageModifier = 1;
+            }
+            if (rageKills.Count > 0)
+            {
+                if (Time.time - rageKills[0] >= rageModTimer)
+                {
+                    rageKills.RemoveAt(0);
+                }
             }
         }
-
-        if(collision.transform.name.Equals("ChargeHandle"))
+        else
         {
-            Debug.Log("Charge hit" + collision.transform.name);
+            //[SOUND] rage mode sound (Continuous)
+
+            rageModeActiveTime -= Time.deltaTime;
         }
-
     }
 
-    void OnDrawGizmos()
+    public void GroundSlam()
     {
-        //Gizmos.DrawWireCube(transform.position, wallCheckSize*2);
-        //Gizmos.DrawWireCube(groundCheck.transform.position, groundCheckSize *2);
-    }
-        //debug function
-    void debugAS()
-    {
-        //Debug.DrawRay(transform.position, move, Color.green);
-        //Debug.DrawRay(transform.position, slide, Color.red);
-        //Vector3 forward = gun.transform.TransformDirection(Vector3.forward) * 10;
-        //Debug.Log(forward);
-        //Vector3 forwardplus = new Vector3(forward.x, 0f, forward.z);
-        //forwardplus = Quaternion.Euler(0, 90, 0) * forwardplus;
-        //forwardplus = Vector3.Normalize(forwardplus);
-        //Debug.DrawRay(gun.transform.position, forward, Color.green);
-        //Debug.DrawRay(gun.transform.position, forwardplus, Color.blue);
+        //[SOUND] ground slam sound (One Shot)
+
+        int layerMask = LayerMask.GetMask("EnemyHitbox");
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, damageAuraRange, layerMask);
+
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.transform.CompareTag("Enemy"))
+            {
+                hitCollider.transform.parent.transform.GetComponent<Grunt>().StartCoroutine("Die");
+            }
+        }
     }
 
+
+    // Active Perks functions
+    private void DamageAura()
+    {
+        if (activePerkActiveTime > 0)
+        {
+            //[SOUND] damage aura sound (Continuous)
+
+            //damageAuraModel.SetActive(true);
+
+            if (movement.isCrouching)
+            {
+                //damageAuraModel.transform.localScale = new Vector3(damageAuraRange * 2, damageAuraRange * 4, damageAuraRange * 2);
+            }
+            else
+            {
+                //damageAuraModel.transform.localScale = new Vector3(damageAuraRange * 2, damageAuraRange * 2, damageAuraRange * 2);
+            }
+
+            int layerMask = LayerMask.GetMask("EnemyHitbox");
+
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, damageAuraRange, layerMask);
+
+            foreach (var hitCollider in hitColliders)
+            {
+                if (hitCollider.transform.CompareTag("Enemy"))
+                {
+                    hitCollider.transform.parent.transform.GetComponent<Grunt>().StartCoroutine("Die");
+
+                }
+            }
+        }
+        else
+        {
+            //[SOUND] damage aura deactivation sound (One Shot)
+
+            //damageAuraModel.SetActive(false);
+        }
+    }
+
+    private void DivineShield()
+    {
+        activePerkActiveTime = divineShieldTime;
+        activePerkCooldown = divineShieldCooldown;
+        AddInvulnerability(divineShieldTime);
+    }
+
+    private void TheHolyLight()
+    {
+        activePerkCooldown = theHolyLightCooldown;
+
+        int layerMask = LayerMask.GetMask("EnemyHitbox");
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, damageAuraRange, layerMask);
+
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.transform.CompareTag("Enemy"))
+            {
+                hitCollider.transform.parent.transform.GetComponent<Grunt>().StartCoroutine("Die");
+
+            }
+        }
+    }
 }

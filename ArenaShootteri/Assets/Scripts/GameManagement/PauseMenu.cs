@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pausePanel;
     public GameObject optionsPanel;
     public GameObject exitPanel;
+    public GameObject controlsPanel;
     public GameManager gameManager;
 
     // Start is called before the first frame update
@@ -35,7 +36,17 @@ public class PauseMenu : MonoBehaviour
         optionsPanel.SetActive(false);
         pausePanel.SetActive(true);
     }
-
+    //Controls buttons
+    public void OpenControls()
+    {
+        pausePanel.SetActive(false);
+        controlsPanel.SetActive(true);
+    }
+    public void CloseControls()
+    {
+        pausePanel.SetActive(true);
+        controlsPanel.SetActive(false);
+    }
     public void ExitGame()
     {
         pausePanel.SetActive(false);
@@ -53,5 +64,10 @@ public class PauseMenu : MonoBehaviour
         gameManager.paused = false;
         SceneManager.LoadScene(0);
         exitPanel.SetActive(false);
+    }
+
+    public void PlayClick()
+    {
+        SoundManager.PlaySound("MenuClick");
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-/// <summary>
-/// Does absolutely nothing.
-/// </summary>
 public class GruntDoNothingState : BaseState
 {
     private Grunt grunt;

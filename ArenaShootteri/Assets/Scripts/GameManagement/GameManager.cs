@@ -20,12 +20,9 @@ public class GameManager : MonoBehaviour
     public static bool waveEnd = false;
     public static bool waveStart = true;
 
-
-    private NewMods _NewMods;
     // Start is called before the first frame update
     void Start()
     {
-        _NewMods = gameObject.GetComponent<NewMods>();
         player = GameObject.FindGameObjectWithTag("Player");
         //waveManager = UnityEngine.GameObje<ct.FindGameObjectWithTag("GameManagement").GetComponent<WaveManager>();
     }
@@ -33,9 +30,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //_NewMods.CheckWave(wave);
-        
-        
         // PAUSE MENU //
         if (acceptPlayerInput || !playerAlive)
         {
@@ -69,8 +63,6 @@ public class GameManager : MonoBehaviour
             Debug.Log("wave: " + wave);
             wave += 1;
             waveStart = false;
-
-           // gameObject.GetComponent<NewMods>().CheckWave(wave);
         }
     }
 
