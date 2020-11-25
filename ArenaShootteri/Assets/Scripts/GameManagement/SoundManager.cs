@@ -55,7 +55,8 @@ public class SoundManager : MonoBehaviour
                 audioSrc.Stop();
                 audioSrc.loop = false;
                 audioSrc.clip = FootStep;
-                audioSrc.pitch = Random.Range(1.0f - 0.15f, 1.0f + 0.15f);
+                Debug.Log("WalkStep");
+                audioSrc.pitch = Random.Range(0.9f - 0.05f, 0.9f + 0.05f);
                 audioSrc.Play();
                 break;
         }
