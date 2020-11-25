@@ -24,12 +24,14 @@ public class Grunt : MonoBehaviour, IDamage
     public Transform cone;
     public Animator animator;
 
-    
     public float attackCounter = 0f;
     public float attackCooldown = 2f;
 
+    public float damage = 5;
     public bool canAttack = true;
     public bool readyToAttack = true;
+
+    public float chargeDamage = 20;
     public bool isCharging = false;
     public float chargeForce = 10;
     
@@ -58,6 +60,7 @@ public class Grunt : MonoBehaviour, IDamage
 
         Debug.Log("Grunt is awake");
     }
+
     /// <summary>
     ///  Initialize State machine for Grunt
     /// </summary>
@@ -83,9 +86,10 @@ public class Grunt : MonoBehaviour, IDamage
     {
         target = _target;
     }
+
     /// <summary>
     /// Runs Grunt's attack logic
-    /// </summary>
+    /// </summary>   MAYBE OBSOLETE
     public void Attack()
     {
         Debug.Log("Melee attack");
@@ -131,6 +135,7 @@ public class Grunt : MonoBehaviour, IDamage
             StartCoroutine(Die());
         }
     }
+
     /// <summary>
     /// Launch death logic when Grunt dies.
     /// Runs Ragdoll death "animation". Disables AI
@@ -163,6 +168,7 @@ public class Grunt : MonoBehaviour, IDamage
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
     }
+
     /// <summary>
     /// Sets rigidbodys in children to <c>state</c> 
     /// </summary>
@@ -176,6 +182,7 @@ public class Grunt : MonoBehaviour, IDamage
             rb.isKinematic = state;
         }
     }
+
     /// <summary>
     /// Sets colliders in children to <c>state</c> 
     /// </summary>
@@ -193,6 +200,7 @@ public class Grunt : MonoBehaviour, IDamage
             }
         }
     }
+
     /// <summary>
     /// Recursively sets Layer of each Game Object to newLayer
     /// </summary>

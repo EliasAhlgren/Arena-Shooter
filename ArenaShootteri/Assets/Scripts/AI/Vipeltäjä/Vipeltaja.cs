@@ -14,6 +14,7 @@ public class Vipeltaja : MonoBehaviour, IDamage
     // IDamage variable
     public float IHealth { get; set; } = 100f;
 
+    public float damage = 5;
     public bool canAttack = true;
 
     public GameObject spitPrefab;
