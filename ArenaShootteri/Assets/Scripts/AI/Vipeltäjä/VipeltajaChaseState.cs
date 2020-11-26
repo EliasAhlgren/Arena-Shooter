@@ -53,8 +53,8 @@ public class VipeltajaChaseState : BaseState
             }
         }
 
-        // If distance to target is approximately jumping distances -> Jump
-        if(distance < vipeltaja.jumpDistance+3 && distance > vipeltaja.jumpDistance-3)
+        // If distance to target is approximately jumping distances -> Jump and vipeltaja can jump
+        if(distance < vipeltaja.jumpDistance+3 && distance > vipeltaja.jumpDistance-3 && !vipeltaja.jumpCoolingdown && vipeltaja.IsFacingPlayer(0.9f))
         {
             return typeof(VipeltajaJumpState);
         }

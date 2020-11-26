@@ -23,16 +23,21 @@ public class VipeltajaJumpState : BaseState
 
     public override void OnStateExit()
     {
-        // vipeltaja.agent.speed = originalSpeed;
         
+        // vipeltaja.agent.speed = originalSpeed;d      
     }
 
     public override Type Tick()
-    {
+    {   
+        if (vipeltaja.animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
         vipeltaja.transform.Translate(Vector3.forward.normalized * vipeltaja.jumpSpeed * Time.deltaTime);
-        
-        if(!vipeltaja.animator.GetCurrentAnimatorStateInfo(0).IsName("Jump")) 
+
+        if (!vipeltaja.animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
+        {
+            vipeltaja.jumpCoolingdown = true;
             return typeof(VipeltajaChaseState);
+        }
+        
 
         return null;
     }

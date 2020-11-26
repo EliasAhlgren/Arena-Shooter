@@ -64,7 +64,7 @@ public class VipeltajaSpitState : BaseState
         float dot = Vector3.Dot(vipeltaja.transform.forward, (vipeltaja.target.transform.position - vipeltaja.transform.position).normalized);
         
         // Launch spit when almost facing the player
-        if (dot > 0.9f)
+        if (vipeltaja.IsFacingPlayer(0.9f))
         {   
             // dont spit if spit animation is playing
             if (!vipeltaja.animator.GetCurrentAnimatorStateInfo(0).IsName("Spit"))

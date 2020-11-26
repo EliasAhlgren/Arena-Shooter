@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         {
             EnemySpawner.spawnWave = true; // käynnistää EnemySpawner scriptin
             EnemySpawner.wave = wave;
-            Debug.Log("wave: " + wave);
+            // Debug.Log("wave: " + wave);
             wave += 1;
             waveStart = false;
         }
