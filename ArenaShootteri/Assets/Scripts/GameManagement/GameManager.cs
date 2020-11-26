@@ -70,7 +70,11 @@ public class GameManager : MonoBehaviour
             wave += 1;
             waveStart = false;
 
-           // gameObject.GetComponent<NewMods>().CheckWave(wave);
+            if (wave > 1)
+            {
+                gameObject.GetComponent<NewMods>().CheckMods();
+            }
+            
         }
     }
 

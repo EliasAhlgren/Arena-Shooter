@@ -47,7 +47,7 @@ public class Aiming : MonoBehaviour
             isReloading = true;
             _recoil.DisableLazyGun = true;
             //_recoil.RecoilAmount = _recoil.RecoilAmount / 2;
-            StartCoroutine(ReloadDelay(2f, gameObject.GetComponentInChildren<DIsableRail>() == true ? 60 : 30));
+            StartCoroutine(ReloadDelay(2f, transform.Find("DrumMag") == true ? 60 : 30));
         }
         if (isReloading)
         {
@@ -104,6 +104,9 @@ public class Aiming : MonoBehaviour
         ammoText.enabled = true;
         
         yield return new WaitForSeconds(time);
+        //
+        // Reload ääni tähän
+        //
         
         ammoText.enabled = false;
         isReloading = false;

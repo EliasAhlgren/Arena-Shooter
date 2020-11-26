@@ -51,8 +51,9 @@ public class Shooting : MonoBehaviour
 
     private void Update()
     {
+        /*
         DamageStat = Attributes.totalDamage;
-        Debug.DrawRay(shootPosition.position, transform.forward*100,Color.red);
+        Debug.DrawRay(shootPosition.position, transform.forward * 100,Color.red);
         if (Input.GetButton("Fire1") && !aiming.isReloading && Attributes.ammoInMag > 0)
         {
             Ray shootRay = new Ray(shootPosition.position, transform.forward);
@@ -69,5 +70,6 @@ public class Shooting : MonoBehaviour
                 Debug.Log(hit.transform.name + " Has taken " + DamageStat + "DMG " + Damageable.IHealth + " Left");
             }
         }
+    */
     }
 }
