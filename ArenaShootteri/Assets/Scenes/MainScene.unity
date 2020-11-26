@@ -173,41 +173,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 15134191275033552, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 691100552376335392, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 107
-      objectReference: {fileID: 0}
-    - target: {fileID: 902362603232621442, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 902362603232621442, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 902362603232621442, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 902362603232621442, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
-      propertyPath: m_Color.a
-      value: 0.78431374
-      objectReference: {fileID: 0}
-    - target: {fileID: 8586498638117316800, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 312
-      objectReference: {fileID: 0}
     - target: {fileID: 8586498638390084386, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
       propertyPath: m_Name
       value: GameManagement
-      objectReference: {fileID: 0}
-    - target: {fileID: 8586498638390084386, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8586498638390084398, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
       propertyPath: m_LocalPosition.x
@@ -253,61 +221,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8586498638860229086, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -95
-      objectReference: {fileID: 0}
-    - target: {fileID: 8586498639088376185, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8586498639613674242, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
---- !u!1 &171092748 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8586498638390084386, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
-  m_PrefabInstance: {fileID: 171092747}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &171092749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171092748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0de84385c1596d24a9717f62577b323b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Grunt: {fileID: 2440408630659573345, guid: 313d496966ad4184bb761878c368c00b, type: 3}
-  onCooldown: 0
---- !u!114 &171092750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171092748}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e11b041479fbd4df4b25608cac696f3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  modPool:
-  - {fileID: 11400000, guid: 1896a1ba76c324a84966311e378f6612, type: 2}
-  - {fileID: 11400000, guid: 366172c8abbe942238736d92b12ddc56, type: 2}
-  - {fileID: 11400000, guid: 27d0446e83ae34c56a224ec10a9194e2, type: 2}
-  - {fileID: 11400000, guid: a22fab50e522b4ab3bff9afef631e524, type: 2}
-  - {fileID: 11400000, guid: 320b51469e25d4c0d9dabd45653beec2, type: 2}
-  level1: []
-  level2: []
-  level3: []
-  modSelections: []
 --- !u!1 &463142109
 GameObject:
   m_ObjectHideFlags: 0
