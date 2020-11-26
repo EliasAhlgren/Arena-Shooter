@@ -22,6 +22,9 @@ public class PauseMenu : MonoBehaviour
     {
         gameManager.paused = false;
         pausePanel.SetActive(false);
+        optionsPanel.SetActive(false);
+        controlsPanel.SetActive(false);
+        exitPanel.SetActive(false);
         Time.timeScale = 1;
         gameObject.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
