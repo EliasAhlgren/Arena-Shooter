@@ -8,6 +8,7 @@ using UnityEngine;
 public class GruntChargeState : BaseState
 {
     private Grunt grunt;
+    private Collider chargeCollider;
     private float distanceTravelled = 0;
     private Vector3 startPosition;
 
@@ -15,10 +16,17 @@ public class GruntChargeState : BaseState
     public GruntChargeState(Grunt _grunt) : base(_grunt.gameObject)
     {
         grunt = _grunt;
+
+        chargeCollider = grunt.transform.root.Find("ChargeCollider").GetComponent<Collider>();
+        if(chargeCollider != null) {
+            Debug.Log("Collider found " + chargeCollider);
+        }
+        chargeCollider.enabled = false;
     }
 
     public override void OnStateEnter()
     {
+        chargeCollider.enabled = true;
         // Store start position of Grunt at start of charge
         startPosition = grunt.transform.position;
 
@@ -28,17 +36,15 @@ public class GruntChargeState : BaseState
         grunt.isCharging = true;
         // grunt.animator.SetBool("IsRunning", true);
         // grunt.animator.Play("Run");
-        Debug.Log("Charge in");
     }
 
     public override void OnStateExit()
     {
+        chargeCollider.enabled = false;
         grunt.agent.ResetPath();
         grunt.isCharging = false;
         distanceTravelled = 0;
         grunt.animator.SetTrigger("WalkTrigger");
-
-        Debug.Log("Charge out.");
         
     }
 
@@ -61,6 +67,7 @@ public class GruntChargeState : BaseState
         // Return back chase state when grunt has traveled enough distance
         if (distanceTravelled >= grunt.attackRange + 10)
         {
+            Debug.Log("Charge done");
             return typeof(GruntChaseState);
         }
        

@@ -15,16 +15,16 @@ public class VipeltajaJumpState : BaseState
 
     public override void OnStateEnter()
     {
-        originalSpeed = vipeltaja.agent.speed;
-        vipeltaja.agent.speed = 0f;
-        Debug.Log("Jump enter");
+        //originalSpeed = vipeltaja.agent.speed;
+        //vipeltaja.agent.speed = 0f;
+        
         vipeltaja.animator.Play("Jump");
     }
 
     public override void OnStateExit()
     {
-        vipeltaja.agent.speed = originalSpeed;
-        Debug.Log("Jump exit");
+        // vipeltaja.agent.speed = originalSpeed;
+        
     }
 
     public override Type Tick()

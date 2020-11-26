@@ -18,13 +18,14 @@ public class VipeltajaChaseState : BaseState
     {
         // Set path destination to target position
         vipeltaja.agent.SetDestination(vipeltaja.target.transform.position);
-        Debug.Log("Chase enter");
+
+        // Start with Idle, and transition to Walk when unit actually moves.
         vipeltaja.animator.Play("Idle");
     }
 
     public override void OnStateExit()
     { 
-        Debug.Log("Chase exit");
+        
     }
 
     
