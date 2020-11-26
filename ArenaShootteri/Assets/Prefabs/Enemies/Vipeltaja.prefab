@@ -556,9 +556,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1610693485373914517}
+  - component: {fileID: 2570324712603216324}
   m_Layer: 10
   m_Name: Vipeltaja_rig:tooth_L_3
-  m_TagString: Vipeltaja
+  m_TagString: VipeltajaAttackHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -578,6 +579,20 @@ Transform:
   m_Father: {fileID: 6207073018882696527}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &2570324712603216324
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824820262341857754}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.050017696
+  m_Height: 0.34191903
+  m_Direction: 0
+  m_Center: {x: -0.13400647, y: -0.034682456, z: 0.00000003838968}
 --- !u!1 &2034394982146056201
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,9 +602,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4936878865133124132}
+  - component: {fileID: 8457630974999401135}
   m_Layer: 10
   m_Name: Vipeltaja_rig:tooth_R_1
-  m_TagString: Vipeltaja
+  m_TagString: VipeltajaAttackHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -609,6 +625,20 @@ Transform:
   m_Father: {fileID: 2489916143518621970}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &8457630974999401135
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034394982146056201}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.034098722
+  m_Height: 0.14582093
+  m_Direction: 0
+  m_Center: {x: 0.1375073, y: -0.00000018537791, z: -0.00000009517855}
 --- !u!1 &2125355337631366568
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,10 +810,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2687549566766355484}
-  - component: {fileID: 3606947181292643882}
+  - component: {fileID: 4922360432222414584}
   m_Layer: 10
   m_Name: Vipeltaja_rig:tooth_R_3
-  m_TagString: Vipeltaja
+  m_TagString: VipeltajaAttackHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -803,8 +833,8 @@ Transform:
   m_Father: {fileID: 8977418119617376870}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &3606947181292643882
-MeshCollider:
+--- !u!136 &4922360432222414584
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -813,10 +843,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  m_Radius: 0.04282138
+  m_Height: 0.3315598
+  m_Direction: 0
+  m_Center: {x: 0.13651137, y: 0.037052967, z: 0.00000028308995}
 --- !u!1 &2584872360656903093
 GameObject:
   m_ObjectHideFlags: 0
@@ -2520,6 +2550,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd64eea6b4d8645429be6f8757e6b4e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 5
+  canAttack: 1
   spitPrefab: {fileID: 8204803043448498481, guid: 6d0e734e6ac41a14ba5e31e67a7b98b0, type: 3}
   spitPosition: {fileID: 3606947180677563424}
   rb: {fileID: 0}
@@ -2809,9 +2841,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6207073018882696527}
+  - component: {fileID: 8960491919131350882}
   m_Layer: 10
   m_Name: Vipeltaja_rig:tooth_L_2
-  m_TagString: Vipeltaja
+  m_TagString: VipeltajaAttackHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2831,6 +2864,20 @@ Transform:
   m_Father: {fileID: 628971589919885765}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &8960491919131350882
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6341554445137223607}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.038865734
+  m_Height: 0.2502635
+  m_Direction: 0
+  m_Center: {x: -0.111206576, y: 0.0024358234, z: 0.00000059401594}
 --- !u!1 &6388930072309027204
 GameObject:
   m_ObjectHideFlags: 0
@@ -3269,9 +3316,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 628971589919885765}
+  - component: {fileID: 8432567332670210120}
   m_Layer: 10
   m_Name: Vipeltaja_rig:tooth_L_1
-  m_TagString: Vipeltaja
+  m_TagString: VipeltajaAttackHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3291,6 +3339,20 @@ Transform:
   m_Father: {fileID: 2489916143518621970}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &8432567332670210120
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7532353160082303473}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.034098722
+  m_Height: 0.17433268
+  m_Direction: 0
+  m_Center: {x: -0.08982727, y: 0.00000003392479, z: 0.015901832}
 --- !u!1 &7703378599940492970
 GameObject:
   m_ObjectHideFlags: 0
@@ -3390,9 +3452,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8977418119617376870}
+  - component: {fileID: 7495016328099146933}
   m_Layer: 10
   m_Name: Vipeltaja_rig:tooth_R_2
-  m_TagString: Vipeltaja
+  m_TagString: VipeltajaAttackHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3412,6 +3475,20 @@ Transform:
   m_Father: {fileID: 4936878865133124132}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &7495016328099146933
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7794707838122021233}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.038865734
+  m_Height: 0.2612808
+  m_Direction: 0
+  m_Center: {x: 0.09664199, y: 0.00000009323113, z: -0.00000045549166}
 --- !u!1 &7876552909332954102
 GameObject:
   m_ObjectHideFlags: 0

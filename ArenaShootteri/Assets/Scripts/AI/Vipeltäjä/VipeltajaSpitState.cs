@@ -11,7 +11,7 @@ public class VipeltajaSpitState : BaseState
     /// <summary>
     /// Distance to travel between spits
     /// </summary>
-    public float distanceBetweenSpits = 3;
+    public float distanceBetweenSpits = 10;
     public float distanceCounter;
     /// <summary>
     /// How fast vipeltaja turns
@@ -21,6 +21,8 @@ public class VipeltajaSpitState : BaseState
     /// Track how many balls vipeltaja has spat
     /// </summary>
     private int ballsSpat;
+    private float lastSpitCounter = 2;
+    private float delay;
 
     public Vector3 startPosition;
 
@@ -37,16 +39,17 @@ public class VipeltajaSpitState : BaseState
         // reset distance and ball counter to zero
         distanceCounter = 0f;
         ballsSpat = 0;
-
+        lastSpitCounter = 0;
+        delay = UnityEngine.Random.Range(2, 4);
         // Play idle animation at start. 
         // Spit animation starts when vipeltaja faces the player
         vipeltaja.animator.Play("Idle");
-        Debug.Log("Spit enter");
+        
     }
 
     public override void OnStateExit()
     {
-        Debug.Log("Spit Exit");
+        
     }
 
     public override Type Tick()
@@ -69,17 +72,19 @@ public class VipeltajaSpitState : BaseState
                 // First spit
                 if (ballsSpat == 0)
                 {
+                    Debug.Log("Spit");
                     vipeltaja.SpawnSpit();
                     ballsSpat++;
+                    vipeltaja.agent.ResetPath();
                 }
+
+                // Reset Navigation Path and Find new path to player.          
+                vipeltaja.agent.SetDestination(vipeltaja.target.transform.position);
+
+                // Track distance from start position. 
+                distanceCounter = Vector3.Distance(startPosition, vipeltaja.transform.position);
+                Debug.Log("Distance is " + distanceCounter + " Start position was: " + startPosition + " Current position is: " + vipeltaja.transform.position);
             }
-            // Reset Navigation Path and Find new path to player.
-            vipeltaja.agent.ResetPath();
-            vipeltaja.agent.SetDestination(vipeltaja.target.transform.position);
-            
-            // Track distance from start position. 
-            distanceCounter = Vector3.Distance(startPosition, vipeltaja.transform.position);
-            // Debug.Log("Distance is " + distanceCounter + " Start position was: " + startPosition + " Current position is: " + vipeltaja.transform.position);
 
             // Spit next ball when distance is bigger than distanceBetweenSpits.
             if (distanceCounter > distanceBetweenSpits)
@@ -87,18 +92,24 @@ public class VipeltajaSpitState : BaseState
                 // If 2nd spit. Just Spit another
                 if (ballsSpat == 1)
                 {
+                    
                     vipeltaja.SpawnSpit();
                     ballsSpat++;
+
                 }
             }
+            
             // Wait for spit animation to end and proceed back to chase state
-            if (!vipeltaja.animator.GetCurrentAnimatorStateInfo(0).IsName("Spit"))
+
+            if (ballsSpat == 2)
             {
-                if (ballsSpat == 2)
+                lastSpitCounter += Time.deltaTime;
+                if (lastSpitCounter > delay)
                 {
                     return typeof(VipeltajaChaseState);
                 }
             }
+            
         }
         return null;
     }

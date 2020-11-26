@@ -141,6 +141,9 @@ public class Movement : MonoBehaviour
     bool addingForce = false;
     bool doubleJump = false;
 
+    //footsteps
+    bool onCooldown = false;
+
 
     void Start()
     {
@@ -532,20 +535,28 @@ public class Movement : MonoBehaviour
                 {
                     if (isRunning)
                     {
-                        //[SOUND] Running sound (Continuous)
+                        if (!onCooldown)
+                        {
+                            SoundManager.PlaySound("WalkStep");
+                            StartCoroutine(Cooldown(0.3f));
+                        }
                     }
                     else if (isCrouching)
                     {
-                        //[SOUND] crouching sound (Continuous)
+                        if (!onCooldown)
+                        {
+                            SoundManager.PlaySound("WalkStep");
+                            StartCoroutine(Cooldown(0.6f));
+                        }
                     }
                     else
                     {
-                        //[SOUND] walking sound (Continuous)
+                        if (!onCooldown)
+                        {
+                            SoundManager.PlaySound("WalkStep");
+                            StartCoroutine(Cooldown(0.45f));
+                        }
                     }
-                }
-                else
-                {
-
                 }
                 
 
@@ -1365,6 +1376,19 @@ public class Movement : MonoBehaviour
         //forwardplus = Vector3.Normalize(forwardplus);
         //Debug.DrawRay(gun.transform.position, forward, Color.green);
         //Debug.DrawRay(gun.transform.position, forwardplus, Color.blue);
+    }
+
+    private IEnumerator Cooldown(float time)
+    {
+        // Start cooldown
+        onCooldown = true;
+        // Wait for time you want
+        yield return new WaitForSeconds(time);
+        // Stop cooldown
+        onCooldown = false;
+        //Debug.Log("Cooldown Ended");
+        //GameManager.waveStart = true;
+        //GameManager.waveEnd = false;
     }
 
 }

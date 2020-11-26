@@ -16,9 +16,9 @@ MonoBehaviour:
   AimHeight: 0
   PoseNumber: 4
   Prefab: {fileID: 5438015958663205118, guid: 8c42ee87e89f943748cff79cb642e44c, type: 3}
-  Icon: {fileID: 21300000, guid: eeae68ab16d3ef34f83ed10070a39b56, type: 3}
+  Icon: {fileID: 21300000, guid: df5a830be43604213a2829a1f2b168c6, type: 3}
   moveable: 0
   Ergonomy: -10
   Recoil: 0
-  Damage: 100
+  Damage: 0
   posDiff: {x: -0.2, y: -0.5, z: -0.9}

@@ -414,6 +414,8 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
     public void TakeDamage(float damage, bool isRanged)
     {
+
+        Debug.Log("player is taking " + damage + " damage. from Ranged enemy: " + isRanged);
         if (!invulnerable && isAlive)
         {
             if (isRanged)
@@ -438,6 +440,49 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                 }
             }
             CheckHealth();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.CompareTag("Grunt"))
+        {
+            if (collision.transform.root.GetComponent<Grunt>().canAttack)
+            {
+                var grunt = collision.transform.root.GetComponent<Grunt>();
+                Debug.Log("Player hit by " + collision.transform.name);
+                TakeDamage(grunt.damage, false);
+                grunt.canAttack = false;
+            }
+        }
+
+        if (collision.transform.CompareTag("Vipeltaja"))
+        {
+            if(collision.transform.root.GetComponent<Vipeltaja>().canAttack)
+            {
+                var vipel = collision.transform.root.GetComponent<Vipeltaja>();
+                Debug.Log("Player hit by " + collision.transform.name);
+                TakeDamage(vipel.damage, false);
+                vipel.canAttack = false;
+            }
+        }
+
+        if (collision.transform.CompareTag("Imp"))
+        {
+            if (collision.transform.root.GetComponent<Imp>().canAttack)
+            {
+                var imp = collision.transform.root.GetComponent<Imp>();
+                Debug.Log("Player hit by " + collision.transform.name);
+                TakeDamage(imp.damage, false);
+                imp.canAttack = false;
+            }
+        }
+
+        if (collision.transform.name.Equals("ChargeCollider"))
+        {
+            Debug.Log("Charge hit" + collision.transform.name);
+            TakeDamage(collision.transform.root.GetComponent<Grunt>().chargeDamage, false);
+
         }
     }
 
