@@ -37,7 +37,7 @@ public class VipeltajaEscapeState : BaseState
 
     public override void OnStateEnter()
     {
-        vipeltaja.animator.SetBool("feared", true);
+        vipeltaja.animator.SetBool("Feared", true);
         vipeltaja.animator.Play("Walk");
         timer = 0f;
         dirTimer = 0f;
@@ -62,7 +62,7 @@ public class VipeltajaEscapeState : BaseState
     public override void OnStateExit()
     {
         vipeltaja.agent.isStopped = false;
-        vipeltaja.animator.SetBool("feared", false);
+        vipeltaja.animator.SetBool("Feared", false);
 
         // Something Something
     }
