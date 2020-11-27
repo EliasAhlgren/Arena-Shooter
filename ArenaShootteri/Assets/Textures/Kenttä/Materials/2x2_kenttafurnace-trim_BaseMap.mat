@@ -454,7 +454,7 @@ Material:
     - _LinkDetailsWithBase2: 1
     - _LinkDetailsWithBase3: 1
     - _MaterialID: 1
-    - _Metallic: 0
+    - _Metallic: 1
     - _Metallic0: 0
     - _Metallic1: 0
     - _Metallic2: 0
@@ -487,12 +487,12 @@ Material:
     - _Smoothness1: 0.5
     - _Smoothness2: 0.5
     - _Smoothness3: 0.5
-    - _SmoothnessRemapMax: 1
+    - _SmoothnessRemapMax: 0.72718257
     - _SmoothnessRemapMax0: 1
     - _SmoothnessRemapMax1: 1
     - _SmoothnessRemapMax2: 1
     - _SmoothnessRemapMax3: 1
-    - _SmoothnessRemapMin: 0
+    - _SmoothnessRemapMin: 0.084325396
     - _SmoothnessRemapMin0: 0
     - _SmoothnessRemapMin1: 0
     - _SmoothnessRemapMin2: 0

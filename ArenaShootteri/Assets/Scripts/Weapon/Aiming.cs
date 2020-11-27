@@ -47,7 +47,7 @@ public class Aiming : MonoBehaviour
             isReloading = true;
             _recoil.DisableLazyGun = true;
             //_recoil.RecoilAmount = _recoil.RecoilAmount / 2;
-            StartCoroutine(ReloadDelay(2f, gameObject.GetComponentInChildren<DIsableRail>() == true ? 60 : 30));
+            StartCoroutine(ReloadDelay(2f, transform.Find("DrumMag") == true ? 60 : 30));
         }
         if (isReloading)
         {
@@ -100,10 +100,13 @@ public class Aiming : MonoBehaviour
             _recoil._GunAttributes.totalAmmo = 0;
         }
 
-        ammoText.text = ("Ammo Left: " + _recoil._GunAttributes.ammoInMag + " / " + _recoil._GunAttributes.totalAmmo);
+        ammoText.text = ("Ammo Left: " + _recoil._GunAttributes.totalAmmo);
         ammoText.enabled = true;
         
         yield return new WaitForSeconds(time);
+        //
+        // Reload ääni tähän
+        //
         
         ammoText.enabled = false;
         isReloading = false;

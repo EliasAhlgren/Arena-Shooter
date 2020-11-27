@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public bool playerAlive = true;
     public int wave = 1;
     public int level = 1;
-    public int shadowOrbs; //mahdollisen perk systeemin pointsit 
+    public int shadowOrbs; //mahdollisen perk systeemin pointsit
 
     public static bool waveEnd = false;
     public static bool waveStart = true;
@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         // PAUSE MENU //
         if (acceptPlayerInput || !playerAlive)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))       
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 if (!paused)
                 {
@@ -60,11 +60,11 @@ public class GameManager : MonoBehaviour
         {
             EnemySpawner.spawnWave = true; // käynnistää EnemySpawner scriptin
             EnemySpawner.wave = wave;
-            Debug.Log("wave: " + wave);
+            // Debug.Log("wave: " + wave);
             wave += 1;
             waveStart = false;
         }
     }
 
-   
+
 }

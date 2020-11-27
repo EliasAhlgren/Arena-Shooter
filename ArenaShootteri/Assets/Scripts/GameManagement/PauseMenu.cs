@@ -22,6 +22,9 @@ public class PauseMenu : MonoBehaviour
     {
         gameManager.paused = false;
         pausePanel.SetActive(false);
+        optionsPanel.SetActive(false);
+        controlsPanel.SetActive(false);
+        exitPanel.SetActive(false);
         Time.timeScale = 1;
         gameObject.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
@@ -61,6 +64,14 @@ public class PauseMenu : MonoBehaviour
 
     public void ConfirmExit()
     {
+
+        DIsableRail[] dIsableRails = FindObjectsOfType<DIsableRail>();
+        
+        foreach (var VARIABLE in dIsableRails)
+        {
+            VARIABLE._shouldEnable = false;
+        }
+        
         gameManager.paused = false;
         SceneManager.LoadScene(0);
         exitPanel.SetActive(false);

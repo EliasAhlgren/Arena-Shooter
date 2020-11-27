@@ -18,7 +18,8 @@ MonoBehaviour:
   Prefab: {fileID: 3085185060907133804, guid: 1d9df442d0d9347768a767fbf6d08fa4, type: 3}
   Icon: {fileID: 21300000, guid: 7b34becd911b91744940ead9cd5b6eb6, type: 3}
   moveable: 1
-  Ergonomy: 10
-  Recoil: -10
+  Ergonomy: 2
+  Recoil: 20
   Damage: 0
+  rateOfFire: 0
   posDiff: {x: -0.2, y: -0.3, z: -0.3}

@@ -27,6 +27,9 @@ public class Vipeltaja : MonoBehaviour, IDamage
     public float walkSpeedBase = 6.0f, jumpSpeedBase = 20.0f;
     public float walkSpeed, jumpSpeed;
     public float speed;
+    public float turnSpeed = 2f;
+
+
 
     /// <summary>
     /// Attack range of Vipeltaja
@@ -44,7 +47,8 @@ public class Vipeltaja : MonoBehaviour, IDamage
     /// <summary>
     /// <c>Vipeltaja</c> Jump cooldown
     /// </summary>
-    public float jumpCooldown;
+    public float jumpCooldown, jumpTimer = 5f;
+    public bool jumpCoolingdown = false;
     /// <summary>
     /// is <c>Vipeltaja</c> ready to attack?
     /// </summary>
@@ -114,7 +118,18 @@ public class Vipeltaja : MonoBehaviour, IDamage
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.L))
+        // Track if vipeltaja can jump
+        if(jumpCoolingdown)
+        {
+            jumpTimer -= Time.deltaTime;
+            if(jumpTimer <= 0)
+            {
+                jumpCoolingdown = false;
+                jumpTimer = 5f;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.V))
         {
             Die();
         }
@@ -132,15 +147,6 @@ public class Vipeltaja : MonoBehaviour, IDamage
     public void SetTarget(GameObject _target)
     {
         target = _target;
-    }
-    /// <summary>
-    /// Runs Vipeltaja's attack logic
-    /// </summary>
-    public void Attack()
-    {
-        Debug.Log("Vipeltäjä melee attack");
-        // Implement what enemy does when attack happens
-        target.GetComponent<PlayerCharacterControllerRigidBody>().killPlayer();
     }
 
     /// <summary>
@@ -167,28 +173,13 @@ public class Vipeltaja : MonoBehaviour, IDamage
         int layerMask = (int)Mathf.Log(LayerMask.GetMask("DeadEnemy"), 2);
         SetLayerRecursively(transform.gameObject, layerMask);
 
-        // I'm dead. Notify others near me
-        //GameObject[] vipeltajat = GameObject.FindGameObjectsWithTag("Vipeltaja");
-        //foreach (GameObject vipeltaja in vipeltajat)
-        //{
-        //    if (Vector3.Distance(vipeltaja.transform.position, transform.position) < 20)
-        //    {
-        //        if (vipeltaja.gameObject != this.gameObject)
-        //        {
-        //            vipeltaja.GetComponent<Vipeltaja>().GetFeared();
-        //            Debug.Log("Feared");
-        //        }
-        //    }
-        //}
-
-        // tell other Vipeltaja enemies that this unit is dead. other should start to panic
-        int layerMask2 = LayerMask.GetMask("Enemy");
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 20, layerMask2);
-        foreach (var collider in colliders)
+        // tell other Vipeltaja enemies that this unit is dead. other should check if they are alone
+        GameObject[] vipeltajat = GameObject.FindGameObjectsWithTag("Vipeltaja");
+        foreach (GameObject vipeltaja in vipeltajat)
         {
-            if (collider.CompareTag("Vipeltaja"))
+            if (vipeltaja.gameObject != this.gameObject)
             {
-                collider.GetComponentInParent<Vipeltaja>().GetFeared();
+                vipeltaja.GetComponent<Vipeltaja>().IsAlone();
             }
         }
 
@@ -196,7 +187,7 @@ public class Vipeltaja : MonoBehaviour, IDamage
         // After that set all colliders back to false 
         // and let body sink throught the floor
         // Then destroy the whole GameObject
-        yield return new WaitForSeconds(2);
+                yield return new WaitForSeconds(2);
         setColliderState(false);
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
@@ -311,8 +302,36 @@ public class Vipeltaja : MonoBehaviour, IDamage
         }
     }
 
+    public bool IsFacingPlayer(float desiredAngle)
+    {
+        // Dot product used to determine if enemy is facing the player. return 1 if facing player, return 0 at 90 degree angle.
+        float dot = Vector3.Dot(transform.forward, (target.transform.position - transform.position).normalized);
 
-    
+        if (dot > desiredAngle)
+        {
+            return true;
+        }
+        else return false;
+    }
+
+    public void IsAlone()
+    {
+        int nearbyEnemies = 0;
+        GameObject[] vipeltajat = GameObject.FindGameObjectsWithTag("Vipeltaja");
+        
+        foreach (GameObject vipeltaja in vipeltajat)
+        {
+            if(vipeltaja.gameObject != this.gameObject && Vector3.Distance(vipeltaja.transform.position, gameObject.transform.position) < 20)
+            {
+                nearbyEnemies++;
+            }
+        }
+
+        if (nearbyEnemies < 2)
+        {
+            GetFeared();
+        }
+    }
 }    
 
 

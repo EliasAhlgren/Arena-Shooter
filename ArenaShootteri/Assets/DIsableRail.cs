@@ -7,6 +7,8 @@ public class DIsableRail : MonoBehaviour
 {
     [NonSerialized] public GameObject targetRail;
     public string rail;
+
+    public bool _shouldEnable = true;
     
     // Start is called before the first frame update
     void Start()
@@ -15,9 +17,18 @@ public class DIsableRail : MonoBehaviour
         targetRail.SetActive(false);
     }
 
+    private void OnApplicationQuit()
+    {
+        _shouldEnable = false;
+    }
+
+    
+    
     private void OnDestroy()
     {
+        if (!_shouldEnable) return;
         targetRail.SetActive(true);
+
     }
 
     // Update is called once per frame

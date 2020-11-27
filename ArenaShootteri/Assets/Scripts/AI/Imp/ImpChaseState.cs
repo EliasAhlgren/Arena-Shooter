@@ -28,7 +28,7 @@ public class ImpChaseState : BaseState
 
     public override Type Tick()
     {
-        if(imp = null)
+        if (imp == null)
         {
             return typeof(ImpDoNothingState);
         }

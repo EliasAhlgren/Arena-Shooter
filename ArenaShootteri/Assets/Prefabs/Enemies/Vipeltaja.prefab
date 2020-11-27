@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2125198625419968399}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:B_leg_R_end
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,9 +43,9 @@ GameObject:
   - component: {fileID: 3606947181539603768}
   - component: {fileID: 3606947181539603769}
   - component: {fileID: 3606947181539603767}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:head
-  m_TagString: Vipeltaja
+  m_TagString: VipeltajaAttackHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.13184063, y: 0.022971634, z: -0.000000014901161}
+  m_ConnectedAnchor: {x: 0.13184197, y: 0.022971323, z: -0.000000014901161}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -155,9 +155,9 @@ GameObject:
   - component: {fileID: 3606947181390055979}
   - component: {fileID: 3606947181390055977}
   - component: {fileID: 3606947181390055978}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:F_leg_L_1
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -219,7 +219,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.116524816, y: -0.04069972, z: 0.095054634}
+  m_ConnectedAnchor: {x: 0.11652352, y: -0.040699407, z: 0.095054634}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -265,9 +265,9 @@ GameObject:
   - component: {fileID: 3606947180087069549}
   - component: {fileID: 3606947180087069551}
   - component: {fileID: 3606947180087069550}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:B_leg_R_2
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -329,7 +329,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: -1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.43012428, y: 0.010065038, z: -0.22193146}
+  m_ConnectedAnchor: {x: 0.43012396, y: 0.010064138, z: -0.2219348}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -374,9 +374,9 @@ GameObject:
   - component: {fileID: 1070238963886457608}
   - component: {fileID: 3606947180539909739}
   - component: {fileID: 3606947180539909738}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:Pers_leg_R_2
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -423,7 +423,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.25605956, y: -0.034002636, z: -0.20349884}
+  m_ConnectedAnchor: {x: -0.25605905, y: -0.034003437, z: -0.20349884}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -467,9 +467,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8411709492461831571}
   - component: {fileID: 5757988643343333517}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:vipeltaja_lp2:retopovipeltajaisosilma
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -557,7 +557,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1610693485373914517}
   - component: {fileID: 2570324712603216324}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:tooth_L_3
   m_TagString: VipeltajaAttackHitbox
   m_Icon: {fileID: 0}
@@ -603,7 +603,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4936878865133124132}
   - component: {fileID: 8457630974999401135}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:tooth_R_1
   m_TagString: VipeltajaAttackHitbox
   m_Icon: {fileID: 0}
@@ -648,9 +648,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8132386959192752284}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:perse_end
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -679,9 +679,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8165322749487688197}
   - component: {fileID: 8159215285332228460}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:vipeltaja_lp2:retopovipeltajaetukintut
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -780,9 +780,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8552084271632167335}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:Pers_leg_R_end
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -811,7 +811,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2687549566766355484}
   - component: {fileID: 4922360432222414584}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:tooth_R_3
   m_TagString: VipeltajaAttackHitbox
   m_Icon: {fileID: 0}
@@ -856,9 +856,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1620246343086558632}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:geo_grp
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -894,9 +894,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8078748160785099128}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:tooth_R_end
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -925,9 +925,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5094673960981232412}
   - component: {fileID: 1845260946844245532}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:vipeltaja_lp2:retopovipeltajanassuy
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1028,9 +1028,9 @@ GameObject:
   - component: {fileID: 1386421959773457472}
   - component: {fileID: 3606947181243763675}
   - component: {fileID: 3606947181243763674}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:Pers_leg_L_2
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1077,7 +1077,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.25606042, y: -0.034003142, z: 0.2034989}
+  m_ConnectedAnchor: {x: -0.2560591, y: -0.034003444, z: 0.20349842}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -1121,9 +1121,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4935906538923335912}
   - component: {fileID: 3373792562148038919}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:vipeltaja_lp2:perseretopovipeltaja
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1224,9 +1224,9 @@ GameObject:
   - component: {fileID: 3606947179954679087}
   - component: {fileID: 3606947179954679121}
   - component: {fileID: 3606947179954679120}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:F_leg_R_2
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1287,7 +1287,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: -1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.27551082, y: -0.07834253, z: -0.216713}
+  m_ConnectedAnchor: {x: 0.27551156, y: -0.07834372, z: -0.21671633}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -1330,9 +1330,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 318958980212184460}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:B_leg_L_end
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1362,9 +1362,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3606947179922904470}
   - component: {fileID: 3606947179922904471}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: B_leg_R_1 Hitbox
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1407,9 +1407,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3606947180192939054}
   - component: {fileID: 3606947180192939055}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: B_Leg_R_3 Hitbox
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1452,9 +1452,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3606947180267837163}
   - component: {fileID: 3606947180267837164}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: B_leg_L_end Hitbox
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1497,9 +1497,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3606947180370604996}
   - component: {fileID: 3606947180370604997}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: perse_1 hitbox
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1542,9 +1542,9 @@ GameObject:
   - component: {fileID: 3606947180384033617}
   - component: {fileID: 3606947180384033619}
   - component: {fileID: 3606947180384033618}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Hitbox
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1600,9 +1600,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3606947180513908637}
   - component: {fileID: 3606947180513908638}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: F_leg_L_2 Hitbox
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1645,9 +1645,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3606947180611311606}
   - component: {fileID: 3606947180611311607}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: B_leg_L_3 Hitbox
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1689,9 +1689,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3606947180677563424}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: SpitSpawnPosition
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1720,9 +1720,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3606947180732882114}
   - component: {fileID: 3606947180732882115}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: F_Leg_L_3 Hitbox
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1765,9 +1765,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3606947180735269287}
   - component: {fileID: 3606947180735269288}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: B_leg_L_2 Hitbox
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1810,9 +1810,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3606947181162922293}
   - component: {fileID: 3606947181162922294}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: F_leg_L_1 Hitbox
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1855,9 +1855,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3606947181183339613}
   - component: {fileID: 3606947181183339614}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: B_leg_R_2 Hitbox
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1900,9 +1900,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3606947181420510400}
   - component: {fileID: 3606947181420510401}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: B_leg_R_end Hitbox
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1945,9 +1945,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3606947181421790672}
   - component: {fileID: 3606947181421790673}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: F_Leg_L_end Hitbox
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1990,9 +1990,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3606947181498419264}
   - component: {fileID: 3606947181498419265}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: perse_2 hitbox
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2034,9 +2034,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3606947181621116621}
   - component: {fileID: 3606947181621116622}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: perse_3 hitbox
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2078,9 +2078,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3606947181888738251}
   - component: {fileID: 3606947181888738252}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: head hitbox
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2122,9 +2122,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3606947181891772523}
   - component: {fileID: 3606947181891772524}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: B_leg_L_1 Hitbox
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2168,9 +2168,9 @@ GameObject:
   - component: {fileID: 8220761092352733909}
   - component: {fileID: 3606947180370422574}
   - component: {fileID: 3606947180370422573}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:Pers_leg_L_1
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2217,7 +2217,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.09219642, y: -0.038043275, z: 0.13572696}
+  m_ConnectedAnchor: {x: -0.09219585, y: -0.038042374, z: 0.1357303}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -2261,9 +2261,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5821072152631064561}
   - component: {fileID: 391802829961392357}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:vipeltaja_lp2:retopovipeltajatakakintut
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2365,9 +2365,9 @@ GameObject:
   - component: {fileID: 848619526703139806}
   - component: {fileID: 3606947180983044051}
   - component: {fileID: 3606947180983044052}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:perse_3
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2432,7 +2432,7 @@ GameObject:
   - component: {fileID: 3606947181430695152}
   - component: {fileID: 3606947181430695153}
   - component: {fileID: 3606947181430695154}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja
   m_TagString: Vipeltaja
   m_Icon: {fileID: 0}
@@ -2446,7 +2446,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4525865322486302523}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 163.5, y: 84.13, z: -20.698778}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
@@ -2518,7 +2518,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -2560,11 +2560,14 @@ MonoBehaviour:
   walkSpeed: 0
   jumpSpeed: 20
   speed: 10
-  attackRange: 3
+  turnSpeed: 2
+  attackRange: 2
   attackCounter: 0
   attackCooldown: 2
   jumpDistance: 20
   jumpCooldown: 0
+  jumpTimer: 5
+  jumpCoolingdown: 1
   readyToAttack: 1
   agent: {fileID: 3606947181430695152}
   animator: {fileID: 0}
@@ -2577,9 +2580,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8392241468842747475}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:joint3
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2609,9 +2612,9 @@ GameObject:
   - component: {fileID: 814910262456901327}
   - component: {fileID: 3606947180210634969}
   - component: {fileID: 3606947180210634968}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:Pers_leg_R_1
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2658,7 +2661,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.09219639, y: -0.03804327, z: -0.13572693}
+  m_ConnectedAnchor: {x: -0.09219557, y: -0.038042776, z: -0.13572979}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -2701,9 +2704,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3286420492830694263}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:F_leg_R_end
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2734,9 +2737,9 @@ GameObject:
   - component: {fileID: 3606947179907977947}
   - component: {fileID: 3606947179907977945}
   - component: {fileID: 3606947179907977946}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:B_leg_R_1
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2798,7 +2801,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.014738711, y: -0.038423784, z: -0.09850313}
+  m_ConnectedAnchor: {x: 0.014738644, y: -0.03842551, z: -0.098503605}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -2842,7 +2845,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6207073018882696527}
   - component: {fileID: 8960491919131350882}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:tooth_L_2
   m_TagString: VipeltajaAttackHitbox
   m_Icon: {fileID: 0}
@@ -2890,9 +2893,9 @@ GameObject:
   - component: {fileID: 3606947181051290715}
   - component: {fileID: 3606947181051290716}
   - component: {fileID: 3606947181051290714}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:B_leg_L_3
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2954,7 +2957,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: -1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.29182377, y: 0.0000011026859, z: -0.00000014901161}
+  m_ConnectedAnchor: {x: -0.29182288, y: -0.00000090897083, z: -0.00000028312206}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -3000,9 +3003,9 @@ GameObject:
   - component: {fileID: 3606947180151962873}
   - component: {fileID: 3606947180151962875}
   - component: {fileID: 3606947180151962874}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:F_leg_L_2
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3064,7 +3067,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.27550992, y: -0.078343034, z: 0.21671298}
+  m_ConnectedAnchor: {x: 0.2755115, y: -0.07834372, z: 0.21671584}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -3110,9 +3113,9 @@ GameObject:
   - component: {fileID: 3606947181658447169}
   - component: {fileID: 3606947181658447199}
   - component: {fileID: 3606947181658447168}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:F_leg_R_1
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3173,7 +3176,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.116524845, y: -0.04069972, z: -0.09505465}
+  m_ConnectedAnchor: {x: 0.116523795, y: -0.040699817, z: -0.09505465}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -3217,9 +3220,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4074550358076766435}
   - component: {fileID: 7269770562810797940}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:vipeltaja_lp2:retopovipeltajapikkukintut
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3317,7 +3320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 628971589919885765}
   - component: {fileID: 8432567332670210120}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:tooth_L_1
   m_TagString: VipeltajaAttackHitbox
   m_Icon: {fileID: 0}
@@ -3363,9 +3366,9 @@ GameObject:
   m_Component:
   - component: {fileID: 886081424712587934}
   - component: {fileID: 3367236401214879289}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:vipeltaja_lp2:retopovipeltajapikkusilma
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3453,7 +3456,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8977418119617376870}
   - component: {fileID: 7495016328099146933}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:tooth_R_2
   m_TagString: VipeltajaAttackHitbox
   m_Icon: {fileID: 0}
@@ -3498,9 +3501,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6289018186319172056}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:tooth_L_end
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3531,9 +3534,9 @@ GameObject:
   - component: {fileID: 3606947180755458044}
   - component: {fileID: 3606947180755458042}
   - component: {fileID: 3606947180755458043}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:B_leg_L_1
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3595,7 +3598,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.014737869, y: -0.038424283, z: 0.09850313}
+  m_ConnectedAnchor: {x: 0.014738614, y: -0.038425513, z: 0.098503605}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -3639,9 +3642,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1672419476995706930}
   - component: {fileID: 5363346913313208118}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:vipeltaja_lp2:retopovipeltajaetupihdit
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3743,9 +3746,9 @@ GameObject:
   - component: {fileID: 3606947180839001465}
   - component: {fileID: 3606947180839001463}
   - component: {fileID: 3606947180839001464}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:perse_2
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3806,7 +3809,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.15901119, y: 0.05425128, z: 0.000000029802322}
+  m_ConnectedAnchor: {x: 0.15901205, y: 0.054250926, z: 0.000000029802322}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -3852,9 +3855,9 @@ GameObject:
   - component: {fileID: 3606947181636597520}
   - component: {fileID: 3606947181636597521}
   - component: {fileID: 3606947181636596975}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:F_leg_R_3
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3915,7 +3918,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.3077532, y: 0.0000016987324, z: 0.0000026598573}
+  m_ConnectedAnchor: {x: 0.30775502, y: -0.0000004172325, z: 0.00000058859587}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -3961,9 +3964,9 @@ GameObject:
   - component: {fileID: 3606947179985325454}
   - component: {fileID: 3606947179985325488}
   - component: {fileID: 3606947179985325455}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:B_leg_L_2
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4025,7 +4028,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.43012425, y: 0.010064995, z: 0.2219315}
+  m_ConnectedAnchor: {x: 0.4301239, y: 0.010064095, z: 0.22193484}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -4071,9 +4074,9 @@ GameObject:
   - component: {fileID: 3606947179937014826}
   - component: {fileID: 3606947179937014827}
   - component: {fileID: 3606947179937014825}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:F_leg_L_3
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4135,7 +4138,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.30775297, y: -0.00000011920929, z: -0.000003233552}
+  m_ConnectedAnchor: {x: -0.30775338, y: -0.0000005811453, z: 0.00000022351742}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -4180,9 +4183,9 @@ GameObject:
   - component: {fileID: 9080329764141686672}
   - component: {fileID: 3606947180594987810}
   - component: {fileID: 3606947180594987809}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:root
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4279,9 +4282,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1047227157187048550}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:joints_grp
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4313,9 +4316,9 @@ GameObject:
   - component: {fileID: 3606947180334765243}
   - component: {fileID: 3606947180334765244}
   - component: {fileID: 3606947180334765242}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:B_leg_R_3
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4377,7 +4380,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.29182366, y: -0.0000010579824, z: -0.00000032735988}
+  m_ConnectedAnchor: {x: 0.2918216, y: -0.00000040233135, z: -0.00000039162114}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -4420,9 +4423,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2686141884099695795}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:Pers_leg_L_end
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4450,9 +4453,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5092061159466658729}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:F_leg_L_end
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4484,9 +4487,9 @@ GameObject:
   - component: {fileID: 3606947180471801851}
   - component: {fileID: 3606947180471801852}
   - component: {fileID: 3606947180471801850}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Vipeltaja_rig:perse_1
-  m_TagString: Vipeltaja
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4547,7 +4550,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.20515473, y: 0.06347957, z: 0.0000000018626454}
+  m_ConnectedAnchor: {x: 0.20515645, y: 0.06347934, z: 0.0000000018626454}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
