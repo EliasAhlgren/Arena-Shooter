@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b3f0f5bca9868654e83d77b70a78b02d
+guid: 3b1f1b1698cc0e04397fbf13bbeacf94
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: polySurface13Mat
-    second: {fileID: 2100000, guid: faa721385fff9a74e917d289b7da581a, type: 2}
+      name: pCylinder19Mat
+    second: {fileID: 2100000, guid: fac8ef8339b6603459997c3bbde8891c, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -39,7 +39,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.004
+    globalScale: 0.04
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -90,7 +90,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.004
+    globalScale: 0.04
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

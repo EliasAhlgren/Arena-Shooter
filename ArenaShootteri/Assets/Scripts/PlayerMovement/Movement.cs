@@ -46,7 +46,8 @@ public class Movement : MonoBehaviour
     float tiltLerp = 0f;
 
     //diagonal movement limiter variable;
-    float DMLimiter;
+    //float DMLimiter;
+    float movementAcc;
 
     //gravity
     float gravity;
@@ -60,6 +61,7 @@ public class Movement : MonoBehaviour
     public float runSpeedMod = 2f;
     public float slideSpeedMod = 1.2f;
     public float dodgeSpeedMod = 3f;
+    public float crouchSpeedMod = 0.7f;
 
     public float playerVelocity;
     //public float runSpeed = 12f;
@@ -136,7 +138,7 @@ public class Movement : MonoBehaviour
     //Vector3 playerPosition;
     //Vector3 movementVector;
 
-    float movementAcc;
+    
 
     bool addingForce = false;
     bool doubleJump = false;
@@ -234,6 +236,13 @@ public class Movement : MonoBehaviour
                 //speed = runSpeed;
                 speed = baseSpeed * runSpeedMod;
             }
+            else if (isCrouching)
+            {
+                //set crouching speed
+                isRunning = false;
+
+                speed = baseSpeed * crouchSpeedMod;
+            }
             else
             {
                 //set walking speed
@@ -282,10 +291,13 @@ public class Movement : MonoBehaviour
             z = 0f;
         }
 
-        DirectioanalMovementLimit();
+
 
         //set directional movement limiter
 
+        DirectioanalMovementLimit();
+
+        /*
         if (Mathf.Sqrt(x * x + z * z) > 1)
         {
             DMLimiter = 0.7f;
@@ -294,7 +306,7 @@ public class Movement : MonoBehaviour
         {
             DMLimiter = 1f;
         }
-
+        */
 
         //limit camera vertical movement
         xRotation -= mouseY;
@@ -638,7 +650,7 @@ public class Movement : MonoBehaviour
                         airBorne = new Vector3(move.x, 0, move.z);
                         if (Physics.Raycast(transform.position + new Vector3(0, .2f, 0), transform.right, maxWallDistance, groundLayerMask))
                         {
-                            velocity.y = 5f;
+                            velocity.y = 2f;
                         }
                         else
                         {
@@ -662,7 +674,7 @@ public class Movement : MonoBehaviour
                         airBorne = new Vector3(move.x, 0, move.z);
                         if (Physics.Raycast(transform.position + new Vector3(0, .2f, 0), -transform.right, maxWallDistance, groundLayerMask))
                         {
-                            velocity.y = 5f;
+                            velocity.y = 2f;
                         }
                         else
                         {
@@ -856,7 +868,7 @@ public class Movement : MonoBehaviour
                 airBorne.y = velocity.y;
 
                 
-                airMove = Vector3.ClampMagnitude(transform.right * x + transform.forward * z + transform.up * 0, 1f) * speed * airMoveModifier * movementAcc;
+                airMove = Vector3.ClampMagnitude(transform.right * x + transform.forward * z + transform.up * 0, 1f) * baseSpeed * airMoveModifier * movementAcc;
                 //airBorne += airMove;
                 //decouple character rotation from airborne vector
                 move = (airBorne - rotation) + airMove;

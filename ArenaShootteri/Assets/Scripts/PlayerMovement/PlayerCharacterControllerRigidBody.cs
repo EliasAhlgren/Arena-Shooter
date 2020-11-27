@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class PlayerCharacterControllerRigidBody : MonoBehaviour
 {
     public Text playerHP;
+    public Text timer;
+    bool useTimer = true;
     public Movement movement;
     [Header("Test Mode")]
     public bool testKeys = true;
@@ -108,6 +110,12 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (timer == null)
+        {
+            Debug.Log("set timer");
+            useTimer = false;
+        }
+
         movement = GetComponent<Movement>();
         //deathCanvas = GetComponentInChildren<Canvas>(true).gameObject;
         //deathImage = deathCanvas.GetComponentInChildren<Image>(true);
@@ -132,6 +140,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         if (damageAuraUnlocked) DamageAura();
         if (theHolyLightUnlocked) TheHolyLight();
 
+        if (useTimer) CooldownCounter();
 
         if (playerControl && Time.timeScale > 0)
         {
@@ -144,8 +153,8 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             }
             */
 
-            // activate active perk "Y"
-            if (Input.GetKeyDown(KeyCode.Y))
+            // activate active perk "F"
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 if (activePerkActiveTime <= 0 && activePerkCooldown <= 0)
                 {
@@ -359,6 +368,19 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         {
             playerControl = false;
         }
+    }
+
+    public void CooldownCounter()
+    {
+        if (activePerkCooldown > 0 && activePerkActiveTime <= 0)
+        {
+            timer.text = (activePerkCooldown + 1).ToString("0");
+        }
+        else
+        {
+            timer.text = "";
+        }
+            
     }
 
     // obsolete
