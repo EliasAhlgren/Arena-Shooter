@@ -10,14 +10,12 @@ public class Imp : MonoBehaviour, IDamage
     /// <summary>
     /// Imp's target
     /// </summary>
-    public GameObject target { get; private set; }
+    public GameObject target { get; set; }
 
     // IDamage variable
     public float IHealth { get; set; } = 100f;
 
     public bool canAttack = true;
-
-    public Rigidbody rb;
 
     public float walkSpeedBase = 5f;
     public float speed;
@@ -59,7 +57,6 @@ public class Imp : MonoBehaviour, IDamage
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody>();
     }
 
     private void Awake()
@@ -69,11 +66,14 @@ public class Imp : MonoBehaviour, IDamage
 
         // Assign the target to be player object
         target = GameObject.FindGameObjectWithTag("Player");
-
+        if(target != null)
+        {
+            Debug.Log("Target Found. " + target.name);
+        }
         // what for... Not really sure. 
         agent.SetDestination(target.transform.position);
 
-        Debug.Log("Imp is awake");
+        Debug.Log("Imp is awake.");
     }
 
     private void InitStateMachine()
@@ -84,12 +84,13 @@ public class Imp : MonoBehaviour, IDamage
             {typeof(ImpChaseState), new ImpChaseState(_imp: this) },
             {typeof(ImpAttackState), new ImpAttackState(_imp: this) }
         };
+        GetComponent<Imp_StateMachine>().SetStates(states);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+         
     }
 
     public void TakeDamage(float damage)
@@ -106,7 +107,6 @@ public class Imp : MonoBehaviour, IDamage
     public IEnumerator Die()
     {
         animator.Play("Death");
-        SetRigidbodyState(false);
         SetColliderState(true);
 
         
@@ -125,15 +125,15 @@ public class Imp : MonoBehaviour, IDamage
         Destroy(gameObject);
     }
 
-    void SetRigidbodyState(bool state)
-    {
-        Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
+    //void SetRigidbodyState(bool state)
+    //{
+    //    Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
 
-        foreach (Rigidbody rb in rigidbodies)
-        {
-            rb.isKinematic = state;
-        }
-    }
+    //    foreach (Rigidbody rb in rigidbodies)
+    //    {
+    //        rb.isKinematic = state;
+    //    }
+    //}
 
     void SetColliderState(bool state)
     {
