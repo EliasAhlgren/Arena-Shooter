@@ -19,12 +19,11 @@ public class CreateNodes : MonoBehaviour
 
     public float scale;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _nodeCount = xCount * zCount;
         
         positions = new Vector3[_nodeCount];
-        
         
         _map = GameObject.FindGameObjectsWithTag("Level");
         _mapColliders = new Collider[_map.Length];
@@ -71,6 +70,5 @@ public class CreateNodes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 }

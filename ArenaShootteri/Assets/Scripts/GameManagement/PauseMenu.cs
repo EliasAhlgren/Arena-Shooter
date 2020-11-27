@@ -64,6 +64,14 @@ public class PauseMenu : MonoBehaviour
 
     public void ConfirmExit()
     {
+
+        DIsableRail[] dIsableRails = FindObjectsOfType<DIsableRail>();
+        
+        foreach (var VARIABLE in dIsableRails)
+        {
+            VARIABLE._shouldEnable = false;
+        }
+        
         gameManager.paused = false;
         SceneManager.LoadScene(0);
         exitPanel.SetActive(false);
