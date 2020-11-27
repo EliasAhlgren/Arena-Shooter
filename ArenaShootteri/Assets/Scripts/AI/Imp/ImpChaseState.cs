@@ -10,6 +10,8 @@ public class ImpChaseState : BaseState
     public ImpChaseState(Imp _imp) : base(_imp.gameObject)
     {
         imp = _imp;
+        Debug.Log(imp);
+        Debug.Log(_imp);
     }
 
     public override void OnStateEnter()
@@ -28,11 +30,10 @@ public class ImpChaseState : BaseState
 
     public override Type Tick()
     {
-        if(imp = null)
+        if (imp == null)
         {
             return typeof(ImpDoNothingState);
         }
-
         // Set path destination to target position
         imp.agent.SetDestination(imp.target.transform.position);
 

@@ -18,7 +18,7 @@ public class Recoil : MonoBehaviour
 
     public float aimingRecoil;
 
-    private float _recoil;
+    public float _recoil;
     
     public float horizontalRecoil;
     
@@ -79,28 +79,35 @@ public class Recoil : MonoBehaviour
         
     }
     
-    void UpdateStats()
+    public void UpdateStats()
     {
+        
+        
         // stats are divided by 10 to make inputting them in the Mod assets make more sense
+        rotationLazyness = 0.3f;
+        RecoilAmount = 2f;
+        ReturnTime = 0.05f;    
+        
         rotationLazyness += _GunAttributes.totalErgonomy / 10;
         RecoilAmount += _GunAttributes.totalRecoil / 10;
-
-        if (isAiming)
-        {
-            _recoil = aimingRecoil;
-        }
-        else
-        {
-            _recoil = RecoilAmount;
-        }
+        ReturnTime += _GunAttributes.totalErgonomy / 100f;
+        
+        
     }
     
     // Update is called once per frame
     void Update()
     {
         
-        
-        UpdateStats();
+        if (isAiming)
+                {
+                    _recoil = aimingRecoil;
+                }
+                else
+                {
+                    _recoil = RecoilAmount;
+                }
+        //UpdateStats();
         
         timer1 += Time.deltaTime * RateOfFire;
         timer2 += Time.deltaTime / 2;
@@ -178,6 +185,9 @@ public class Recoil : MonoBehaviour
     private IEnumerator Fire()
     {
         _canFire = false;
+        //
+        //Aseen ampumis ääni tähän
+        //
         yield return new WaitForSeconds(0.041f);
         shooting.Shoot();
         muzzleFlash.Play();

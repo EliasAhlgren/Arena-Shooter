@@ -21,4 +21,5 @@ MonoBehaviour:
   Ergonomy: 0
   Recoil: 0
   Damage: 0
+  rateOfFire: 0
   posDiff: {x: 0, y: 0, z: 0}

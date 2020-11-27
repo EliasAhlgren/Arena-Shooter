@@ -12,6 +12,8 @@ public class ShotgunScript : MonoBehaviour
     public Mod shotgunMod;
     public VisualEffect vfx;
 
+    public int shellsLeft = 10;
+    
     private bool _canShoot = true;
     
     public List<GameObject> collidingObjects;
@@ -37,14 +39,22 @@ public class ShotgunScript : MonoBehaviour
     {
         _canShoot = false;
         yield return new WaitForSeconds(3f);
+        //
+        //Haulikon lataus ääni tähän
+        //
         _canShoot = true;
     }
     
     private void FixedUpdate()
     {
-        if (Input.GetButtonDown("Fire3") && _canShoot)
+        if (Input.GetButtonDown("Fire3") && _canShoot && shellsLeft > 0)
         {
+            shellsLeft--;
             vfx.Play();
+            //
+            // Haulikon laukaus ääni tähän
+            //
+            
             StartCoroutine(shooty());
             foreach (var VARIABLE in collidingObjects)
             {
