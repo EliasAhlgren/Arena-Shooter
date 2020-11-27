@@ -100,7 +100,7 @@ public class Aiming : MonoBehaviour
             _recoil._GunAttributes.totalAmmo = 0;
         }
 
-        ammoText.text = ("Ammo Left: " + _recoil._GunAttributes.ammoInMag + " / " + _recoil._GunAttributes.totalAmmo);
+        ammoText.text = ("Ammo Left: " + _recoil._GunAttributes.totalAmmo);
         ammoText.enabled = true;
         
         yield return new WaitForSeconds(time);

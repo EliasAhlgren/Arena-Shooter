@@ -2056,7 +2056,7 @@ GameObject:
   m_Component:
   - component: {fileID: 907592272043151143}
   - component: {fileID: 907592272043151142}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Secondary Volume Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13915,7 +13915,6 @@ GameObject:
   - component: {fileID: 5715924896594780723}
   - component: {fileID: 5715924896594780733}
   - component: {fileID: 4383131419045538798}
-  - component: {fileID: 4383131420023607856}
   - component: {fileID: 4383131420023607861}
   m_Layer: 13
   m_Name: GUN2 1
@@ -14045,24 +14044,6 @@ MonoBehaviour:
   isReloading: 0
   reloadPos: {fileID: 0}
   ammoText: {fileID: 0}
---- !u!114 &4383131420023607856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5715924896594780735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 431233f1035895143a388d6c0c098b77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  aiming: {fileID: 4383131419045538798}
-  isReloading: 0
-  attributes: {fileID: 5715924896594780723}
-  reloadPos: {fileID: 0}
-  recoil: {fileID: 5715924896594780733}
-  target: {fileID: 0}
 --- !u!114 &4383131420023607861
 MonoBehaviour:
   m_ObjectHideFlags: 0
