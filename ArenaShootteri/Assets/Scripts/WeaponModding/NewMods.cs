@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
@@ -17,9 +18,22 @@ public class NewMods : MonoBehaviour
 
     public ModSelection[] modSelections;
 
-    public void Start()
+    public void CheckMods()
     {
-        modSelections = Component.FindObjectsOfType<ModSelection>();
+        modSelections = FindObjectsOfType<ModSelection>();
+
+        if (gameObject.GetComponent<GameManager>().wave == 10)
+        {
+            modPool.AddRange(level1);
+        }
+        if (gameObject.GetComponent<GameManager>().wave == 15)
+        {
+            modPool.AddRange(level2);
+        }
+        if (gameObject.GetComponent<GameManager>().wave == 20)
+        {
+            modPool.AddRange(level3);
+        }
         
         
         foreach (var instance in modSelections)
@@ -30,11 +44,21 @@ public class NewMods : MonoBehaviour
             {
                 if (mod.rail == instance.RailName)
                 {
+                    Debug.Log("Mod found");
                     mods.Add(mod);
-                }
+                }    
             }
 
-            instance.selectedMods[0] = mods[Random.Range(0, mods.Count)];
+            Mod[] selectedMods = mods.ToArray();
+            foreach (var VARIABLE in selectedMods)
+            {
+                Debug.Log(VARIABLE + " " + instance.gameObject);
+            }
+            Debug.Log("Lengths: " + selectedMods.Length);
+            instance.selectedMods = new Mod[1];
+            if (selectedMods.Length <= 0) continue;
+            instance.selectedMods[0] = selectedMods[Random.Range(0,selectedMods.Length)];
+
 
         }
     }

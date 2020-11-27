@@ -10,10 +10,12 @@ TagManager:
   - Grunt
   - EnemyAttackHitbox
   - ModSelection
+  - GameManagement
+  - spawnPoints
+  - Level
+  - AlienCamera
   - VipeltajaAttackHitbox
   - GruntAttackHitbox
-  - ImpAttackHitbox
-  - GameManagement
   - Imp
   layers:
   - Default
@@ -26,10 +28,10 @@ TagManager:
   - 
   - Map
   - DeadEnemy
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - Main PP
+  - Secondary PP
+  - Gun
   - 
   - 
   - 

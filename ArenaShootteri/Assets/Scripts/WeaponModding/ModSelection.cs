@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -151,7 +152,12 @@ public class ModSelection : MonoBehaviour
         GameObject newMod = Instantiate(selectedMods[int.Parse(buttonName)].Prefab, ModRail.transform.GetChild(0).position,
             Quaternion.identity, ModRail.transform);
         newMod.transform.rotation = ModRail.transform.rotation;
-
+        Renderer[] renderers = newMod.GetComponentsInChildren<Renderer>();
+        foreach (var VARIABLE in renderers)
+        {
+            VARIABLE.shadowCastingMode = ShadowCastingMode.Off;
+        }
+        
         //valitse oikea modi currentModStatsiin
         currenModStats = selectedMods[int.Parse(buttonName)];
         

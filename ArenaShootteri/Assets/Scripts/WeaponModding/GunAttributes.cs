@@ -13,12 +13,10 @@ public class GunAttributes : MonoBehaviour
 
     public int ammoInMag;
     public int totalAmmo;
+
+    public float rateOfFire = 0.041f;
     
     public Recoil recoilScript;
-    
-    public ModSelection sightSelection;
-    
-    
     
     [NonSerialized] public GameObject[] canvases;
 
@@ -37,14 +35,13 @@ public class GunAttributes : MonoBehaviour
 
     private AnimationClip adsClip;
 
-    public AnimationCurve recoilCurve;
-
     public WeaponRotationScript _WeaponRotationScript;
 
     public bool isModding;
 
     public GameObject mainCamera;
 
+    public GameObject wallHackCamera;
     
     // Start is called before the first frame update
     void Start()
@@ -189,22 +186,21 @@ public class GunAttributes : MonoBehaviour
                 totalErgonomy += _modSelection.currenModStats.Ergonomy;
                 totalRecoil += _modSelection.currenModStats.Recoil;
                 totalDamage += _modSelection.currenModStats.Damage;
+                
+                if (_modSelection.currenModStats.rateOfFire > 0.01f)
+                {
+                    rateOfFire = _modSelection.currenModStats.rateOfFire;
+                }
+                else
+                {
+                    rateOfFire = 0.041f;
+                }
             }
+            
         }
         
-        foreach (var _modSelection in GetComponentsInChildren<StockSelection>())
-        {
-            if (_modSelection.currenModStats)
-            {
-                totalErgonomy += _modSelection.currenModStats.Ergonomy;
-                totalRecoil += _modSelection.currenModStats.Recoil;
-                totalDamage += _modSelection.currenModStats.Damage;
-            }
-        }
-
+        recoilScript.UpdateStats();
         
-
-
     }
 
     

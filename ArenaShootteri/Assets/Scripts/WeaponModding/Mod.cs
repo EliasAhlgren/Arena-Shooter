@@ -24,6 +24,8 @@ public class Mod : ScriptableObject
 
     public float Damage;
 
+    public float rateOfFire;
+    
     public Vector3 posDiff;
 
 }
