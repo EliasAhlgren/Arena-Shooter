@@ -32,6 +32,7 @@ public class ImpAttackState : BaseState
         SetAttackColliders(true);
         // Play attack animation
         // << Attack Animation >> 
+        imp.animator.Play("Hit");
         imp.readyToAttack = false;
     }
 

@@ -129,7 +129,7 @@ public class Vipeltaja : MonoBehaviour, IDamage
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.V))
         {
             Die();
         }
