@@ -66,10 +66,7 @@ public class Imp : MonoBehaviour, IDamage
 
         // Assign the target to be player object
         target = GameObject.FindGameObjectWithTag("Player");
-        if(target != null)
-        {
-            Debug.Log("Target Found. " + target.name);
-        }
+
         // what for... Not really sure. 
         agent.SetDestination(target.transform.position);
 
@@ -90,23 +87,39 @@ public class Imp : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-         
+        if(!readyToAttack)
+        {
+            attackCounter += Time.deltaTime;
+            if(attackCounter >= attackCooldown)
+            {
+                readyToAttack = true;
+                canAttack = true;
+                attackCounter = 0f;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            Die();
+        }
     }
 
     public void TakeDamage(float damage)
     {
-        animator.Play("Damage");
+        animator.SetTrigger("TakesDamage");
         IHealth -= damage;
 
         if(IHealth <= 0)
         {
             StartCoroutine(Die());
         }
+        animator.ResetTrigger("TakesDamage");
     }
 
     public IEnumerator Die()
     {
-        animator.Play("Death");
+
+        animator.SetBool("Dead", true);
         SetColliderState(true);
 
         
