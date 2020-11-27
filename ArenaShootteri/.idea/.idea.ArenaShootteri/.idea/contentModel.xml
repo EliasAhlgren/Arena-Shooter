@@ -3,24 +3,52 @@
   <component name="ContentModelStore">
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="ArenaShootteri.sln" t="IncludeFlat" />
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="BounceScript.cs" t="Include" />
         <e p="ChargeTriggerContoller.cs" t="Include" />
+        <e p="DIsableRail.cs" t="Include" />
+        <e p="GruntChase.cs" t="Include" />
         <e p="HandSetter.cs" t="Include" />
+        <e p="justjust.cs" t="Include" />
         <e p="LaserScript.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="AI" t="Include">
             <e p="BaseState.cs" t="Include" />
             <e p="ConeScript.cs" t="Include" />
-            <e p="DoNothingState.cs" t="Include" />
             <e p="Grunt" t="Include">
               <e p="Grunt.cs" t="Include" />
+              <e p="Grunt_StateMachine.cs" t="Include" />
               <e p="GruntAttackState.cs" t="Include" />
               <e p="GruntChargeState.cs" t="Include" />
               <e p="GruntChaseState.cs" t="Include" />
+              <e p="GruntDoNothingState.cs" t="Include" />
+              <e p="GruntWindUpState.cs" t="Include" />
             </e>
             <e p="IDamage.cs" t="Include" />
-            <e p="StateMachine.cs" t="Include" />
+            <e p="Imp" t="Include">
+              <e p="Imp.cs" t="Include" />
+              <e p="Imp_StateMachine.cs" t="Include" />
+              <e p="ImpAttackState.cs" t="Include" />
+              <e p="ImpChaseState.cs" t="Include" />
+              <e p="ImpDoNothingState.cs" t="Include" />
+            </e>
+            <e p="LentoKaveri" t="Include">
+              <e p="CreateNodes.cs" t="Include" />
+              <e p="LentoSaatana.cs" t="Include" />
+            </e>
+            <e p="RunTest.cs" t="Include" />
+            <e p="Vipeltäjä" t="Include">
+              <e p="Vipeltaja.cs" t="Include" />
+              <e p="Vipeltaja_StateMachine.cs" t="Include" />
+              <e p="VipeltajaAttackState.cs" t="Include" />
+              <e p="VipeltajaChaseState.cs" t="Include" />
+              <e p="VipeltajaDoNothingState.cs" t="Include" />
+              <e p="VipeltajaEscapeState.cs" t="Include" />
+              <e p="VipeltajaJumpState.cs" t="Include" />
+              <e p="VipeltajaSpitState.cs" t="Include" />
+            </e>
           </e>
           <e p="GameManagement" t="Include">
             <e p="DDOL.cs" t="Include" />
@@ -34,6 +62,29 @@
             <e p="spawnPoints.cs" t="Include" />
             <e p="UIButton.cs" t="Include" />
           </e>
+          <e p="PerkTree" t="Include">
+            <e p="Altar.cs" t="Include" />
+            <e p="Editor" t="Include">
+              <e p="Connection.cs" t="Include" />
+              <e p="ConnectionPoint.cs" t="Include" />
+              <e p="Node.cs" t="Include" />
+              <e p="NodeData.cs" t="Include" />
+              <e p="PerkTreeNodeEditor.cs" t="Include" />
+            </e>
+            <e p="Perk.cs" t="Include" />
+            <e p="PerkButton.cs" t="Include" />
+            <e p="PerkHub.cs" t="Include" />
+            <e p="PerkPoints.cs" t="Include" />
+            <e p="PerkTree.cs" t="Include" />
+            <e p="PerkTreeReader.cs" t="Include" />
+            <e p="ResetButton.cs" t="Include" />
+          </e>
+          <e p="Pickup" t="Include">
+            <e p="AmmoPickup.cs" t="Include" />
+            <e p="HealthPickup.cs" t="Include" />
+            <e p="Pickup.cs" t="Include" />
+            <e p="PickupPlatform.cs" t="Include" />
+          </e>
           <e p="Player Hands" t="Include">
             <e p="HandPoser.cs" t="Include" />
             <e p="IKsolver.cs" t="Include" />
@@ -41,19 +92,23 @@
             <e p="Pose.cs" t="Include" />
           </e>
           <e p="PlayerMovement" t="Include">
+            <e p="CameraShake.cs" t="Include" />
+            <e p="Movement.cs" t="Include" />
             <e p="MovingObject.cs" t="Include" />
-            <e p="Perk.cs" t="Include" />
+            <e p="Player.cs" t="Include" />
             <e p="PlayerCharacterController.cs" t="Include" />
             <e p="PlayerCharacterControllerRigidBody.cs" t="Include" />
-            <e p="PlayerStats.cs" t="Include" />
+            <e p="PlayerController.cs" t="Include" />
           </e>
           <e p="pulse.shader" t="Include" />
           <e p="Weapon" t="Include">
             <e p="Aiming.cs" t="Include" />
+            <e p="AlienScope.cs" t="Include" />
             <e p="GrenadeLauncher.cs" t="Include" />
             <e p="GrenadeScript.cs" t="Include" />
             <e p="Recoil.cs" t="Include" />
             <e p="Shooting.cs" t="Include" />
+            <e p="ShotgunScript.cs" t="Include" />
           </e>
           <e p="WeaponModding" t="Include">
             <e p="GunAttributes.cs" t="Include" />
@@ -102,6 +157,7 @@
             <e p="EmojiOne Attribution.txt" t="Include" />
           </e>
         </e>
+        <e p="thisis.cs" t="Include" />
       </e>
       <e p="LocalPackages" t="Include">
         <e p="com.unity.render-pipelines.high-definition-config" t="Include">
