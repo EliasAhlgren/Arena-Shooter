@@ -17,6 +17,7 @@ public class GruntAttackState : BaseState
     public override void OnStateEnter()
     {
         Debug.Log("Attack in.");
+        Grunt.PlaySound("murina", grunt.GetComponent<AudioSource>());
         grunt.agent.isStopped = true;
         grunt.animator.Play("Punch");
     }

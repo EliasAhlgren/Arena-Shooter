@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using AI;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Audio;
 
 public class Vipeltaja : MonoBehaviour, IDamage
 {    /// <summary>
@@ -62,6 +63,9 @@ public class Vipeltaja : MonoBehaviour, IDamage
     /// </summary>
     public Animator animator;
 
+    public static AudioClip shout, spit, death;
+    public AudioMixer audioMixer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,6 +76,10 @@ public class Vipeltaja : MonoBehaviour, IDamage
         // These might not be necessary
         SetRigidbodyState(true);
         setColliderState(true);
+
+        shout = Resources.Load<AudioClip>("vipeltaja1");
+        spit = Resources.Load<AudioClip>("spit");
+        death = Resources.Load<AudioClip>("vipeltaja2");
     }
 
     private void Awake()
@@ -161,6 +169,9 @@ public class Vipeltaja : MonoBehaviour, IDamage
         // for rigidbody death "animation"
         SetRigidbodyState(false);
         setColliderState(true);
+
+        PlaySound("death", GetComponent<AudioSource>());
+
 
         // Disable all AI components for the Vipeltäjä.
         animator.enabled = false;                           // Stop animator
@@ -330,6 +341,31 @@ public class Vipeltaja : MonoBehaviour, IDamage
         if (nearbyEnemies < 2)
         {
             GetFeared();
+        }
+    }
+
+    public static void PlaySound(string clip, AudioSource audioSorsa)
+    {
+        switch (clip)
+        {
+            case "shout":
+                audioSorsa.Stop();
+                audioSorsa.loop = false;
+                audioSorsa.clip = shout;
+                audioSorsa.Play();
+                break;
+            case "spit":
+                audioSorsa.Stop();
+                audioSorsa.loop = false;
+                audioSorsa.clip = spit;
+                audioSorsa.Play();
+                break;
+            case "death":
+                audioSorsa.Stop();
+                audioSorsa.loop = false;
+                audioSorsa.clip = death;
+                audioSorsa.Play();
+                break;
         }
     }
 }    
