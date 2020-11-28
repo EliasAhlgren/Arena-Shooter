@@ -618,7 +618,7 @@ MonoBehaviour:
     min: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.543
+    m_Value: 0.501
     min: 0
     max: 1
   scatter:
@@ -660,7 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 953beb541740ddc499d005ee80c9ff29, type: 3}
   m_Name: Fog
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   enabled:
     m_OverrideState: 1
@@ -699,7 +699,7 @@ MonoBehaviour:
     min: 0
   baseHeight:
     m_OverrideState: 1
-    m_Value: 300
+    m_Value: 0
   maximumHeight:
     m_OverrideState: 0
     m_Value: 300
@@ -711,7 +711,7 @@ MonoBehaviour:
     showEyeDropper: 1
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 20
+    m_Value: 85932
     min: 1
   enableVolumetricFog:
     m_OverrideState: 0
