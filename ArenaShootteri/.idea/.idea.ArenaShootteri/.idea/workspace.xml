@@ -92,7 +92,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/AlienScope.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManagement/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/NewMods.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Aiming.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/ShotgunScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/GrenadeScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" />
@@ -103,6 +102,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/CreateNodes.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/LentoSaatana.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/WeaponRotationScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Aiming.cs" />
       </list>
     </option>
   </component>
@@ -195,7 +195,7 @@
       <workItem from="1605780224368" duration="11267000" />
       <workItem from="1605862615925" duration="6747000" />
       <workItem from="1606407135866" duration="5954000" />
-      <workItem from="1606485152496" duration="2116000" />
+      <workItem from="1606485152496" duration="2796000" />
     </task>
     <servers />
   </component>

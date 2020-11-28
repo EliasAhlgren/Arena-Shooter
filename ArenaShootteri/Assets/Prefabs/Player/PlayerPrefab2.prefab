@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 575392159}
   - component: {fileID: 575392158}
   - component: {fileID: 575392157}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: WallhackCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 958245393177562520}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: CameraHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -487,7 +487,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4331201114184835362}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: ReloadPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,7 +599,7 @@ GameObject:
   - component: {fileID: 5736615958494606739}
   - component: {fileID: 5736615958494606738}
   - component: {fileID: 5736615958494606741}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: DeathCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -889,7 +889,7 @@ GameObject:
   - component: {fileID: 5736615958670080468}
   - component: {fileID: 5736615958670080466}
   - component: {fileID: 5736615958670080469}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -962,7 +962,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5736615958915856412}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: LookatPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -996,7 +996,7 @@ GameObject:
   - component: {fileID: 5736615958939405552}
   - component: {fileID: 5736615958939405555}
   - component: {fileID: 1836569963237283891}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1202,7 +1202,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5736615959198877905}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: GunParent
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -1565,7 +1565,7 @@ GameObject:
   - component: {fileID: 5736615959984758191}
   - component: {fileID: 5736615959984758190}
   - component: {fileID: 4667226508102304383}
-  m_Layer: 12
+  m_Layer: 20
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2034,6 +2034,10 @@ PrefabInstance:
       propertyPath: ammoText
       value: 
       objectReference: {fileID: 731582414}
+    - target: {fileID: 4383131419045538798, guid: 1065f889e04624c88b3e2faf406a6fbb, type: 3}
+      propertyPath: defaultDifference
+      value: -0.075
+      objectReference: {fileID: 0}
     - target: {fileID: 4867596931254584293, guid: 1065f889e04624c88b3e2faf406a6fbb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -142.1
