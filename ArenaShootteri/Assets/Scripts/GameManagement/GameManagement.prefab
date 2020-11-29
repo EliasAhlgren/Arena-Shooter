@@ -5365,6 +5365,7 @@ MonoBehaviour:
   wave: 1
   level: 1
   shadowOrbs: 0
+  checkBox: {fileID: 0}
 --- !u!114 &8586498638390084397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5389,7 +5390,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de84385c1596d24a9717f62577b323b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Grunt: {fileID: 2440408630659573345, guid: 313d496966ad4184bb761878c368c00b, type: 3}
+  pacmanList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Grunt: {fileID: 2484930889859078713, guid: 8ac270087f269ba42b688199e014e418, type: 3}
+  Demon: {fileID: 0}
+  Imp: {fileID: 8588615848814181493, guid: 453e14199ef21b045a5263c197888be8, type: 3}
+  Vipeltaja: {fileID: 4525865322486302523, guid: 1382cdcd1dd5ca94a8b084edad02090e, type: 3}
   onCooldown: 0
 --- !u!114 &171092750
 MonoBehaviour:

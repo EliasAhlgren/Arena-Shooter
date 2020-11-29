@@ -144,6 +144,7 @@ public class Grunt : MonoBehaviour, IDamage
     public void TakeDamage(float damage)
     {
         IHealth -= damage;
+
         PlaySound("hit", GetComponent<AudioSource>());
 
         if (IHealth <= 0f)

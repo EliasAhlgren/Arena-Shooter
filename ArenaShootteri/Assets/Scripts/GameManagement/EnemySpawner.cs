@@ -20,6 +20,8 @@ public class EnemySpawner : MonoBehaviour
     private int randomPacman4;
     private Vector3 pacman4pos;
 
+    public List<GameObject> pacmanList;
+
     private GameObject randomEnemy;
     public GameObject Grunt;
     public GameObject Demon;
@@ -42,7 +44,12 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        if (!onCooldown)
+        {
+            enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+            StartCoroutine(Cooldown());
+        }
+        
         //Debug.Log("Enemies left: " + enemyCount);
         if (spawnWave == true)
         {
@@ -89,8 +96,8 @@ public class EnemySpawner : MonoBehaviour
         {
             if (enemyCount == 0)
             {
-                GameManager.waveStart = true;
-                GameManager.waveEnd = false;
+                GameManager.waveEnd = true;
+
             }
         }
     }
@@ -109,34 +116,36 @@ public class EnemySpawner : MonoBehaviour
 
         List<Transform> spawnlista = new List<Transform>(spawns._spawnPoints);
 
-        List<Transform> pacmanlista = new List<Transform>(pacmanSpawns._spawnPoints);
-        randomPacman1 = UnityEngine.Random.Range(0, pacmanlista.Count);
-        pacman1pos = pacmanlista[randomPacman1].position;
-        pacmanlista.RemoveAt(randomPacman1);
+        //List<Transform> pacmanlista = new List<Transform>(pacmanSpawns._spawnPoints);
+        //randomPacman1 = UnityEngine.Random.Range(0, pacmanlista.Count);
+        //pacman1pos = pacmanlista[randomPacman1].position;
+        //pacmanlista.RemoveAt(randomPacman1);
+        //
+        //randomPacman2 = UnityEngine.Random.Range(0, pacmanlista.Count);
+        //pacman2pos = pacmanlista[randomPacman2].position;
+        //pacmanlista.RemoveAt(randomPacman2);
+        //
+        //randomPacman3 = UnityEngine.Random.Range(0, pacmanlista.Count);
+        //pacman3pos = pacmanlista[randomPacman3].position;
+        //pacmanlista.RemoveAt(randomPacman3);
+        //
+        //randomPacman4 = UnityEngine.Random.Range(0, pacmanlista.Count);
+        //pacman4pos = pacmanlista[randomPacman4].position;
+        //pacmanlista.RemoveAt(randomPacman4);
 
-        randomPacman2 = UnityEngine.Random.Range(0, pacmanlista.Count);
-        pacman2pos = pacmanlista[randomPacman2].position;
-        pacmanlista.RemoveAt(randomPacman2);
-
-        randomPacman3 = UnityEngine.Random.Range(0, pacmanlista.Count);
-        pacman3pos = pacmanlista[randomPacman3].position;
-        pacmanlista.RemoveAt(randomPacman3);
-
-        randomPacman4 = UnityEngine.Random.Range(0, pacmanlista.Count);
-        pacman4pos = pacmanlista[randomPacman4].position;
-        pacmanlista.RemoveAt(randomPacman4);
 
         //pacman vihollisten spawnit
         while(impit > 0 && demonit > 0 && vipelt > 0)
         {
             enemyTypesLeft = 0;
             enemies.Clear();
-            random = UnityEngine.Random.Range(0, 4);
+            random = UnityEngine.Random.Range(0, pacmanList.Count);
+
             if (impit < 0)
             {
                 enemyTypesLeft += 1;
                 enemies.Add(Imp);
-            } 
+            }
             if (demonit < 0)
             {
                 enemyTypesLeft += 1;
@@ -147,6 +156,7 @@ public class EnemySpawner : MonoBehaviour
                 enemyTypesLeft += 1;
                 enemies.Add(Vipeltaja);
             }
+
             if (enemyTypesLeft > 1)
             {
                 enemyRng = UnityEngine.Random.Range(0, enemyTypesLeft);
@@ -156,22 +166,12 @@ public class EnemySpawner : MonoBehaviour
                 enemyRng = 0;
             }
 
-            if (random == 0)
-            {
-                PacmanSpawn(enemies[enemyRng], pacman1pos);
+            bool isEmpty = pacmanList[random].GetComponent<PacManHandler>().empty;
+            while (!isEmpty){
+                random = UnityEngine.Random.Range(0, pacmanList.Count);
+                isEmpty = pacmanList[random].GetComponent<PacManHandler>().empty;
             }
-            else if (random == 1)
-            {
-                PacmanSpawn(enemies[enemyRng], pacman2pos);
-            }
-            else if (random == 2)
-            {
-                PacmanSpawn(enemies[enemyRng], pacman3pos);
-            }
-            else if (random == 3)
-            {
-                PacmanSpawn(enemies[enemyRng], pacman4pos);
-            }
+            PacmanSpawn(enemies[enemyRng], pacmanList[random].transform);
         }
         //while (x > 0)
         //{
@@ -200,9 +200,15 @@ public class EnemySpawner : MonoBehaviour
         return spawnit;
     }
 
-    void PacmanSpawn(GameObject _enemy, Vector3 spawnPos)
+    void PacmanSpawn(GameObject _enemy, Transform spawnPos)
     {
-        Instantiate(_enemy, spawnPos, Quaternion.identity);
+        Instantiate(_enemy, spawnPos.position, spawnPos.rotation);
+        enemyCount += 1;
+    }
+
+    public static void Spawn(GameObject _enemy, Transform spawnPos)
+    {
+        Instantiate(_enemy, spawnPos.position, spawnPos.rotation);
         enemyCount += 1;
     }
 
@@ -211,7 +217,7 @@ public class EnemySpawner : MonoBehaviour
         // Start cooldown
         onCooldown = true;
         // Wait for time you want
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(5.0f);
         // Stop cooldown
         onCooldown = false;
         //Debug.Log("Cooldown Ended");
