@@ -167,7 +167,8 @@ public class EnemySpawner : MonoBehaviour
 
     void PacmanSpawn(GameObject _enemy, Transform spawnPos)
     {
-        Instantiate(_enemy, spawnPos.position, spawnPos.rotation);
+        var pos = spawnPos.Find("Spawn point");
+        Instantiate(_enemy, pos.position, pos.rotation);
         enemyCount += 1;
     }
 
