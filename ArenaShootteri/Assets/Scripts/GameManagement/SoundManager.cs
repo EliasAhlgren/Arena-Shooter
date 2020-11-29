@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
-    public static AudioClip PLAYERHIT, ENEMYHIT, MenuClick, FootStep, Oof, Shoot, Reload, Empty;
+    public static AudioClip PLAYERHIT, ENEMYHIT, MenuClick, FootStep, Oof, Shoot, Reload, Empty, GateOpen, GateClose;
 
     static AudioSource audioSrc;
     public AudioMixer audioMixer;
@@ -21,6 +21,8 @@ public class SoundManager : MonoBehaviour
         Shoot = Resources.Load<AudioClip>("PIT-AR-SHOT");
         Reload = Resources.Load<AudioClip>("PIT-AR-RELOAD");
         Empty = Resources.Load<AudioClip>("emptymag");
+        GateOpen = Resources.Load<AudioClip>("GATE_Metal_Open_02_Dark_Short_stereo");
+        GateClose = Resources.Load<AudioClip>("GATE_Metal_Close_02_Dark_stereo");
 
         audioSrc = GetComponent<AudioSource>();
         audioMixer.SetFloat("Sound", Mathf.Log10(PlayerPrefs.GetFloat("Sound")) * 20);
@@ -37,10 +39,16 @@ public class SoundManager : MonoBehaviour
     {
         switch (clip)
         {
-            case "ENEMYHIT":
+            case "GateOpen":
                 audioSrc.Stop();
                 audioSrc.loop = false;
-                audioSrc.clip = ENEMYHIT;
+                audioSrc.clip = GateOpen;
+                audioSrc.Play();
+                break;
+            case "GateClose":
+                audioSrc.Stop();
+                audioSrc.loop = false;
+                audioSrc.clip = GateClose;
                 audioSrc.Play();
                 break;
             case "Shoot":

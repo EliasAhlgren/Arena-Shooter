@@ -135,7 +135,7 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        for (int x = 0; x < enemies.Count; x++)
+        while (0 < enemies.Count)
         {
             random = UnityEngine.Random.Range(0, count);
             enemyRng = UnityEngine.Random.Range(0, enemies.Count);
