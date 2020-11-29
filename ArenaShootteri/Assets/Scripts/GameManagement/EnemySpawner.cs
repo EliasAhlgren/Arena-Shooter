@@ -57,7 +57,7 @@ public class EnemySpawner : MonoBehaviour
             if (wave == 1)
             {
                 spawning = true;
-                SpawnWave(0, 0, 0, 10, 0);
+                SpawnWave(0, 0, 10, 0, 0);
                 spawnWave = false;
             }
             else if (wave == 2)
