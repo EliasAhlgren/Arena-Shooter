@@ -13,11 +13,11 @@ public class GameManager : MonoBehaviour
     public bool acceptPlayerInput = true;
     public bool paused = false;
     public bool playerAlive = true;
-    public int wave = 1;
+    public int wave = 0;
     public int level = 1;
     public int shadowOrbs; //mahdollisen perk systeemin pointsit
 
-    public Collider checkBox;
+    public BoxCollider checkBox;
 
     public static bool waveEnd = false;
     public static bool waveStart = true;
@@ -60,11 +60,11 @@ public class GameManager : MonoBehaviour
 
         if (waveStart == true && waveEnd == false) // aloittaa waven, jos waveStart boolean vaihdetaan arvoon "true"
         {
+            wave += 1;
             checkBox.enabled = false;
             EnemySpawner.spawnWave = true; // käynnistää EnemySpawner scriptin
             EnemySpawner.wave = wave;
             // Debug.Log("wave: " + wave);
-            wave += 1;
             waveStart = false;
         }
 

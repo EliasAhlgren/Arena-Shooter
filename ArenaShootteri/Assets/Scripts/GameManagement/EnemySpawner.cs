@@ -55,8 +55,8 @@ public class EnemySpawner : MonoBehaviour
         {
             if (wave == 1)
             {
+                SpawnWave(0, 0, 0, 10, 0);
                 spawnWave = false;
-                SpawnWave(0, 0, 10, 0, 0);
             }
             else if (wave == 2)
             {
@@ -97,7 +97,6 @@ public class EnemySpawner : MonoBehaviour
             if (enemyCount == 0)
             {
                 GameManager.waveEnd = true;
-
             }
         }
     }

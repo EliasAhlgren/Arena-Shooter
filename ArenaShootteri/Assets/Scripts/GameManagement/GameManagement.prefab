@@ -5362,7 +5362,7 @@ MonoBehaviour:
   acceptPlayerInput: 1
   paused: 0
   playerAlive: 1
-  wave: 1
+  wave: 0
   level: 1
   shadowOrbs: 0
   checkBox: {fileID: 0}

@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
-    public static AudioClip PLAYERHIT, ENEMYHIT, MenuClick, FootStep;
+    public static AudioClip PLAYERHIT, ENEMYHIT, MenuClick, FootStep, Oof, Shoot, Reload, Empty;
 
     static AudioSource audioSrc;
     public AudioMixer audioMixer;
@@ -17,6 +17,10 @@ public class SoundManager : MonoBehaviour
         PLAYERHIT = Resources.Load<AudioClip>("Oof");
         MenuClick = Resources.Load<AudioClip>("ButtonClick1");
         FootStep = Resources.Load<AudioClip>("FootStep1");
+        Oof = Resources.Load<AudioClip>("Oof");
+        Shoot = Resources.Load<AudioClip>("PIT-AR-SHOT");
+        Reload = Resources.Load<AudioClip>("PIT-AR-RELOAD");
+        Empty = Resources.Load<AudioClip>("emptymag");
 
         audioSrc = GetComponent<AudioSource>();
         audioMixer.SetFloat("Sound", Mathf.Log10(PlayerPrefs.GetFloat("Sound")) * 20);
@@ -35,8 +39,27 @@ public class SoundManager : MonoBehaviour
         {
             case "ENEMYHIT":
                 audioSrc.Stop();
-                audioSrc.loop = true;
+                audioSrc.loop = false;
                 audioSrc.clip = ENEMYHIT;
+                audioSrc.Play();
+                break;
+            case "Shoot":
+                audioSrc.Stop();
+                audioSrc.loop = false;
+                audioSrc.clip = Shoot;
+                audioSrc.pitch = Random.Range(1.0f - 0.01f, 1.0f + 0.01f);
+                audioSrc.Play();
+                break;
+            case "Empty":
+                audioSrc.Stop();
+                audioSrc.loop = false;
+                audioSrc.clip = Empty;
+                audioSrc.Play();
+                break;
+            case "Reload":
+                audioSrc.Stop();
+                audioSrc.loop = false;
+                audioSrc.clip = Reload;
                 audioSrc.Play();
                 break;
             case "PLAYERHIT":
@@ -57,6 +80,12 @@ public class SoundManager : MonoBehaviour
                 audioSrc.clip = FootStep;
                 Debug.Log("WalkStep");
                 audioSrc.pitch = Random.Range(0.9f - 0.05f, 0.9f + 0.05f);
+                audioSrc.Play();
+                break;
+            case "Oof":
+                audioSrc.Stop();
+                audioSrc.loop = false;
+                audioSrc.clip = Oof;
                 audioSrc.Play();
                 break;
         }
