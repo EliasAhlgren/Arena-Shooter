@@ -5,10 +5,14 @@ using UnityEngine;
 public class DoorAnimationHandler : MonoBehaviour
 {
     public Animator anim;
+
+    private Collider oviCollider;
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = transform.parent.GetComponent<Animator>();
+        var collider = GetComponents<Collider>();
+        oviCollider = collider[1];
     }
 
     // Update is called once per frame
@@ -22,6 +26,7 @@ public class DoorAnimationHandler : MonoBehaviour
         if(other.transform.CompareTag("Player"))
         {
             anim.Play("OvenAvaus");
+            oviCollider.enabled = false;
         }
     }
 
@@ -30,8 +35,7 @@ public class DoorAnimationHandler : MonoBehaviour
         if(other.transform.CompareTag("Player"))
         { 
             anim.Play("OvenSulku");
-            var collider = GetComponents<Collider>();
-            collider[1].enabled = true;
+            oviCollider.enabled = true;
             GameManager.StartWave();
         }
     }

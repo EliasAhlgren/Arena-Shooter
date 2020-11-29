@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
     {
         waveEnd = false;
         waveStart = true;
+        
     }
 
 
