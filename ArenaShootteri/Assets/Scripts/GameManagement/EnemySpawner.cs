@@ -28,12 +28,13 @@ public class EnemySpawner : MonoBehaviour
     public GameObject Imp;
     public GameObject Vipeltaja;
 
+    public bool spawning = false;
     private Vector3 spawnPos;
     public static int enemyCount = 0;
     public static int wave = 1;
     public static bool spawnWave = false;
     public bool onCooldown = false;
-    private List<GameObject> enemies;
+    private List<GameObject> enemies = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +56,7 @@ public class EnemySpawner : MonoBehaviour
         {
             if (wave == 1)
             {
+                spawning = true;
                 SpawnWave(0, 0, 0, 10, 0);
                 spawnWave = false;
             }
@@ -92,7 +94,7 @@ public class EnemySpawner : MonoBehaviour
                 SpawnWave(grunts, demons, imps, 0, 0);
             }
         }
-        if (spawnWave == false)
+        if (spawnWave == false && spawning == false)
         {
             if (enemyCount == 0)
             {
@@ -111,82 +113,46 @@ public class EnemySpawner : MonoBehaviour
 
         int random;
         int enemyRng;
-        int enemyTypesLeft = 0;
+        int count = pacmanList.Count;
 
         List<Transform> spawnlista = new List<Transform>(spawns._spawnPoints);
-
-        //List<Transform> pacmanlista = new List<Transform>(pacmanSpawns._spawnPoints);
-        //randomPacman1 = UnityEngine.Random.Range(0, pacmanlista.Count);
-        //pacman1pos = pacmanlista[randomPacman1].position;
-        //pacmanlista.RemoveAt(randomPacman1);
-        //
-        //randomPacman2 = UnityEngine.Random.Range(0, pacmanlista.Count);
-        //pacman2pos = pacmanlista[randomPacman2].position;
-        //pacmanlista.RemoveAt(randomPacman2);
-        //
-        //randomPacman3 = UnityEngine.Random.Range(0, pacmanlista.Count);
-        //pacman3pos = pacmanlista[randomPacman3].position;
-        //pacmanlista.RemoveAt(randomPacman3);
-        //
-        //randomPacman4 = UnityEngine.Random.Range(0, pacmanlista.Count);
-        //pacman4pos = pacmanlista[randomPacman4].position;
-        //pacmanlista.RemoveAt(randomPacman4);
-
-
-        //pacman vihollisten spawnit
-        while(impit > 0 && demonit > 0 && vipelt > 0)
+        while (impit > 0 || demonit > 0 || vipelt > 0)
         {
-            enemyTypesLeft = 0;
-            enemies.Clear();
-            random = UnityEngine.Random.Range(0, pacmanList.Count);
-
-            if (impit < 0)
+            if (impit > 0)
             {
-                enemyTypesLeft += 1;
                 enemies.Add(Imp);
+                impit -= 1;
             }
-            if (demonit < 0)
+            if (demonit > 0)
             {
-                enemyTypesLeft += 1;
                 enemies.Add(Demon);
+                demonit -= 1;
             }
-            if (vipelt < 0)
+            if (vipelt > 0)
             {
-                enemyTypesLeft += 1;
                 enemies.Add(Vipeltaja);
+                vipelt -= 1;
             }
+        }
 
-            if (enemyTypesLeft > 1)
-            {
-                enemyRng = UnityEngine.Random.Range(0, enemyTypesLeft);
-            }
-            else
-            {
-                enemyRng = 0;
-            }
+        for (int x = 0; x < enemies.Count; x++)
+        {
+            random = UnityEngine.Random.Range(0, count);
+            enemyRng = UnityEngine.Random.Range(0, enemies.Count);
 
             bool isEmpty = pacmanList[random].GetComponent<PacManHandler>().empty;
-            while (!isEmpty){
-                random = UnityEngine.Random.Range(0, pacmanList.Count);
+            Debug.Log(isEmpty);
+            while (!isEmpty)
+            {
+                random = UnityEngine.Random.Range(0, count);
                 isEmpty = pacmanList[random].GetComponent<PacManHandler>().empty;
             }
             PacmanSpawn(enemies[enemyRng], pacmanList[random].transform);
+            enemies.RemoveAt(enemyRng); 
         }
-        //while (x > 0)
-        //{
-        //    spawnlista = SpawnEnemy(Grunt, spawnlista);
-        //    x--;
-        //}
-        //while (y > 0)
-        //{
-        //    spawnlista = SpawnEnemy(Grunt, spawnlista);
-        //    y--;
-        //}
-        //while (z > 0)
-        //{
-        //    spawnlista = SpawnEnemy(Grunt, spawnlista);
-        //    z--;
-        //}
+
+        enemies.Clear();
+        spawning = false;
     }
 
     List<Transform> SpawnEnemy(GameObject _enemy, List<Transform> spawnit) // satunnainen spawn kohta, spawnataan, nostetaan vihollismäärää ja poistetaan spawn listasta

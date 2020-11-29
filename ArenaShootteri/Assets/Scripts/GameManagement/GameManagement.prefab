@@ -5392,17 +5392,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pacmanList:
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   Grunt: {fileID: 2484930889859078713, guid: 8ac270087f269ba42b688199e014e418, type: 3}
   Demon: {fileID: 0}
   Imp: {fileID: 8588615848814181493, guid: 453e14199ef21b045a5263c197888be8, type: 3}
   Vipeltaja: {fileID: 4525865322486302523, guid: 1382cdcd1dd5ca94a8b084edad02090e, type: 3}
+  spawning: 0
   onCooldown: 0
 --- !u!114 &171092750
 MonoBehaviour:
