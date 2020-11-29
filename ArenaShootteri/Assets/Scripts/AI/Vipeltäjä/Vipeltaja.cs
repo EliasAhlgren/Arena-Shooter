@@ -177,8 +177,7 @@ public class Vipeltaja : MonoBehaviour, IDamage
         animator.enabled = false;                           // Stop animator
         agent.enabled = false;                              // Stop Nav Mesh Agent
         GetComponent<Vipeltaja_StateMachine>().enabled = false;       // Stop AI
-        Destroy(transform.Find("Hitbox").gameObject);       // Destroy Hitbox
-
+        
         // Change layer for enemy and all of it's children to "Dead Enemy" layer.
         // This layer doesnt interact with anything else than the Map itself.
         int layerMask = (int)Mathf.Log(LayerMask.GetMask("DeadEnemy"), 2);

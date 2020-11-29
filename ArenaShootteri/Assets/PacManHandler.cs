@@ -9,19 +9,31 @@ public class PacManHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        count++;
-        if(count > 0)
+        
+        if(other.transform.CompareTag("Enemy"))
         {
+            Debug.Log(other.transform.root.name);
+            count++;
             empty = false;
+            if (count == 1)
+            {
+                GetComponent<Animator>().Play("PacManAvaus");
+            }
         }
+
     }
 
     private void OnTriggerExit(Collider other)
     {
-        count--;
-        if(count == 0)
+        if (other.transform.CompareTag("Enemy"))
         {
-            empty = true;
+            Debug.Log(other.transform.root.name);
+            count--;
+            if (count == 0)
+            {
+                empty = true;
+                GetComponent<Animator>().Play("PacManSulku");
+            }
         }
     }
 

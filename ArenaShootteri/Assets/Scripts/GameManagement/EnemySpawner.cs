@@ -57,7 +57,7 @@ public class EnemySpawner : MonoBehaviour
             if (wave == 1)
             {
                 spawning = true;
-                SpawnWave(0, 0, 0, 10, 0);
+                SpawnWave(1, 0, 1, 1, 0);
                 spawnWave = false;
             }
             else if (wave == 2)
@@ -137,6 +137,7 @@ public class EnemySpawner : MonoBehaviour
 
         while (0 < enemies.Count)
         {
+            
             random = UnityEngine.Random.Range(0, count);
             enemyRng = UnityEngine.Random.Range(0, enemies.Count);
 
@@ -148,7 +149,9 @@ public class EnemySpawner : MonoBehaviour
                 isEmpty = pacmanList[random].GetComponent<PacManHandler>().empty;
             }
             PacmanSpawn(enemies[enemyRng], pacmanList[random].transform);
-            enemies.RemoveAt(enemyRng); 
+            // pacmanList[random].GetComponent<PacManHandler>().empty = false;
+            enemies.RemoveAt(enemyRng);
+            new WaitForSeconds(0.2f);
         }
 
         enemies.Clear();
