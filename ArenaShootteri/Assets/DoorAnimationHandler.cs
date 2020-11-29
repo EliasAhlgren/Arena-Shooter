@@ -26,6 +26,7 @@ public class DoorAnimationHandler : MonoBehaviour
         if(other.transform.CompareTag("Player"))
         {
             anim.Play("OvenAvaus");
+            SoundManager.PlaySound("GateOpen");
             oviCollider.enabled = false;
         }
     }
@@ -35,6 +36,7 @@ public class DoorAnimationHandler : MonoBehaviour
         if(other.transform.CompareTag("Player"))
         { 
             anim.Play("OvenSulku");
+            SoundManager.PlaySound("GateClose");
             oviCollider.enabled = true;
             GameManager.StartWave();
         }
