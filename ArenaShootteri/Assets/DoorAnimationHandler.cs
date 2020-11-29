@@ -28,8 +28,11 @@ public class DoorAnimationHandler : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if(other.transform.CompareTag("Player"))
-        {
+        { 
             anim.Play("OvenSulku");
+            var collider = GetComponents<Collider>();
+            collider[1].enabled = true;
+            GameManager.StartWave();
         }
     }
 }
