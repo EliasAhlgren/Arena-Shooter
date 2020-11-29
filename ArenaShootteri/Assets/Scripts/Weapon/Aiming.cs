@@ -102,7 +102,8 @@ public class Aiming : MonoBehaviour
 
         ammoText.text = ("Ammo Left: " + _recoil._GunAttributes.totalAmmo);
         ammoText.enabled = true;
-        
+
+        SoundManager.PlaySound("Reload");
         yield return new WaitForSeconds(time);
         //
         // Reload ääni tähän

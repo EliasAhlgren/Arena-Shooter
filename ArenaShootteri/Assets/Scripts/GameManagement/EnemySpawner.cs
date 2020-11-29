@@ -97,7 +97,6 @@ public class EnemySpawner : MonoBehaviour
             if (enemyCount == 0)
             {
                 GameManager.waveEnd = true;
-
             }
         }
     }

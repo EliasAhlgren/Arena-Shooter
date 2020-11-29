@@ -421,13 +421,13 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             if (isRanged)
             {
                 //[SOUND] take damage sound (ranged) (One Shot)
-
+                SoundManager.PlaySound("Oof");
                 health -= damage * defenseMod;
             }
             else
             {
                 //[SOUND] take damage sound (melee) (One Shot)
-
+                SoundManager.PlaySound("Oof");
                 health -= damage;
             }
 
