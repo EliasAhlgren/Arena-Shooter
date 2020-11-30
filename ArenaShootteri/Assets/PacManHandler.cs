@@ -12,7 +12,7 @@ public class PacManHandler : MonoBehaviour
         
         if(other.transform.CompareTag("Enemy"))
         {
-            Debug.Log(other.transform.root.name);
+            Debug.Log(other.transform.root.name + " sisaan");
             count++;
             empty = false;
             if (count == 1)
@@ -27,7 +27,7 @@ public class PacManHandler : MonoBehaviour
     {
         if (other.transform.CompareTag("Enemy"))
         {
-            Debug.Log(other.transform.root.name);
+            Debug.Log(other.transform.root.name + " ulos");
             count--;
             if (count == 0)
             {
