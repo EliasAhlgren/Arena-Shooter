@@ -18,6 +18,8 @@ public class CreateNodes : MonoBehaviour
     private bool hasCreated;
 
     public float scale;
+
+    public GameObject point;
     // Start is called before the first frame update
     void Awake()
     {
@@ -34,6 +36,10 @@ public class CreateNodes : MonoBehaviour
 
         CreatePositions();
         hasCreated = true;
+        foreach (var VARIABLE in positions)
+        {
+            Instantiate(point, VARIABLE, Quaternion.identity, transform);
+        }
     }
 
     
@@ -60,9 +66,9 @@ public class CreateNodes : MonoBehaviour
         if (hasCreated)
         {
             foreach (var VARIABLE in positions)
-                    {
-                        Gizmos.DrawSphere(VARIABLE, 1);
-                    }
+            {
+                Gizmos.DrawSphere(VARIABLE, 1);
+            }
         }
         
     }

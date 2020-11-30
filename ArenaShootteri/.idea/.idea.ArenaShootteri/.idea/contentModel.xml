@@ -15,6 +15,7 @@
         <e p="HandSetter.cs" t="Include" />
         <e p="justjust.cs" t="Include" />
         <e p="LaserScript.cs" t="Include" />
+        <e p="missileScript.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="AI" t="Include">
             <e p="BaseState.cs" t="Include" />

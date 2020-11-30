@@ -443,6 +443,8 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         }
     }
 
+    
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.CompareTag("Grunt"))

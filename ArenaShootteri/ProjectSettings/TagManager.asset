@@ -17,6 +17,7 @@ TagManager:
   - VipeltajaAttackHitbox
   - GruntAttackHitbox
   - Imp
+  - Point
   layers:
   - Default
   - TransparentFX
@@ -35,7 +36,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Hands
   - 
   - 
   - Player
