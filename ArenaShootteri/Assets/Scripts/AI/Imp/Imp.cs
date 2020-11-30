@@ -14,6 +14,7 @@ public class Imp : MonoBehaviour, IDamage
 
     // IDamage variable
     public float IHealth { get; set; } = 100f;
+    public bool immune = true;
 
     public bool canAttack = true;
 
@@ -57,6 +58,8 @@ public class Imp : MonoBehaviour, IDamage
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+
+        StartCoroutine("SpawnImmunity");
     }
 
     private void Awake()
@@ -84,6 +87,14 @@ public class Imp : MonoBehaviour, IDamage
         GetComponent<Imp_StateMachine>().SetStates(states);
     }
 
+    private IEnumerator SpawnImmunity()
+    {
+        var immunityTime = 15 / (walkSpeedBase * animator.GetCurrentAnimatorStateInfo(0).speed);
+        yield return new WaitForSeconds(immunityTime);
+        immune = false;
+        StopCoroutine("SpawnImmunity");
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -106,8 +117,11 @@ public class Imp : MonoBehaviour, IDamage
 
     public void TakeDamage(float damage)
     {
-        animator.SetTrigger("TakesDamage");
-        IHealth -= damage;
+        if (!immune)
+        {
+            animator.SetTrigger("TakesDamage");
+            IHealth -= damage;
+        }
 
         if(IHealth <= 0)
         {
@@ -153,11 +167,10 @@ public class Imp : MonoBehaviour, IDamage
         Collider[] colliders = GetComponentsInChildren<Collider>();
 
         foreach (Collider collider in colliders)
-        {
-            collider.enabled = state;
-            if (collider.name.Equals("Hitbox") || collider.name.Equals("VisionCone"))
+        { 
+            if (!collider.name.Equals("Identifier"))
             {
-                collider.enabled = !state;
+                collider.enabled = state;
             }
         }
     }

@@ -35,7 +35,7 @@ public class VipeltajaSpitState : BaseState
     {
         // Set start position to be vipeltaja's position
         startPosition = vipeltaja.transform.position;
-
+        Vipeltaja.PlaySound("spit", vipeltaja.GetComponent<AudioSource>());
         // reset distance and ball counter to zero
         distanceCounter = 0f;
         ballsSpat = 0;
