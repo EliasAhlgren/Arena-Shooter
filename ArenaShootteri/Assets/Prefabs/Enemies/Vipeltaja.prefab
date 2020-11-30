@@ -2503,6 +2503,7 @@ MonoBehaviour:
   jumpSpeed: 20
   speed: 10
   turnSpeed: 2
+  immune: 1
   attackRange: 2
   attackCounter: 0
   attackCooldown: 2

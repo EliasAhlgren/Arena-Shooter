@@ -30,7 +30,7 @@ public class Vipeltaja : MonoBehaviour, IDamage
     public float speed;
     public float turnSpeed = 2f;
 
-
+    public bool immune = true;
 
     /// <summary>
     /// Attack range of Vipeltaja
@@ -80,13 +80,15 @@ public class Vipeltaja : MonoBehaviour, IDamage
         shout = Resources.Load<AudioClip>("vipeltaja1");
         spit = Resources.Load<AudioClip>("spit");
         death = Resources.Load<AudioClip>("vipeltaja2");
+
+        StartCoroutine("SpawnImmunity");
     }
 
     private void Awake()
     {
         // Initialize State Machine
         InitStateMachine();
-
+        
         // Assign the target to be player object
         target = GameObject.FindGameObjectWithTag("Player");
 
@@ -109,6 +111,14 @@ public class Vipeltaja : MonoBehaviour, IDamage
             {typeof(VipeltajaJumpState), new VipeltajaJumpState(_vipeltaja: this) }
         };
         GetComponent<Vipeltaja_StateMachine>().SetStates(states);
+    }
+
+    private IEnumerator SpawnImmunity()
+    {
+        var immunityTime = 15 / (walkSpeedBase * animator.GetCurrentAnimatorStateInfo(0).speed);
+        yield return new WaitForSeconds(immunityTime);
+        immune = false;
+        StopCoroutine("SpawnImmunity");
     }
 
     public void Update()
@@ -207,7 +217,10 @@ public class Vipeltaja : MonoBehaviour, IDamage
     // AI.IDamage TakeDamage function
     public void TakeDamage(float damage)
     {
-        IHealth -= damage;
+        if (!immune)
+        {
+            IHealth -= damage;
+        }
 
         if (IHealth <= 0f)
         {
@@ -260,10 +273,10 @@ public class Vipeltaja : MonoBehaviour, IDamage
 
         foreach (Collider collider in colliders)
         {
-            collider.enabled = state;
-            if (collider.name.Equals("Hitbox") || collider.name.Equals("VisionCone"))
+           
+            if (!collider.name.Equals("Identifier"))
             {
-                collider.enabled = !state;
+                collider.enabled = state;
             }
         }
     }

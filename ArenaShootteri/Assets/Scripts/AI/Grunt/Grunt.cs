@@ -37,6 +37,7 @@ public class Grunt : MonoBehaviour, IDamage
     public float chargeForce = 10;
     
     public float IHealth { get; set; } = 100f;
+    public bool immune = true;
 
     //sounds
     public static AudioClip shout, footsteps, murina, hit, death;
@@ -63,6 +64,8 @@ public class Grunt : MonoBehaviour, IDamage
         death = Resources.Load<AudioClip>("MonsterBreath1");
 
         audioSrc = GetComponent<AudioSource>();
+
+        StartCoroutine("SpawnImmunity");
     }
 
     private void Awake()
@@ -91,6 +94,14 @@ public class Grunt : MonoBehaviour, IDamage
             {typeof(GruntDoNothingState), new GruntDoNothingState(_grunt:this) }
         };
         GetComponent<Grunt_StateMachine>().SetStates(states);
+    }
+
+    private IEnumerator SpawnImmunity()
+    {
+        var immunityTime = 15 / (walkSpeedBase * animator.GetCurrentAnimatorStateInfo(0).speed);
+        yield return new WaitForSeconds(immunityTime);
+        immune = false;
+        StopCoroutine("SpawnImmunity");
     }
 
     /// <summary>
@@ -143,7 +154,10 @@ public class Grunt : MonoBehaviour, IDamage
     // AI.IDamage TakeDamage function
     public void TakeDamage(float damage)
     {
-        IHealth -= damage;
+        if (!immune)
+        {
+            IHealth -= damage;
+        }
 
         PlaySound("hit", GetComponent<AudioSource>());
 
