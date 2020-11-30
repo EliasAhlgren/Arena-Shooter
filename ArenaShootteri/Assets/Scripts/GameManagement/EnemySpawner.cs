@@ -29,6 +29,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject Vipeltaja;
 
     public bool spawning = false;
+    public bool enemyWaiting = false;
     private Vector3 spawnPos;
     public static int enemyCount = 0;
     public static int wave = 1;
@@ -57,7 +58,7 @@ public class EnemySpawner : MonoBehaviour
             if (wave == 1)
             {
                 spawning = true;
-                SpawnWave(1, 0, 1, 1, 0);
+                SpawnWave(1, 0, 1, 10, 0);
                 spawnWave = false;
             }
             else if (wave == 2)
@@ -111,9 +112,9 @@ public class EnemySpawner : MonoBehaviour
         int vipelt = vipeltNumber;
         int lento = lentoNumber;
 
-        int random;
-        int enemyRng;
-        int count = pacmanList.Count;
+        //int random;
+        //int enemyRng;
+        //int count = pacmanList.Count;
 
         List<Transform> spawnlista = new List<Transform>(spawns._spawnPoints);
         while (impit > 0 || demonit > 0 || vipelt > 0)
@@ -135,24 +136,7 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        while (0 < enemies.Count)
-        {
-            
-            random = UnityEngine.Random.Range(0, count);
-            enemyRng = UnityEngine.Random.Range(0, enemies.Count);
-
-            bool isEmpty = pacmanList[random].GetComponent<PacManHandler>().empty;
-            Debug.Log(isEmpty);
-            while (!isEmpty)
-            {
-                random = UnityEngine.Random.Range(0, count);
-                isEmpty = pacmanList[random].GetComponent<PacManHandler>().empty;
-            }
-            PacmanSpawn(enemies[enemyRng], pacmanList[random].transform);
-            // pacmanList[random].GetComponent<PacManHandler>().empty = false;
-            enemies.RemoveAt(enemyRng);
-            new WaitForSeconds(0.2f);
-        }
+        StartCoroutine(SpawnEnemies(enemies));
 
         enemies.Clear();
         spawning = false;
@@ -194,4 +178,54 @@ public class EnemySpawner : MonoBehaviour
         //GameManager.waveEnd = false;
     }
 
+
+    private GameObject FindEmptyPacman()
+    {
+        foreach (GameObject pacman in pacmanList)
+        {
+            if (pacman.GetComponent<PacManHandler>().empty)
+            {
+                return pacman;
+            }
+        }
+        return null;
+    }
+
+    private IEnumerator Spawning(GameObject enemy)
+    {
+        do
+        {
+            yield return new WaitForSeconds(1.0f);
+        }
+        while (FindEmptyPacman() == null);
+        PacmanSpawn(enemy, FindEmptyPacman().transform);
+        enemyWaiting = false;
+    }
+
+    private IEnumerator SpawnEnemies(List<GameObject> enemies)
+    {
+        foreach (GameObject enemy in enemies)
+        {
+            if (enemyWaiting == false)
+            {
+                StartCoroutine(Spawning(enemy));
+                enemyWaiting = true;
+            }
+            else
+            {
+                yield return new WaitForSeconds(3.0f);
+                if (enemyWaiting == false)
+                {
+                    StartCoroutine(Spawning(enemy));
+                    enemyWaiting = true;
+                }
+                else
+                {
+                    yield return new WaitForSeconds(3.0f);
+                    StartCoroutine(Spawning(enemy));
+                    enemyWaiting = true;
+                }
+            }
+        }
+    }
 }
