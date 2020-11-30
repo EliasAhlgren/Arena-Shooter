@@ -5392,6 +5392,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pacmanList:
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   Grunt: {fileID: 2484930889859078713, guid: 8ac270087f269ba42b688199e014e418, type: 3}
   Demon: {fileID: 0}
   Imp: {fileID: 8588615848814181493, guid: 453e14199ef21b045a5263c197888be8, type: 3}
