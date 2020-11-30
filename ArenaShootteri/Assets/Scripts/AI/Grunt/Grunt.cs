@@ -36,7 +36,7 @@ public class Grunt : MonoBehaviour, IDamage
     public bool isCharging = false;
     public float chargeForce = 10;
     
-    public float IHealth { get; set; } = 100f;
+    public float IHealth { get; set; } = 1f;
     public bool immune = true;
 
     //sounds

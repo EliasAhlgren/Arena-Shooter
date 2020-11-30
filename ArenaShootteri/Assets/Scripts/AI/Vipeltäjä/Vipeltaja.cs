@@ -13,7 +13,7 @@ public class Vipeltaja : MonoBehaviour, IDamage
     public GameObject target { get; private set; }
 
     // IDamage variable
-    public float IHealth { get; set; } = 100f;
+    public float IHealth { get; set; } = 1f;
 
     public float damage = 5;
     public bool canAttack = true;
