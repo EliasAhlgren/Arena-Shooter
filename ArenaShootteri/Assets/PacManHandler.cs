@@ -34,8 +34,18 @@ public class PacManHandler : MonoBehaviour
             {
                 empty = true;
                 GetComponent<Animator>().Play("PacManSulku");
+
+                Debug.Log(EnemySpawner.enemies.Count);
+                if (EnemySpawner.enemies.Count > 0)
+                {
+                    Debug.Log("Spawn next");
+                    EnemySpawner.SpawnNext(transform);
+                }
+
             }
         }
+
+        
     }
 
 

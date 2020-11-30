@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
     private int randomPacman4;
     private Vector3 pacman4pos;
 
-    public List<GameObject> pacmanList;
+    public GameObject[] pacmanList;
 
     private GameObject randomEnemy;
     public GameObject Grunt;
@@ -35,11 +35,12 @@ public class EnemySpawner : MonoBehaviour
     public static int wave = 1;
     public static bool spawnWave = false;
     public bool onCooldown = false;
-    private List<GameObject> enemies = new List<GameObject>();
+    public static List<GameObject> enemies;
 
     // Start is called before the first frame update
     void Start()
-    {
+    { 
+        enemies = new List<GameObject>();
         spawns = GameObject.FindGameObjectWithTag("spawnPoints").GetComponent<spawnPoints>();
     }
 
@@ -57,9 +58,11 @@ public class EnemySpawner : MonoBehaviour
         {
             if (wave == 1)
             {
+                Debug.Log("LOL");
                 spawning = true;
-                SpawnWave(1, 0, 1, 10, 0);
                 spawnWave = false;
+                SpawnWave(1, 0, 1, 10, 0);
+                
             }
             else if (wave == 2)
             {
@@ -135,10 +138,10 @@ public class EnemySpawner : MonoBehaviour
                 vipelt -= 1;
             }
         }
+        Debug.Log("Hello spawning enemies. Enemies left: " + enemies.Count);
+        SpawnEnemies(enemies);
 
-        StartCoroutine(SpawnEnemies(enemies));
-
-        enemies.Clear();
+        // enemies.Clear();
         spawning = false;
     }
 
@@ -191,41 +194,35 @@ public class EnemySpawner : MonoBehaviour
         return null;
     }
 
-    private IEnumerator Spawning(GameObject enemy)
+
+
+
+
+    private static void Spawning(GameObject enemy, Transform pacman)
     {
-        do
-        {
-            yield return new WaitForSeconds(1.0f);
-        }
-        while (FindEmptyPacman() == null);
-        PacmanSpawn(enemy, FindEmptyPacman().transform);
-        enemyWaiting = false;
+        var pos = pacman.Find("Spawn point");
+        Instantiate(enemy, pos.position, pos.rotation);
+        enemies.Remove(enemy);
+        enemyCount += 1;
     }
 
-    private IEnumerator SpawnEnemies(List<GameObject> enemies)
+    private void SpawnEnemies(List<GameObject> enemies)
     {
-        foreach (GameObject enemy in enemies)
+        Debug.Log("Enemies: " +enemies.Count+" Pacmans: " +pacmanList.Length);
+        int i = enemies.Count;
+        foreach(var pacman in pacmanList)
         {
-            if (enemyWaiting == false)
+            if (enemies.Count > 0)
             {
-                StartCoroutine(Spawning(enemy));
-                enemyWaiting = true;
-            }
-            else
-            {
-                yield return new WaitForSeconds(3.0f);
-                if (enemyWaiting == false)
-                {
-                    StartCoroutine(Spawning(enemy));
-                    enemyWaiting = true;
-                }
-                else
-                {
-                    yield return new WaitForSeconds(3.0f);
-                    StartCoroutine(Spawning(enemy));
-                    enemyWaiting = true;
-                }
+                Debug.Log(pacman.transform.name);
+                Spawning(enemies[0], pacman.transform);
+                i++;
             }
         }
+    }
+
+    public static void SpawnNext(Transform pacman)
+    {
+        Spawning(enemies[0], pacman.transform);
     }
 }
