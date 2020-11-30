@@ -56,36 +56,41 @@ public class EnemySpawner : MonoBehaviour
         //Debug.Log("Enemies left: " + enemyCount);
         if (spawnWave == true)
         {
+            spawning = true;
+            spawnWave = false;
             if (wave == 1)
             {
                 Debug.Log("LOL");
-                spawning = true;
-                spawnWave = false;
-                SpawnWave(1, 0, 1, 10, 0);
+                SpawnWave(0, 0, 1, 0, 0);
                 
             }
             else if (wave == 2)
             {
+                spawning = true;
                 spawnWave = false;
                 SpawnWave(0, 0, 30, 0, 0);
             }
             else if (wave == 3)
             {
+                spawning = true;
                 spawnWave = false;
                 SpawnWave(0, 5, 0, 0, 0);
             }
             else if (wave == 4)
             {
+                spawning = true;
                 spawnWave = false;
                 SpawnWave(0, 0, 0, 0, 4);
             }
             else if (wave == 5)
             {
+                spawning = true;
                 spawnWave = false;
                 SpawnWave(0, 0, 0, 5, 0);
             }
             else if (wave == 6)
             {
+                spawning = true;
                 spawnWave = false;
                 SpawnWave(3, 0, 0, 0, 0);
             }
@@ -120,7 +125,7 @@ public class EnemySpawner : MonoBehaviour
         //int count = pacmanList.Count;
 
         List<Transform> spawnlista = new List<Transform>(spawns._spawnPoints);
-        while (impit > 0 || demonit > 0 || vipelt > 0)
+        while (impit > 0 || demonit > 0 || vipelt > 0 || gruntit > 0)
         {
             if (impit > 0)
             {
@@ -136,6 +141,11 @@ public class EnemySpawner : MonoBehaviour
             {
                 enemies.Add(Vipeltaja);
                 vipelt -= 1;
+            }
+            if (gruntit > 0)
+            {
+                enemies.Add(Grunt);
+                gruntit -= 1;
             }
         }
         Debug.Log("Hello spawning enemies. Enemies left: " + enemies.Count);

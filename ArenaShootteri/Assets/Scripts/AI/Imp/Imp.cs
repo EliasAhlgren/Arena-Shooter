@@ -13,7 +13,7 @@ public class Imp : MonoBehaviour, IDamage
     public GameObject target { get; set; }
 
     // IDamage variable
-    public float IHealth { get; set; } = 100f;
+    public float IHealth { get; set; } = 1f;
     public bool immune = true;
 
     public bool canAttack = true;
