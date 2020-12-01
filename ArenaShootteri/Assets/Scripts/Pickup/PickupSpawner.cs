@@ -28,7 +28,8 @@ public class PickupSpawner : MonoBehaviour
 
     private IEnumerator spawner;
 
-    public bool spawningPaused = false;
+    public bool spawningPaused = true;
+    bool spawningStarted = false;
 
     public int perkLevel = 0;
 
@@ -54,6 +55,8 @@ public class PickupSpawner : MonoBehaviour
 
         spawner = Spawner(spawnTimer * perkEffectMod);
         StartCoroutine(spawner);
+        spawningPaused = false;
+        spawningStarted = true;
     }
 
     public void ReStartSpawner()
@@ -65,11 +68,20 @@ public class PickupSpawner : MonoBehaviour
     public void UpdatePerkLevel(int level)
     {
         perkLevel = level;
-        StopCoroutine(spawner);
 
-        perkEffectMod = 1 - 0.05f * perkLevel;
-        spawner = Spawner(spawnTimer * perkEffectMod);
-        StartCoroutine(spawner);
+        if (spawningStarted)
+        {
+            if (!spawningPaused)
+            {
+                StopCoroutine(spawner);
+
+                
+                StartCoroutine(spawner);
+            }
+            perkEffectMod = 1 - 0.05f * perkLevel;
+            spawner = Spawner(spawnTimer * perkEffectMod);
+
+        }
     }
 
     public void SpawnPickup()

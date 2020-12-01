@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using AI;
 
 public class PlayerCharacterControllerRigidBody : MonoBehaviour
 {
@@ -121,11 +122,12 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
     [Header("Utility")]
     //public float velocity;
+    public LayerMask enemyLayer;
 
     public Light holyLight;
     bool lightFlash = false;
 
-    public List<string> enemyTypes;
+    //public List<string> enemyTypes;
     //public list string[] enemyTypes;
 
     public GameObject rageModeImage;
@@ -148,6 +150,8 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        movement = GetComponent<Movement>();
+
         rmImage = rageModeImage.GetComponent<Image>();
         dsImage = divineShieldImage.GetComponent<Image>();
         dImage = deathImage.GetComponent<Image>();
@@ -161,7 +165,6 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             useTimer = false;
         }
 
-        movement = GetComponent<Movement>();
         //deathCanvas = GetComponentInChildren<Canvas>(true).gameObject;
         //deathImage = deathCanvas.GetComponentInChildren<Image>(true);
         
@@ -357,7 +360,11 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         theHolyLightUnlocked = PerkTreeReader.Instance.IsPerkUnlocked(17);
         spawnRateModifier = 1 + spawnRateMod * PerkTreeReader.Instance.IsPerkLevel(18);
 
-        PickupSpawner.Instance.UpdatePerkLevel(PerkTreeReader.Instance.IsPerkLevel(18));
+        if (PickupSpawner.Instance != null)
+        {
+            PickupSpawner.Instance.UpdatePerkLevel(PerkTreeReader.Instance.IsPerkLevel(18));
+        }
+        
 
         CheckHealth();
         /*
@@ -729,14 +736,20 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         groundSlamEffect.SetActive(true);
         StartCoroutine(GroundSlamDis());
 
-        int layerMask = LayerMask.GetMask("Enemy");
-
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, damageAuraRange, layerMask);
-
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, damageAuraRange, enemyLayer);
 
 
         foreach (var hitCollider in hitColliders)
         {
+            var Damageable = hitCollider.transform.root.GetComponent<IDamage>();
+
+            if (Damageable == null)
+            {
+                return;
+            }
+            Damageable.TakeDamage(groundSlamDamage);
+
+            /*
             string enemyTag = hitCollider.transform.tag;
 
             if (enemyTypes.Contains(enemyTag))
@@ -746,7 +759,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
                 enemyScript.TakeDamage(damageAuraDamage * Time.deltaTime);
             }
-
+            */
         }
     }
 
@@ -769,12 +782,19 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
             int layerMask = LayerMask.GetMask("Enemy");
 
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, damageAuraRange, layerMask);
-
-            
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, damageAuraRange, enemyLayer);
 
             foreach (var hitCollider in hitColliders)
             {
+                var Damageable = hitCollider.transform.root.GetComponent<IDamage>();
+
+                if (Damageable == null)
+                {
+                    return;
+                }
+                Damageable.TakeDamage(damageAuraDamage * Time.deltaTime);
+
+                /*
                 string enemyTag = hitCollider.transform.tag;
 
                 if (enemyTypes.Contains(enemyTag))
@@ -784,7 +804,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
                     enemyScript.TakeDamage(damageAuraDamage * Time.deltaTime);
                 }
-                
+                */
             }
         }
         else
@@ -809,14 +829,20 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         holyLight.intensity = 0;
         lightFlash = true;
 
-        int layerMask = LayerMask.GetMask("Enemy");
-
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, theHolyLightRange, layerMask);
-
-
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, theHolyLightRange, enemyLayer);
 
         foreach (var hitCollider in hitColliders)
         {
+            var Damageable = hitCollider.transform.root.GetComponent<IDamage>();
+
+            if (Damageable == null)
+            {
+                return;
+            }
+            Debug.Log("no target function");
+            //Damageable.TakeDamage();
+
+            /*
             string enemyTag = hitCollider.transform.tag;
 
             if (enemyTypes.Contains(enemyTag))
@@ -826,7 +852,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
                 //enemyScript.TakeDamage(damageAuraDamage * Time.deltaTime);
             }
-
+            */
         }
     }
 

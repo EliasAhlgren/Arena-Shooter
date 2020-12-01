@@ -1157,7 +1157,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5736615958915856415}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 30}
+  m_LocalPosition: {x: 0.0000006621334, y: -0.000006349919, z: 30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5736615958939405554}
@@ -1190,7 +1190,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5736615958939405557}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.0687681, y: 0.021080572, z: -0.0014534369, w: 0.99740887}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1863,6 +1863,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHP: {fileID: 5437361258761277585}
+  timer: {fileID: 0}
   movement: {fileID: 0}
   testKeys: 1
   shakeRotation: 0
@@ -1899,8 +1900,11 @@ MonoBehaviour:
   resurectionUnlocked: 0
   divineShieldUnlocked: 0
   theHolyLightUnlocked: 0
+  damageAuraRange: 5
+  damageAuraDamage: 10
   damageAuraCooldown: 10
   damageAuraTime: 10
+  theHolyLightRange: 10
   theHolyLightCooldown: 10
   divineShieldCooldown: 10
   divineShieldTime: 10
@@ -1912,14 +1916,23 @@ MonoBehaviour:
   spawnRateMod: -0.05
   defenseMod: -0.05
   resurectionHP: 10
-  damageAuraRange: 5
   rageMod: 1
   rageModRegKills: 3
   rageModTimer: 10
-  deathImage: {fileID: 5736615958670080469}
-  deathCanvas: {fileID: 5736615958494606743}
+  rageModActiveTimer: 10
+  groundSlamRange: 5
+  groundSlamDamage: 10
+  holyLight: {fileID: 0}
+  enemyTypes: []
+  rageModeImage: {fileID: 0}
+  rmImage: {fileID: 0}
+  divineShieldImage: {fileID: 0}
+  dsImage: {fileID: 0}
+  deathImage: {fileID: 0}
+  dImage: {fileID: 0}
   colorAlpha: 0
-  damageAuraModel: {fileID: 0}
+  damageAuraEffect: {fileID: 0}
+  groundSlamEffect: {fileID: 0}
 --- !u!114 &4667226508102304383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1942,6 +1955,8 @@ MonoBehaviour:
   runSpeedMod: 2
   slideSpeedMod: 1.2
   dodgeSpeedMod: 8
+  crouchSpeedMod: 0.7
+  crouchingSpeed: 10
   playerVelocity: 0
   isMoving: 0
   isGrounded: 0

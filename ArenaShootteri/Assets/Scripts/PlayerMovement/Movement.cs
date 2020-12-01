@@ -18,9 +18,6 @@ public class Movement : MonoBehaviour
 
     //character height
     float height;
-    float characterScale;
-
-    public bool useRoundGroundCheck = false;
 
     bool primaryGroundNormalCheck = false;
     bool contacting = false;
@@ -166,6 +163,7 @@ public class Movement : MonoBehaviour
         playerCamera = GetComponentInChildren<Camera>().transform;
         rb = GetComponent<Rigidbody>();
         characterCollider = GetComponent<CapsuleCollider>();
+        wallLayerMask = LayerMask.GetMask("Wall");
         groundLayerMask = LayerMask.GetMask("Map");
 
         //lock cursor
@@ -179,7 +177,6 @@ public class Movement : MonoBehaviour
         //lastPlayerPosition = playerPosition;
         height = characterCollider.height * transform.localScale.y;
         previousHeight = height;
-        characterScale = transform.localScale.y;
         standRayDistance = height * .5f;
         crouchRayDistance = standRayDistance * .5f;
         crouchToStandRayDistance = standRayDistance + height * .25f;
@@ -649,7 +646,7 @@ public class Movement : MonoBehaviour
             {
                 //raycasts to detect wall direction when posible to start wallrunning
                 //forward
-                if (Physics.Raycast(transform.position, transform.forward, out wallHit, maxWallDistance, groundLayerMask))
+                if (Physics.Raycast(transform.position, transform.forward, out wallHit, maxWallDistance, wallLayerMask))
                 {
                     wallDirection = 1;
                     isWallRunning = true;
@@ -658,7 +655,7 @@ public class Movement : MonoBehaviour
                     //Debug.DrawRay(wallHit.point, wallHit.normal * 20f);
                 }
                 //backwards
-                else if (Physics.Raycast(transform.position, -transform.forward, out wallHit, maxWallDistance, groundLayerMask))
+                else if (Physics.Raycast(transform.position, -transform.forward, out wallHit, maxWallDistance, wallLayerMask))
                 {
                     wallDirection = 2;
                     isWallRunning = true;
@@ -666,13 +663,13 @@ public class Movement : MonoBehaviour
                     //Debug.Log("wall behind");
                 }
                 //right
-                else if (Physics.Raycast(transform.position, transform.right, out wallHit, maxWallDistance, groundLayerMask))
+                else if (Physics.Raycast(transform.position, transform.right, out wallHit, maxWallDistance, wallLayerMask))
                 {
 
                     if (player.wallRunUnlocked && isRunning)
                     {
                         airBorne = new Vector3(move.x, 0, move.z);
-                        if (Physics.Raycast(transform.position + new Vector3(0, .2f, 0), transform.right, maxWallDistance, groundLayerMask))
+                        if (Physics.Raycast(transform.position + new Vector3(0, .2f, 0), transform.right, maxWallDistance, wallLayerMask))
                         {
                             velocity.y = 2f;
                         }
@@ -690,13 +687,13 @@ public class Movement : MonoBehaviour
                     //Debug.Log("wall right");
                 }
                 //left
-                else if (Physics.Raycast(transform.position, -transform.right, out wallHit, maxWallDistance, groundLayerMask))
+                else if (Physics.Raycast(transform.position, -transform.right, out wallHit, maxWallDistance, wallLayerMask))
                 {
 
                     if (player.wallRunUnlocked && isRunning)
                     {
                         airBorne = new Vector3(move.x, 0, move.z);
-                        if (Physics.Raycast(transform.position + new Vector3(0, .2f, 0), -transform.right, maxWallDistance, groundLayerMask))
+                        if (Physics.Raycast(transform.position + new Vector3(0, .2f, 0), -transform.right, maxWallDistance, wallLayerMask))
                         {
                             velocity.y = 2f;
                         }
@@ -767,7 +764,7 @@ public class Movement : MonoBehaviour
                     {
                         Vector3 wallCheckDir = Quaternion.AngleAxis(90, Vector3.up) * wallNormal;
                         //Debug.DrawRay(transform.position, wallCheckDir * 10f, Color.red);
-                        if (Physics.Raycast(transform.position, wallCheckDir, out wallHit, maxWallDistance, groundLayerMask))
+                        if (Physics.Raycast(transform.position, wallCheckDir, out wallHit, maxWallDistance, wallLayerMask))
                         {
                             //Vector3 wallNormalNormal = Vector3.Normalize(wallNormal);
                             Vector3 wallHitNormal = new Vector3(wallHit.normal.x, 0, wallHit.normal.z);
@@ -778,7 +775,7 @@ public class Movement : MonoBehaviour
 
                             if (changeInDir <= 0)
                             {
-                                if (!Physics.Raycast(transform.position + new Vector3(0, .2f, 0), transform.right, maxWallDistance, groundLayerMask))
+                                if (!Physics.Raycast(transform.position + new Vector3(0, .2f, 0), transform.right, maxWallDistance, wallLayerMask))
                                 {
                                     velocity.y = 0f;
                                 }
@@ -806,7 +803,7 @@ public class Movement : MonoBehaviour
                     else if (wallDirection == 4)
                     {
                         Vector3 wallCheckDir = Quaternion.AngleAxis(-90, Vector3.up) * wallNormal;
-                        if (Physics.Raycast(transform.position, wallCheckDir, out wallHit, maxWallDistance, groundLayerMask))
+                        if (Physics.Raycast(transform.position, wallCheckDir, out wallHit, maxWallDistance, wallLayerMask))
                         {
                             //Vector3 wallNormalNormal = Vector3.Normalize(wallNormal);
                             Vector3 wallHitNormal = new Vector3(wallHit.normal.x, 0, wallHit.normal.z);
@@ -817,7 +814,7 @@ public class Movement : MonoBehaviour
 
                             if (changeInDir <= 0)
                             {
-                                if (!Physics.Raycast(transform.position + new Vector3(0, .2f, 0), -transform.right, maxWallDistance, groundLayerMask))
+                                if (!Physics.Raycast(transform.position + new Vector3(0, .2f, 0), -transform.right, maxWallDistance, wallLayerMask))
                                 {
                                     velocity.y = 0f;
                                 }
@@ -979,7 +976,7 @@ public class Movement : MonoBehaviour
         rb.AddForce(move, ForceMode.VelocityChange);
 
         //check if character is trouching wall
-        wallCheck = Physics.OverlapBox(transform.position, wallCheckSize, Quaternion.identity, groundLayerMask);
+        wallCheck = Physics.OverlapBox(transform.position, wallCheckSize, Quaternion.identity, wallLayerMask);
 
 
         if (wallCheck.Length > 0)
