@@ -9,72 +9,150 @@ public class EnemySpawner : MonoBehaviour
 {
     private spawnPoints spawns;
     private int randomSpot;
+
+    private spawnPoints pacmanSpawns;
+    private int randomPacman1;
+    private Vector3 pacman1pos;
+    private int randomPacman2;
+    private Vector3 pacman2pos;
+    private int randomPacman3;
+    private Vector3 pacman3pos;
+    private int randomPacman4;
+    private Vector3 pacman4pos;
+
+    public GameObject[] pacmanList;
+
+    private GameObject randomEnemy;
+    public GameObject Grunt;
+    public GameObject Demon;
+    public GameObject Imp;
+    public GameObject Vipeltaja;
+
+    public bool spawning = false;
+    public bool enemyWaiting = false;
     private Vector3 spawnPos;
     public static int enemyCount = 0;
     public static int wave = 1;
-    public GameObject Grunt;
     public static bool spawnWave = false;
     public bool onCooldown = false;
-    private GameObject[] enemies;
+    public static List<GameObject> enemies;
 
     // Start is called before the first frame update
     void Start()
-    {
+    { 
+        enemies = new List<GameObject>();
         spawns = GameObject.FindGameObjectWithTag("spawnPoints").GetComponent<spawnPoints>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        if (!onCooldown)
+        {
+            enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+            StartCoroutine(Cooldown());
+        }
+        
         //Debug.Log("Enemies left: " + enemyCount);
         if (spawnWave == true)
         {
+            spawning = true;
+            spawnWave = false;
             if (wave == 1)
             {
+                Debug.Log("LOL");
+                SpawnWave(0, 0, 1, 0, 0);
+                
+            }
+            else if (wave == 2)
+            {
+                spawning = true;
                 spawnWave = false;
-                SpawnWave(3, 0, 0);
+                SpawnWave(0, 0, 30, 0, 0);
+            }
+            else if (wave == 3)
+            {
+                spawning = true;
+                spawnWave = false;
+                SpawnWave(0, 5, 0, 0, 0);
+            }
+            else if (wave == 4)
+            {
+                spawning = true;
+                spawnWave = false;
+                SpawnWave(0, 0, 0, 0, 4);
+            }
+            else if (wave == 5)
+            {
+                spawning = true;
+                spawnWave = false;
+                SpawnWave(0, 0, 0, 5, 0);
+            }
+            else if (wave == 6)
+            {
+                spawning = true;
+                spawnWave = false;
+                SpawnWave(3, 0, 0, 0, 0);
             }
             else
             {
                 int grunts = 1 + (int)Math.Round(wave * 0.5, MidpointRounding.AwayFromZero);
-                int demons = 0; //2 + (int)Math.Round(wave * 1.5, MidpointRounding.AwayFromZero);
-                int imps = 0; //5 + wave * 3;
+                int demons = 2 + (int)Math.Round(wave * 1.5, MidpointRounding.AwayFromZero);
+                int imps = 5 + wave * 3;
                 spawnWave = false;
-                SpawnWave(grunts, demons, imps);
+                SpawnWave(grunts, demons, imps, 0, 0);
             }
         }
-        if (spawnWave == false)
+        if (spawnWave == false && spawning == false)
         {
             if (enemyCount == 0)
             {
-                GameManager.waveStart = true;
-                GameManager.waveEnd = false;
+                GameManager.waveEnd = true;
             }
         }
     }
 
-    void SpawnWave(int gruntNumber, int demonNumber, int impNumber) // määritetään vihollisten määrät ja luodaan niitä oikea määrä
+    void SpawnWave(int gruntNumber, int demonNumber, int impNumber, int vipeltNumber, int lentoNumber) // määritetään vihollisten määrät ja luodaan niitä oikea määrä
     {
-        int x = gruntNumber;
-        int y = demonNumber;
-        int z = impNumber;
+        int gruntit = gruntNumber;
+        int demonit = demonNumber;
+        int impit = impNumber;
+        int vipelt = vipeltNumber;
+        int lento = lentoNumber;
+
+        //int random;
+        //int enemyRng;
+        //int count = pacmanList.Count;
+
         List<Transform> spawnlista = new List<Transform>(spawns._spawnPoints);
-        while (x > 0)
+        while (impit > 0 || demonit > 0 || vipelt > 0 || gruntit > 0)
         {
-            spawnlista = SpawnEnemy(Grunt, spawnlista);
-            x--;
+            if (impit > 0)
+            {
+                enemies.Add(Imp);
+                impit -= 1;
+            }
+            if (demonit > 0)
+            {
+                enemies.Add(Demon);
+                demonit -= 1;
+            }
+            if (vipelt > 0)
+            {
+                enemies.Add(Vipeltaja);
+                vipelt -= 1;
+            }
+            if (gruntit > 0)
+            {
+                enemies.Add(Grunt);
+                gruntit -= 1;
+            }
         }
-        while (y > 0)
-        {
-            spawnlista = SpawnEnemy(Grunt, spawnlista);
-            y--;
-        }
-        while (z > 0)
-        {
-            spawnlista = SpawnEnemy(Grunt, spawnlista);
-            z--;
-        }
+        Debug.Log("Hello spawning enemies. Enemies left: " + enemies.Count);
+        SpawnEnemies(enemies);
+
+        // enemies.Clear();
+        spawning = false;
     }
 
     List<Transform> SpawnEnemy(GameObject _enemy, List<Transform> spawnit) // satunnainen spawn kohta, spawnataan, nostetaan vihollismäärää ja poistetaan spawn listasta
@@ -87,12 +165,25 @@ public class EnemySpawner : MonoBehaviour
         return spawnit;
     }
 
+    void PacmanSpawn(GameObject _enemy, Transform spawnPos)
+    {
+        var pos = spawnPos.Find("Spawn point");
+        Instantiate(_enemy, pos.position, pos.rotation);
+        enemyCount += 1;
+    }
+
+    public static void Spawn(GameObject _enemy, Transform spawnPos)
+    {
+        Instantiate(_enemy, spawnPos.position, spawnPos.rotation);
+        enemyCount += 1;
+    }
+
     private IEnumerator Cooldown()
     {
         // Start cooldown
         onCooldown = true;
         // Wait for time you want
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(5.0f);
         // Stop cooldown
         onCooldown = false;
         //Debug.Log("Cooldown Ended");
@@ -100,4 +191,48 @@ public class EnemySpawner : MonoBehaviour
         //GameManager.waveEnd = false;
     }
 
+
+    private GameObject FindEmptyPacman()
+    {
+        foreach (GameObject pacman in pacmanList)
+        {
+            if (pacman.GetComponent<PacManHandler>().empty)
+            {
+                return pacman;
+            }
+        }
+        return null;
+    }
+
+
+
+
+
+    private static void Spawning(GameObject enemy, Transform pacman)
+    {
+        var pos = pacman.Find("Spawn point");
+        Instantiate(enemy, pos.position, pos.rotation);
+        enemies.Remove(enemy);
+        enemyCount += 1;
+    }
+
+    private void SpawnEnemies(List<GameObject> enemies)
+    {
+        Debug.Log("Enemies: " +enemies.Count+" Pacmans: " +pacmanList.Length);
+        int i = enemies.Count;
+        foreach(var pacman in pacmanList)
+        {
+            if (enemies.Count > 0)
+            {
+                Debug.Log(pacman.transform.name);
+                Spawning(enemies[0], pacman.transform);
+                i++;
+            }
+        }
+    }
+
+    public static void SpawnNext(Transform pacman)
+    {
+        Spawning(enemies[0], pacman.transform);
+    }
 }

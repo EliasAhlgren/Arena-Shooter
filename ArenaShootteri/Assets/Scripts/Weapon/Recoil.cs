@@ -64,7 +64,9 @@ public class Recoil : MonoBehaviour
 
     public Shooting shooting;
     public VisualEffect muzzleFlash;
-    
+
+    private bool onCooldown;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -136,6 +138,11 @@ public class Recoil : MonoBehaviour
             Recoiling();
             Firing();
         }
+        else if (Input.GetMouseButtonDown(0) && !_GunAttributes.isModding && _GunAttributes.ammoInMag <= 0)
+        {
+            SoundManager.PlaySound("Empty");
+        }
+
         else
         {
             // return back to normal position
@@ -187,6 +194,7 @@ public class Recoil : MonoBehaviour
         _canFire = false;
         //
         //Aseen ampumis ääni tähän
+        SoundManager.PlaySound("Shoot");
         //
         yield return new WaitForSeconds(0.041f);
         shooting.Shoot();
@@ -238,4 +246,17 @@ public class Recoil : MonoBehaviour
        // Debug.Log(Mathf.Sin(timer));
         
     }
+
+
+    private IEnumerator Cooldown()
+    {
+        // Start cooldown
+        onCooldown = true;
+        // Wait for time you want
+        yield return new WaitForSeconds(1.0f);
+        // Stop cooldown
+        onCooldown = false;
+        //Debug.Log("Cooldown Ended");
+    }
+
 }

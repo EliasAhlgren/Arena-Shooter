@@ -11,6 +11,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player Hands/Pose.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerMovement/MovingObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/missileScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterControllerRigidBody.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/pulse.shader" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/IDamage.cs" root0="FORCE_HIGHLIGHTING" />
@@ -52,7 +53,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/RedDot1.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/Sight.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/SightSelector.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/KeepRotation.cs" />
@@ -68,7 +68,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/AI/DamageInterface.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI/DamageSystem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI/IDamage.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterControllerRigidBody.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI/Grunt/Grunt.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ikTargetScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player Hands/IKsolver.cs" />
@@ -92,7 +91,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/AlienScope.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManagement/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/NewMods.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Aiming.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/ShotgunScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/GrenadeScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" />
@@ -100,9 +98,12 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Shooting.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Recoil.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/GunAttributes.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/CreateNodes.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/LentoSaatana.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/WeaponRotationScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Aiming.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/CreateNodes.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterControllerRigidBody.cs" />
+        <option value="$PROJECT_DIR$/Assets/missileScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/LentoSaatana.cs" />
       </list>
     </option>
   </component>
@@ -195,7 +196,10 @@
       <workItem from="1605780224368" duration="11267000" />
       <workItem from="1605862615925" duration="6747000" />
       <workItem from="1606407135866" duration="5954000" />
-      <workItem from="1606485152496" duration="2116000" />
+      <workItem from="1606485152496" duration="2796000" />
+      <workItem from="1606557936165" duration="11896000" />
+      <workItem from="1606657430956" duration="8690000" />
+      <workItem from="1606736654730" duration="10211000" />
     </task>
     <servers />
   </component>
@@ -293,10 +297,11 @@
       <screen x="0" y="23" width="1399" height="877" />
     </state>
     <state x="194" y="82" width="678" height="735" key="find.popup/0.23.1399.877@0.23.1399.877" timestamp="1600864016679" />
-    <state x="497" y="223" width="923" height="805" key="search.everywhere.popup" timestamp="1606490076068">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="-1423" y="223" width="923" height="805" key="search.everywhere.popup" timestamp="1606752659047">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="497" y="223" width="923" height="805" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606490076068" />
+    <state x="-1423" y="223" width="923" height="805" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606752659047" />
+    <state x="497" y="223" width="923" height="805" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606667786605" />
     <state x="361" y="211" width="672" height="678" key="search.everywhere.popup/0.23.1397.877@0.23.1397.877" timestamp="1603379384954" />
     <state x="362" y="211" width="672" height="678" key="search.everywhere.popup/0.23.1399.877@0.23.1399.877" timestamp="1606412983385" />
   </component>

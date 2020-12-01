@@ -44,27 +44,15 @@ public class VipeltajaChaseState : BaseState
         float distance = Vector3.Distance(vipeltaja.transform.position, vipeltaja.target.transform.position);
         
         // if distance to target is smaller than attack range -> try to attack...
-        if(distance < vipeltaja.attackRange)
+        if(distance < vipeltaja.attackRange && vipeltaja.readyToAttack)
         {
-            // ... But only if attack is ready
-            if (vipeltaja.readyToAttack)
-            {
-                return typeof(VipeltajaAttackState);
-            }
+            return typeof(VipeltajaAttackState);
         }
 
         // If distance to target is approximately jumping distances -> Jump and vipeltaja can jump
         if(distance < vipeltaja.jumpDistance+3 && distance > vipeltaja.jumpDistance-3 && !vipeltaja.jumpCoolingdown && vipeltaja.IsFacingPlayer(0.9f))
         {
             return typeof(VipeltajaJumpState);
-        }
-
-        // Fear state Debug
-        // remember to delete
-        if(Input.GetKeyDown(KeyCode.H))
-        {
-            Debug.Log("Escaping");
-            return typeof(VipeltajaEscapeState);
         }
         
         return null;

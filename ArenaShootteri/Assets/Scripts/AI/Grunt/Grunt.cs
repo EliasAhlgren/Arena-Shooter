@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using AI;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Audio;
 
 public class Grunt : MonoBehaviour, IDamage
     {
@@ -35,7 +36,13 @@ public class Grunt : MonoBehaviour, IDamage
     public bool isCharging = false;
     public float chargeForce = 10;
     
-    public float IHealth { get; set; } = 100f;
+    public float IHealth { get; set; } = 1f;
+    public bool immune = true;
+
+    //sounds
+    public static AudioClip shout, footsteps, murina, hit, death;
+    static AudioSource audioSrc;
+    public AudioMixer audioMixer;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +55,17 @@ public class Grunt : MonoBehaviour, IDamage
         // Just in case rigidbody and colliders are not enabled
         SetRigidbodyState(true);
         SetColliderState(true);
+
+        //sounds
+        shout = Resources.Load<AudioClip>("MonsterShout1");
+        footsteps = Resources.Load<AudioClip>("gruntfootstep1");
+        murina = Resources.Load<AudioClip>("MonsterShout2");
+        hit = Resources.Load<AudioClip>("MonsterHurt1");
+        death = Resources.Load<AudioClip>("MonsterBreath1");
+
+        audioSrc = GetComponent<AudioSource>();
+
+        StartCoroutine("SpawnImmunity");
     }
 
     private void Awake()
@@ -76,6 +94,14 @@ public class Grunt : MonoBehaviour, IDamage
             {typeof(GruntDoNothingState), new GruntDoNothingState(_grunt:this) }
         };
         GetComponent<Grunt_StateMachine>().SetStates(states);
+    }
+
+    private IEnumerator SpawnImmunity()
+    {
+        var immunityTime = 15 / (walkSpeedBase * animator.GetCurrentAnimatorStateInfo(0).speed);
+        yield return new WaitForSeconds(immunityTime);
+        immune = false;
+        StopCoroutine("SpawnImmunity");
     }
 
     /// <summary>
@@ -128,7 +154,12 @@ public class Grunt : MonoBehaviour, IDamage
     // AI.IDamage TakeDamage function
     public void TakeDamage(float damage)
     {
-        IHealth -= damage;
+        if (!immune)
+        {
+            IHealth -= damage;
+        }
+
+        PlaySound("hit", GetComponent<AudioSource>());
 
         if (IHealth <= 0f)
         {
@@ -147,6 +178,7 @@ public class Grunt : MonoBehaviour, IDamage
         // for rigidbody death "animation"
         SetRigidbodyState(false);
         SetColliderState(true);
+        PlaySound("death", GetComponent<AudioSource>());
 
         // Disable all AI components for the Grunt.
         animator.enabled = false;                           // Stop animator
@@ -225,4 +257,46 @@ public class Grunt : MonoBehaviour, IDamage
         }
     }
 
+    public static void PlaySound(string clip, AudioSource audioSorsa)
+    {
+        switch (clip)
+        {
+            case "shout":
+                audioSorsa.Stop();
+                audioSorsa.loop = false;
+                audioSorsa.clip = shout;
+                audioSorsa.Play();
+                break;
+            case "hit":
+                audioSorsa.Stop();
+                audioSorsa.loop = false;
+                audioSorsa.clip = hit;
+                audioSorsa.Play();
+                break;
+            case "murina":
+                audioSorsa.Stop();
+                audioSorsa.loop = false;
+                audioSorsa.clip = murina;
+                audioSorsa.Play();
+                break;
+            case "footsteps":
+                audioSorsa.Stop();
+                audioSorsa.loop = false;
+                audioSorsa.clip = footsteps;
+                Debug.Log("WalkStep");
+                audioSorsa.pitch = UnityEngine.Random.Range(0.9f - 0.05f, 0.9f + 0.05f);
+                audioSorsa.Play();
+                break;
+            case "death":
+                audioSorsa.Stop();
+                audioSorsa.loop = false;
+                audioSorsa.clip = death;
+                audioSorsa.Play();
+                break;
+        }
+    }
+
 }
+
+
+

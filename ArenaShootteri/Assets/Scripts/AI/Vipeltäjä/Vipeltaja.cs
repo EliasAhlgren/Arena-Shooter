@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using AI;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Audio;
 
 public class Vipeltaja : MonoBehaviour, IDamage
 {    /// <summary>
@@ -12,7 +13,7 @@ public class Vipeltaja : MonoBehaviour, IDamage
     public GameObject target { get; private set; }
 
     // IDamage variable
-    public float IHealth { get; set; } = 100f;
+    public float IHealth { get; set; } = 1f;
 
     public float damage = 5;
     public bool canAttack = true;
@@ -29,7 +30,7 @@ public class Vipeltaja : MonoBehaviour, IDamage
     public float speed;
     public float turnSpeed = 2f;
 
-
+    public bool immune = true;
 
     /// <summary>
     /// Attack range of Vipeltaja
@@ -62,6 +63,9 @@ public class Vipeltaja : MonoBehaviour, IDamage
     /// </summary>
     public Animator animator;
 
+    public static AudioClip shout, spit, death;
+    public AudioMixer audioMixer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,13 +76,19 @@ public class Vipeltaja : MonoBehaviour, IDamage
         // These might not be necessary
         SetRigidbodyState(true);
         setColliderState(true);
+
+        shout = Resources.Load<AudioClip>("vipeltaja1");
+        spit = Resources.Load<AudioClip>("spit");
+        death = Resources.Load<AudioClip>("vipeltaja2");
+
+        StartCoroutine("SpawnImmunity");
     }
 
     private void Awake()
     {
         // Initialize State Machine
         InitStateMachine();
-
+        
         // Assign the target to be player object
         target = GameObject.FindGameObjectWithTag("Player");
 
@@ -101,6 +111,14 @@ public class Vipeltaja : MonoBehaviour, IDamage
             {typeof(VipeltajaJumpState), new VipeltajaJumpState(_vipeltaja: this) }
         };
         GetComponent<Vipeltaja_StateMachine>().SetStates(states);
+    }
+
+    private IEnumerator SpawnImmunity()
+    {
+        var immunityTime = 15 / (walkSpeedBase * animator.GetCurrentAnimatorStateInfo(0).speed);
+        yield return new WaitForSeconds(immunityTime);
+        immune = false;
+        StopCoroutine("SpawnImmunity");
     }
 
     public void Update()
@@ -162,12 +180,14 @@ public class Vipeltaja : MonoBehaviour, IDamage
         SetRigidbodyState(false);
         setColliderState(true);
 
+        PlaySound("death", GetComponent<AudioSource>());
+
+
         // Disable all AI components for the Vipeltäjä.
         animator.enabled = false;                           // Stop animator
         agent.enabled = false;                              // Stop Nav Mesh Agent
         GetComponent<Vipeltaja_StateMachine>().enabled = false;       // Stop AI
-        Destroy(transform.Find("Hitbox").gameObject);       // Destroy Hitbox
-
+        
         // Change layer for enemy and all of it's children to "Dead Enemy" layer.
         // This layer doesnt interact with anything else than the Map itself.
         int layerMask = (int)Mathf.Log(LayerMask.GetMask("DeadEnemy"), 2);
@@ -197,7 +217,10 @@ public class Vipeltaja : MonoBehaviour, IDamage
     // AI.IDamage TakeDamage function
     public void TakeDamage(float damage)
     {
-        IHealth -= damage;
+        if (!immune)
+        {
+            IHealth -= damage;
+        }
 
         if (IHealth <= 0f)
         {
@@ -250,10 +273,10 @@ public class Vipeltaja : MonoBehaviour, IDamage
 
         foreach (Collider collider in colliders)
         {
-            collider.enabled = state;
-            if (collider.name.Equals("Hitbox") || collider.name.Equals("VisionCone"))
+           
+            if (!collider.name.Equals("Identifier"))
             {
-                collider.enabled = !state;
+                collider.enabled = state;
             }
         }
     }
@@ -330,6 +353,31 @@ public class Vipeltaja : MonoBehaviour, IDamage
         if (nearbyEnemies < 2)
         {
             GetFeared();
+        }
+    }
+
+    public static void PlaySound(string clip, AudioSource audioSorsa)
+    {
+        switch (clip)
+        {
+            case "shout":
+                audioSorsa.Stop();
+                audioSorsa.loop = false;
+                audioSorsa.clip = shout;
+                audioSorsa.Play();
+                break;
+            case "spit":
+                audioSorsa.Stop();
+                audioSorsa.loop = false;
+                audioSorsa.clip = spit;
+                audioSorsa.Play();
+                break;
+            case "death":
+                audioSorsa.Stop();
+                audioSorsa.loop = false;
+                audioSorsa.clip = death;
+                audioSorsa.Play();
+                break;
         }
     }
 }    

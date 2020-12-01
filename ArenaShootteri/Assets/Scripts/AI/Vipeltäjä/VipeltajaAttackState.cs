@@ -32,6 +32,8 @@ public class VipeltajaAttackState : BaseState
     {
         
         SetAttackColliders(true);
+        Vipeltaja.PlaySound("shout", vipeltaja.GetComponent<AudioSource>());
+
         // Play attack animation
         vipeltaja.animator.Play("Hit");
         vipeltaja.readyToAttack = false;

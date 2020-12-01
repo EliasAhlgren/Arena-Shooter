@@ -26,12 +26,12 @@ public class Shooting : MonoBehaviour
 
     public void Shoot()
     {
-         DamageStat = Attributes.totalDamage;
+        DamageStat = Attributes.totalDamage;
         var shootRay = new Ray(shootPosition.position, transform.forward);
                     RaycastHit hit;
                     if (Physics.Raycast(shootRay, out hit))
                     {
-                        var Damageable = hit.transform.parent.GetComponent<IDamage>();
+                        var Damageable = hit.transform.root.GetComponent<IDamage>();
                         if (Damageable == null)
                         {
                             sparks.transform.position = hit.point;
