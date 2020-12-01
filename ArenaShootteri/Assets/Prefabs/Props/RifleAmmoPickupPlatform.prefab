@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickup: {fileID: 9175949346614344954}
+  spawnAtStart: 0
 --- !u!1 &7788424418763503751
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,6 +142,10 @@ PrefabInstance:
     - target: {fileID: 3959384613559169799, guid: 182efe6befda9f84c8e3dda887855f22, type: 3}
       propertyPath: m_Name
       value: RifleAmmoPickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 3959384613559169799, guid: 182efe6befda9f84c8e3dda887855f22, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3959384613559169805, guid: 182efe6befda9f84c8e3dda887855f22, type: 3}
       propertyPath: m_LocalPosition.x

@@ -3,11 +3,12 @@
 
 public class AmmoPickup : Pickup
 {
-    public enum AmmoType {rifle, shotgun};
+    public enum AmmoType {rifle, shotgun, grenade};
 
     public AmmoType ammoType;
 
     public int ammoRecovered = 100;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.name == player.name)
@@ -16,25 +17,18 @@ public class AmmoPickup : Pickup
 
             if (ammoType == AmmoType.rifle)
             {
-                GameObject gun = GameObject.Find("GUN2 1");
-                gun.GetComponent<GunAttributes>().totalAmmo += ammoRecovered;
+                gun.totalAmmo += ammoRecovered;
             }
             else if (ammoType == AmmoType.shotgun)
             {
-                GameObject gun = GameObject.Find("GUN2 1");
-                gun.GetComponent<GunAttributes>().totalAmmo += ammoRecovered;
+                //gun.totalAmmo += ammoRecovered;
             }
-            
+            else if (ammoType == AmmoType.grenade)
+            {
+                //gun.totalAmmo += ammoRecovered;
+            }
 
-            if (platfromIS)
-            {
-                platformSript.PickupRespawn(respawnTime * playerScript.spawnRateModifier);
-                gameObject.SetActive(false);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
+            DeSpawn();
         }
     }
 }

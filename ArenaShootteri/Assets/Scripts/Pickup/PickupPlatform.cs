@@ -7,13 +7,27 @@ public class PickupPlatform : MonoBehaviour
     public GameObject pickup;
     Pickup pickupScript;
 
-    bool pickupActive = true;
+    public bool spawnAtStart = false;
+
+    bool pickupActive = false;
     float cooldown;
 
     // Start is called before the first frame update
     void Start()
     {
         pickupScript = pickup.GetComponent<Pickup>();
+
+        if (spawnAtStart)
+        {
+            pickupActive = true;
+            pickup.SetActive(true);
+        }
+        else
+        {
+            pickupActive = false;
+            pickup.SetActive(false);
+            cooldown = pickupScript.respawnTime;
+        }
     }
 
     public void PickupRespawn(float respawnTime)
