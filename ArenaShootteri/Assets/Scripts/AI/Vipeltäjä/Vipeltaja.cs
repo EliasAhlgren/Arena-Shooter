@@ -21,7 +21,7 @@ public class Vipeltaja : MonoBehaviour, IDamage
     public GameObject spitPrefab;
     public Transform spitPosition;
     public Rigidbody rb;
-
+    public Shader dissolveShader;
 
     // Speed is based on current animation speed. Dont change this value.
     // Change animation speed instead. // Jump speed not yet implemented.
@@ -148,10 +148,6 @@ public class Vipeltaja : MonoBehaviour, IDamage
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            Die();
-        }
         actualJumpLength = jumpAnimationLength * animator.GetCurrentAnimatorStateInfo(0).speed;
         walkSpeed = walkSpeedBase * animator.GetCurrentAnimatorStateInfo(0).speed;
         agent.speed = walkSpeed;
@@ -175,6 +171,8 @@ public class Vipeltaja : MonoBehaviour, IDamage
 
     public IEnumerator Die()
     {
+
+
         // Disable rigidbody and enable Colliders for each body part
         // for rigidbody death "animation"
         SetRigidbodyState(false);
