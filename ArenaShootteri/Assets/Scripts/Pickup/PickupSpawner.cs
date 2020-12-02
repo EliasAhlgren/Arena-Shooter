@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PickupSpawner : MonoBehaviour
 {
+    public enum SpawnedPickups {none, health, rifle, shotgun, grenade };
+
+    //public enum AmmoType {rifle, shotgun, grenade};
     private static PickupSpawner _instance;
     public static PickupSpawner Instance
     {
@@ -20,9 +23,13 @@ public class PickupSpawner : MonoBehaviour
 
     public GameObject[] pickups;
 
+    private bool useShotgun;
+    private bool useGrenade;
+
     public int healthRate = 50;
-    public int rifleRate = 40;
-    public int grenadeRate = 1;
+
+    public int shogunRate = 10;
+    public int grenadeRate = 10;
 
     public float spawnTimer = 5;
 
@@ -65,6 +72,56 @@ public class PickupSpawner : MonoBehaviour
         StartCoroutine(spawner);
     }
 
+    public void UpdatePickupSpawns(bool shotgun, bool grenade)
+    {
+        if (useShotgun && !shotgun)
+        {
+            UpdateSpawnedPickups(AmmoType.shotgun, shotgun, grenade);
+            
+        }
+        useShotgun = shotgun;
+
+        if (useGrenade && !grenade)
+        {
+            UpdateSpawnedPickups(AmmoType.grenade, shotgun, grenade);
+        }
+        useGrenade = grenade;
+    }
+
+    private void UpdateSpawnedPickups(AmmoType ammoType, bool shotgun, bool grenade)
+    {
+        AmmoPickup[] ammoPickups = FindObjectsOfType<AmmoPickup>();
+
+        foreach (AmmoPickup ammoPickup in ammoPickups)
+        {
+            if (ammoPickup.ammoType == ammoType)
+            {
+                if (ammoType == AmmoType.shotgun)
+                {
+                    if (grenade)
+                    {
+                        ammoPickup.ChageAmmoType(AmmoType.grenade);
+                    }
+                    else
+                    {
+                        ammoPickup.ChageAmmoType(AmmoType.rifle);
+                    }
+                }
+                else
+                {
+                    if (shotgun)
+                    {
+                        ammoPickup.ChageAmmoType(AmmoType.shotgun);
+                    }
+                    else
+                    {
+                        ammoPickup.ChageAmmoType(AmmoType.rifle);
+                    }
+                }
+            }
+        }
+    }
+
     public void UpdatePerkLevel(int level)
     {
         perkLevel = level;
@@ -84,32 +141,46 @@ public class PickupSpawner : MonoBehaviour
         }
     }
 
-    public void SpawnPickup()
+    private void SpawnPickup()
     {
         int roll = Random.Range(1, 100);
         int a;// = Random.Range(0, pickups.Length);
 
-        if (perkLevel == 5 && roll >= 100 - grenadeRate)
+        if (roll <= (healthRate - 1))
         {
-            a = 3;
+            a = 0;
+        }
+        else if (!useShotgun && !useGrenade)
+        {
+            a = 1;
         }
         else
         {
-            if (roll <= (healthRate - 1))
+            if (useShotgun)
             {
-                a = 0;
-            }
-            else if (roll <= healthRate + rifleRate)
-            {
-                a = 1;
+                if (roll < 99 - shogunRate)
+                {
+                    a = 1;
+                }
+                else
+                {
+                    a = 2;
+                }
             }
             else
             {
-                a = 2;
+                if (roll < 99 - grenadeRate)
+                {
+                    a = 1;
+                }
+                else
+                {
+                    a = 3;
+                }
             }
         }
-        
-       
+
+
         int b = Random.Range(0, pickupSpawnPoints.Count);
 
         var pickup = Instantiate(pickups[a], pickupSpawnPoints[b].transform.position, Quaternion.identity);

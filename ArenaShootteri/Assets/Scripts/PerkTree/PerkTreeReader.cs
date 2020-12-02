@@ -30,6 +30,9 @@ public class PerkTreeReader : MonoBehaviour
 
     public PlayerCharacterControllerRigidBody player;
     //public PerkHub perkHub;
+
+    public bool savePerks = true;
+
     public int availablePoints = 100;
 
     void Awake()
@@ -38,13 +41,22 @@ public class PerkTreeReader : MonoBehaviour
         {
             _instance = this;
             //DontDestroyOnLoad(this.gameObject);
-            SetUpPerkTree();
+            
         }
         else
         {
             Destroy(this.gameObject);
         }
+
+        if (!savePerks)
+        {
+            PlayerPrefs.SetInt("PerkPoints", 0);
+            PlayerPrefs.DeleteKey("PerkTree");
+        }
+
         availablePoints = PlayerPrefs.GetInt("PerkPoints", 0);
+        SetUpPerkTree();
+        
     }
 
     private void Start()

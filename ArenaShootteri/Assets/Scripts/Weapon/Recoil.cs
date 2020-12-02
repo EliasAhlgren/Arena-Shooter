@@ -67,6 +67,12 @@ public class Recoil : MonoBehaviour
 
     private bool onCooldown;
 
+    public bool increasedRof;
+
+    public float RateOfFire2;
+
+    // increasedRof ja rateOfFire2 on niitä perkkejä varten
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -135,8 +141,8 @@ public class Recoil : MonoBehaviour
 
         if (Input.GetMouseButton(0) && !_GunAttributes.isModding && _GunAttributes.ammoInMag > 0)
         {
-            Recoiling();
             Firing();
+            Recoiling();
         }
         else if (Input.GetMouseButtonDown(0) && !_GunAttributes.isModding && _GunAttributes.ammoInMag <= 0)
         {
@@ -196,8 +202,8 @@ public class Recoil : MonoBehaviour
         //Aseen ampumis ääni tähän
         SoundManager.PlaySound("Shoot");
         //
-        yield return new WaitForSeconds(0.041f);
-        shooting.Shoot();
+        yield return new WaitForSeconds(increasedRof == true ? RateOfFire2 : 0.041f);
+        shooting.Shoot(); 
         muzzleFlash.Play();
         _GunAttributes.ammoInMag--;
         _canFire = true;
@@ -257,6 +263,12 @@ public class Recoil : MonoBehaviour
         // Stop cooldown
         onCooldown = false;
         //Debug.Log("Cooldown Ended");
+    }
+
+    public void UpdateFirerate(int perkLevel, float fireratemod)
+    {
+        increasedRof = perkLevel > 0 ? true : false;
+        RateOfFire2 = 0.041f * fireratemod;
     }
 
 }

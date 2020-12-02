@@ -63,7 +63,7 @@ public class GunAttributes : MonoBehaviour
     
     
     // Changes to Modding mode
-    void ChangeUI()
+    public void ChangeUI()
     {
         
         //_controller.enabled = !_controller.enabled;
@@ -198,7 +198,15 @@ public class GunAttributes : MonoBehaviour
             }
             
         }
-        
+
+        if (PickupSpawner.Instance)
+        {
+            bool shotgun = (GetComponentInChildren<ShotgunScript>() ? true : false);
+            bool grenade = (GetComponentInChildren<GrenadeLauncher>() ? true : false);
+
+            PickupSpawner.Instance.UpdatePickupSpawns(shotgun, grenade);
+        }
+
         recoilScript.UpdateStats();
         
     }
@@ -215,10 +223,6 @@ public class GunAttributes : MonoBehaviour
        
         
         // Disables or enables the Mod selection screen
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-           
-            ChangeUI();
-        }
+        
     }
 }

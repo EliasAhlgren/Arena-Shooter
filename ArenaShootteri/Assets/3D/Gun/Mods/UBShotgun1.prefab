@@ -106,11 +106,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 409639445303092238}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abfd2b2f89239dc409065b5c1808cb2c, type: 3}
+  m_Script: {fileID: 11500000, guid: 6da1aa8d96fa71d4c8ac99e82e6a6462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shotgunMod: {fileID: 11400000, guid: 948af88c3f77e4f8ab771ddd78e7e3c5, type: 2}
   vfx: {fileID: 4673223203118810784}
+  shellsLeft: 10
   collidingObjects: []
 --- !u!1 &2091802841899350862
 GameObject:

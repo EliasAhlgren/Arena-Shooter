@@ -57,7 +57,7 @@ public class Altar : MonoBehaviour
                     isText = false;
                 }
                 
-                if (Input.GetKeyDown(KeyCode.E) || isAltarActive && Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E) || isAltarActive && Input.GetKeyDown(KeyCode.Escape) || isAltarActive && Input.GetKeyDown(KeyCode.E))
                 {
                     if (!isAltarActive)
                     {

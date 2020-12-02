@@ -17,8 +17,8 @@ public class LentoSaatana : MonoBehaviour, IDamage
         public State state;
 
         public GameObject deathExplosion;
-        
-        public float IHealth { get; set; }
+
+        public float IHealth { get; set; } = 50f;
 
         public enum State
         {
@@ -58,19 +58,22 @@ public class LentoSaatana : MonoBehaviour, IDamage
 
             if (IHealth <= 0f)
             {
-                //StartCoroutine(Die());
+                Die();
             }
         }
 
-        /*
-        public IEnumerator Die()
+        
+        public void Die()
         {
-            Instantiate(deathExplosion);
+            Instantiate(deathExplosion, transform.position, Quaternion.identity);
+            state = State.DoNothing;
+            Destroy(gameObject);
         }
-        */
+        
         private void Start()
         {
             Initialize();
+            //[SOUND] tähä se demoninen humina loopilla
         }
 
         private void OnTriggerEnter(Collider other)

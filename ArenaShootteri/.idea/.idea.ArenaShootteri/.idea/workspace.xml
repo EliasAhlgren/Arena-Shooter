@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="2c11ff09-eb9c-4d0f-aee3-9517920c8ce1" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,11 +20,13 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/IDamage.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/ConeScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/BaseState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collab-proxy@1.3.9/Editor/Utilities/OpenLinksUtility.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/Grunt/Grunt.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/StockSelection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/Mod.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WeaponModding/NewMods.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/Grunt/GruntChaseState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/WorkBench.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Weapon/ShotgunScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Weapon/GrenadeScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/CreateNodes.cs" root0="FORCE_HIGHLIGHTING" />
@@ -53,8 +58,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/Sight.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/SightSelector.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/KeepRotation.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/NewSurfaceShader.shader" />
         <option value="$USER_HOME$/ThePhantomPayne/Assets/Scenes/testi.shader" />
@@ -92,18 +95,20 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManagement/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/NewMods.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/ShotgunScript.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/GrenadeScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/GrenadeLauncher.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Shooting.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Recoil.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/GunAttributes.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/WeaponRotationScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Aiming.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/CreateNodes.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterControllerRigidBody.cs" />
-        <option value="$PROJECT_DIR$/Assets/missileScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/GrenadeScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Recoil.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/LentoSaatana.cs" />
+        <option value="$PROJECT_DIR$/Assets/DoorAnimationHandler.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/GunAttributes.cs" />
+        <option value="$PROJECT_DIR$/Assets/missileScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/WorkBench.cs" />
       </list>
     </option>
   </component>
@@ -199,7 +204,9 @@
       <workItem from="1606485152496" duration="2796000" />
       <workItem from="1606557936165" duration="11896000" />
       <workItem from="1606657430956" duration="8690000" />
-      <workItem from="1606736654730" duration="10211000" />
+      <workItem from="1606736654730" duration="11501000" />
+      <workItem from="1606826050879" duration="7956000" />
+      <workItem from="1606900852493" duration="3374000" />
     </task>
     <servers />
   </component>
@@ -297,11 +304,11 @@
       <screen x="0" y="23" width="1399" height="877" />
     </state>
     <state x="194" y="82" width="678" height="735" key="find.popup/0.23.1399.877@0.23.1399.877" timestamp="1600864016679" />
-    <state x="-1423" y="223" width="923" height="805" key="search.everywhere.popup" timestamp="1606752659047">
+    <state x="-1423" y="223" width="923" height="805" key="search.everywhere.popup" timestamp="1606905836546">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1423" y="223" width="923" height="805" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606752659047" />
-    <state x="497" y="223" width="923" height="805" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606667786605" />
+    <state x="-1423" y="223" width="923" height="805" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606905836546" />
+    <state x="497" y="223" width="923" height="805" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606902228525" />
     <state x="361" y="211" width="672" height="678" key="search.everywhere.popup/0.23.1397.877@0.23.1397.877" timestamp="1603379384954" />
     <state x="362" y="211" width="672" height="678" key="search.everywhere.popup/0.23.1399.877@0.23.1399.877" timestamp="1606412983385" />
   </component>

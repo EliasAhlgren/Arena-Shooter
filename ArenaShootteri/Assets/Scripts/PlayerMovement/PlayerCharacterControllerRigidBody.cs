@@ -78,6 +78,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     [Header("The Holy Light")]
     public float theHolyLightRange = 10;
     public float theHolyLightCooldown = 10;
+    public float theHolyLightDamage = 10;
     [Header("Divine Shield")]
     public float divineShieldCooldown = 10;
     public float divineShieldTime = 10;
@@ -348,6 +349,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         damageModifier = 1 + damageMod * PerkTreeReader.Instance.IsPerkLevel(7);
         rageModeUnlocked = PerkTreeReader.Instance.IsPerkUnlocked(8);
         fireRateModifier = 1 + fireRateMod * PerkTreeReader.Instance.IsPerkLevel(9);
+        FindObjectOfType<Recoil>().UpdateFirerate(PerkTreeReader.Instance.IsPerkLevel(9), fireRateModifier);
         reloadModifier = 1 + reloadMod * PerkTreeReader.Instance.IsPerkLevel(10);
         groundSlamUnlocked = PerkTreeReader.Instance.IsPerkUnlocked(11);
         damageAuraUnlocked = PerkTreeReader.Instance.IsPerkUnlocked(12);
@@ -839,8 +841,8 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             {
                 return;
             }
-            Debug.Log("no target function");
-            //Damageable.TakeDamage();
+            //Debug.Log("no target function");
+            Damageable.TakeDamage(theHolyLightDamage);
 
             /*
             string enemyTag = hitCollider.transform.tag;

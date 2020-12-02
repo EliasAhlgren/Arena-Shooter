@@ -11,11 +11,11 @@
         <e p="BounceScript.cs" t="Include" />
         <e p="ChargeTriggerContoller.cs" t="Include" />
         <e p="DIsableRail.cs" t="Include" />
-        <e p="GruntChase.cs" t="Include" />
+        <e p="DoorAnimationHandler.cs" t="Include" />
         <e p="HandSetter.cs" t="Include" />
-        <e p="justjust.cs" t="Include" />
         <e p="LaserScript.cs" t="Include" />
         <e p="missileScript.cs" t="Include" />
+        <e p="PacManHandler.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="AI" t="Include">
             <e p="BaseState.cs" t="Include" />
@@ -40,6 +40,12 @@
             <e p="LentoKaveri" t="Include">
               <e p="CreateNodes.cs" t="Include" />
               <e p="LentoSaatana.cs" t="Include" />
+            </e>
+            <e p="LentäväVipeltäjä" t="Include">
+              <e p="LentoVipeltaja.cs" t="Include" />
+              <e p="LentoVipeltaja_StateMachine.cs" t="Include" />
+              <e p="LentoVipeltajaAttackState.cs" t="Include" />
+              <e p="LentoVipeltajaChaseState.cs" t="Include" />
             </e>
             <e p="RunTest.cs" t="Include" />
             <e p="Vipeltäjä" t="Include">
@@ -86,7 +92,10 @@
             <e p="AmmoPickup.cs" t="Include" />
             <e p="HealthPickup.cs" t="Include" />
             <e p="Pickup.cs" t="Include" />
+            <e p="PickupEnemyDrop.cs" t="Include" />
             <e p="PickupPlatform.cs" t="Include" />
+            <e p="PickupSpawner.cs" t="Include" />
+            <e p="PickupSpawnPoint.cs" t="Include" />
           </e>
           <e p="Player Hands" t="Include">
             <e p="HandPoser.cs" t="Include" />
@@ -160,7 +169,7 @@
             <e p="EmojiOne Attribution.txt" t="Include" />
           </e>
         </e>
-        <e p="thisis.cs" t="Include" />
+        <e p="WorkBench.cs" t="Include" />
       </e>
       <e p="LocalPackages" t="Include">
         <e p="com.unity.render-pipelines.high-definition-config" t="Include">
