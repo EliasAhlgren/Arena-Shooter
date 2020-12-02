@@ -5,7 +5,7 @@ using AI;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class missileScript : MonoBehaviour
+public class missileScript : MonoBehaviour, IDamage
 {
     public Vector3 forward;
     private VisualEffect _visualEffect;
@@ -15,7 +15,9 @@ public class missileScript : MonoBehaviour
     public float speed = 8f;
     
     public GameObject Explpoposion;
-    
+
+    public float IHealth { get; set; } = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,33 +26,37 @@ public class missileScript : MonoBehaviour
         player = GameObject.FindWithTag("Player").transform;
     }
 
-    private void OnCollisionEnter(Collision other)
+    public void TakeDamage(float damage)
     {
         
-        if (!other.gameObject.GetComponent<missileScript>())
+        Explode(GameObject.FindWithTag("Level"));
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        Explode(other.gameObject);
+    }
+
+    private void Explode(GameObject other)
+    {
+        if (!other.GetComponent<missileScript>())
         {
-            speed = 0f;
             GameObject boom = Instantiate(Explpoposion, transform.position, Quaternion.identity);
-            Debug.Log(other.gameObject);
-            if (other.gameObject == player.gameObject)
+            if (other == player.gameObject)
             {
-                
                 player.GetComponent<PlayerCharacterControllerRigidBody>().TakeDamage(damage, true);
             }
 
-            if (other.transform.parent.GetComponent<IDamage>() != null)
-            {
-                other.transform.parent.GetComponent<IDamage>().TakeDamage(damage);
-            }
-            
-            //[SOUND] räjähdys tähän
 
-            gameObject.GetComponentInChildren<Renderer>().enabled = false;
-            gameObject.GetComponentInChildren<Collider>().enabled = false;
-            this.enabled = false;
+            var dmg = other.transform.root.GetComponent<IDamage>();
+            if (dmg != null)
+            {
+                other.transform.root.GetComponent<IDamage>().TakeDamage(damage);
+            }
+
+
+            Destroy(gameObject);
         }
-        
-        
     }
 
     // Update is called once per frame

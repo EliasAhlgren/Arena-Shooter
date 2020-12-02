@@ -25,6 +25,7 @@ public class DoorAnimationHandler : MonoBehaviour
     {
         if(other.transform.CompareTag("Player"))
         {
+            GameObject.FindWithTag("GameManagement").GetComponent<NewMods>().CheckMods();
             anim.Play("OvenAvaus");
             SoundManager.PlaySound("GateOpen");
             oviCollider.enabled = false;
