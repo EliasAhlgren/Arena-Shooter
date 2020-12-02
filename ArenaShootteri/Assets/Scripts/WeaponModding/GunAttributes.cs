@@ -63,7 +63,7 @@ public class GunAttributes : MonoBehaviour
     
     
     // Changes to Modding mode
-    void ChangeUI()
+    public void ChangeUI()
     {
         
         //_controller.enabled = !_controller.enabled;
@@ -215,10 +215,6 @@ public class GunAttributes : MonoBehaviour
        
         
         // Disables or enables the Mod selection screen
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-           
-            ChangeUI();
-        }
+        
     }
 }
