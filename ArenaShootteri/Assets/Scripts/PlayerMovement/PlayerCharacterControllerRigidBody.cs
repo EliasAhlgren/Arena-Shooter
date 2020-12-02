@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using AI;
 
 public class PlayerCharacterControllerRigidBody : MonoBehaviour
 {
     public Text playerHP;
+    public Text timer;
+    bool useTimer = true;
     public Movement movement;
     [Header("Test Mode")]
     public bool testKeys = true;
@@ -66,27 +69,49 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     public bool divineShieldUnlocked = false;
     public bool theHolyLightUnlocked = false;
 
-    [Header("Active Perk Modifiers")]
+    [Header("Damage Aura")]
+    [Header("Active Perk Modifiers")]   
+    public float damageAuraRange = 5;
+    public float damageAuraDamage = 10;
     public float damageAuraCooldown = 10;
     public float damageAuraTime = 10;
+    [Header("The Holy Light")]
+    public float theHolyLightRange = 10;
     public float theHolyLightCooldown = 10;
+    [Header("Divine Shield")]
     public float divineShieldCooldown = 10;
     public float divineShieldTime = 10;
 
+    [Header("Speed")]
     [Header("Perk Modifiers")]
+    
     public float speedMod = .05f;
+    [Header("Damage")]
     public float damageMod = .05f;
+    [Header("Firerate")]
     public float fireRateMod = -.05f;
+    [Header("Reload")]
     public float reloadMod = -.05f;
+    [Header("Health")]
     public float healthMod = .05f;
+    [Header("Blessed")]
     public float spawnRateMod = -.05f;
+    [Header("Defense")]
     public float defenseMod = -.05f;
+    
     [Space(10)]
+
+    [Header("Resurection")]
     public float resurectionHP = 10;
-    public float damageAuraRange = 5;
-    public float rageMod = 1;
+    [Header("Rage Mode")]
+    public float rageMod = 2;
     public float rageModRegKills = 3;
     public float rageModTimer = 10;
+    public float rageModActiveTimer = 10;
+    [Header("Ground Slam")]
+    public float groundSlamRange = 5;
+    public float groundSlamDamage = 10;
+    
     [Space(10)]
 
     List<float> rageKills = new List<float>();
@@ -97,18 +122,49 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
     [Header("Utility")]
     //public float velocity;
+    public LayerMask enemyLayer;
 
-    public Image deathImage;
-    public GameObject deathCanvas;
+    public Light holyLight;
+    bool lightFlash = false;
+
+    //public List<string> enemyTypes;
+    //public list string[] enemyTypes;
+
+    public GameObject rageModeImage;
+    [HideInInspector]
+    public Image rmImage;
+    public GameObject divineShieldImage;
+    [HideInInspector]
+    public Image dsImage;
+    public GameObject deathImage;
+    [HideInInspector]
+    public Image dImage;
+    //public GameObject deathCanvas;
+    [HideInInspector]
     public float colorAlpha = 0f;
 
-    public GameObject damageAuraModel;
+    public GameObject damageAuraEffect;
+    public GameObject groundSlamEffect;
     bool resurection = true;
 
     // Start is called before the first frame update
     void Start()
     {
         movement = GetComponent<Movement>();
+
+        rmImage = rageModeImage.GetComponent<Image>();
+        dsImage = divineShieldImage.GetComponent<Image>();
+        dImage = deathImage.GetComponent<Image>();
+
+        groundSlamEffect.transform.localScale = new Vector3(1, 1, 1) * groundSlamRange * 2;
+        damageAuraEffect.transform.localScale = new Vector3(1, 1, 1) * damageAuraRange * 2;
+
+        if (timer == null)
+        {
+            Debug.Log("set timer");
+            useTimer = false;
+        }
+
         //deathCanvas = GetComponentInChildren<Canvas>(true).gameObject;
         //deathImage = deathCanvas.GetComponentInChildren<Image>(true);
         
@@ -130,8 +186,11 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
         if (rageModeUnlocked) RageMode();
         if (damageAuraUnlocked) DamageAura();
-        if (theHolyLightUnlocked) TheHolyLight();
+        //if (theHolyLightUnlocked) TheHolyLight();
 
+        if (lightFlash) LightFlash();
+
+        if (useTimer) CooldownCounter();
 
         if (playerControl && Time.timeScale > 0)
         {
@@ -144,10 +203,10 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             }
             */
 
-            // activate active perk "Y"
-            if (Input.GetKeyDown(KeyCode.Y))
+            // activate active perk "F"
+            if (Input.GetKeyDown(KeyCode.F))
             {
-                if (activePerkActiveTime <= 0 && activePerkCooldown <= 0)
+                if (activePerkActiveTime <= 0 && activePerkCooldown <= 0 && !rageMode)
                 {
                     if (divineShieldUnlocked)
                     {
@@ -301,6 +360,12 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         theHolyLightUnlocked = PerkTreeReader.Instance.IsPerkUnlocked(17);
         spawnRateModifier = 1 + spawnRateMod * PerkTreeReader.Instance.IsPerkLevel(18);
 
+        if (PickupSpawner.Instance != null)
+        {
+            PickupSpawner.Instance.UpdatePerkLevel(PerkTreeReader.Instance.IsPerkLevel(18));
+        }
+        
+
         CheckHealth();
         /*
         if (true) doubleJumpUnlocked = true;
@@ -361,6 +426,19 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         }
     }
 
+    public void CooldownCounter()
+    {
+        if (activePerkCooldown > 0 && activePerkActiveTime <= 0)
+        {
+            timer.text = activePerkCooldown.ToString("0");
+        }
+        else
+        {
+            timer.text = "";
+        }
+            
+    }
+
     // obsolete
     void Shoot()
     {
@@ -399,16 +477,30 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     {
         if (invulnerability > 0)
         {
+            if (!invulnerable)
+            {
+                //[SOUND] divine shield activation sound (One Shot)
+
+                divineShieldImage.SetActive(true);
+
+                invulnerable = true;
+                
+            }
+
             //[SOUND] divine shield sound (Continuous)
 
-            invulnerable = true;
             invulnerability -= Time.deltaTime;
         }
         else
         {
-            //[SOUND] divine shield deactivation sound (One Shot)
+            if (invulnerable)
+            {
+                //[SOUND] divine shield deactivation sound (One Shot)
 
-            invulnerable = false;
+
+                divineShieldImage.SetActive(false);
+                invulnerable = false;
+            }
         }
     }
 
@@ -528,9 +620,10 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                 health = 0;
                 CheckHealth();
 
-                movement.ChangePlayerSize(false);
+                //movement.ChangePlayerSize(false);
                 //alphaLerp = 0f;
-                deathCanvas.SetActive(true);
+                deathImage.SetActive(true);
+                //deathCanvas.SetActive(true);
                 colorAlpha = 0.3f;
                 /*
                 rayDistance = crouchRayDistance;
@@ -561,7 +654,8 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
         colorAlpha = 0f;
 
-        deathCanvas.SetActive(false);
+        deathImage.SetActive(false);
+        //deathCanvas.SetActive(false);
         /*
         rayDistance = standRayDistance;
         groundCheck = new Vector3(0, -.5f, 0);
@@ -582,7 +676,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     {
         if (rageModeUnlocked)
         {
-            if (!rageMode)
+            if (!rageMode && invulnerability > 0)
             {
                 rageKills.Add(Time.time);
             }
@@ -597,16 +691,27 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             {
                 //[SOUND] rage mode activation sound (One Shot)
 
-                rageModeActiveTime = 10;
+                rageModeImage.SetActive(true);
+
+                rageModeActiveTime = rageModActiveTimer;
                 rageMode = true;
-                rageDamageModifier = 1 + rageMod;
+                rageDamageModifier = 1 * rageMod;
                 rageKills.Clear();
             }
             else
             {
-                rageMode = false;
-                rageDamageModifier = 1;
+                if (rageMode)
+                {
+                    //[SOUND] rage mode deactivation sound (One Shot)
+
+                    rageModeImage.SetActive(false);
+
+                    rageMode = false;
+                    rageDamageModifier = 1;
+                }
+                
             }
+
             if (rageKills.Count > 0)
             {
                 if (Time.time - rageKills[0] >= rageModTimer)
@@ -627,16 +732,41 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     {
         //[SOUND] ground slam sound (One Shot)
 
-        int layerMask = LayerMask.GetMask("EnemyHitbox");
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, damageAuraRange, layerMask);
+
+        groundSlamEffect.SetActive(true);
+        StartCoroutine(GroundSlamDis());
+
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, damageAuraRange, enemyLayer);
+
 
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.transform.CompareTag("Enemy"))
+            var Damageable = hitCollider.transform.root.GetComponent<IDamage>();
+
+            if (Damageable == null)
             {
-                hitCollider.transform.parent.transform.GetComponent<Grunt>().StartCoroutine("Die");
+                return;
             }
+            Damageable.TakeDamage(groundSlamDamage);
+
+            /*
+            string enemyTag = hitCollider.transform.tag;
+
+            if (enemyTypes.Contains(enemyTag))
+            {
+                AI.IDamage enemyScript;
+                enemyScript = hitCollider.GetComponent(typeof(AI.IDamage)) as AI.IDamage;
+
+                enemyScript.TakeDamage(damageAuraDamage * Time.deltaTime);
+            }
+            */
         }
+    }
+
+    private IEnumerator GroundSlamDis()
+    {
+        yield return new WaitForSeconds(0.1f);
+        groundSlamEffect.SetActive(false);
     }
 
 
@@ -647,35 +777,41 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         {
             //[SOUND] damage aura sound (Continuous)
 
-            //damageAuraModel.SetActive(true);
+            
+            damageAuraEffect.SetActive(true);
 
-            if (movement.isCrouching)
-            {
-                //damageAuraModel.transform.localScale = new Vector3(damageAuraRange * 2, damageAuraRange * 4, damageAuraRange * 2);
-            }
-            else
-            {
-                //damageAuraModel.transform.localScale = new Vector3(damageAuraRange * 2, damageAuraRange * 2, damageAuraRange * 2);
-            }
+            int layerMask = LayerMask.GetMask("Enemy");
 
-            int layerMask = LayerMask.GetMask("EnemyHitbox");
-
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, damageAuraRange, layerMask);
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, damageAuraRange, enemyLayer);
 
             foreach (var hitCollider in hitColliders)
             {
-                if (hitCollider.transform.CompareTag("Enemy"))
-                {
-                    hitCollider.transform.parent.transform.GetComponent<Grunt>().StartCoroutine("Die");
+                var Damageable = hitCollider.transform.root.GetComponent<IDamage>();
 
+                if (Damageable == null)
+                {
+                    return;
                 }
+                Damageable.TakeDamage(damageAuraDamage * Time.deltaTime);
+
+                /*
+                string enemyTag = hitCollider.transform.tag;
+
+                if (enemyTypes.Contains(enemyTag))
+                {
+                    AI.IDamage enemyScript;
+                    enemyScript = hitCollider.GetComponent(typeof(AI.IDamage)) as AI.IDamage;
+
+                    enemyScript.TakeDamage(damageAuraDamage * Time.deltaTime);
+                }
+                */
             }
         }
         else
         {
             //[SOUND] damage aura deactivation sound (One Shot)
 
-            //damageAuraModel.SetActive(false);
+            damageAuraEffect.SetActive(false);
         }
     }
 
@@ -690,16 +826,46 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     {
         activePerkCooldown = theHolyLightCooldown;
 
-        int layerMask = LayerMask.GetMask("EnemyHitbox");
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, damageAuraRange, layerMask);
+        holyLight.intensity = 0;
+        lightFlash = true;
+
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, theHolyLightRange, enemyLayer);
 
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.transform.CompareTag("Enemy"))
-            {
-                hitCollider.transform.parent.transform.GetComponent<Grunt>().StartCoroutine("Die");
+            var Damageable = hitCollider.transform.root.GetComponent<IDamage>();
 
+            if (Damageable == null)
+            {
+                return;
             }
+            Debug.Log("no target function");
+            //Damageable.TakeDamage();
+
+            /*
+            string enemyTag = hitCollider.transform.tag;
+
+            if (enemyTypes.Contains(enemyTag))
+            {
+                AI.IDamage enemyScript;
+                enemyScript = hitCollider.GetComponent(typeof(AI.IDamage)) as AI.IDamage;
+
+                //enemyScript.TakeDamage(damageAuraDamage * Time.deltaTime);
+            }
+            */
+        }
+    }
+
+    private void LightFlash()
+    {
+        if (holyLight.intensity < 800000)
+        {
+            holyLight.intensity += 1600000 * Time.deltaTime;
+        }
+        else if (holyLight.intensity > 800000)
+        {
+            holyLight.intensity = 0;
+            lightFlash = false;
         }
     }
 }

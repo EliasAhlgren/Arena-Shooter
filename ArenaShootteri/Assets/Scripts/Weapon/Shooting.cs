@@ -10,6 +10,8 @@ public class Shooting : MonoBehaviour
     public float DamageStat;
     public Aiming aiming;
 
+    private PlayerCharacterControllerRigidBody _controller;
+
     public VisualEffect sparks;
     public ParticleSystem blood;
 
@@ -17,6 +19,7 @@ public class Shooting : MonoBehaviour
     void Start()
     {
         Attributes = gameObject.GetComponent<GunAttributes>();
+        _controller = GameObject.FindWithTag("Player").GetComponent<PlayerCharacterControllerRigidBody>();
     }
 
     public void Shoot(float Damage, GameObject target)
@@ -26,7 +29,7 @@ public class Shooting : MonoBehaviour
 
     public void Shoot()
     {
-        DamageStat = Attributes.totalDamage;
+        DamageStat = Attributes.totalDamage * _controller.rageDamageModifier * _controller.damageModifier;
         var shootRay = new Ray(shootPosition.position, transform.forward);
                     RaycastHit hit;
                     if (Physics.Raycast(shootRay, out hit))

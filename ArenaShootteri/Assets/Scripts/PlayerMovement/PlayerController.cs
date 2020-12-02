@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
     float tiltLerp = 0f;
 
     //diagonal movement limiter variable;
-    float DMLimiter;
+    //float DMLimiter;
 
     //gravity
     float gravity;
@@ -293,6 +293,7 @@ public class PlayerController : MonoBehaviour
 
         //set directional movement limiter
        
+        /*
         if (Mathf.Sqrt(x * x + z * z) > 1)
         {
             DMLimiter = 0.7f;
@@ -301,7 +302,7 @@ public class PlayerController : MonoBehaviour
         {
             DMLimiter = 1f;
         }
-       
+       */
 
         //limit camera vertical movement
         xRotation -= mouseY;

@@ -8,10 +8,20 @@ public class PerkButton : MonoBehaviour
 
     public int perkId;
 
+    public Sprite[] perkLevelSprites;
+    public GameObject PerkCurrency;
+    private Image perkCurrencyImage;
+    public Image perkLevelImage;
+
+
     public Color availableColor;
     public Color lockedColor;
     public Color leveleableColor;
     public Color unlockedColor;
+
+    public Color activePerkLocked;
+    public Color activePerkAvailable;
+    public Color activePerkUnlocked;
 
     public PerkHub perkHub;
 
@@ -22,7 +32,16 @@ public class PerkButton : MonoBehaviour
     public Text perkCostText;
     public Text perkStateText;
 
+    public GameObject activePerk;
+    private Image activePerkImage;
+
     public GameObject tooltip;
+    public Text nameText;
+    public Text explanationText;
+
+    public string perkNameText;
+    public string perkExplanationText;
+
     Text tooltipText;
     Vector3 offset = new Vector3(170,-25,0);
 
@@ -32,6 +51,8 @@ public class PerkButton : MonoBehaviour
 
     void Start()
     {
+        perkCurrencyImage = PerkCurrency.GetComponent<Image>();
+        activePerkImage = activePerk.GetComponent<Image>();
         _image = GetComponent<Image>();
         _button = GetComponent<Button>();
         tooltipText = tooltip.GetComponent<Text>();
@@ -61,16 +82,20 @@ public class PerkButton : MonoBehaviour
 
             //_text.text = PerkTreeReader.Instance.IsPerkLevel(perkId).ToString();
             perkLevelText.text = PerkTreeReader.Instance.IsPerkLevel(perkId).ToString();
+            //perkLevelImage.sprite = perkLevelSprites[PerkTreeReader.Instance.IsPerkLevel(perkId)];
+            perkLevelImage.sprite = perkLevelSprites[perkLevel];
         }
         // active
         else if (perkTypeCheck == PerkType.active)
         {
+            activePerk.SetActive(true);
             perkLevelText.text = "";
             //_text.text = "active";
         }
         // passive
         else
         {
+            
             perkLevelText.text = "";
             //_text.text = "passive";
         }
@@ -84,24 +109,38 @@ public class PerkButton : MonoBehaviour
             {
                 if (!PerkTreeReader.Instance.CanPerkBeUnlockedCost(perkId))
                 {
-                    perkCostText.color = Color.red;
+                    perkCurrencyImage.color = Color.gray;
+                    perkCostText.color = Color.gray;
                     _button.interactable = false;
                 }
                 else
                 {
-                    perkCostText.color = Color.green;
+                    perkCurrencyImage.color = Color.white;
+                    perkCostText.color = Color.white;
                     _button.interactable = true;
                 }
+                //PerkCurrency.SetActive(true);
                 perkCostText.text = PerkTreeReader.Instance.IsPerkCost(perkId).ToString();
                 perkStateText.text = "LEVELEABLE";
+
+                //activePerkImage.color = lockedColor;
+                perkCurrencyImage.color = Color.white;
+                perkCostText.color = Color.white;
+                perkLevelImage.color = leveleableColor;
                 _image.color = leveleableColor;
             }
             else
             {
+                //PerkCurrency.SetActive(false);
                 perkStateText.text = "UNLOCKED";
-                perkCostText.text = "";
+                perkCostText.text = "-";
 
+                activePerkImage.color = activePerkUnlocked;
 
+                perkCurrencyImage.color = Color.white;
+                perkCostText.color = Color.white;
+
+                perkLevelImage.color = unlockedColor;
                 _image.color = unlockedColor;
             }
             
@@ -111,40 +150,57 @@ public class PerkButton : MonoBehaviour
         {
             if (perkTypeCheck == PerkType.active && !PerkTreeReader.Instance.CanActivePerkBeUnlocked(perkId))
             {
+                PerkCurrency.SetActive(false);
                 perkStateText.text = "LOCKED ACTIVE";
                 perkCostText.text = "";
                 //perkCostText.color = Color.red;
                 //_image.color = Color.gray;
-                _image.color = lockedColor;
-                _button.interactable = false;
+
             }
             else if (!PerkTreeReader.Instance.CanPerkBeUnlockedDependencies(perkId))
             {
+                //PerkCurrency.SetActive(true);
                 perkStateText.text = "LOCKED DEPENDENCIES";
                 perkCostText.text = PerkTreeReader.Instance.IsPerkCost(perkId).ToString();
-                perkCostText.color = Color.gray;
+                //perkCostText.color = Color.gray;
                 //_image.color = Color.gray;
-                _image.color = lockedColor;
-                _button.interactable = false;
+
             }
             else
             {
+
+                //PerkCurrency.SetActive(true);
                 perkStateText.text = "LOCKED";
                 perkCostText.text = PerkTreeReader.Instance.IsPerkCost(perkId).ToString();
-                perkCostText.color = Color.red;
+                //perkCostText.color = Color.gray;
                 //_image.color = Color.gray;
-                _image.color = lockedColor;
-                _button.interactable = false;
+                
             }
+
+            perkCurrencyImage.color = Color.gray;
             
+            perkCostText.color = Color.gray;
+
+            activePerkImage.color = activePerkLocked;
+            perkLevelImage.color = lockedColor;
+            _image.color = lockedColor;
+            _button.interactable = false;
+
         }
         // perk available
         else
         {
+            PerkCurrency.SetActive(true);
             perkStateText.text = "AVAILABLE";
             perkCostText.text = PerkTreeReader.Instance.IsPerkCost(perkId).ToString();
-            perkCostText.color = Color.green;
+
+            activePerkImage.color = activePerkAvailable;
+
+            //perkCostText.color = Color.white;
+            perkCurrencyImage.color = Color.white;
+            perkCostText.color = Color.white;
             //_image.color = Color.white;
+            perkLevelImage.color = availableColor;
             _image.color = availableColor;
             _button.interactable = true;
         }
@@ -172,19 +228,23 @@ public class PerkButton : MonoBehaviour
     }
 
     public void OnMouseEnter()
-    {
+    {      
         isMouseHover = true;
         tooltip.gameObject.SetActive(true);
+        nameText.text = perkNameText;
+        explanationText.text = perkExplanationText;
     }
 
     public void OnMouseExit()
     {
         isMouseHover = false;
         tooltip.gameObject.SetActive(false);
+        nameText.text = "";
+        explanationText.text = "";
     }
 
     public void OnMouseStay()
     {
-        tooltip.transform.position = Input.mousePosition + offset;
+        tooltip.transform.position = Input.mousePosition + new Vector3(300 / 2 + 20 , - 25, 0);
     }
 }
