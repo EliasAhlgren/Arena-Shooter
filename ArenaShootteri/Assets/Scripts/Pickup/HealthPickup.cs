@@ -17,16 +17,7 @@ public class HealthPickup : Pickup
                 playerScript.Heal(healthRecovered);
                 Debug.Log("healed " + player.name + " for "+ healthRecovered +" hp");
 
-                if (platfromIS)
-                {
-                    platformSript.PickupRespawn(respawnTime * playerScript.spawnRateModifier);
-                    gameObject.SetActive(false);
-                }
-                else
-                {
-                    Destroy(gameObject);
-                }
-                
+                DeSpawn();           
                 
                 
             }
