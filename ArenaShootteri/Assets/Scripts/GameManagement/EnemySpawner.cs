@@ -27,6 +27,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject Demon;
     public GameObject Imp;
     public GameObject Vipeltaja;
+    public GameObject LentoDemon;
 
     public bool spawning = false;
     public bool enemyWaiting = false;
@@ -61,14 +62,14 @@ public class EnemySpawner : MonoBehaviour
             if (wave == 1)
             {
                 Debug.Log("LOL");
-                SpawnWave(0, 0, 1, 0, 0);
+                SpawnWave(0, 0, 10, 0, 0);
                 
             }
             else if (wave == 2)
             {
                 spawning = true;
                 spawnWave = false;
-                SpawnWave(0, 0, 30, 0, 0);
+                SpawnWave(0, 0, 30, 0, 2);
             }
             else if (wave == 3)
             {
@@ -125,6 +126,7 @@ public class EnemySpawner : MonoBehaviour
         //int count = pacmanList.Count;
 
         List<Transform> spawnlista = new List<Transform>(spawns._spawnPoints);
+
         while (impit > 0 || demonit > 0 || vipelt > 0 || gruntit > 0)
         {
             if (impit > 0)
@@ -151,6 +153,11 @@ public class EnemySpawner : MonoBehaviour
         Debug.Log("Hello spawning enemies. Enemies left: " + enemies.Count);
         SpawnEnemies(enemies);
 
+        for (int x = 0; x < lento; x++)
+        {
+            spawnlista = SpawnEnemy(LentoDemon, spawnlista);
+        }
+
         // enemies.Clear();
         spawning = false;
     }
@@ -172,7 +179,7 @@ public class EnemySpawner : MonoBehaviour
         enemyCount += 1;
     }
 
-    public static void Spawn(GameObject _enemy, Transform spawnPos)
+    public void Spawn(GameObject _enemy, Transform spawnPos)
     {
         Instantiate(_enemy, spawnPos.position, spawnPos.rotation);
         enemyCount += 1;
