@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: lava0002
-  m_Shader: {fileID: 4800000, guid: 6e4ae4064600d784cac1e41a9e6f2e59, type: 3}
+  m_Shader: {fileID: 4800000, guid: 6a151f652f5ba03458e9a7cd03ae88e8, type: 3}
   m_ShaderKeywords: _EMISSIVE_COLOR_MAP _NORMALMAP_TANGENT_SPACE
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
@@ -61,6 +61,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Distort:
+        m_Texture: {fileID: 2800000, guid: 0ebfaeff4eb7328498165095f9cfc32f, type: 3}
+        m_Scale: {x: 20, y: 20}
+        m_Offset: {x: 0, y: 0}
     - _DistortionVectorMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -81,9 +85,13 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _LavaTex:
+        m_Texture: {fileID: 2800000, guid: 93a726948508cc14eab67fb1abe2daa8, type: 3}
+        m_Scale: {x: 20, y: 20}
+        m_Offset: {x: 3.494701, y: 3.494701}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 30915e05635ca484b835d7b8b0556f01, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: 348fa4d278c53ad4dacd07df1e63a248, type: 3}
+        m_Scale: {x: 20, y: 20}
         m_Offset: {x: 0, y: 0}
     - _MaskMap:
         m_Texture: {fileID: 0}
@@ -149,6 +157,8 @@ Material:
     - _DisplacementLockObjectScale: 1
     - _DisplacementLockTilingScale: 1
     - _DisplacementMode: 0
+    - _DistortX: 1.76
+    - _DistortY: 1.77
     - _DistortionBlendMode: 0
     - _DistortionBlurBlendMode: 0
     - _DistortionBlurDstBlend: 1

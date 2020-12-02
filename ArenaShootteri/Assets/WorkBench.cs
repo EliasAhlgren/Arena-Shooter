@@ -23,7 +23,7 @@ public class WorkBench : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float dist = Vector3.Distance(player.position, transform.position);
+        float dist = Vector3.Distance(GetComponent<Collider>().bounds.center, transform.position);
         
         if (dist < 0.8f)
         {

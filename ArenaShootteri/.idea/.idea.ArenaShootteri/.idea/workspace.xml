@@ -107,8 +107,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/LentoSaatana.cs" />
         <option value="$PROJECT_DIR$/Assets/DoorAnimationHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/GunAttributes.cs" />
-        <option value="$PROJECT_DIR$/Assets/WorkBench.cs" />
         <option value="$PROJECT_DIR$/Assets/missileScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/WorkBench.cs" />
       </list>
     </option>
   </component>

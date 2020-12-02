@@ -92,7 +92,10 @@
             <e p="AmmoPickup.cs" t="Include" />
             <e p="HealthPickup.cs" t="Include" />
             <e p="Pickup.cs" t="Include" />
+            <e p="PickupEnemyDrop.cs" t="Include" />
             <e p="PickupPlatform.cs" t="Include" />
+            <e p="PickupSpawner.cs" t="Include" />
+            <e p="PickupSpawnPoint.cs" t="Include" />
           </e>
           <e p="Player Hands" t="Include">
             <e p="HandPoser.cs" t="Include" />
