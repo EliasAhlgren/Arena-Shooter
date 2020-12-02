@@ -529,6 +529,8 @@ GameObject:
   - component: {fileID: 8128350340002584199}
   - component: {fileID: 8128350340002584197}
   - component: {fileID: 8128350340002584198}
+  - component: {fileID: 993401899}
+  - component: {fileID: 993401898}
   m_Layer: 0
   m_Name: polySurface28
   m_TagString: Untagged
@@ -599,6 +601,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &993401899
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350340002584192}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8581204, y: 1.791148, z: 0.91878396}
+  m_Center: {x: -0.0000038146973, y: 0.426664, z: -0.63565266}
+--- !u!114 &993401898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350340002584192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab250fc26c44e124db4bb034daecb9d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 0}
+  isModding: 0
 --- !u!1 &8128350340006433251
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,6 +843,7 @@ GameObject:
   - component: {fileID: 8128350340026973922}
   - component: {fileID: 8128350340026973920}
   - component: {fileID: 8128350340026973921}
+  - component: {fileID: 4022444562678446386}
   m_Layer: 8
   m_Name: lamppu1:pCylinder23
   m_TagString: Level
@@ -884,6 +914,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4022444562678446386
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350340026973923}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7263770596420886052, guid: 612d16ed2a7936a498cabe06e4df8ac4, type: 3}
 --- !u!1 &8128350340069071977
 GameObject:
   m_ObjectHideFlags: 0
@@ -1822,6 +1866,8 @@ GameObject:
   - component: {fileID: 8128350340238226679}
   - component: {fileID: 8128350340238226677}
   - component: {fileID: 8128350340238226678}
+  - component: {fileID: 4293579765316383192}
+  - component: {fileID: 8452501874032400857}
   m_Layer: 8
   m_Name: lamppu1:pCylinder23
   m_TagString: Level
@@ -1892,6 +1938,34 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4293579765316383192
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350340238226672}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7263770596420886052, guid: 612d16ed2a7936a498cabe06e4df8ac4, type: 3}
+--- !u!64 &8452501874032400857
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350340238226672}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7263770596420886052, guid: 612d16ed2a7936a498cabe06e4df8ac4, type: 3}
 --- !u!1 &8128350340251151030
 GameObject:
   m_ObjectHideFlags: 0
@@ -3333,13 +3407,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8128350340409608797}
-  m_LocalRotation: {x: -0.0071835555, y: 0.92371684, z: -0.017342642, w: -0.38261586}
-  m_LocalPosition: {x: -34.248108, y: 7.4351273, z: -23.846502}
+  m_LocalRotation: {x: -0.01565642, y: 0.92268866, z: -0.026999593, w: -0.3842806}
+  m_LocalPosition: {x: -33.700638, y: 8.825424, z: -23.81895}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2208611256336331146}
   m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 2.151, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 3.546, y: -134.793, z: -0.467}
 --- !u!33 &8128350340409608770
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5149,6 +5223,8 @@ GameObject:
   - component: {fileID: 8128350340661999437}
   - component: {fileID: 8128350340661999475}
   - component: {fileID: 8128350340661999436}
+  - component: {fileID: 4928778890306212140}
+  - component: {fileID: 7708638821643043389}
   m_Layer: 8
   m_Name: lamppu1:pCylinder23
   m_TagString: Level
@@ -5163,13 +5239,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8128350340661999438}
-  m_LocalRotation: {x: -0.0071835555, y: 0.92371684, z: -0.017342642, w: -0.38261586}
-  m_LocalPosition: {x: -34.248108, y: 7.4351273, z: -23.846502}
+  m_LocalRotation: {x: -0.01565642, y: 0.92268866, z: -0.026999593, w: -0.3842806}
+  m_LocalPosition: {x: -33.68457, y: 8.826981, z: -23.803024}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2208611256336331146}
   m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 2.151, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 3.546, y: -134.793, z: -0.467}
 --- !u!33 &8128350340661999475
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5219,6 +5295,34 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4928778890306212140
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350340661999438}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7263770596420886052, guid: 612d16ed2a7936a498cabe06e4df8ac4, type: 3}
+--- !u!64 &7708638821643043389
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350340661999438}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7263770596420886052, guid: 612d16ed2a7936a498cabe06e4df8ac4, type: 3}
 --- !u!1 &8128350340677315609
 GameObject:
   m_ObjectHideFlags: 0
@@ -5230,6 +5334,7 @@ GameObject:
   - component: {fileID: 8128350340677315608}
   - component: {fileID: 8128350340677315614}
   - component: {fileID: 8128350340677315615}
+  - component: {fileID: 8724921136978507699}
   m_Layer: 8
   m_Name: lamppu1:pCylinder23
   m_TagString: Level
@@ -5300,6 +5405,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8724921136978507699
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350340677315609}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7263770596420886052, guid: 612d16ed2a7936a498cabe06e4df8ac4, type: 3}
 --- !u!1 &8128350340685963027
 GameObject:
   m_ObjectHideFlags: 0
@@ -7342,6 +7461,7 @@ GameObject:
   - component: {fileID: 8128350340887490599}
   - component: {fileID: 8128350340887490597}
   - component: {fileID: 8128350340887490598}
+  - component: {fileID: 1734799016510932886}
   m_Layer: 8
   m_Name: lamppu1:pCylinder23
   m_TagString: Level
@@ -7412,6 +7532,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1734799016510932886
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350340887490592}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7263770596420886052, guid: 612d16ed2a7936a498cabe06e4df8ac4, type: 3}
 --- !u!1 &8128350340905826374
 GameObject:
   m_ObjectHideFlags: 0
@@ -9063,13 +9197,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8128350341056680823}
-  m_LocalRotation: {x: -0.0071835555, y: 0.92371684, z: -0.017342642, w: -0.38261586}
-  m_LocalPosition: {x: -70.04256, y: 19.83413, z: -59.62683}
+  m_LocalRotation: {x: -0.01565642, y: 0.92268866, z: -0.026999593, w: -0.3842806}
+  m_LocalPosition: {x: -69.95902, y: 19.983284, z: -59.638386}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2208611256336331146}
   m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 2.151, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 3.546, y: -134.793, z: -0.467}
 --- !u!108 &8128350341056680820
 Light:
   m_ObjectHideFlags: 0
@@ -9457,6 +9591,7 @@ GameObject:
   - component: {fileID: 8128350341057399160}
   - component: {fileID: 8128350341057399166}
   - component: {fileID: 8128350341057399167}
+  - component: {fileID: 2318256394800189470}
   m_Layer: 8
   m_Name: lamppu1:pCylinder23
   m_TagString: Level
@@ -9527,6 +9662,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2318256394800189470
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350341057399161}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7263770596420886052, guid: 612d16ed2a7936a498cabe06e4df8ac4, type: 3}
 --- !u!1 &8128350341072096132
 GameObject:
   m_ObjectHideFlags: 0
@@ -9897,7 +10046,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8128350341116675556}
   m_LocalRotation: {x: -0.38083768, y: 0.090626046, z: -0.919424, w: -0.037538532}
-  m_LocalPosition: {x: -107.37847, y: 45.17765, z: -98.14373}
+  m_LocalPosition: {x: -107.851, y: 45.311, z: -98.616}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8128350341559102882}
@@ -10237,6 +10386,7 @@ GameObject:
   - component: {fileID: 8128350341162787088}
   - component: {fileID: 8128350341162787094}
   - component: {fileID: 8128350341162787095}
+  - component: {fileID: 5709905330749953502}
   m_Layer: 8
   m_Name: lamppu1:pCylinder23
   m_TagString: Level
@@ -10307,6 +10457,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5709905330749953502
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350341162787089}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7263770596420886052, guid: 612d16ed2a7936a498cabe06e4df8ac4, type: 3}
 --- !u!1 &8128350341162939505
 GameObject:
   m_ObjectHideFlags: 0
@@ -10536,13 +10700,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8128350341168895861}
-  m_LocalRotation: {x: -0.37283614, y: 0.20823579, z: -0.9001063, w: -0.08625407}
-  m_LocalPosition: {x: -71.292725, y: 20.062126, z: -60.891136}
+  m_LocalRotation: {x: -0.37651524, y: 0.19861928, z: -0.90146184, w: -0.0784422}
+  m_LocalPosition: {x: -71.219, y: 20.168, z: -60.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2208611256336331146}
   m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 153.948, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 155.344, y: -134.55, z: 0.5130005}
 --- !u!108 &8128350341168895866
 Light:
   m_ObjectHideFlags: 0
@@ -11479,6 +11643,8 @@ GameObject:
   - component: {fileID: 8128350341243353701}
   - component: {fileID: 8128350341243353707}
   - component: {fileID: 8128350341243353700}
+  - component: {fileID: 6742768205913295782}
+  - component: {fileID: 5086955465220397347}
   m_Layer: 8
   m_Name: lamppu1:pCylinder23
   m_TagString: Level
@@ -11549,6 +11715,34 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6742768205913295782
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350341243353702}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7263770596420886052, guid: 612d16ed2a7936a498cabe06e4df8ac4, type: 3}
+--- !u!64 &5086955465220397347
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350341243353702}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7263770596420886052, guid: 612d16ed2a7936a498cabe06e4df8ac4, type: 3}
 --- !u!1 &8128350341262671572
 GameObject:
   m_ObjectHideFlags: 0
@@ -12253,6 +12447,7 @@ GameObject:
   - component: {fileID: 8128350341332722685}
   - component: {fileID: 8128350341332722659}
   - component: {fileID: 8128350341332722684}
+  - component: {fileID: 5359280131290963382}
   m_Layer: 0
   m_Name: concrete:pCube2
   m_TagString: Untagged
@@ -12323,6 +12518,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5359280131290963382
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350341332722686}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1369053941305189327, guid: aa9dc665bca45d84197811be75bcc4a8, type: 3}
 --- !u!1 &8128350341335086069
 GameObject:
   m_ObjectHideFlags: 0
@@ -12538,6 +12747,7 @@ GameObject:
   - component: {fileID: 8128350341338231677}
   - component: {fileID: 8128350341338231651}
   - component: {fileID: 8128350341338231676}
+  - component: {fileID: 5131638531615922358}
   m_Layer: 8
   m_Name: lamppu1:pCylinder23
   m_TagString: Level
@@ -12608,6 +12818,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5131638531615922358
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350341338231678}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7263770596420886052, guid: 612d16ed2a7936a498cabe06e4df8ac4, type: 3}
 --- !u!1 &8128350341351390673
 GameObject:
   m_ObjectHideFlags: 0
@@ -12884,6 +13108,7 @@ GameObject:
   - component: {fileID: 8128350341358371612}
   - component: {fileID: 8128350341358371586}
   - component: {fileID: 8128350341358371587}
+  - component: {fileID: 8453653399737193196}
   m_Layer: 8
   m_Name: lamppu1:pCylinder23
   m_TagString: Level
@@ -12954,6 +13179,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8453653399737193196
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350341358371613}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7263770596420886052, guid: 612d16ed2a7936a498cabe06e4df8ac4, type: 3}
 --- !u!1 &8128350341358986150
 GameObject:
   m_ObjectHideFlags: 0
@@ -13577,6 +13816,7 @@ GameObject:
   - component: {fileID: 8128350341367864534}
   - component: {fileID: 8128350341367864532}
   - component: {fileID: 8128350341367864533}
+  - component: {fileID: 2518830411027480801}
   m_Layer: 8
   m_Name: lamppu1:pCylinder23
   m_TagString: Level
@@ -13647,6 +13887,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2518830411027480801
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350341367864535}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7263770596420886052, guid: 612d16ed2a7936a498cabe06e4df8ac4, type: 3}
 --- !u!1 &8128350341373854407
 GameObject:
   m_ObjectHideFlags: 0
@@ -14664,6 +14918,7 @@ GameObject:
   - component: {fileID: 8128350341491883434}
   - component: {fileID: 8128350341491883432}
   - component: {fileID: 8128350341491883433}
+  - component: {fileID: 7985948617999450051}
   m_Layer: 0
   m_Name: concrete:pCube2
   m_TagString: Untagged
@@ -14734,6 +14989,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7985948617999450051
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350341491883435}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1369053941305189327, guid: aa9dc665bca45d84197811be75bcc4a8, type: 3}
 --- !u!1 &8128350341499829546
 GameObject:
   m_ObjectHideFlags: 0
@@ -14745,6 +15014,7 @@ GameObject:
   - component: {fileID: 8128350341499829545}
   - component: {fileID: 8128350341499829551}
   - component: {fileID: 8128350341499829544}
+  - component: {fileID: 664388071082399607}
   m_Layer: 8
   m_Name: lamppu1:pCylinder23
   m_TagString: Level
@@ -14815,6 +15085,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &664388071082399607
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350341499829546}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7263770596420886052, guid: 612d16ed2a7936a498cabe06e4df8ac4, type: 3}
 --- !u!1 &8128350341519688330
 GameObject:
   m_ObjectHideFlags: 0
@@ -15234,6 +15518,8 @@ GameObject:
   - component: {fileID: 8128350341559102882}
   - component: {fileID: 8128350341559102880}
   - component: {fileID: 8128350341559102881}
+  - component: {fileID: 293483616096370923}
+  - component: {fileID: 1143497015748047614}
   m_Layer: 8
   m_Name: lamppu1:pCylinder23
   m_TagString: Level
@@ -15304,6 +15590,34 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &293483616096370923
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350341559102883}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7263770596420886052, guid: 612d16ed2a7936a498cabe06e4df8ac4, type: 3}
+--- !u!64 &1143497015748047614
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350341559102883}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7263770596420886052, guid: 612d16ed2a7936a498cabe06e4df8ac4, type: 3}
 --- !u!1 &8128350341564128638
 GameObject:
   m_ObjectHideFlags: 0
@@ -17005,6 +17319,7 @@ GameObject:
   - component: {fileID: 8128350341719428573}
   - component: {fileID: 8128350341719428547}
   - component: {fileID: 8128350341719428572}
+  - component: {fileID: 8149339355546648265}
   m_Layer: 8
   m_Name: lamppu1:pCylinder23
   m_TagString: Level
@@ -17075,6 +17390,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8149339355546648265
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350341719428574}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7263770596420886052, guid: 612d16ed2a7936a498cabe06e4df8ac4, type: 3}
 --- !u!1 &8128350341746950818
 GameObject:
   m_ObjectHideFlags: 0
@@ -17528,6 +17857,8 @@ GameObject:
   - component: {fileID: 8128350341783324242}
   - component: {fileID: 8128350341783324240}
   - component: {fileID: 8128350341783324241}
+  - component: {fileID: 1897617278555711694}
+  - component: {fileID: 2399691206080606151}
   m_Layer: 8
   m_Name: lamppu1:pCylinder23
   m_TagString: Level
@@ -17598,6 +17929,34 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1897617278555711694
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350341783324243}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7263770596420886052, guid: 612d16ed2a7936a498cabe06e4df8ac4, type: 3}
+--- !u!64 &2399691206080606151
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350341783324243}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7263770596420886052, guid: 612d16ed2a7936a498cabe06e4df8ac4, type: 3}
 --- !u!1 &8128350341793604502
 GameObject:
   m_ObjectHideFlags: 0
@@ -17690,6 +18049,7 @@ GameObject:
   - component: {fileID: 8128350341804950111}
   - component: {fileID: 8128350341804950109}
   - component: {fileID: 8128350341804950110}
+  - component: {fileID: 7591020523248746136}
   m_Layer: 8
   m_Name: lamppu1:pCylinder23
   m_TagString: Level
@@ -17760,6 +18120,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7591020523248746136
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350341804950104}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7263770596420886052, guid: 612d16ed2a7936a498cabe06e4df8ac4, type: 3}
 --- !u!1 &8128350341823694243
 GameObject:
   m_ObjectHideFlags: 0
@@ -18171,6 +18545,8 @@ GameObject:
   - component: {fileID: 8128350341871310386}
   - component: {fileID: 8128350341871310384}
   - component: {fileID: 8128350341871310385}
+  - component: {fileID: 1218908883994543329}
+  - component: {fileID: 221909401043419239}
   m_Layer: 8
   m_Name: lamppu1:pCylinder23
   m_TagString: Level
@@ -18241,6 +18617,34 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1218908883994543329
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350341871310387}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7263770596420886052, guid: 612d16ed2a7936a498cabe06e4df8ac4, type: 3}
+--- !u!64 &221909401043419239
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128350341871310387}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7263770596420886052, guid: 612d16ed2a7936a498cabe06e4df8ac4, type: 3}
 --- !u!1 &8128350341884813800
 GameObject:
   m_ObjectHideFlags: 0
