@@ -12,7 +12,6 @@ public class Pickup : MonoBehaviour
 
     protected GameObject player;
     protected PlayerCharacterControllerRigidBody playerScript;
-    protected GunAttributes gun;
     public Rigidbody rb;
 
     public float respawnTime = 5;
@@ -30,12 +29,9 @@ public class Pickup : MonoBehaviour
                 platfromIS = true;
             }
         }
-
-        if (GameObject.Find("GUN2 1"))
-        {
-            gun = GameObject.Find("GUN2 1").GetComponent<GunAttributes>();
-        }
         
+             
+
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerCharacterControllerRigidBody>();
 
@@ -56,23 +52,5 @@ public class Pickup : MonoBehaviour
         transform.position = position + Vector3.up * verticalMovement;
 
         transform.Rotate(Vector3.up, rotation * Time.deltaTime, Space.Self);
-    }
-
-    protected void DeSpawn()
-    {
-        if (platfromIS)
-        {
-            platformSript.PickupRespawn(respawnTime * playerScript.spawnRateModifier);
-            gameObject.SetActive(false);
-        }
-        else if (gameObject.GetComponentInParent<PickupSpawnPoint>())
-        {
-            gameObject.GetComponentInParent<PickupSpawnPoint>().AddSpawnPoint();
-            Destroy(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
     }
 }

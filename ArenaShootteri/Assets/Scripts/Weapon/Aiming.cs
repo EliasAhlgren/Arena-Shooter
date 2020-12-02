@@ -29,16 +29,12 @@ public class Aiming : MonoBehaviour
     public Transform reloadPos;
 
     public Text ammoText;
-
-    private PlayerCharacterControllerRigidBody _controller;
     // Start is called before the first frame update
     void Start()
     {
         SightSelection = GameObject.Find("SightSelection").GetComponent<ModSelection>();
         _recoil = gameObject.GetComponent<Recoil>();
-        defaultPosition = target.localPosition;
-
-        _controller = GameObject.FindWithTag("Player").GetComponent<PlayerCharacterControllerRigidBody>();
+        defaultPosition = target.localPosition;    
     }
 
     // Update is called once per frame
@@ -51,7 +47,7 @@ public class Aiming : MonoBehaviour
             isReloading = true;
             _recoil.DisableLazyGun = true;
             //_recoil.RecoilAmount = _recoil.RecoilAmount / 2;
-            StartCoroutine(ReloadDelay(2f * _controller.reloadModifier, transform.Find("DrumMag") == true ? 60 : 30));
+            StartCoroutine(ReloadDelay(2f, transform.Find("DrumMag") == true ? 60 : 30));
         }
         if (isReloading)
         {

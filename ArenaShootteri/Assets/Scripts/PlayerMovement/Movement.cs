@@ -18,14 +18,10 @@ public class Movement : MonoBehaviour
 
     //character height
     float height;
+    float characterScale;
 
-    bool primaryGroundNormalCheck = false;
-    bool contacting = false;
-
-    Vector3 groundCheck = new Vector3(0, -.5f, 0);
-    Vector3 groundCheck2 = new Vector3(0, -.9f, 0);
-    float groundCheckRadius = .45f;
-    Vector3 groundCheckSize = new Vector3(.3f, .3f, .3f);
+    Vector3 groundCheck = new Vector3(0, -1f, 0);
+    Vector3 groundCheckSize = new Vector3(.3f, .6f, .3f);
     Vector3 wallCheckSize = new Vector3(.6f, .5f, .6f);
 
     LayerMask groundLayerMask;
@@ -50,8 +46,7 @@ public class Movement : MonoBehaviour
     float tiltLerp = 0f;
 
     //diagonal movement limiter variable;
-    //float DMLimiter;
-    float movementAcc;
+    float DMLimiter;
 
     //gravity
     float gravity;
@@ -65,8 +60,6 @@ public class Movement : MonoBehaviour
     public float runSpeedMod = 2f;
     public float slideSpeedMod = 1.2f;
     public float dodgeSpeedMod = 3f;
-    public float crouchSpeedMod = 0.7f;
-    public float crouchingSpeed = 10;
 
     public float playerVelocity;
     //public float runSpeed = 12f;
@@ -143,11 +136,7 @@ public class Movement : MonoBehaviour
     //Vector3 playerPosition;
     //Vector3 movementVector;
 
-    float sizeLerp;
-    float groundCheckPosition;
-    float groundCheckPosition2;
-    bool changingSize;
-    float previousHeight;
+    float movementAcc;
 
     bool addingForce = false;
     bool doubleJump = false;
@@ -163,7 +152,6 @@ public class Movement : MonoBehaviour
         playerCamera = GetComponentInChildren<Camera>().transform;
         rb = GetComponent<Rigidbody>();
         characterCollider = GetComponent<CapsuleCollider>();
-        wallLayerMask = LayerMask.GetMask("Wall");
         groundLayerMask = LayerMask.GetMask("Map");
 
         //lock cursor
@@ -176,7 +164,7 @@ public class Movement : MonoBehaviour
         //playerPosition = transform.position;
         //lastPlayerPosition = playerPosition;
         height = characterCollider.height * transform.localScale.y;
-        previousHeight = height;
+        characterScale = transform.localScale.y;
         standRayDistance = height * .5f;
         crouchRayDistance = standRayDistance * .5f;
         crouchToStandRayDistance = standRayDistance + height * .25f;
@@ -246,13 +234,6 @@ public class Movement : MonoBehaviour
                 //speed = runSpeed;
                 speed = baseSpeed * runSpeedMod;
             }
-            else if (isCrouching)
-            {
-                //set crouching speed
-                isRunning = false;
-
-                speed = baseSpeed * crouchSpeedMod;
-            }
             else
             {
                 //set walking speed
@@ -301,13 +282,10 @@ public class Movement : MonoBehaviour
             z = 0f;
         }
 
-
+        DirectioanalMovementLimit();
 
         //set directional movement limiter
 
-        DirectioanalMovementLimit();
-
-        /*
         if (Mathf.Sqrt(x * x + z * z) > 1)
         {
             DMLimiter = 0.7f;
@@ -316,7 +294,7 @@ public class Movement : MonoBehaviour
         {
             DMLimiter = 1f;
         }
-        */
+
 
         //limit camera vertical movement
         xRotation -= mouseY;
@@ -348,7 +326,7 @@ public class Movement : MonoBehaviour
             {
                 player.colorAlpha += 0.5f * Time.deltaTime;
 
-                player.dImage.color = new Color(player.dImage.color.r, player.dImage.color.r, player.dImage.color.r, player.colorAlpha);
+                player.deathImage.color = new Color(player.deathImage.color.r, player.deathImage.color.r, player.deathImage.color.r, player.colorAlpha);
             }
             //alphaLerp += .3f * Time.deltaTime;
             //colorAlpha = Mathf.Lerp(minAlpha, maxAlpha, alphaLerp);
@@ -382,7 +360,7 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        PlayerSizeChanger();
+
         //if character is touching ground
         if (isGrounded)
         {
@@ -403,7 +381,7 @@ public class Movement : MonoBehaviour
 
                 if (player.groundSlamUnlocked)
                 {
-                    if (move.y < -15)
+                    if (move.y < -13)
                     {
                         Debug.Log(move.y);
                         player.GroundSlam();
@@ -421,10 +399,9 @@ public class Movement : MonoBehaviour
             RaycastHit hit;
 
             //raycast from center of character
-            if (contacting && Physics.Raycast(contactPoint + Vector3.up, -Vector3.up, out hit, groundLayerMask))
+            if (Physics.Raycast(contactPoint + Vector3.up, -Vector3.up, out hit, groundLayerMask))
             //if (Physics.Raycast(transform.position, -Vector3.up, out hit, (rayDistance + rayDistanceMargin + 2f), groundLayerMask))
             {
-                primaryGroundNormalCheck = true;
                 //Debug.Log(hit.normal);
                 //get angles of triangle from raycast to ground normal
                 slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
@@ -461,7 +438,6 @@ public class Movement : MonoBehaviour
             // if raycast failed from contactpoint try again directly downwards
             else if (Physics.Raycast(transform.position, -Vector3.up, out hit, (rayDistance + rayDistanceMargin + 2f), groundLayerMask))
             {
-                primaryGroundNormalCheck = false;
                 //get angles of triangle from raycast to ground normal
                 slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
                 slopeAngle2 = 90 - slopeAngle;
@@ -496,7 +472,6 @@ public class Movement : MonoBehaviour
             //if raycast failed
             else
             {
-                primaryGroundNormalCheck = false;
                 Debug.Log("ground raycast failed");
             }
 
@@ -601,15 +576,7 @@ public class Movement : MonoBehaviour
             }
             else if (evenGround)
             {
-                if (primaryGroundNormalCheck)
-                {
-                    velocity.y = 0;
-                }
-                else
-                {
-                    velocity.y = -2;
-                }
-                
+                velocity.y = -2f;
             }
             else if (!isMoving)
             {
@@ -646,7 +613,7 @@ public class Movement : MonoBehaviour
             {
                 //raycasts to detect wall direction when posible to start wallrunning
                 //forward
-                if (Physics.Raycast(transform.position, transform.forward, out wallHit, maxWallDistance, wallLayerMask))
+                if (Physics.Raycast(transform.position, transform.forward, out wallHit, maxWallDistance, groundLayerMask))
                 {
                     wallDirection = 1;
                     isWallRunning = true;
@@ -655,7 +622,7 @@ public class Movement : MonoBehaviour
                     //Debug.DrawRay(wallHit.point, wallHit.normal * 20f);
                 }
                 //backwards
-                else if (Physics.Raycast(transform.position, -transform.forward, out wallHit, maxWallDistance, wallLayerMask))
+                else if (Physics.Raycast(transform.position, -transform.forward, out wallHit, maxWallDistance, groundLayerMask))
                 {
                     wallDirection = 2;
                     isWallRunning = true;
@@ -663,15 +630,15 @@ public class Movement : MonoBehaviour
                     //Debug.Log("wall behind");
                 }
                 //right
-                else if (Physics.Raycast(transform.position, transform.right, out wallHit, maxWallDistance, wallLayerMask))
+                else if (Physics.Raycast(transform.position, transform.right, out wallHit, maxWallDistance, groundLayerMask))
                 {
 
                     if (player.wallRunUnlocked && isRunning)
                     {
                         airBorne = new Vector3(move.x, 0, move.z);
-                        if (Physics.Raycast(transform.position + new Vector3(0, .2f, 0), transform.right, maxWallDistance, wallLayerMask))
+                        if (Physics.Raycast(transform.position + new Vector3(0, .2f, 0), transform.right, maxWallDistance, groundLayerMask))
                         {
-                            velocity.y = 2f;
+                            velocity.y = 5f;
                         }
                         else
                         {
@@ -687,15 +654,15 @@ public class Movement : MonoBehaviour
                     //Debug.Log("wall right");
                 }
                 //left
-                else if (Physics.Raycast(transform.position, -transform.right, out wallHit, maxWallDistance, wallLayerMask))
+                else if (Physics.Raycast(transform.position, -transform.right, out wallHit, maxWallDistance, groundLayerMask))
                 {
 
                     if (player.wallRunUnlocked && isRunning)
                     {
                         airBorne = new Vector3(move.x, 0, move.z);
-                        if (Physics.Raycast(transform.position + new Vector3(0, .2f, 0), -transform.right, maxWallDistance, wallLayerMask))
+                        if (Physics.Raycast(transform.position + new Vector3(0, .2f, 0), -transform.right, maxWallDistance, groundLayerMask))
                         {
-                            velocity.y = 2f;
+                            velocity.y = 5f;
                         }
                         else
                         {
@@ -764,7 +731,7 @@ public class Movement : MonoBehaviour
                     {
                         Vector3 wallCheckDir = Quaternion.AngleAxis(90, Vector3.up) * wallNormal;
                         //Debug.DrawRay(transform.position, wallCheckDir * 10f, Color.red);
-                        if (Physics.Raycast(transform.position, wallCheckDir, out wallHit, maxWallDistance, wallLayerMask))
+                        if (Physics.Raycast(transform.position, wallCheckDir, out wallHit, maxWallDistance, groundLayerMask))
                         {
                             //Vector3 wallNormalNormal = Vector3.Normalize(wallNormal);
                             Vector3 wallHitNormal = new Vector3(wallHit.normal.x, 0, wallHit.normal.z);
@@ -775,7 +742,7 @@ public class Movement : MonoBehaviour
 
                             if (changeInDir <= 0)
                             {
-                                if (!Physics.Raycast(transform.position + new Vector3(0, .2f, 0), transform.right, maxWallDistance, wallLayerMask))
+                                if (!Physics.Raycast(transform.position + new Vector3(0, .2f, 0), transform.right, maxWallDistance, groundLayerMask))
                                 {
                                     velocity.y = 0f;
                                 }
@@ -803,7 +770,7 @@ public class Movement : MonoBehaviour
                     else if (wallDirection == 4)
                     {
                         Vector3 wallCheckDir = Quaternion.AngleAxis(-90, Vector3.up) * wallNormal;
-                        if (Physics.Raycast(transform.position, wallCheckDir, out wallHit, maxWallDistance, wallLayerMask))
+                        if (Physics.Raycast(transform.position, wallCheckDir, out wallHit, maxWallDistance, groundLayerMask))
                         {
                             //Vector3 wallNormalNormal = Vector3.Normalize(wallNormal);
                             Vector3 wallHitNormal = new Vector3(wallHit.normal.x, 0, wallHit.normal.z);
@@ -814,7 +781,7 @@ public class Movement : MonoBehaviour
 
                             if (changeInDir <= 0)
                             {
-                                if (!Physics.Raycast(transform.position + new Vector3(0, .2f, 0), -transform.right, maxWallDistance, wallLayerMask))
+                                if (!Physics.Raycast(transform.position + new Vector3(0, .2f, 0), -transform.right, maxWallDistance, groundLayerMask))
                                 {
                                     velocity.y = 0f;
                                 }
@@ -889,7 +856,7 @@ public class Movement : MonoBehaviour
                 airBorne.y = velocity.y;
 
                 
-                airMove = Vector3.ClampMagnitude(transform.right * x + transform.forward * z + transform.up * 0, 1f) * baseSpeed * airMoveModifier * movementAcc;
+                airMove = Vector3.ClampMagnitude(transform.right * x + transform.forward * z + transform.up * 0, 1f) * speed * airMoveModifier * movementAcc;
                 //airBorne += airMove;
                 //decouple character rotation from airborne vector
                 move = (airBorne - rotation) + airMove;
@@ -936,47 +903,15 @@ public class Movement : MonoBehaviour
         else
         {
             jumpTimer = 0;
-
-            int groundCheckLength = Physics.OverlapSphere(transform.position + groundCheck, groundCheckRadius, groundLayerMask).Length;
-
-            if (groundCheckLength > 0)
-            {
-                isGrounded = true;
-            }
-            else
-            {
-                isGrounded = Physics.OverlapBox(transform.position + groundCheck2, groundCheckSize, Quaternion.identity, groundLayerMask).Length > 0;
-            }
-
-            //isGrounded = Physics.OverlapSphere(transform.position + groundCheck, groundCheckRadius, groundLayerMask).Length > 0;
-
-            //isGrounded = Physics.OverlapBox(transform.position + groundCheck2, groundCheckSize, Quaternion.identity, groundLayerMask).Length > 0;
-
-            //isGrounded = Physics.OverlapSphere(transform.position + new Vector3(0, -((characterCollider.height / 2f) - (characterCollider.radius + 0.1f)), 0), characterCollider.radius - 0.1f, groundLayerMask).Length > 0;
-
-            //-((characterCollider.height / 2f) - (characterCollider.radius + 0.1f))
+            isGrounded = Physics.OverlapBox(transform.position + groundCheck, groundCheckSize, Quaternion.identity, groundLayerMask).Length > 0;
         }
 
         //Vector3 forceVector = rb.AddForce(transform.forward * 200);
         //rb.velocity = move;
-
-        if (isGrounded)
-        {
-            if (move.y < -16)
-            {
-                move.y = -0;
-            }
-        }
-
-
-
-
-
-
         rb.AddForce(move, ForceMode.VelocityChange);
 
         //check if character is trouching wall
-        wallCheck = Physics.OverlapBox(transform.position, wallCheckSize, Quaternion.identity, wallLayerMask);
+        wallCheck = Physics.OverlapBox(transform.position, wallCheckSize, Quaternion.identity, groundLayerMask);
 
 
         if (wallCheck.Length > 0)
@@ -1009,7 +944,7 @@ public class Movement : MonoBehaviour
             isTouchingWall = false;
         }
         //isTouchingWall = Physics.OverlapBox(transform.position, wallCheckSize, Quaternion.identity, groundLayerMask).Length > 0;
-        //isTouchingWall = false;
+
 
         //isGrounded = (controller.Move(move * Time.deltaTime) & CollisionFlags.Below) != 0;
 
@@ -1067,11 +1002,6 @@ public class Movement : MonoBehaviour
         Debug.Log(rbVelocity);
         */
         playerVelocity = Mathf.Sqrt(rb.velocity.x * rb.velocity.x + rb.velocity.z * rb.velocity.z);
-
-        if (playerVelocity > 20)
-        {
-            Debug.Log(playerVelocity + " " + Time.time);
-        }
     }
 
     private void Jump()
@@ -1264,20 +1194,19 @@ public class Movement : MonoBehaviour
         }
         if (!isCrouching)
         {
-            /*
             ChangePlayerSize(false);
             /*
             rayDistance = crouchRayDistance;
             groundCheck = new Vector3(0, -.25f, 0);
             //transform.localScale = new Vector3(1, .75f, 1);
             transform.localScale = new Vector3(transform.localScale.x, characterScale * 0.5f, transform.localScale.z);
-            
+            */
             //transform.position = transform.position + new Vector3(0, -.75f, 0);
             if (isGrounded)
             {
                 transform.position = transform.position + new Vector3(0, -height * .25f, 0);
             }
-            */
+
             //[SOUND] start crounching sound???? (One Shot)
 
             isCrouching = true;
@@ -1291,7 +1220,6 @@ public class Movement : MonoBehaviour
         {
             if (isCrouching)
             {
-                /*
                 ChangePlayerSize(true);
                 /*
                 rayDistance = standRayDistance;
@@ -1299,7 +1227,7 @@ public class Movement : MonoBehaviour
                 //transform.localScale = new Vector3(1, 1.5f, 1);
                 transform.localScale = new Vector3(transform.localScale.x, characterScale, transform.localScale.z);
                 //transform.position = transform.position + new Vector3(0, .75f, 0);
-                
+                */
                 if (isGrounded)
                 {
                     transform.position = transform.position + new Vector3(0, height * .25f, 0);
@@ -1312,7 +1240,6 @@ public class Movement : MonoBehaviour
                     }
 
                 }
-                */
 
                 //[SOUND] stand up sound???? (One Shot)
 
@@ -1336,68 +1263,6 @@ public class Movement : MonoBehaviour
             groundCheck = new Vector3(0, -0.5f, 0);
             characterCollider.height = 1.5f;
         }
-    }
-
-    public void PlayerSizeChanger()
-    {
-        if (isCrouching || !player.isAlive)
-        {
-            if (sizeLerp > 0)
-            {
-                if (!player.isAlive)
-                {
-                    sizeLerp = 0;
-                }
-                else
-                {
-                    changingSize = true;
-                    sizeLerp += crouchingSpeed * -Time.deltaTime;
-                }
-                
-            }
-            else
-            {
-                sizeLerp = 0;
-                changingSize = false;
-            }
-        }
-        else
-        {
-            if (sizeLerp < 1)
-            {
-                changingSize = true;
-                sizeLerp += crouchingSpeed * Time.deltaTime;
-            }
-            else
-            {
-                sizeLerp = 1;
-                changingSize = false;
-            }
-        }
-
-        if (changingSize)
-        {
-            
-            characterCollider.height = Mathf.Lerp(height / 2, height, sizeLerp);
-            rayDistance = Mathf.Lerp(crouchRayDistance, standRayDistance, sizeLerp);
-            groundCheckPosition = Mathf.Lerp(.6f, -(height / 2) + characterCollider.radius -.1f, sizeLerp);
-            groundCheck = new Vector3(0, groundCheckPosition, 0);
-            groundCheckPosition2 = Mathf.Lerp(-height / 4, -height / 2, sizeLerp);
-            groundCheck2 = new Vector3(0, groundCheckPosition2, 0);
-
-            float heightDifference = previousHeight - characterCollider.height;
-            transform.position += new Vector3(0, -heightDifference / 2, 0);
-            previousHeight = characterCollider.height;
-        }
-        
-        /*
-        if (changingSize)
-        {
-            transform.position += new Vector3(0,characterCollider.height,0);
-        }
-        */
-
-        //currentTilt = Mathf.Lerp(previousTilt, cameraTilt, tiltLerp);
     }
 
     /*
@@ -1456,14 +1321,6 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.contactCount > 0)
-        {
-            contacting = true;
-        }
-        else
-        {
-            contacting = false;
-        }
         //contactPoint = collision.contacts[0].point;
         //contactPoints.Clear();
         //for (int i = 0; i < collision.contacts.Length; i++)
@@ -1494,46 +1351,16 @@ public class Movement : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.contactCount > 0)
-        {
-            contacting = true;
-        }
-        else
-        {
-            contacting = false;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.contactCount > 0)
-        {
-            contacting = true;
-        }
-        else
-        {
-            contacting = false;
-        }
-    }
-
     void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position, wallCheckSize * 2);
-        Gizmos.DrawWireSphere(transform.position + groundCheck, groundCheckRadius);
-
         if (isCrouching)
         {
-            Gizmos.DrawWireCube(transform.position + groundCheck2, groundCheckSize * 2);
-            //Gizmos.DrawWireSphere((transform.position + new Vector3(0, -((characterCollider.height / 2f) - (characterCollider.radius + 0.1f)), 0)), characterCollider.radius - 0.1f);
-
-            //(transform.position + new Vector3(0, -((characterCollider.height / 2f) - (characterCollider.radius + 0.1f)), 0)
+            Gizmos.DrawWireCube(transform.position + groundCheck, new Vector3(groundCheckSize.x, groundCheckSize.y * .5f, groundCheckSize.z) * 2);
         }
         else
         {
-            Gizmos.DrawWireCube(transform.position + groundCheck2, groundCheckSize * 2);
-            //Gizmos.DrawWireSphere((transform.position + new Vector3(0, -((characterCollider.height / 2f) - (characterCollider.radius + 0.1f)), 0)), characterCollider.radius - 0.1f);
+            Gizmos.DrawWireCube(transform.position + groundCheck, groundCheckSize * 2);
         }
 
     }

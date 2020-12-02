@@ -23,35 +23,35 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  -
+  - 
   - Water
   - UI
-  -
-  -
+  - 
+  - 
   - Map
   - DeadEnemy
   - Enemy
   - Main PP
   - Secondary PP
   - Gun
-  -
-  -
+  - 
+  - 
   - Hands
-  -
-  -
-  -
+  - 
+  - 
+  - 
   - Player
-  -
-  - Wall
-  - Pickup
-  - Invisible wall
-  -
-  -
-  -
-  -
-  -
-  -
-  -
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0
