@@ -13,12 +13,13 @@ public class Imp : MonoBehaviour, IDamage
     public GameObject target { get; set; }
 
     // IDamage variable
-    public float IHealth { get; set; } = 1f;
+    public float IHealth { get; set; } = 50f;
     public bool immune = true;
 
     public bool canAttack = true;
 
-    public float walkSpeedBase = 5f;
+    public float walkSpeedBase = 1f;
+
     public float speed;
 
     public float damage = 5;
@@ -108,11 +109,9 @@ public class Imp : MonoBehaviour, IDamage
                 attackCounter = 0f;
             }
         }
+        speed = walkSpeedBase * animator.GetCurrentAnimatorStateInfo(0).speed;
+        agent.speed = speed;
 
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            Die();
-        }
     }
 
     public void TakeDamage(float damage)

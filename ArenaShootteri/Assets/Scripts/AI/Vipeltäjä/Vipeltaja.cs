@@ -13,7 +13,7 @@ public class Vipeltaja : MonoBehaviour, IDamage
     public GameObject target { get; private set; }
 
     // IDamage variable
-    public float IHealth { get; set; } = 1f;
+    public float IHealth { get; set; } = 50f;
 
     public float damage = 5;
     public bool canAttack = true;
@@ -25,7 +25,8 @@ public class Vipeltaja : MonoBehaviour, IDamage
 
     // Speed is based on current animation speed. Dont change this value.
     // Change animation speed instead. // Jump speed not yet implemented.
-    public float walkSpeedBase = 6.0f, jumpSpeedBase = 20.0f;
+    private float walkSpeedBase = 6.0f;
+    public float jumpAnimationLength = 0.629f, actualJumpLength;
     public float walkSpeed, jumpSpeed;
     public float speed;
     public float turnSpeed = 2f;
@@ -72,7 +73,7 @@ public class Vipeltaja : MonoBehaviour, IDamage
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-
+        
         // These might not be necessary
         SetRigidbodyState(true);
         setColliderState(true);
@@ -151,10 +152,9 @@ public class Vipeltaja : MonoBehaviour, IDamage
         {
             Die();
         }
-
+        actualJumpLength = jumpAnimationLength * animator.GetCurrentAnimatorStateInfo(0).speed;
         walkSpeed = walkSpeedBase * animator.GetCurrentAnimatorStateInfo(0).speed;
         agent.speed = walkSpeed;
-        jumpSpeed = jumpSpeedBase * animator.GetCurrentAnimatorStateInfo(0).speed;
 
 
     }

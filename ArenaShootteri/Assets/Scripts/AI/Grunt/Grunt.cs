@@ -15,9 +15,10 @@ public class Grunt : MonoBehaviour, IDamage
 
     // Speed is based on current animation speed. Dont change this value.
     // Change animation speed instead.
-    public float walkSpeedBase = 6.0f, runSpeedBase = 20.0f;
+    private protected float walkSpeedBase = 6.0f, runSpeedBase = 20.0f;
     public float walkSpeed, runSpeed;
 
+    public float gravityScale;
     // How far away Grunt will start to attack
     public float attackRange = 3;
     // References to NavMeshAgent compontent, "Cone" Transform and Animator component.
@@ -36,7 +37,7 @@ public class Grunt : MonoBehaviour, IDamage
     public bool isCharging = false;
     public float chargeForce = 10;
     
-    public float IHealth { get; set; } = 1f;
+    public float IHealth { get; set; } = 250f;
     public bool immune = true;
 
     //sounds

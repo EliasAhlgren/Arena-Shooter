@@ -57,8 +57,8 @@ public class GruntChargeState : BaseState
         }
 
         grunt.agent.ResetPath();
-        grunt.agent.Move(Vector3.forward);
-        // grunt.transform.Translate(Vector3.forward.normalized * grunt.runSpeed * Time.deltaTime);
+
+        grunt.transform.Translate((Vector3.forward.normalized * grunt.runSpeed + Physics.gravity * grunt.gravityScale) * Time.deltaTime);
         
         // Keep track of the distance travelled with charge
         // ( Could track time too ) ??? 
