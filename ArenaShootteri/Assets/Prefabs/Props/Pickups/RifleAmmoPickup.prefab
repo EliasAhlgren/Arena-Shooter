@@ -134,6 +134,9 @@ MonoBehaviour:
   respawnTime: 5
   ammoType: 0
   ammoRecovered: 30
+  rifleAmmoPickup: {fileID: 3959384613559169799}
+  shotgunAmmoPickup: {fileID: 8099999496614974380, guid: b335af58b8e894343aa137e03b441e7a, type: 3}
+  grenadeAmmoPickup: {fileID: 433458074956896913, guid: 6bd88485b04f8f245b7bcb75be32c338, type: 3}
 --- !u!1001 &3399782772435578525
 PrefabInstance:
   m_ObjectHideFlags: 0
