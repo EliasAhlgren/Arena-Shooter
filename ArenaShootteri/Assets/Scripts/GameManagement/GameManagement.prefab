@@ -5403,6 +5403,7 @@ MonoBehaviour:
   Demon: {fileID: 0}
   Imp: {fileID: 8588615848814181493, guid: 453e14199ef21b045a5263c197888be8, type: 3}
   Vipeltaja: {fileID: 4525865322486302523, guid: 1382cdcd1dd5ca94a8b084edad02090e, type: 3}
+  LentoDemon: {fileID: 7072766665038026640, guid: 5113b2aa84b1eb2449d93929fc16830b, type: 3}
   spawning: 0
   enemyWaiting: 0
   onCooldown: 0
@@ -5418,15 +5419,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e11b041479fbd4df4b25608cac696f3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modPool:
-  - {fileID: 11400000, guid: 1896a1ba76c324a84966311e378f6612, type: 2}
-  - {fileID: 11400000, guid: 366172c8abbe942238736d92b12ddc56, type: 2}
+  modPool: []
+  level1:
+  - {fileID: 11400000, guid: 36b944f3a30004fecbf41dc3a21ec7e5, type: 2}
+  - {fileID: 11400000, guid: 0c2e7f30e4dd84c8698c2ed61dc526cf, type: 2}
   - {fileID: 11400000, guid: 27d0446e83ae34c56a224ec10a9194e2, type: 2}
-  - {fileID: 11400000, guid: a22fab50e522b4ab3bff9afef631e524, type: 2}
+  - {fileID: 11400000, guid: 1896a1ba76c324a84966311e378f6612, type: 2}
+  - {fileID: 11400000, guid: 659cf222df38749a6b7c073331fa9b28, type: 2}
+  level2:
+  - {fileID: 11400000, guid: 8e8f85309ce1043eb960a48bbcbb68aa, type: 2}
+  - {fileID: 11400000, guid: 03653e36d8cefb44db81d2c27ad207e2, type: 2}
+  - {fileID: 11400000, guid: 115d714c15ae54543b7eead528de2713, type: 2}
+  - {fileID: 11400000, guid: 948af88c3f77e4f8ab771ddd78e7e3c5, type: 2}
+  - {fileID: 11400000, guid: 565b8506cab7949c18d580dae9682f5f, type: 2}
   - {fileID: 11400000, guid: 320b51469e25d4c0d9dabd45653beec2, type: 2}
-  level1: []
-  level2: []
-  level3: []
+  level3:
+  - {fileID: 11400000, guid: 366172c8abbe942238736d92b12ddc56, type: 2}
+  - {fileID: 11400000, guid: a1f5b3876cb0246efb67f39c73322d2a, type: 2}
+  - {fileID: 11400000, guid: a22fab50e522b4ab3bff9afef631e524, type: 2}
   modSelections: []
 --- !u!1 &8586498638506711790
 GameObject:
