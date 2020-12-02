@@ -198,7 +198,15 @@ public class GunAttributes : MonoBehaviour
             }
             
         }
-        
+
+        if (PickupSpawner.Instance)
+        {
+            bool shotgun = (GetComponentInChildren<ShotgunScript>() ? true : false);
+            bool grenade = (GetComponentInChildren<GrenadeLauncher>() ? true : false);
+
+            PickupSpawner.Instance.UpdatePickupSpawns(shotgun, grenade);
+        }
+
         recoilScript.UpdateStats();
         
     }

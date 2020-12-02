@@ -18,7 +18,7 @@ public class Pickup : MonoBehaviour
     public float respawnTime = 5;
 
     Collider col;
-    Vector3 position;
+    protected Vector3 position;
 
 
     void Start()

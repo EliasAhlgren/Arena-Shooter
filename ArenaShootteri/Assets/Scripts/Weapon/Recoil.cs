@@ -265,4 +265,10 @@ public class Recoil : MonoBehaviour
         //Debug.Log("Cooldown Ended");
     }
 
+    public void UpdateFirerate(int perkLevel, float fireratemod)
+    {
+        increasedRof = perkLevel > 0 ? true : false;
+        RateOfFire2 = 0.041f * fireratemod;
+    }
+
 }
