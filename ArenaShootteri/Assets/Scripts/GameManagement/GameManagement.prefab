@@ -5357,6 +5357,7 @@ MonoBehaviour:
   player: {fileID: 0}
   pauseMenu: {fileID: 8586498639613674242}
   optionsMenu: {fileID: 8586498639145218841}
+  controlsPanel: {fileID: 0}
   exitMenu: {fileID: 8586498638506711790}
   pauseCanvas: {fileID: 8586498639088376185}
   acceptPlayerInput: 1
