@@ -24,7 +24,7 @@ public class EnemySpawner : MonoBehaviour
 
     private GameObject randomEnemy;
     public GameObject Grunt;
-    public GameObject Demon;
+    public GameObject LentoVipelt;
     public GameObject Imp;
     public GameObject Vipeltaja;
     public GameObject LentoDemon;
@@ -69,25 +69,25 @@ public class EnemySpawner : MonoBehaviour
             {
                 spawning = true;
                 spawnWave = false;
-                SpawnWave(0, 0, 30, 0, 2);
+                SpawnWave(0, 0, 20, 0, 0);
             }
             else if (wave == 3)
             {
                 spawning = true;
                 spawnWave = false;
-                SpawnWave(0, 5, 0, 0, 0);
+                SpawnWave(0, 10, 0, 0, 0);
             }
             else if (wave == 4)
             {
                 spawning = true;
                 spawnWave = false;
-                SpawnWave(0, 0, 0, 0, 4);
+                SpawnWave(0, 0, 0, 5, 0);
             }
             else if (wave == 5)
             {
                 spawning = true;
                 spawnWave = false;
-                SpawnWave(0, 0, 0, 5, 0);
+                SpawnWave(0, 0, 0, 0, 3);
             }
             else if (wave == 6)
             {
@@ -95,28 +95,86 @@ public class EnemySpawner : MonoBehaviour
                 spawnWave = false;
                 SpawnWave(3, 0, 0, 0, 0);
             }
+            else if (wave == 7)
+            {
+                spawning = true;
+                spawnWave = false;
+                SpawnWave(0, 5, 5, 5, 0);
+            }
+            else if (wave == 8)
+            {
+                spawning = true;
+                spawnWave = false;
+                SpawnWave(1, 10, 10, 5, 0);
+            }
+            else if (wave == 9)
+            {
+                spawning = true;
+                spawnWave = false;
+                SpawnWave(0, 0, 10, 10, 3);
+            }
+            else if (wave == 10)
+            {
+                spawning = true;
+                spawnWave = false;
+                SpawnWave(5, 0, 10, 0, 5);
+            }
+            else if (wave == 11)
+            {
+                spawning = true;
+                spawnWave = false;
+                SpawnWave(0, 20, 0, 10, 0);
+            }
+            else if (wave == 12)
+            {
+                spawning = true;
+                spawnWave = false;
+                SpawnWave(0, 10, 0, 20, 0);
+            }
+            else if (wave == 13)
+            {
+                spawning = true;
+                spawnWave = false;
+                SpawnWave(0, 0, 30, 10, 5);
+            }
+            else if (wave == 14)
+            {
+                spawning = true;
+                spawnWave = false;
+                SpawnWave(0, 10, 0, 30, 0);
+            }
+            else if (wave == 15)
+            {
+                spawning = true;
+                spawnWave = false;
+                SpawnWave(10, 0, 20, 0, 10);
+            }
             else
             {
-                int grunts = 1 + (int)Math.Round(wave * 0.5, MidpointRounding.AwayFromZero);
-                int demons = 2 + (int)Math.Round(wave * 1.5, MidpointRounding.AwayFromZero);
-                int imps = 5 + wave * 3;
+                int grunts = 1 + (int)Math.Round(wave * 0.2, MidpointRounding.AwayFromZero);
+                int lentovilpe = 10 + (int)Math.Round(wave * 0.5, MidpointRounding.AwayFromZero);
+                int imps = 10 + wave;
+                int vipe = 5 + (int)Math.Round(wave * 0.5, MidpointRounding.AwayFromZero);
+                int lentod = 1 + (int)Math.Round(wave * 0.2, MidpointRounding.AwayFromZero);
+                spawning = true;
                 spawnWave = false;
-                SpawnWave(grunts, demons, imps, 0, 0);
+                SpawnWave(grunts, lentovilpe, imps, vipe, lentod);
             }
         }
         if (spawnWave == false && spawning == false)
         {
             if (enemyCount == 0)
             {
+                
                 GameManager.waveEnd = true;
             }
         }
     }
 
-    void SpawnWave(int gruntNumber, int demonNumber, int impNumber, int vipeltNumber, int lentoNumber) // määritetään vihollisten määrät ja luodaan niitä oikea määrä
+    void SpawnWave(int gruntNumber, int lentoVipeltNumber, int impNumber, int vipeltNumber, int lentoNumber) // määritetään vihollisten määrät ja luodaan niitä oikea määrä
     {
         int gruntit = gruntNumber;
-        int demonit = demonNumber;
+        int lentoVipelt = lentoVipeltNumber;
         int impit = impNumber;
         int vipelt = vipeltNumber;
         int lento = lentoNumber;
@@ -127,17 +185,17 @@ public class EnemySpawner : MonoBehaviour
 
         List<Transform> spawnlista = new List<Transform>(spawns._spawnPoints);
 
-        while (impit > 0 || demonit > 0 || vipelt > 0 || gruntit > 0)
+        while (impit > 0 || lentoVipelt > 0 || vipelt > 0 || gruntit > 0)
         {
             if (impit > 0)
             {
                 enemies.Add(Imp);
                 impit -= 1;
             }
-            if (demonit > 0)
+            if (lentoVipelt > 0)
             {
-                enemies.Add(Demon);
-                demonit -= 1;
+                enemies.Add(LentoVipelt);
+                lentoVipelt -= 1;
             }
             if (vipelt > 0)
             {

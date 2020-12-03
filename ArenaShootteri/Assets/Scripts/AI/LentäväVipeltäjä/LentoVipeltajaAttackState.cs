@@ -17,6 +17,7 @@ public class LentoVipeltajaAttackState : BaseState
     {
         SetAttackColliders(true);
         Lvipeltaja.animator.Play("Hit");
+        SoundManager.PlaySound("vipHit");
         Lvipeltaja.readyToAttack = false;
     }
 
@@ -40,6 +41,7 @@ public class LentoVipeltajaAttackState : BaseState
 
         if(Lvipeltaja.drainPlayer)
         {
+            Debug.Log("hel");
             Lvipeltaja.target.GetComponent<PlayerCharacterControllerRigidBody>().
                 TakeDamage(Lvipeltaja.damage, true);
             Lvipeltaja.drainPlayer = false;

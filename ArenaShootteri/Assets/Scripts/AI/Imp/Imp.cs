@@ -22,7 +22,7 @@ public class Imp : MonoBehaviour, IDamage
 
     public float speed;
 
-    public float damage = 5;
+    public float damage = 10f;
     /// <summary>
     /// Imp's attack range
     /// </summary>
@@ -135,7 +135,7 @@ public class Imp : MonoBehaviour, IDamage
     {
         PerkTreeReader.Instance.AddPerkPoint(1);
         target.GetComponent<PlayerCharacterControllerRigidBody>().AddRageKill();
-
+        SoundManager.PlaySound("ImpDie");
         animator.SetBool("Dead", true);
         SetColliderState(true);
 

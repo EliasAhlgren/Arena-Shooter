@@ -15,7 +15,7 @@ public class LentoVipeltaja : MonoBehaviour, IDamage
     // IDamage variable
     public float IHealth { get; set; } = 10f;
 
-    public float damage = 1;
+    public float damage = 5f;
 
     public Rigidbody rb;
 
@@ -95,7 +95,7 @@ public class LentoVipeltaja : MonoBehaviour, IDamage
     {
         PerkTreeReader.Instance.AddPerkPoint(1);
         target.GetComponent<PlayerCharacterControllerRigidBody>().AddRageKill();
-        
+        SoundManager.PlaySound("vipDie");
         // Disable rigidbody and enable Colliders for each body part
         // for rigidbody death "animation"
         SetRigidbodyState(false);

@@ -15,7 +15,7 @@ public class Vipeltaja : MonoBehaviour, IDamage
     // IDamage variable
     public float IHealth { get; set; } = 50f;
 
-    public float damage = 5;
+    public float damage = 30f;
     public bool canAttack = true;
 
     public GameObject spitPrefab;
@@ -254,7 +254,7 @@ public class Vipeltaja : MonoBehaviour, IDamage
 
     public void SpawnSpit()
     {
-        Vector3 ballisticVelocity = BallisticVelocity(target.transform, 15);
+        Vector3 ballisticVelocity = BallisticVelocity(target.transform, 45);
         animator.Play("Spit");
         GameObject spit = Instantiate(spitPrefab, spitPosition.position, Quaternion.identity);
         spit.GetComponent<Rigidbody>().velocity = ballisticVelocity;
@@ -364,6 +364,13 @@ public class Vipeltaja : MonoBehaviour, IDamage
         {
             GetFeared();
         }
+
+        if (UnityEngine.Random.Range(0, 101) > 80)
+        {
+            GetFeared();
+        }
+
+
     }
 
     public static void PlaySound(string clip, AudioSource audioSorsa)

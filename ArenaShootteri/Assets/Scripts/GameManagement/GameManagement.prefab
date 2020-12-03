@@ -5400,7 +5400,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   Grunt: {fileID: 2484930889859078713, guid: 8ac270087f269ba42b688199e014e418, type: 3}
-  Demon: {fileID: 0}
+  LentoVipelt: {fileID: 7446934092152882197, guid: 5a156fff52cd74545ae447cc17db1570, type: 3}
   Imp: {fileID: 8588615848814181493, guid: 453e14199ef21b045a5263c197888be8, type: 3}
   Vipeltaja: {fileID: 4525865322486302523, guid: 1382cdcd1dd5ca94a8b084edad02090e, type: 3}
   LentoDemon: {fileID: 7072766665038026640, guid: 5113b2aa84b1eb2449d93929fc16830b, type: 3}
