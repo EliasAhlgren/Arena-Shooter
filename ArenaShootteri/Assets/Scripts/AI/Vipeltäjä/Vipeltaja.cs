@@ -96,7 +96,6 @@ public class Vipeltaja : MonoBehaviour, IDamage
         // what for... Not really sure. 
         agent.SetDestination(target.transform.position);
 
-        Debug.Log("Vipeltäjä is awake");
     }
 
     private void InitStateMachine()
@@ -124,10 +123,7 @@ public class Vipeltaja : MonoBehaviour, IDamage
 
     public void Attack()
     {
-        Debug.Log("Vipeltäjä Melee attack");
-
         var distance = Vector3.Distance(transform.position, target.transform.position);
-        Debug.Log("Vipeltäjä Distance is " + distance + " compared to attack range " + attackRange);
         if (distance < attackRange)
         {
             target.GetComponent<PlayerCharacterControllerRigidBody>().TakeDamage(damage, false);
@@ -186,6 +182,8 @@ public class Vipeltaja : MonoBehaviour, IDamage
     public IEnumerator Die()
     {
 
+        PerkTreeReader.Instance.AddPerkPoint(2);
+        target.GetComponent<PlayerCharacterControllerRigidBody>().AddRageKill();
 
         // Disable rigidbody and enable Colliders for each body part
         // for rigidbody death "animation"

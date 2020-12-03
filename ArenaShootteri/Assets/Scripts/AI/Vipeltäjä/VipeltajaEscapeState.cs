@@ -42,29 +42,16 @@ public class VipeltajaEscapeState : BaseState
         timer = 0f;
         dirTimer = 0f;
         vipeltaja.agent.isStopped = true;
-        
 
-        
-        // Test 1
-        //RandomPointOnNavMesh(vipeltaja.transform.position, FleeOffset, out randomDestination);
-        //Debug.Log("Fleeing to " + randomDestination);
-
-        // Test 2
         targetDir = Quaternion.AngleAxis(UnityEngine.Random.Range(-90, 90), vipeltaja.transform.up) * vipeltaja.transform.forward;
         targetDir = -1 * targetDir.normalized * UnityEngine.Random.Range(10, 20);
 
-        // vipeltaja.transform.rotation = Quaternion.LookRotation(vipeltaja.transform.position - vipeltaja.target.transform.position);
-        //  direction = vipeltaja.target.transform.position - vipeltaja.transform.position;
-
-        // Run animations
     }
 
     public override void OnStateExit()
     {
         vipeltaja.agent.isStopped = false;
         vipeltaja.animator.SetBool("Feared", false);
-
-        // Something Something
     }
 
     public override Type Tick()
@@ -72,18 +59,9 @@ public class VipeltajaEscapeState : BaseState
         vipeltaja.transform.rotation = Quaternion.LookRotation(targetDir);
         vipeltaja.transform.Translate(Vector3.forward * vipeltaja.speed / 2 * Time.deltaTime);
 
-
-        if(randomDestination == Vector3.zero)
-        {
-            // RandomPointOnNavMesh(vipeltaja.transform.position, FleeOffset, out randomDestination);
-        }
-        // vipeltaja.agent.ResetPath();
         dirTimer += Time.deltaTime;
         if (dirTimer > 1)
         {
-            // Test 1
-            // RandomPointOnNavMesh(vipeltaja.transform.position, FleeOffset, out randomDestination);
-            // vipeltaja.agent.SetDestination(randomDestination);
             
             // Test 2 Finds position behind the enemy and runs there.
             targetDir = Quaternion.AngleAxis(UnityEngine.Random.Range(-90, 90), vipeltaja.transform.up) * -vipeltaja.transform.forward;
@@ -92,10 +70,7 @@ public class VipeltajaEscapeState : BaseState
             dirTimer -= 1;
         }
 
-        
         timer += Time.deltaTime;
-
-        // vipeltaja.transform.Translate(Vector3.forward.normalized * vipeltaja.speed * Time.deltaTime);
 
         // Go to spit state when Escape time is above maximum flee time
         if (timer >= timeToFlee)

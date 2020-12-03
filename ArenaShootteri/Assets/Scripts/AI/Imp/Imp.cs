@@ -13,7 +13,7 @@ public class Imp : MonoBehaviour, IDamage
     public GameObject target { get; set; }
 
     // IDamage variable
-    public float IHealth { get; set; } = 50f;
+    public float IHealth { get; set; } = 20f;
     public bool immune = true;
 
     public bool canAttack = true;
@@ -32,14 +32,6 @@ public class Imp : MonoBehaviour, IDamage
     /// <c>Imp</c> attack cooldown
     /// </summary>
     public float attackCooldown = 2f;
-    /// <summary>
-    /// <c>Imp</c> jumping distance 
-    /// </summary>
-    public float jumpDistance;
-    /// <summary>
-    /// <c>Imp</c> Jump cooldown
-    /// </summary>
-    public float jumpCooldown;
     /// <summary>
     /// is <c>Imp</c> ready to attack?
     /// </summary>
@@ -74,8 +66,6 @@ public class Imp : MonoBehaviour, IDamage
 
         // what for... Not really sure. 
         agent.SetDestination(target.transform.position);
-
-        Debug.Log("Imp is awake.");
     }
 
     private void InitStateMachine()
@@ -118,10 +108,7 @@ public class Imp : MonoBehaviour, IDamage
 
     public void Attack()
     {
-        Debug.Log("Imp Melee attack");
-
         var distance = Vector3.Distance(transform.position, target.transform.position);
-        Debug.Log("Imp Distance is " + distance + " compared to attack range " + attackRange);
         if (distance < attackRange)
         {
             target.GetComponent<PlayerCharacterControllerRigidBody>().TakeDamage(damage, false);
@@ -167,16 +154,6 @@ public class Imp : MonoBehaviour, IDamage
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
     }
-
-    //void SetRigidbodyState(bool state)
-    //{
-    //    Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
-
-    //    foreach (Rigidbody rb in rigidbodies)
-    //    {
-    //        rb.isKinematic = state;
-    //    }
-    //}
 
     void SetColliderState(bool state)
     {

@@ -76,8 +76,6 @@ public class Grunt : MonoBehaviour, IDamage
 
         // Assign the target to be player object
         target = GameObject.FindGameObjectWithTag("Player");
-
-        Debug.Log("Grunt is awake");
     }
 
     /// <summary>
@@ -119,10 +117,7 @@ public class Grunt : MonoBehaviour, IDamage
     /// </summary>   MAYBE OBSOLETE
     public void Attack()
     {
-        Debug.Log("Melee attack");
-
         var distance = Vector3.Distance(transform.position, target.transform.position);
-        Debug.Log("Distance is " + distance + " compared to attack range " + attackRange);
         if(distance < attackRange)
         {
             target.GetComponent<PlayerCharacterControllerRigidBody>().TakeDamage(damage, false);
@@ -135,7 +130,6 @@ public class Grunt : MonoBehaviour, IDamage
         if (!readyToAttack)
         {
             attackCounter += Time.deltaTime;
-            Debug.Log(attackCounter);
             if(attackCounter > attackCooldown)
             {
                 readyToAttack = true;
@@ -285,7 +279,6 @@ public class Grunt : MonoBehaviour, IDamage
                 audioSorsa.Stop();
                 audioSorsa.loop = false;
                 audioSorsa.clip = footsteps;
-                Debug.Log("WalkStep");
                 audioSorsa.pitch = UnityEngine.Random.Range(0.9f - 0.05f, 0.9f + 0.05f);
                 audioSorsa.Play();
                 break;

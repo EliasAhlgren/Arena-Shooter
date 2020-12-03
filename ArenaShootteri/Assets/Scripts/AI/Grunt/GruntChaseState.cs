@@ -23,12 +23,10 @@ public class GruntChaseState : BaseState
         // Set path destination to target position
         grunt.agent.SetDestination(grunt.target.transform.position);
         grunt.animator.Play("Walk");
-        Debug.Log("Chase in.");
     }
 
     public override void OnStateExit()
     {
-        Debug.Log("Chase Out.");
         grunt.animator.ResetTrigger("WalkTrigger");
 
     }
@@ -38,7 +36,6 @@ public class GruntChaseState : BaseState
         // go to nothing state if target or enemy is dead
         if (grunt.target == null || grunt == null)
         {
-            Debug.Log("Unit doesnt have a target to chase");
             return typeof(GruntDoNothingState);
         }
 
