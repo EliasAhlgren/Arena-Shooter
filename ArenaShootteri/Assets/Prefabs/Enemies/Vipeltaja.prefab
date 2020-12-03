@@ -2492,7 +2492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd64eea6b4d8645429be6f8757e6b4e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 15
   canAttack: 1
   spitPrefab: {fileID: 7047385989156688848, guid: 732c89ad237dc5842860529672d137b8, type: 3}
   spitPosition: {fileID: 3606947180677563424}

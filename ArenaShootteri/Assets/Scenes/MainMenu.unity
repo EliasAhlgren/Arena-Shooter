@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1.9122542, g: 1.3748512, b: 1.1340355, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1274,7 +1274,7 @@ PrefabInstance:
     - target: {fileID: 42184118, guid: 10a499201184b8b4b8e9be9fa42e7820, type: 3}
       propertyPath: doorLight
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1456801932}
     - target: {fileID: 3735652361044706229, guid: 10a499201184b8b4b8e9be9fa42e7820, type: 3}
       propertyPath: m_Name
       value: level-26-11
@@ -6377,6 +6377,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451463511}
   m_CullTransparentMesh: 0
+--- !u!108 &1456801932 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 4986568091829276367, guid: 7f903fb711e75924ab1135277f7d5456, type: 3}
+  m_PrefabInstance: {fileID: 814078595}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1459123959
 GameObject:
   m_ObjectHideFlags: 0
