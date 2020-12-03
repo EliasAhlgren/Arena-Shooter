@@ -14,10 +14,13 @@ public class PickupSpawnPoint : MonoBehaviour
     {
         PickupSpawner.Instance.pickupSpawnPoints.Add(gameObject);
 
-        if (PickupSpawner.Instance.spawningPaused)
+        if (PickupSpawner.Instance.spawningStarted)
         {
-            PickupSpawner.Instance.ReStartSpawner();
+            if (PickupSpawner.Instance.spawningPaused)
+            {
+                PickupSpawner.Instance.ReStartSpawner();
+            }
         }
-        
+      
     }
 }

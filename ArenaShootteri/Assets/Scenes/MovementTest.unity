@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1340632592}
-  m_IndirectSpecularColor: {r: 1.856779, g: 2.300428, b: 3.0446262, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -27101,6 +27101,8 @@ MonoBehaviour:
   isAiming: 0
   shooting: {fileID: 1386769902}
   muzzleFlash: {fileID: 1792133776}
+  increasedRof: 0
+  RateOfFire2: 0
 --- !u!114 &1386769905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36367,6 +36369,7 @@ MonoBehaviour:
   damageAuraTime: 10
   theHolyLightRange: 10
   theHolyLightCooldown: 10
+  theHolyLightDamage: 10
   divineShieldCooldown: 10
   divineShieldTime: 10
   speedMod: 0
@@ -38273,6 +38276,7 @@ MonoBehaviour:
   damageAuraTime: 10
   theHolyLightRange: 10
   theHolyLightCooldown: 10
+  theHolyLightDamage: 10
   divineShieldCooldown: 10
   divineShieldTime: 10
   speedMod: 0.05
@@ -44842,6 +44846,8 @@ MonoBehaviour:
   isAiming: 0
   shooting: {fileID: 0}
   muzzleFlash: {fileID: 0}
+  increasedRof: 0
+  RateOfFire2: 0
 --- !u!1 &677272172192020665
 GameObject:
   m_ObjectHideFlags: 0
@@ -55902,6 +55908,7 @@ MonoBehaviour:
   Demon: {fileID: 0}
   Imp: {fileID: 0}
   Vipeltaja: {fileID: 0}
+  LentoDemon: {fileID: 0}
   spawning: 0
   enemyWaiting: 0
   onCooldown: 0
@@ -61810,6 +61817,7 @@ MonoBehaviour:
   damageAuraTime: 10
   theHolyLightRange: 10
   theHolyLightCooldown: 10
+  theHolyLightDamage: 10
   divineShieldCooldown: 10
   divineShieldTime: 10
   speedMod: 0.05
@@ -65143,6 +65151,8 @@ MonoBehaviour:
   isAiming: 0
   shooting: {fileID: 0}
   muzzleFlash: {fileID: 0}
+  increasedRof: 0
+  RateOfFire2: 0
 --- !u!4 &4885105097469128043
 Transform:
   m_ObjectHideFlags: 0
@@ -69429,6 +69439,7 @@ MonoBehaviour:
   damageAuraTime: 10
   theHolyLightRange: 10
   theHolyLightCooldown: 10
+  theHolyLightDamage: 10
   divineShieldCooldown: 10
   divineShieldTime: 10
   speedMod: 0.05
@@ -80632,6 +80643,8 @@ MonoBehaviour:
   isAiming: 0
   shooting: {fileID: 0}
   muzzleFlash: {fileID: 0}
+  increasedRof: 0
+  RateOfFire2: 0
 --- !u!1 &4885105098866006515
 GameObject:
   m_ObjectHideFlags: 0
@@ -82087,6 +82100,7 @@ MonoBehaviour:
   damageAuraTime: 10
   theHolyLightRange: 10
   theHolyLightCooldown: 10
+  theHolyLightDamage: 10
   divineShieldCooldown: 10
   divineShieldTime: 10
   speedMod: 0
@@ -85210,6 +85224,7 @@ MonoBehaviour:
   damageAuraTime: 10
   theHolyLightRange: 10
   theHolyLightCooldown: 10
+  theHolyLightDamage: 10
   divineShieldCooldown: 10
   divineShieldTime: 10
   speedMod: 0.05
@@ -88494,6 +88509,10 @@ PrefabInstance:
     - target: {fileID: 7340733440935605745, guid: 3bde4208525968449bd59b6fe4465189, type: 3}
       propertyPath: m_Name
       value: PickupSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 7340733440935605745, guid: 3bde4208525968449bd59b6fe4465189, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bde4208525968449bd59b6fe4465189, type: 3}
@@ -94862,6 +94881,7 @@ MonoBehaviour:
   damageAuraTime: 10
   theHolyLightRange: 10
   theHolyLightCooldown: 10
+  theHolyLightDamage: 10
   divineShieldCooldown: 10
   divineShieldTime: 10
   speedMod: 1
@@ -97067,6 +97087,8 @@ MonoBehaviour:
   isAiming: 0
   shooting: {fileID: 0}
   muzzleFlash: {fileID: 0}
+  increasedRof: 0
+  RateOfFire2: 0
 --- !u!95 &8324633041602370764
 Animator:
   serializedVersion: 3

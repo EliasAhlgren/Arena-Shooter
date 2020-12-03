@@ -162,7 +162,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
         if (timer == null)
         {
-            Debug.Log("set timer");
+            //Debug.Log("set timer");
             useTimer = false;
         }
 
@@ -455,7 +455,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                 hit.transform.parent.transform.GetComponent<Grunt>().StartCoroutine("Die");
 
             }
-            Debug.Log(hit.transform.name);
+            //Debug.Log(hit.transform.name);
         }
     }
 
@@ -509,7 +509,7 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     public void TakeDamage(float damage, bool isRanged)
     {
 
-        Debug.Log("player is taking " + damage + " damage. from Ranged enemy: " + isRanged);
+        //Debug.Log("player is taking " + damage + " damage. from Ranged enemy: " + isRanged);
         if (!invulnerable && isAlive)
         {
             if (isRanged)
