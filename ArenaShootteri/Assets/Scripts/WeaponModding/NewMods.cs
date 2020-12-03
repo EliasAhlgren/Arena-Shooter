@@ -20,17 +20,19 @@ public class NewMods : MonoBehaviour
 
     public void CheckMods()
     {
-        modSelections = FindObjectsOfType<ModSelection>();
+        Debug.Log("Checking");
+        
+        
 
-        if (gameObject.GetComponent<GameManager>().wave == 10)
+        if (gameObject.GetComponent<GameManager>().wave == 1)
         {
             modPool.AddRange(level1);
         }
-        if (gameObject.GetComponent<GameManager>().wave == 15)
+        if (gameObject.GetComponent<GameManager>().wave == 10)
         {
             modPool.AddRange(level2);
         }
-        if (gameObject.GetComponent<GameManager>().wave == 20)
+        if (gameObject.GetComponent<GameManager>().wave == 15)
         {
             modPool.AddRange(level3);
         }
@@ -56,9 +58,11 @@ public class NewMods : MonoBehaviour
             }
             Debug.Log("Lengths: " + selectedMods.Length);
             instance.selectedMods = new Mod[1];
-            if (selectedMods.Length <= 0) continue;
-            instance.selectedMods[0] = selectedMods[Random.Range(0,selectedMods.Length)];
-
+            if (selectedMods.Length > 0)
+            {
+                Debug.Log("setting mod " + instance.gameObject);
+                instance.selectedMods[0] = selectedMods[0];
+            }
 
         }
     }

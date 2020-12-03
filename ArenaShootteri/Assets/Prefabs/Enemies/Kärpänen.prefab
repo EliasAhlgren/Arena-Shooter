@@ -2271,7 +2271,7 @@ Transform:
   m_GameObject: {fileID: 7446934092152882197}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 699084447991655292}
   - {fileID: 6374624565269251709}
@@ -2329,7 +2329,7 @@ MonoBehaviour:
   jumpSpeedBase: 20
   speed: 0
   turnSpeed: 2
-  attackRange: 2
+  attackRange: 3
   attackCounter: 0
   attackCooldown: 2
   readyToAttack: 1

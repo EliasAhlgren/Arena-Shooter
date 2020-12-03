@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3115228718927901136}
   - component: {fileID: 3118520123660171650}
   m_Layer: 0
-  m_Name: PressurisedSteam (1)
+  m_Name: Pressurised
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,9 +25,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2990696634001112326}
-  m_LocalRotation: {x: 0.07701838, y: -0.8976917, z: 0.017430108, w: -0.43349054}
+  m_LocalRotation: {x: 0.077017546, y: -0.8976931, z: 0.017431958, w: -0.43348768}
   m_LocalPosition: {x: 156.24535, y: 87.78454, z: 55.571}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.8943, y: 2.8943, z: 2.8943}
   m_Children:
   - {fileID: 2993541598589697564}
   m_Father: {fileID: 0}

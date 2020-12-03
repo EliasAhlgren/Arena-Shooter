@@ -148,6 +148,8 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     public GameObject groundSlamEffect;
     bool resurection = true;
 
+    public GameObject deathCanvas;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -420,10 +422,12 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     {
         if (var)
         {
+            Debug.Log("Controls enabled");
             playerControl = true;
         }
         else
         {
+            Debug.Log("Control Disabled");
             playerControl = false;
         }
     }
@@ -545,7 +549,6 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         {
             Debug.Log("Charge hit" + collision.transform.name);
             TakeDamage(collision.transform.root.GetComponent<Grunt>().chargeDamage, false);
-
         }
     }
 
@@ -608,6 +611,9 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                 movement.isCrouching = false;
                 isAlive = false;
                 playerControl = false;
+                Time.timeScale = 0;
+                Cursor.lockState = CursorLockMode.None;
+                deathCanvas.SetActive(true);
             }
 
         }

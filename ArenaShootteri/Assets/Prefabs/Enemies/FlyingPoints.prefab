@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positions: []
-  xCount: 10
-  zCount: 10
-  scale: 0
+  xCount: 12
+  zCount: 12
+  scale: 10
   point: {fileID: 5209588932024858291, guid: bb9f40155c1834c4d91e6adedf948e1e, type: 3}

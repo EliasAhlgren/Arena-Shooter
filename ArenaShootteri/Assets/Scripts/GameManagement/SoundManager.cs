@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
-    public static AudioClip PLAYERHIT, ENEMYHIT, MenuClick, ImpHit, vipHit, ImpDie, vipDie, FootStep, Oof, Shoot, Reload, Empty, RocketShot, GateOpen, GrenadeReload, GateClose, ShotGunShoot, GrenadeShoot, ShotGunReload;
+    public static AudioClip PLAYERHIT, ENEMYHIT, AmmoPickup, HpPickup, MenuClick, ImpHit, vipHit, ImpDie, vipDie, FootStep, Oof, Shoot, Reload, Empty, RocketShot, GateOpen, GrenadeReload, GateClose, ShotGunShoot, GrenadeShoot, ShotGunReload;
 
     static AudioSource audioSrc;
     public AudioMixer audioMixer;
@@ -32,6 +32,8 @@ public class SoundManager : MonoBehaviour
         ImpHit = Resources.Load<AudioClip>("PIT-MONSTERGROWL-1");
         vipHit = Resources.Load<AudioClip>("vipeltaja1");
         vipDie = Resources.Load<AudioClip>("vipeltaja2");
+        AmmoPickup = Resources.Load<AudioClip>("ammopickup");
+        HpPickup = Resources.Load<AudioClip>("healthpack");
 
         audioSrc = GetComponent<AudioSource>();
         audioMixer.SetFloat("Sound", Mathf.Log10(PlayerPrefs.GetFloat("Sound")) * 20);
@@ -48,6 +50,18 @@ public class SoundManager : MonoBehaviour
     {
         switch (clip)
         {
+            case "AmmoPickup":
+                audioSrc.Stop();
+                audioSrc.loop = false;
+                audioSrc.clip = AmmoPickup;
+                audioSrc.Play();
+                break;
+            case "HpPickup":
+                audioSrc.Stop();
+                audioSrc.loop = false;
+                audioSrc.clip = HpPickup;
+                audioSrc.Play();
+                break;
             case "vipDie":
                 audioSrc.Stop();
                 audioSrc.loop = false;
@@ -149,7 +163,7 @@ public class SoundManager : MonoBehaviour
                 audioSrc.Stop();
                 audioSrc.loop = false;
                 audioSrc.clip = FootStep;
-                Debug.Log("WalkStep");
+//                Debug.Log("WalkStep");
                 audioSrc.pitch = Random.Range(0.9f - 0.05f, 0.9f + 0.05f);
                 audioSrc.Play();
                 break;

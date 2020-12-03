@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject pauseMenu;
     public GameObject optionsMenu;
+    public GameObject controlsPanel;
     public GameObject exitMenu;
     public GameObject pauseCanvas;
     public bool acceptPlayerInput = true;
@@ -18,7 +19,7 @@ public class GameManager : MonoBehaviour
     public int level = 1;
     public int shadowOrbs; //mahdollisen perk systeemin pointsit
 
-    private bool textChanged;
+    public bool textChanged;
     
     public BoxCollider checkBox;
 
@@ -59,6 +60,7 @@ public class GameManager : MonoBehaviour
                     paused = false;
                     pauseCanvas.SetActive(false);
                     pauseMenu.SetActive(false);
+                    controlsPanel.SetActive(false);
                     optionsMenu.SetActive(false);
                     exitMenu.SetActive(false);
                     Time.timeScale = 1;
@@ -87,7 +89,12 @@ public class GameManager : MonoBehaviour
             {
                 StartCoroutine(armoryText());
             }
-            
+
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                StartWave();
+            }
+
         }
     }
 
