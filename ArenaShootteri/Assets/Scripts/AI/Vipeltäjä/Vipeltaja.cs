@@ -122,6 +122,20 @@ public class Vipeltaja : MonoBehaviour, IDamage
         StopCoroutine("SpawnImmunity");
     }
 
+    public void Attack()
+    {
+        Debug.Log("Vipeltäjä Melee attack");
+
+        var distance = Vector3.Distance(transform.position, target.transform.position);
+        Debug.Log("Vipeltäjä Distance is " + distance + " compared to attack range " + attackRange);
+        if (distance < attackRange)
+        {
+            target.GetComponent<PlayerCharacterControllerRigidBody>().TakeDamage(damage, false);
+        }
+
+    }
+
+
     public void Update()
     {
         animator.SetFloat("velocity", agent.velocity.magnitude / agent.speed);

@@ -100,6 +100,7 @@ public class Imp : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+        animator.SetFloat("velocity", agent.velocity.magnitude / agent.speed);
         if (!readyToAttack)
         {
             attackCounter += Time.deltaTime;
@@ -112,6 +113,19 @@ public class Imp : MonoBehaviour, IDamage
         }
         speed = walkSpeedBase * animator.GetCurrentAnimatorStateInfo(0).speed;
         agent.speed = speed;
+
+    }
+
+    public void Attack()
+    {
+        Debug.Log("Imp Melee attack");
+
+        var distance = Vector3.Distance(transform.position, target.transform.position);
+        Debug.Log("Imp Distance is " + distance + " compared to attack range " + attackRange);
+        if (distance < attackRange)
+        {
+            target.GetComponent<PlayerCharacterControllerRigidBody>().TakeDamage(damage, false);
+        }
 
     }
 

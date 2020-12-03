@@ -30,10 +30,8 @@ public class VipeltajaAttackState : BaseState
 
     public override void OnStateEnter()
     {
-        
-        SetAttackColliders(true);
+      
         Vipeltaja.PlaySound("shout", vipeltaja.GetComponent<AudioSource>());
-
         // Play attack animation
         vipeltaja.animator.Play("Hit");
         vipeltaja.readyToAttack = false;
@@ -41,7 +39,7 @@ public class VipeltajaAttackState : BaseState
 
     public override void OnStateExit()
     {
-        SetAttackColliders(false);
+
     }
 
     public override Type Tick()
@@ -67,13 +65,6 @@ public class VipeltajaAttackState : BaseState
         return null;
     }
 
-    void SetAttackColliders(bool state)
-    {
-        foreach(Collider collider in attackColliders)
-        {
-            collider.enabled = state;
-        }
-    }
 
     
     
