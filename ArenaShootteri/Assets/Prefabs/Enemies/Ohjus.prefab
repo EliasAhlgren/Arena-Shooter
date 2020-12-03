@@ -48,8 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forward: {x: 0, y: 0, z: 0}
+  damage: 2
   speed: 8
-  Explpoposion: {fileID: 6710665447272435090, guid: c4234d6f5a6c3904b9d0a9bb1430604a, type: 3}
+  Explpoposion: {fileID: 6647285706134638300, guid: 66c8ab0e1dc11a846b78dba3577671df, type: 3}
 --- !u!136 &4028420225596673898
 CapsuleCollider:
   m_ObjectHideFlags: 0
