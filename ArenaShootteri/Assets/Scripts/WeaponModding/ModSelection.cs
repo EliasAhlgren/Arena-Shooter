@@ -68,7 +68,7 @@ public class ModSelection : MonoBehaviour
         if (defaultMod)
         {
             currenModStats = defaultMod;
-            Debug.Log("initializing with a mod");
+            ////debug.Log("initializing with a mod");
             GameObject newMod = Instantiate(defaultMod.Prefab, ModRail.transform.GetChild(0).position,
                 Quaternion.identity, ModRail.transform);
             currentMod = newMod;
@@ -114,7 +114,7 @@ public class ModSelection : MonoBehaviour
              emptySlot.SetActive(!emptySlot.activeInHierarchy);
         }
        
-        Debug.Log("ChangeCurrent");
+        ////debug.Log("ChangeCurrent");
 
         if (selectedMods[0] != null)
         {
@@ -179,7 +179,7 @@ public class ModSelection : MonoBehaviour
            
             handSetter.IkTargetScript.posDiff = currenModStats.posDiff;
             handSetter.UpdatePose();
-            Debug.Log("Pose set to " + currenModStats.PoseNumber);
+            //debug.Log("Pose set to " + currenModStats.PoseNumber);
         }else if (handSetter)
         {
             handSetter.IkTargetScript.index = 0;
@@ -220,7 +220,7 @@ public class ModSelection : MonoBehaviour
         if (placingObject)
         {
             isAutoPlaced = GameObject.Find("AutoPlaceToggle").GetComponent<Toggle>().isOn;
-            Debug.Log("Now Placing");
+            //debug.Log("Now Placing");
            // railPos on Railin y ja x ja hiiren z positio
             Vector3 railPos = ModRail.transform.GetChild(1).position;
             
@@ -236,7 +236,7 @@ public class ModSelection : MonoBehaviour
                         {
                             if (ModLocalPos.localPosition.x > 0)
                             {
-                                Debug.Log("we fukin");
+                                //debug.Log("we fukin");
                                 
                                 Vector3 v3 = ModLocalPos.position;
                                 v3.z = -ModLocalPos.position.z;
@@ -248,7 +248,7 @@ public class ModSelection : MonoBehaviour
                         // jos hiiren position z käännettynä aseen local spaceen on kiskon colliderin sisällä
                         if (ModRail.transform.GetChild(1).gameObject.GetComponent<Collider>().bounds.Contains(railPos))
                         {
-                            Debug.Log("hittaa kovaa");
+                            //debug.Log("hittaa kovaa");
                             Vector3 newPos = ModLocalPos.localPosition;
                             newPos.x = 0;
                             newPos.y = 1.27f;

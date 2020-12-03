@@ -24,7 +24,7 @@ public class Shooting : MonoBehaviour
 
     public void Shoot(float Damage, GameObject target)
     {
-        Debug.Log(target + " takes " + Damage + " Damage");
+        //debug.Log(target + " takes " + Damage + " Damage");
     }
 
     public void Shoot()
@@ -40,7 +40,7 @@ public class Shooting : MonoBehaviour
                             sparks.transform.position = hit.point;
                             sparks.transform.up = hit.normal;
                             sparks.Play();
-                            Debug.Log("Not damageable " + hit.transform.parent);
+                            //debug.Log("Not damageable " + hit.transform.parent);
                             return;
                         }
 
@@ -48,7 +48,7 @@ public class Shooting : MonoBehaviour
                         blood.transform.forward = hit.normal;
 
                         Damageable.TakeDamage(DamageStat);
-                        Debug.Log(hit.transform.parent + " Has taken " + DamageStat + "DMG " + Damageable.IHealth + " Left");
+                        //debug.Log(hit.transform.parent + " Has taken " + DamageStat + "DMG " + Damageable.IHealth + " Left");
                     }
     }
 
@@ -56,7 +56,7 @@ public class Shooting : MonoBehaviour
     {
         /*
         DamageStat = Attributes.totalDamage;
-        Debug.DrawRay(shootPosition.position, transform.forward * 100,Color.red);
+        //debug.DrawRay(shootPosition.position, transform.forward * 100,Color.red);
         if (Input.GetButton("Fire1") && !aiming.isReloading && Attributes.ammoInMag > 0)
         {
             Ray shootRay = new Ray(shootPosition.position, transform.forward);
@@ -66,11 +66,11 @@ public class Shooting : MonoBehaviour
                 var Damageable = hit.transform.root.GetComponent<IDamage>();
                 if (Damageable == null)
                 {
-                    Debug.Log("Not damageable " + hit.transform.root.name);
+                    //debug.Log("Not damageable " + hit.transform.root.name);
                     return;
                 }
                 Damageable.TakeDamage(DamageStat);
-                Debug.Log(hit.transform.name + " Has taken " + DamageStat + "DMG " + Damageable.IHealth + " Left");
+                //debug.Log(hit.transform.name + " Has taken " + DamageStat + "DMG " + Damageable.IHealth + " Left");
             }
         }
     */

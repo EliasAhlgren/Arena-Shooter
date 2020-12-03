@@ -82,7 +82,7 @@ public class LentoSaatana : MonoBehaviour, IDamage
             {
                 if (other.transform.position == nextPosition)
                 {
-                    Debug.Log("At position");
+                    //debug.Log("At position");
                     atPosition = true;
                 }
             }
@@ -138,12 +138,12 @@ public class LentoSaatana : MonoBehaviour, IDamage
             if (closestPoint != Vector3.zero)
             {
                 atPosition = false;
-                Debug.Log("New Pos found");
+                //debug.Log("New Pos found");
                 state = State.Travelling;
             }
             else
             {
-                Debug.Log("New Pos not found");
+                //debug.Log("New Pos not found");
                 state = State.Waiting;
             }
             
@@ -178,7 +178,7 @@ public class LentoSaatana : MonoBehaviour, IDamage
                     Travelling();
                     break;
                 case State.Targeting:
-                    Debug.Log(state);
+                    //debug.Log(state);
                     StartCoroutine(Targeting());
                     break;
                 case State.Shooting:
@@ -210,11 +210,11 @@ public class LentoSaatana : MonoBehaviour, IDamage
                 {
                     if (hit.collider.gameObject == player)
                     {
-                        Debug.Log("targeting");
+                        //debug.Log("targeting");
                         state = State.Targeting;
                     }else
                     {
-                        Debug.Log("Njet comrade" + hit.collider.gameObject);
+                        //debug.Log("Njet comrade" + hit.collider.gameObject);
                         nextPosition = positions[Random.Range(0, positions.Length)];
                         atPosition = false;
                         state = State.Travelling;
@@ -236,7 +236,7 @@ public class LentoSaatana : MonoBehaviour, IDamage
             }
             state = State.DoNothing;
             yield return new  WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
-            Debug.Log("1");
+            //debug.Log("1");
             RaycastHit hit;
             if (canSee)
             {
