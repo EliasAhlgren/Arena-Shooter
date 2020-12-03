@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
         {
             waveIndicator.WaveEnd();
             checkBox.enabled = true;
-            if (wave == 1 && textChanged)
+            if (wave == 1 && !textChanged)
             {
                 StartCoroutine(armoryText());
             }
