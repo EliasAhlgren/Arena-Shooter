@@ -34,7 +34,7 @@ public class EnemySpawner : MonoBehaviour
     private Vector3 spawnPos;
     public static int enemyCount = 0;
     public static int wave = 1;
-    public static bool spawnWave = false;
+    public static bool spawnWave = true;
     public bool onCooldown = false;
     public static List<GameObject> enemies;
 
