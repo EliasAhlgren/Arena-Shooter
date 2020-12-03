@@ -5,6 +5,7 @@ using UnityEngine;
 public class DoorAnimationHandler : MonoBehaviour
 {
     public Animator anim;
+    public Light doorLight;
 
     private Collider oviCollider;
     // Start is called before the first frame update
@@ -18,7 +19,15 @@ public class DoorAnimationHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(GameManager.waveEnd == true)
+        {
+            doorLight.color = Color.green;
+        }
+        else
+        {
+            doorLight.color = Color.red;
+        }
+
     }
 
     private void OnTriggerStay(Collider other)
@@ -35,7 +44,7 @@ public class DoorAnimationHandler : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if(other.transform.CompareTag("Player"))
-        { 
+        {
             anim.Play("OvenSulku");
             SoundManager.PlaySound("GateClose");
             oviCollider.enabled = true;
