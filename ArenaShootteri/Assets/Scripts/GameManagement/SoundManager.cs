@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
-    public static AudioClip PLAYERHIT, ENEMYHIT, MenuClick, FootStep, Oof, Shoot, Reload, Empty, RocketShot, GateOpen, GrenadeReload, GateClose, ShotGunShoot, GrenadeShoot, ShotGunReload;
+    public static AudioClip PLAYERHIT, ENEMYHIT, MenuClick, ImpHit, vipHit, ImpDie, vipDie, FootStep, Oof, Shoot, Reload, Empty, RocketShot, GateOpen, GrenadeReload, GateClose, ShotGunShoot, GrenadeShoot, ShotGunReload;
 
     static AudioSource audioSrc;
     public AudioMixer audioMixer;
@@ -28,6 +28,10 @@ public class SoundManager : MonoBehaviour
         GrenadeShoot = Resources.Load<AudioClip>("GrenadeShoot");
         GrenadeReload = Resources.Load<AudioClip>("PIT-SG-RELOAD");
         RocketShot = Resources.Load<AudioClip>("rocketShort");
+        ImpDie = Resources.Load<AudioClip>("PIT-MONSTERGROWL-3");
+        ImpHit = Resources.Load<AudioClip>("PIT-MONSTERGROWL-1");
+        vipHit = Resources.Load<AudioClip>("vipeltaja1");
+        vipDie = Resources.Load<AudioClip>("vipeltaja2");
 
         audioSrc = GetComponent<AudioSource>();
         audioMixer.SetFloat("Sound", Mathf.Log10(PlayerPrefs.GetFloat("Sound")) * 20);
@@ -44,6 +48,30 @@ public class SoundManager : MonoBehaviour
     {
         switch (clip)
         {
+            case "vipDie":
+                audioSrc.Stop();
+                audioSrc.loop = false;
+                audioSrc.clip = vipDie;
+                audioSrc.Play();
+                break;
+            case "vipHit":
+                audioSrc.Stop();
+                audioSrc.loop = false;
+                audioSrc.clip = vipHit;
+                audioSrc.Play();
+                break;
+            case "ImpDie":
+                audioSrc.Stop();
+                audioSrc.loop = false;
+                audioSrc.clip = ImpDie;
+                audioSrc.Play();
+                break;
+            case "ImpHit":
+                audioSrc.Stop();
+                audioSrc.loop = false;
+                audioSrc.clip = ImpHit;
+                audioSrc.Play();
+                break;
             case "RocketShot":
                 audioSrc.Stop();
                 audioSrc.loop = false;
