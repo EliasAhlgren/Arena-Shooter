@@ -24,7 +24,6 @@ public class WaveIndicator : MonoBehaviour
 
     public void WaveEnd()
     {
-        
         waveImage.color = Color.gray;
     }
 }

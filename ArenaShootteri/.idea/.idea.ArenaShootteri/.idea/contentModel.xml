@@ -123,7 +123,6 @@
             <e p="PlayerCharacterController.cs" t="Include" />
             <e p="PlayerCharacterControllerRigidBody.cs" t="Include" />
             <e p="PlayerController.cs" t="Include" />
-            <e p="WaveIndicator.cs" t="Include" />
           </e>
           <e p="pulse.shader" t="Include" />
           <e p="Weapon" t="Include">
@@ -151,7 +150,6 @@
           </e>
         </e>
         <e p="shaderPulsating.cs" t="Include" />
-        <e p="SpitController.cs" t="Include" />
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
             <e p="LiberationSans - OFL.txt" t="Include" />
