@@ -44,6 +44,7 @@ public class Imp : MonoBehaviour, IDamage
     /// Reference to Animator compontent
     /// </summary>
     public Animator animator;
+    public bool giveCurrency = true;
 
 
     // Start is called before the first frame update
@@ -133,8 +134,12 @@ public class Imp : MonoBehaviour, IDamage
 
     public IEnumerator Die()
     {
-        PerkTreeReader.Instance.AddPerkPoint(1);
-        target.GetComponent<PlayerCharacterControllerRigidBody>().AddRageKill();
+        if (giveCurrency)
+        {
+            giveCurrency = false;
+            PerkTreeReader.Instance.AddPerkPoint(1);
+            target.GetComponent<PlayerCharacterControllerRigidBody>().AddRageKill();
+        }
         SoundManager.PlaySound("ImpDie");
         animator.SetBool("Dead", true);
         SetColliderState(true);
