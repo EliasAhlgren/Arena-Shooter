@@ -21,12 +21,10 @@ public class GruntWindUpState : BaseState
         grunt.agent.isStopped = true;
         Grunt.PlaySound("shout", grunt.GetComponent<AudioSource>());
         grunt.animator.SetTrigger("WindUpTrigger");
-        Debug.Log("Wind in.");
     }
 
     public override void OnStateExit()
     {
-        Debug.Log("Wind out.");
         grunt.animator.ResetTrigger("WindUpTrigger");
         grunt.agent.isStopped = false;
     }
