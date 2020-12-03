@@ -89,7 +89,12 @@ public class GameManager : MonoBehaviour
             {
                 StartCoroutine(armoryText());
             }
-            
+
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                StartWave();
+            }
+
         }
     }
 
