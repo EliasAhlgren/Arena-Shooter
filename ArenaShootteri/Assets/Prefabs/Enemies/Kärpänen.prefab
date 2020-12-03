@@ -2325,7 +2325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   rb: {fileID: 0}
-  walkSpeedBase: 6
+  walkSpeedBase: 7
   jumpSpeedBase: 20
   speed: 0
   turnSpeed: 2
