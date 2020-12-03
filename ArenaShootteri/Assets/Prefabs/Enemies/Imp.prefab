@@ -2259,7 +2259,7 @@ Transform:
   m_GameObject: {fileID: 8588615848814181493}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 4894694603485842267}
   - {fileID: 8990660438973786051}
@@ -2345,7 +2345,6 @@ MonoBehaviour:
   readyToAttack: 1
   agent: {fileID: 8931074901600759019}
   animator: {fileID: 8931074901600759014}
-  dissolveShader: {fileID: -6465566751694194690, guid: 621c252326e75b045839a72a828d63c1, type: 3}
 --- !u!1 &8696522347408542988
 GameObject:
   m_ObjectHideFlags: 0
