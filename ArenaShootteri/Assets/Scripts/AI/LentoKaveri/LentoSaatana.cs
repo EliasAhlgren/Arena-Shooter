@@ -18,7 +18,7 @@ public class LentoSaatana : MonoBehaviour, IDamage
 
         public GameObject deathExplosion;
 
-        public float IHealth { get; set; } = 50f;
+        public float IHealth { get; set; } = 30f;
 
         public enum State
         {

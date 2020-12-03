@@ -508,7 +508,6 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
     public void TakeDamage(float damage, bool isRanged)
     {
-        damage = 1;
         if (!invulnerable && isAlive)
         {
             if (isRanged)
