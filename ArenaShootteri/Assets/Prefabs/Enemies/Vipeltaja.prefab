@@ -2494,7 +2494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   canAttack: 1
-  spitPrefab: {fileID: 8204803043448498481, guid: 6d0e734e6ac41a14ba5e31e67a7b98b0, type: 3}
+  spitPrefab: {fileID: 7047385989156688848, guid: 732c89ad237dc5842860529672d137b8, type: 3}
   spitPosition: {fileID: 3606947180677563424}
   rb: {fileID: 0}
   dissolveShader: {fileID: 0}
