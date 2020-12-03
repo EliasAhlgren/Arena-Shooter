@@ -86,15 +86,15 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     [Header("Speed")]
     [Header("Perk Modifiers")]
     
-    public float speedMod = .05f;
+    public float speedMod = .1f;
     [Header("Damage")]
-    public float damageMod = .05f;
+    public float damageMod = .1f;
     [Header("Firerate")]
     public float fireRateMod = -.05f;
     [Header("Reload")]
     public float reloadMod = -.05f;
     [Header("Health")]
-    public float healthMod = .05f;
+    public float healthMod = .1f;
     [Header("Blessed")]
     public float spawnRateMod = -.05f;
     [Header("Defense")]
