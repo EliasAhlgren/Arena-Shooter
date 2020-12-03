@@ -154,11 +154,11 @@ public class EnemySpawner : MonoBehaviour
             }
             else
             {
-                int grunts = 1 + (int)Math.Round(wave * 0.2, MidpointRounding.AwayFromZero);
-                int lentovilpe = 10 + (int)Math.Round(wave * 0.5, MidpointRounding.AwayFromZero);
-                int imps = 10 + wave;
-                int vipe = 5 + (int)Math.Round(wave * 0.5, MidpointRounding.AwayFromZero);
-                int lentod = 1 + (int)Math.Round(wave * 0.2, MidpointRounding.AwayFromZero);
+                int grunts = UnityEngine.Random.Range(0, 6) + (int)Math.Round(wave * 0.15, MidpointRounding.AwayFromZero);
+                int lentovilpe = UnityEngine.Random.Range(5, 16) + (int)Math.Round(wave * 0.8, MidpointRounding.AwayFromZero);
+                int imps = UnityEngine.Random.Range(5, 21) + (int)Math.Round(wave * 0.8, MidpointRounding.AwayFromZero);
+                int vipe = UnityEngine.Random.Range(5, 11) + (int)Math.Round(wave * 0.5, MidpointRounding.AwayFromZero);
+                int lentod = UnityEngine.Random.Range(0, 4) + (int)Math.Round(wave * 0.1, MidpointRounding.AwayFromZero);
                 spawning = true;
                 spawnWave = false;
                 SpawnWave(grunts, lentovilpe, imps, vipe, lentod);
