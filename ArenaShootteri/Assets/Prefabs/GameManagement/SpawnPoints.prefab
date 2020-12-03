@@ -543,47 +543,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 246587503378175593}
+  - {fileID: 5301158588032119715}
+  - {fileID: 2663991397936606808}
+  - {fileID: 7388554103405240232}
+  - {fileID: 3596199657295284482}
+  - {fileID: 352552061164659260}
+  - {fileID: 1804665167958259895}
+  - {fileID: 7992651970001337972}
+  - {fileID: 1959544401368042636}
+  - {fileID: 3602385978807604713}
+  - {fileID: 6522662974199603790}
+  - {fileID: 241732370997300408}
+  - {fileID: 7711712396408513604}
+  - {fileID: 5192300517792532814}
+  - {fileID: 4817448210368622899}
+  - {fileID: 7384822739000363442}
+  - {fileID: 4570228515490639192}
+  - {fileID: 6676304767607328241}
+  - {fileID: 2125678831379693369}
 --- !u!1 &8179596337373825206
 GameObject:
   m_ObjectHideFlags: 0
