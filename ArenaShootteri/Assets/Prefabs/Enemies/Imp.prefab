@@ -2082,7 +2082,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 9109248728899225014, guid: 2934ce605f2664744ba26ebbb79d71ef, type: 3}
+  m_Mesh: {fileID: 9109248728899225014, guid: bf501b4bb5b70784382a75d58b088b7e, type: 3}
   m_Bones:
   - {fileID: 7201054156681258752}
   - {fileID: 3356201970521606902}
@@ -2340,8 +2340,6 @@ MonoBehaviour:
   attackRange: 3
   attackCounter: 0
   attackCooldown: 2.2
-  jumpDistance: 0
-  jumpCooldown: 0
   readyToAttack: 1
   agent: {fileID: 8931074901600759019}
   animator: {fileID: 8931074901600759014}
