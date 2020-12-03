@@ -858,10 +858,6 @@ PrefabInstance:
       propertyPath: doorLight
       value: 
       objectReference: {fileID: 732555711}
-    - target: {fileID: 2027517788589954582, guid: 10a499201184b8b4b8e9be9fa42e7820, type: 3}
-      propertyPath: m_Intensity
-      value: 2273.642
-      objectReference: {fileID: 0}
     - target: {fileID: 3735652361044706229, guid: 10a499201184b8b4b8e9be9fa42e7820, type: 3}
       propertyPath: m_Name
       value: level-26-11
@@ -909,14 +905,6 @@ PrefabInstance:
     - target: {fileID: 4079246048812013839, guid: 10a499201184b8b4b8e9be9fa42e7820, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6764703159816895531, guid: 10a499201184b8b4b8e9be9fa42e7820, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6857706526974328338, guid: 10a499201184b8b4b8e9be9fa42e7820, type: 3}
-      propertyPath: m_Name
-      value: yleisvalo
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10a499201184b8b4b8e9be9fa42e7820, type: 3}
