@@ -6,11 +6,14 @@ public class DoorAnimationHandler : MonoBehaviour
 {
     public Animator anim;
     public Light doorLight;
+    public Color red1, green1;
 
     private Collider oviCollider;
     // Start is called before the first frame update
     void Start()
     {
+        green1 = new Color(0.170218f, 0.6705883f, 0.1215686f);
+        red1 = new Color(0.6698113f, 0.12322f, 0.12322f);
         anim = transform.parent.GetComponent<Animator>();
         var collider = GetComponents<Collider>();
         oviCollider = collider[1];
@@ -19,13 +22,13 @@ public class DoorAnimationHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.waveEnd == true)
+        if (GameManager.waveEnd == true)
         {
-            doorLight.color = Color.green;
+            doorLight.color = green1;
         }
         else
         {
-            doorLight.color = Color.red;
+            doorLight.color = red1;
         }
 
     }

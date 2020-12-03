@@ -22,7 +22,7 @@ public class Imp : MonoBehaviour, IDamage
 
     public float speed;
 
-    public float damage = 5;
+    public float damage = 10f;
     /// <summary>
     /// Imp's attack range
     /// </summary>

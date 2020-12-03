@@ -29,7 +29,7 @@ public class Grunt : MonoBehaviour, IDamage
     public float attackCounter = 0f;
     public float attackCooldown = 2f;
 
-    public float damage = 5;
+    public float damage = 20;
     public bool canAttack = true;
     public bool readyToAttack = true;
 
@@ -37,7 +37,7 @@ public class Grunt : MonoBehaviour, IDamage
     public bool isCharging = false;
     public float chargeForce = 10;
     
-    public float IHealth { get; set; } = 250f;
+    public float IHealth { get; set; } = 100f;
     public bool immune = true;
 
     //sounds
