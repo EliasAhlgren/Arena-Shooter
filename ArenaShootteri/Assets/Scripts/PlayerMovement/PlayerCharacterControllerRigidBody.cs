@@ -508,15 +508,16 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
 
     public void TakeDamage(float damage, bool isRanged)
     {
-
-        //Debug.Log("player is taking " + damage + " damage. from Ranged enemy: " + isRanged);
+        damage = 1;
         if (!invulnerable && isAlive)
         {
             if (isRanged)
             {
+
                 //[SOUND] take damage sound (ranged) (One Shot)
                 SoundManager.PlaySound("Oof");
-                health -= damage * defenseMod;
+                health -= damage * defenseModifier;
+
             }
             else
             {

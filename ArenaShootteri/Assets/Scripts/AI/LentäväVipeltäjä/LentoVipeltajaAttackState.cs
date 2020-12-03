@@ -41,6 +41,7 @@ public class LentoVipeltajaAttackState : BaseState
 
         if(Lvipeltaja.drainPlayer)
         {
+            Debug.Log("hel");
             Lvipeltaja.target.GetComponent<PlayerCharacterControllerRigidBody>().
                 TakeDamage(Lvipeltaja.damage, true);
             Lvipeltaja.drainPlayer = false;
