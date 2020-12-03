@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     {
         waveIndicator = FindObjectOfType<WaveIndicator>();
         player = GameObject.FindGameObjectWithTag("Player");
+        waveEnd = false;
+        waveStart = true;
         //waveManager = UnityEngine.GameObje<ct.FindGameObjectWithTag("GameManagement").GetComponent<WaveManager>();
     }
 
