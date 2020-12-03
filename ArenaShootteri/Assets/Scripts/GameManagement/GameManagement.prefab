@@ -5573,7 +5573,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 366172c8abbe942238736d92b12ddc56, type: 2}
   - {fileID: 11400000, guid: a1f5b3876cb0246efb67f39c73322d2a, type: 2}
   - {fileID: 11400000, guid: a22fab50e522b4ab3bff9afef631e524, type: 2}
-  modSelections: []
+  modSelections:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &8586498638506711790
 GameObject:
   m_ObjectHideFlags: 0

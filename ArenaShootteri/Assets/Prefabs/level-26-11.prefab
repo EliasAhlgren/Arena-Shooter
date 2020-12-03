@@ -75,6 +75,7 @@ MonoBehaviour:
   doorLight: {fileID: 0}
   red1: {r: 0, g: 0, b: 0, a: 0}
   green1: {r: 0, g: 0, b: 0, a: 0}
+  hasChecked: 0
 --- !u!1 &194960956
 GameObject:
   m_ObjectHideFlags: 0

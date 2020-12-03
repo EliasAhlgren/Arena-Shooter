@@ -36,6 +36,7 @@ public class WorkBench : MonoBehaviour
         if (collidingObjects.Contains(collision.gameObject))
         {
             collidingObjects.Remove(collision.gameObject);
+            text.text = "";
         }
     }
 
@@ -58,7 +59,7 @@ public class WorkBench : MonoBehaviour
                     {
                         isModding = !isModding;
                         gunAttributes.ChangeUI();
-                        
+                        text.text = "";
                     }
 
                     if (!isModding)
