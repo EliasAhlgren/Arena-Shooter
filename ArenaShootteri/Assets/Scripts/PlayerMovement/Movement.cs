@@ -405,7 +405,7 @@ public class Movement : MonoBehaviour
                 {
                     if (move.y < -15)
                     {
-                        Debug.Log(move.y);
+                        //Debug.Log(move.y);
                         player.GroundSlam();
                     }
                 }
@@ -497,7 +497,7 @@ public class Movement : MonoBehaviour
             else
             {
                 primaryGroundNormalCheck = false;
-                Debug.Log("ground raycast failed");
+                //Debug.Log("ground raycast failed");
             }
 
 
@@ -633,7 +633,7 @@ public class Movement : MonoBehaviour
             //if falling from ledge
             if (!isAirborne)
             {
-                Debug.Log("this shouldn't show if jumping");
+               // Debug.Log("this shouldn't show if jumping");
                 isAirborne = true;
                 //make initial falling less floaty
                 velocity.y = -2f;
@@ -1067,11 +1067,6 @@ public class Movement : MonoBehaviour
         Debug.Log(rbVelocity);
         */
         playerVelocity = Mathf.Sqrt(rb.velocity.x * rb.velocity.x + rb.velocity.z * rb.velocity.z);
-
-        if (playerVelocity > 20)
-        {
-            Debug.Log(playerVelocity + " " + Time.time);
-        }
     }
 
     private void Jump()
@@ -1179,7 +1174,7 @@ public class Movement : MonoBehaviour
             }
             else
             {
-                Debug.Log("jump failed");
+                //Debug.Log("jump failed");
             }
 
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
@@ -1479,7 +1474,7 @@ public class Movement : MonoBehaviour
             Vector3 testVector = p.point - curve;
             //Debug.DrawLine(curve, p.point, Color.blue, 0.5f);
 
-            Debug.DrawRay(curve, testVector, Color.red);
+            //Debug.DrawRay(curve, testVector, Color.red);
             Vector3 dir = curve - p.point;
 
             if (dir.y > 0f)
