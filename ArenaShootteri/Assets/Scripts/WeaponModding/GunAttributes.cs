@@ -207,7 +207,14 @@ public class GunAttributes : MonoBehaviour
             PickupSpawner.Instance.UpdatePickupSpawns(shotgun, grenade);
         }
 
+        if (totalDamage <= 0)
+        {
+            totalDamage = 10f;
+        }
+        
         recoilScript.UpdateStats();
+        
+        
         
     }
 
