@@ -34,9 +34,10 @@ public class EnemySpawner : MonoBehaviour
     private Vector3 spawnPos;
     public static int enemyCount = 0;
     public static int wave = 1;
-    public static bool spawnWave = true;
+    public static bool spawnWave = false;
     public bool onCooldown = false;
     public static List<GameObject> enemies;
+    public bool spawned = false;
 
     // Start is called before the first frame update
     void Start()
@@ -62,6 +63,8 @@ public class EnemySpawner : MonoBehaviour
             if (wave == 1)
             {
                 Debug.Log("LOL");
+                spawning = true;
+                spawnWave = false;
                 SpawnWave(0, 0, 10, 0, 0);
                 
             }
@@ -163,10 +166,11 @@ public class EnemySpawner : MonoBehaviour
         }
         if (spawnWave == false && spawning == false)
         {
-            if (enemyCount == 0)
+            if (enemyCount == 0 && spawned == true)
             {
-                
+                spawned = false;
                 GameManager.waveEnd = true;
+
             }
         }
     }
@@ -218,6 +222,7 @@ public class EnemySpawner : MonoBehaviour
 
         // enemies.Clear();
         spawning = false;
+        spawned = true;
     }
 
     List<Transform> SpawnEnemy(GameObject _enemy, List<Transform> spawnit) // satunnainen spawn kohta, spawnataan, nostetaan vihollismäärää ja poistetaan spawn listasta

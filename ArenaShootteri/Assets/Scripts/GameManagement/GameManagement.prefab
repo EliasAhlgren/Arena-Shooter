@@ -6608,6 +6608,7 @@ MonoBehaviour:
   spawning: 0
   enemyWaiting: 0
   onCooldown: 0
+  spawned: 0
 --- !u!114 &171092750
 MonoBehaviour:
   m_ObjectHideFlags: 0
