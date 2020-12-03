@@ -2497,16 +2497,17 @@ MonoBehaviour:
   spitPrefab: {fileID: 8204803043448498481, guid: 6d0e734e6ac41a14ba5e31e67a7b98b0, type: 3}
   spitPosition: {fileID: 3606947180677563424}
   rb: {fileID: 0}
-  walkSpeedBase: 6
-  jumpSpeedBase: 20
+  dissolveShader: {fileID: 0}
+  jumpAnimationLength: 0.629
+  actualJumpLength: 0
   walkSpeed: 0
   jumpSpeed: 20
   speed: 10
   turnSpeed: 2
   immune: 1
-  attackRange: 2
+  attackRange: 3
   attackCounter: 0
-  attackCooldown: 2
+  attackCooldown: 1.8
   jumpDistance: 20
   jumpCooldown: 0
   jumpTimer: 5

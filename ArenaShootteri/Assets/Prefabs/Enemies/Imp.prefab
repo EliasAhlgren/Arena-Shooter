@@ -2339,7 +2339,7 @@ MonoBehaviour:
   damage: 5
   attackRange: 3
   attackCounter: 0
-  attackCooldown: 2
+  attackCooldown: 2.2
   jumpDistance: 0
   jumpCooldown: 0
   readyToAttack: 1

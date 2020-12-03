@@ -119,16 +119,16 @@ MonoBehaviour:
   walkSpeed: 0
   runSpeed: 0
   gravityScale: 2
-  attackRange: 3
+  attackRange: 10
   agent: {fileID: 2484930889859078714}
   cone: {fileID: 2484930890584745365}
   animator: {fileID: 2484930889859078717}
   attackCounter: 0
-  attackCooldown: 2
-  damage: 5
+  attackCooldown: 1.5
+  damage: 30
   canAttack: 1
   readyToAttack: 1
-  chargeDamage: 20
+  chargeDamage: 70
   isCharging: 0
   chargeForce: 10
   immune: 1

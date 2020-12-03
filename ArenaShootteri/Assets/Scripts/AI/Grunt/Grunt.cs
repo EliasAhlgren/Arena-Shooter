@@ -120,15 +120,13 @@ public class Grunt : MonoBehaviour, IDamage
     public void Attack()
     {
         Debug.Log("Melee attack");
-        // Implement what enemy does when attack happens
-        // SetColliderState(true);
-        animator.Play("Punch");
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Punch"))
+
+        var distance = Vector3.Distance(transform.position, target.transform.position);
+        Debug.Log("Distance is " + distance + " compared to attack range " + attackRange);
+        if(distance < attackRange)
         {
-
+            target.GetComponent<PlayerCharacterControllerRigidBody>().TakeDamage(damage, false);
         }
-
-        // target.GetComponent<PlayerCharacterControllerRigidBody>().killPlayer();
 
     }
 

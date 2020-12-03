@@ -29,16 +29,15 @@ public class ImpAttackState : BaseState
 
     public override void OnStateEnter()
     {
-        SetAttackColliders(true);
         // Play attack animation
-        // << Attack Animation >> 
         imp.animator.Play("Hit");
+        
         imp.readyToAttack = false;
     }
 
     public override void OnStateExit()
     {
-        SetAttackColliders(false);
+
     }
 
     public override Type Tick()
@@ -56,19 +55,12 @@ public class ImpAttackState : BaseState
         imp.transform.rotation = Quaternion.LookRotation(newDirection);
 
         // Go back to chase state when hit animation is over
+        // We dont have idle animation so this looks a bit stupid
         if (!imp.animator.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
         {
             return typeof(ImpChaseState);
         }
 
         return null;
-    }
-
-    void SetAttackColliders(bool state)
-    {
-        foreach (Collider collider in attackColliders)
-        {
-            collider.enabled = state;
-        }
     }
 }
