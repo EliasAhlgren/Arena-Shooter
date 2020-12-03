@@ -18,6 +18,7 @@ TagManager:
   - GruntAttackHitbox
   - Imp
   - ImpAttackHitbox
+  - Point
   layers:
   - Default
   - TransparentFX
@@ -34,7 +35,7 @@ TagManager:
   - Secondary PP
   - Gun
   - 
-  - 
+  - Hands
   - 
   - 
   - 
