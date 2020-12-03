@@ -57,6 +57,7 @@ public class Imp : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
+
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
 
@@ -99,10 +100,10 @@ public class Imp : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        if(!readyToAttack)
+        if (!readyToAttack)
         {
             attackCounter += Time.deltaTime;
-            if(attackCounter >= attackCooldown)
+            if (attackCounter >= attackCooldown)
             {
                 readyToAttack = true;
                 canAttack = true;
@@ -122,7 +123,7 @@ public class Imp : MonoBehaviour, IDamage
             IHealth -= damage;
         }
 
-        if(IHealth <= 0)
+        if (IHealth <= 0)
         {
             StartCoroutine(Die());
         }
@@ -135,7 +136,7 @@ public class Imp : MonoBehaviour, IDamage
         animator.SetBool("Dead", true);
         SetColliderState(true);
 
-        
+
         agent.enabled = false;
         GetComponent<Imp_StateMachine>().enabled = false;
 
@@ -166,13 +167,14 @@ public class Imp : MonoBehaviour, IDamage
         Collider[] colliders = GetComponentsInChildren<Collider>();
 
         foreach (Collider collider in colliders)
-        { 
+        {
             if (!collider.name.Equals("Identifier"))
             {
                 collider.enabled = state;
             }
         }
     }
+
 
     public void SetLayerRecursively(GameObject obj, int newLayer)
     {

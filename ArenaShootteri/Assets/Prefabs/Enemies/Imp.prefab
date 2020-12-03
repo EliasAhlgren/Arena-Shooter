@@ -2057,7 +2057,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 7728295179221884046, guid: 2934ce605f2664744ba26ebbb79d71ef, type: 3}
+  - {fileID: 2100000, guid: 1f68f0b8f543b5f48af05537c47fdc43, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2332,6 +2332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2628e98b3b40bc459ab3e67d9ace6e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  immune: 1
   canAttack: 1
   walkSpeedBase: 5
   speed: 5
@@ -2344,6 +2345,7 @@ MonoBehaviour:
   readyToAttack: 1
   agent: {fileID: 8931074901600759019}
   animator: {fileID: 8931074901600759014}
+  dissolveShader: {fileID: -6465566751694194690, guid: 621c252326e75b045839a72a828d63c1, type: 3}
 --- !u!1 &8696522347408542988
 GameObject:
   m_ObjectHideFlags: 0

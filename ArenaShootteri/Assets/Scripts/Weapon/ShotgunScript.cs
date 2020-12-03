@@ -41,6 +41,7 @@ public class ShotgunScript : MonoBehaviour
         yield return new WaitForSeconds(3f);
         //
         //Haulikon lataus ääni tähän
+        SoundManager.PlaySound("ShotGunReload");
         //
         _canShoot = true;
     }
@@ -53,8 +54,9 @@ public class ShotgunScript : MonoBehaviour
             vfx.Play();
             //
             // Haulikon laukaus ääni tähän
+            SoundManager.PlaySound("ShotGunShoot");
             //
-            
+
             StartCoroutine(shooty());
             foreach (var VARIABLE in collidingObjects)
             {

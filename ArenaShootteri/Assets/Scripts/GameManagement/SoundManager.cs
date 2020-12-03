@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
-    public static AudioClip PLAYERHIT, ENEMYHIT, MenuClick, FootStep, Oof, Shoot, Reload, Empty, GateOpen, GateClose;
+    public static AudioClip PLAYERHIT, ENEMYHIT, MenuClick, FootStep, Oof, Shoot, Reload, Empty, RocketShot, GateOpen, GrenadeReload, GateClose, ShotGunShoot, GrenadeShoot, ShotGunReload;
 
     static AudioSource audioSrc;
     public AudioMixer audioMixer;
@@ -23,6 +23,11 @@ public class SoundManager : MonoBehaviour
         Empty = Resources.Load<AudioClip>("emptymag");
         GateOpen = Resources.Load<AudioClip>("GATE_Metal_Open_02_Dark_Short_stereo");
         GateClose = Resources.Load<AudioClip>("GATE_Metal_Close_02_Dark_stereo");
+        ShotGunShoot = Resources.Load<AudioClip>("PIT-SG-SHOT");
+        ShotGunReload = Resources.Load<AudioClip>("PIT-SG-RELOAD");
+        GrenadeShoot = Resources.Load<AudioClip>("GrenadeShoot");
+        GrenadeReload = Resources.Load<AudioClip>("PIT-SG-RELOAD");
+        RocketShot = Resources.Load<AudioClip>("rocketShort");
 
         audioSrc = GetComponent<AudioSource>();
         audioMixer.SetFloat("Sound", Mathf.Log10(PlayerPrefs.GetFloat("Sound")) * 20);
@@ -39,6 +44,36 @@ public class SoundManager : MonoBehaviour
     {
         switch (clip)
         {
+            case "RocketShot":
+                audioSrc.Stop();
+                audioSrc.loop = false;
+                audioSrc.clip = RocketShot;
+                audioSrc.Play();
+                break;
+            case "ShotGunShoot":
+                audioSrc.Stop();
+                audioSrc.loop = false;
+                audioSrc.clip = ShotGunShoot;
+                audioSrc.Play();
+                break;
+            case "ShotGunReload":
+                audioSrc.Stop();
+                audioSrc.loop = false;
+                audioSrc.clip = ShotGunReload;
+                audioSrc.Play();
+                break;
+            case "GrenadeShoot":
+                audioSrc.Stop();
+                audioSrc.loop = false;
+                audioSrc.clip = GrenadeShoot;
+                audioSrc.Play();
+                break;
+            case "GrenadeReload":
+                audioSrc.Stop();
+                audioSrc.loop = false;
+                audioSrc.clip = GrenadeReload;
+                audioSrc.Play();
+                break;
             case "GateOpen":
                 audioSrc.Stop();
                 audioSrc.loop = false;

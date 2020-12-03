@@ -254,15 +254,19 @@ public class LentoSaatana : MonoBehaviour, IDamage
             yield return new WaitForSeconds(0.2f);
             spawnIndex = !spawnIndex;
             Instantiate(missile, spawns[System.Convert.ToInt32(spawnIndex)].position, Quaternion.identity);
+            SoundManager.PlaySound("RocketShot");
             yield return new WaitForSeconds(0.2f);
             spawnIndex = !spawnIndex; 
             Instantiate(missile, spawns[System.Convert.ToInt32(spawnIndex)].position, Quaternion.identity);
+            SoundManager.PlaySound("RocketShot");
             yield return new WaitForSeconds(0.2f);
             spawnIndex = !spawnIndex;
             Instantiate(missile, spawns[System.Convert.ToInt32(spawnIndex)].position, Quaternion.identity);
+            SoundManager.PlaySound("RocketShot");
             yield return new WaitForSeconds(0.2f);
             spawnIndex = !spawnIndex;
             Instantiate(missile, spawns[System.Convert.ToInt32(spawnIndex)].position, Quaternion.identity);
+            SoundManager.PlaySound("RocketShot");
             _animator.Play("Idle");
             state = State.Searching;
         }

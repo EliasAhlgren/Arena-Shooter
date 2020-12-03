@@ -22,9 +22,10 @@ public class GrenadeLauncher : MonoBehaviour
     {
         canFire = false;
         yield return new  WaitForSeconds(1f);
-       //
-       // Kranuheittimen lataus ääni tähän
-       //
+        //
+        // Kranuheittimen lataus ääni tähän
+        SoundManager.PlaySound("GrenadeReload");
+        //
         canFire = true;
     }
     
@@ -35,6 +36,7 @@ public class GrenadeLauncher : MonoBehaviour
         {
             //
             // Kranaatinheittimen ääni tähän
+            SoundManager.PlaySound("GrenadeShoot");
             //
             grenadesLeft--;
             var _grenade = Instantiate(grenadePrefab, transform.position, Quaternion.identity);
