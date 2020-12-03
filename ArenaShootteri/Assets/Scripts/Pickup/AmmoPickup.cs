@@ -22,8 +22,8 @@ public class AmmoPickup : Pickup
         {
             //[SOUND] ammo pickup sound (pickup sound?) (One Shot)
             if (!onCooldown) { 
-                SoundManager.PlaySound("AmmoPickup");
                 StartCoroutine(Cooldown());
+                SoundManager.PlaySound("AmmoPickup");
             }
         if (ammoType == AmmoType.rifle)
             {
@@ -77,7 +77,7 @@ public class AmmoPickup : Pickup
         // Start cooldown
         onCooldown = true;
         // Wait for time you want
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(2.0f);
         // Stop cooldown
         onCooldown = false;
         //Debug.Log("Cooldown Ended");
