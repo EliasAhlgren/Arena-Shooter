@@ -23,5 +23,10 @@ public class SpitController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (collision.transform.CompareTag("Player"))
+        {
+            collision.transform.root.GetComponent<PlayerCharacterControllerRigidBody>().TakeDamage(30, true);
+        }
     }
 }

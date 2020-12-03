@@ -15,7 +15,7 @@ public class LentoVipeltaja : MonoBehaviour, IDamage
     // IDamage variable
     public float IHealth { get; set; } = 10f;
 
-    public float damage = 1;
+    public float damage = 5f;
 
     public Rigidbody rb;
 
