@@ -13,7 +13,7 @@ public class LentoVipeltaja : MonoBehaviour, IDamage
     public GameObject target { get; private set; }
 
     // IDamage variable
-    public float IHealth { get; set; } = 30f;
+    public float IHealth { get; set; } = 10f;
 
     public float damage = 1;
 
@@ -49,7 +49,6 @@ public class LentoVipeltaja : MonoBehaviour, IDamage
 
         agent.SetDestination(target.transform.position);
 
-        Debug.Log("LentoVipeltaja is awake");
     }
 
     private void InitStateMachine()

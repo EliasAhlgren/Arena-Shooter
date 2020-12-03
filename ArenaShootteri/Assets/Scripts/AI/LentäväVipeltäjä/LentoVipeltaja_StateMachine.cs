@@ -29,7 +29,6 @@ public class LentoVipeltaja_StateMachine : MonoBehaviour
 
     public void SwitchToState(Type nextState)
     {
-        // Debug.Log("State changed to " + currentState);
         currentState.OnStateExit();
         currentState = _availableStates[nextState];
         currentState.OnStateEnter();

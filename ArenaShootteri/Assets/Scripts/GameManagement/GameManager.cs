@@ -22,9 +22,12 @@ public class GameManager : MonoBehaviour
     public static bool waveEnd = false;
     public static bool waveStart = true;
 
+    private WaveIndicator waveIndicator;
+
     // Start is called before the first frame update
     void Start()
     {
+        waveIndicator = FindObjectOfType<WaveIndicator>();
         player = GameObject.FindGameObjectWithTag("Player");
         //waveManager = UnityEngine.GameObje<ct.FindGameObjectWithTag("GameManagement").GetComponent<WaveManager>();
     }
@@ -61,7 +64,9 @@ public class GameManager : MonoBehaviour
         if (waveStart == true && waveEnd == false) // aloittaa waven, jos waveStart boolean vaihdetaan arvoon "true"
         {
             wave += 1;
+
             checkBox.enabled = false;
+            waveIndicator.UpdateWaveIndicator(wave);
             Debug.Log("Käynnistä uusi wave");
             EnemySpawner.spawnWave = true; // käynnistää EnemySpawner scriptin
             EnemySpawner.wave = wave;
@@ -71,6 +76,7 @@ public class GameManager : MonoBehaviour
 
         if (waveEnd == true)
         {
+            waveIndicator.WaveEnd();
             checkBox.enabled = true;
         }
     }

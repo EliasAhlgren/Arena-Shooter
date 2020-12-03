@@ -104,7 +104,7 @@ public class PerkTreeReader : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Cannot load game data!");
+            //Debug.LogError("Cannot load game data!");
         }
     }
 
@@ -222,7 +222,7 @@ public class PerkTreeReader : MonoBehaviour
                         {
                             if (_perkInspecedActive.unlocked)
                             {
-                                Debug.Log("active perk unlocked");
+                                //Debug.Log("active perk unlocked");
                                 canUnlock = false;
                                 break;
                             }

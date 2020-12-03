@@ -36,7 +36,7 @@ public class PickupSpawner : MonoBehaviour
     private IEnumerator spawner;
 
     public bool spawningPaused = true;
-    bool spawningStarted = false;
+    public bool spawningStarted = false;
 
     public int perkLevel = 0;
 

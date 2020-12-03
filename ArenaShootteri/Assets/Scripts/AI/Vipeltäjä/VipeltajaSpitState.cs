@@ -72,7 +72,7 @@ public class VipeltajaSpitState : BaseState
                 // First spit
                 if (ballsSpat == 0)
                 {
-                    Debug.Log("Spit");
+
                     vipeltaja.SpawnSpit();
                     ballsSpat++;
                     vipeltaja.agent.ResetPath();
@@ -83,7 +83,6 @@ public class VipeltajaSpitState : BaseState
 
                 // Track distance from start position. 
                 distanceCounter = Vector3.Distance(startPosition, vipeltaja.transform.position);
-                Debug.Log("Distance is " + distanceCounter + " Start position was: " + startPosition + " Current position is: " + vipeltaja.transform.position);
             }
 
             // Spit next ball when distance is bigger than distanceBetweenSpits.
@@ -100,7 +99,6 @@ public class VipeltajaSpitState : BaseState
             }
             
             // Wait for spit animation to end and proceed back to chase state
-
             if (ballsSpat == 2)
             {
                 lastSpitCounter += Time.deltaTime;

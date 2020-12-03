@@ -15,7 +15,7 @@ public class HealthPickup : Pickup
 
 
                 playerScript.Heal(healthRecovered);
-                Debug.Log("healed " + player.name + " for "+ healthRecovered +" hp");
+                //Debug.Log("healed " + player.name + " for "+ healthRecovered +" hp");
 
                 DeSpawn();           
                 
@@ -25,7 +25,7 @@ public class HealthPickup : Pickup
             {
                 //[SOUND] pickup failed sound (One Shot)
 
-                Debug.Log("health full");
+                //Debug.Log("health full");
             }
         }
     }

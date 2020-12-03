@@ -17,10 +17,20 @@ public class GruntChargeState : BaseState
     {
         grunt = _grunt;
 
-        chargeCollider = grunt.transform.root.Find("ChargeCollider").GetComponent<Collider>();
-        if(chargeCollider != null) {
-            Debug.Log("Collider found " + chargeCollider);
+        if (grunt.transform.root.Find("ChargeCollider") == null)
+        {
+            GameObject go = new GameObject("ChargeCollider");
+            go.transform.SetParent(grunt.transform);
+
         }
+        chargeCollider = grunt.transform.root.Find("ChargeCollider").GetComponent<Collider>();
+        if (chargeCollider == null)
+        { 
+            SphereCollider sc = grunt.transform.root.Find("ChargeCollider").gameObject.AddComponent(typeof(SphereCollider)) as SphereCollider;
+            sc.radius = 1.2f;
+            chargeCollider = sc;    
+        }
+
         chargeCollider.enabled = false;
     }
 
@@ -66,8 +76,7 @@ public class GruntChargeState : BaseState
 
         // Return back chase state when grunt has traveled enough distance
         if (distanceTravelled >= grunt.attackRange + 10)
-        {
-            Debug.Log("Charge done");
+        { 
             return typeof(GruntChaseState);
         }
        
