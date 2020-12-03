@@ -151,12 +151,11 @@ MonoBehaviour:
   - {fileID: 3959384613559169799, guid: 182efe6befda9f84c8e3dda887855f22, type: 3}
   - {fileID: 8099999496614974380, guid: b335af58b8e894343aa137e03b441e7a, type: 3}
   - {fileID: 433458074956896913, guid: 6bd88485b04f8f245b7bcb75be32c338, type: 3}
-  healthRate: 25
+  healthRate: 50
   shogunRate: 20
-  grenadeRate: 10
+  grenadeRate: 1
   spawnTimer: 5
   spawningPaused: 0
-  spawningStarted: 0
   perkLevel: 0
 --- !u!1001 &3288626626979923099
 PrefabInstance:

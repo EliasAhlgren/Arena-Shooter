@@ -22,7 +22,7 @@ public class NewMods : MonoBehaviour
     {
         modSelections = FindObjectsOfType<ModSelection>();
 
-        if (gameObject.GetComponent<GameManager>().wave == 5)
+        if (gameObject.GetComponent<GameManager>().wave == 10)
         {
             modPool.AddRange(level1);
         }
