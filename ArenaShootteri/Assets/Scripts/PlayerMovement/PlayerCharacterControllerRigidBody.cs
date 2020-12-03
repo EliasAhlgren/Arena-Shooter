@@ -420,10 +420,12 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     {
         if (var)
         {
+            Debug.Log("Controls enabled");
             playerControl = true;
         }
         else
         {
+            Debug.Log("Control Disabled");
             playerControl = false;
         }
     }
@@ -545,7 +547,6 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
         {
             Debug.Log("Charge hit" + collision.transform.name);
             TakeDamage(collision.transform.root.GetComponent<Grunt>().chargeDamage, false);
-
         }
     }
 

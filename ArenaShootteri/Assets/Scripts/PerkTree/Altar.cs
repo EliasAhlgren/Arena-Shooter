@@ -10,12 +10,12 @@ public class Altar : MonoBehaviour
     Vector3 position;
 
     Camera cam;
-    GameObject player;
-
+    public GameObject player;
+    public PlayerCharacterControllerRigidBody playerRB;
     GameObject playerCanvas;
     public GameObject perkCanvas;
     public GameObject tooltip;
-
+    
     Text text;
 
     bool isText = false;
@@ -26,7 +26,8 @@ public class Altar : MonoBehaviour
         cam = Camera.main;
         player = GameObject.FindWithTag("Player");
         playerCanvas = player.transform.Find("PlayerCanvas").gameObject;
-
+        playerRB = player.GetComponent<PlayerCharacterControllerRigidBody>();
+        Debug.Log(playerRB);
         text = playerCanvas.GetComponentInChildren<Text>();
 
         position = transform.position;
@@ -57,24 +58,23 @@ public class Altar : MonoBehaviour
                     isText = false;
                 }
                 
-                if (Input.GetKeyDown(KeyCode.E) || isAltarActive && Input.GetKeyDown(KeyCode.Escape) || isAltarActive && Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E) || WorkBench.isModding && Input.GetKeyDown(KeyCode.Escape) || !WorkBench.isModding && Input.GetKeyDown(KeyCode.E))
                 {
-                    if (!isAltarActive)
-                    {
-                        //[SOUND] perk altar activation sound (One Shot)
 
+                    if (!WorkBench.isModding)
+                    {
+                        WorkBench.isModding = true;
+                        //[SOUND] perk altar activation sound (One Shot)
                         Cursor.lockState = CursorLockMode.Confined;
-                        player.GetComponent<PlayerCharacterControllerRigidBody>().PlayerControl(false);
                         perkCanvas.SetActive(true);
                         isAltarActive = true;
                         //Debug.Log("Activate Altar");
                     }
                     else
                     {
+                        WorkBench.isModding = false;
                         //[SOUND] perk altar deactivation sound (One Shot)
-
                         Cursor.lockState = CursorLockMode.Locked;
-                        player.GetComponent<PlayerCharacterControllerRigidBody>().PlayerControl(true);
                         perkCanvas.SetActive(false);
                         isAltarActive = false;
 

@@ -11,7 +11,7 @@ public class WorkBench : MonoBehaviour
 
     private GameObject player;
     
-    public bool isModding;
+    public static bool isModding;
 
     public List<GameObject> collidingObjects;
 

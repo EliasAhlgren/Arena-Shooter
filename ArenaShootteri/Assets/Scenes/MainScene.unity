@@ -1152,6 +1152,17 @@ PrefabInstance:
       objectReference: {fileID: 379804846}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f389ad5d97981d648b2c0f05b584b13d, type: 3}
+--- !u!114 &1026236104 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5715924896424062306, guid: 603b90250a0fbda4bab83a5bfb825f4e, type: 3}
+  m_PrefabInstance: {fileID: 757172496}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f145f98ca6c428aab663240c8b5301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1037727277 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4383131419312325940, guid: 603b90250a0fbda4bab83a5bfb825f4e, type: 3}
@@ -2090,6 +2101,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6415226458168174776, guid: 5dba137988eabef4495b9cee7d6612b2, type: 3}
+      propertyPath: _WeaponRotationScript
+      value: 
+      objectReference: {fileID: 1026236104}
     - target: {fileID: 6415226458168174777, guid: 5dba137988eabef4495b9cee7d6612b2, type: 3}
       propertyPath: m_Name
       value: PerkAltar
