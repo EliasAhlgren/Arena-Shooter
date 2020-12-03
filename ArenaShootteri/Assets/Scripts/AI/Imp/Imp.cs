@@ -91,7 +91,6 @@ public class Imp : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        animator.SetFloat("velocity", agent.velocity.magnitude / agent.speed);
         if (!readyToAttack)
         {
             attackCounter += Time.deltaTime;
