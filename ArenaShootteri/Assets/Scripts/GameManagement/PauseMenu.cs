@@ -77,6 +77,8 @@ public class PauseMenu : MonoBehaviour
         exitPanel.SetActive(false);
     }
 
+
+
     public void PlayClick()
     {
         SoundManager.PlaySound("MenuClick");
