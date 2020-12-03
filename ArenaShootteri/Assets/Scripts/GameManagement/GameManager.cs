@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject pauseMenu;
     public GameObject optionsMenu;
+    public GameObject controlsPanel;
     public GameObject exitMenu;
     public GameObject pauseCanvas;
     public bool acceptPlayerInput = true;
@@ -59,6 +60,7 @@ public class GameManager : MonoBehaviour
                     paused = false;
                     pauseCanvas.SetActive(false);
                     pauseMenu.SetActive(false);
+                    controlsPanel.SetActive(false);
                     optionsMenu.SetActive(false);
                     exitMenu.SetActive(false);
                     Time.timeScale = 1;
