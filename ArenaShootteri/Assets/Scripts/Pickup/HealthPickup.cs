@@ -17,8 +17,8 @@ public class HealthPickup : Pickup
                 //[SOUND] health pickup sound (pickup sound?) (One Shot)
                 if (!onCooldown)
                 {
-                    SoundManager.PlaySound("HpPickup");
                     StartCoroutine(Cooldown());
+                    SoundManager.PlaySound("HpPickup");
                 }
                 playerScript.Heal(healthRecovered);
                 //Debug.Log("healed " + player.name + " for "+ healthRecovered +" hp");
@@ -41,7 +41,7 @@ public class HealthPickup : Pickup
         // Start cooldown
         onCooldown = true;
         // Wait for time you want
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(2.0f);
         // Stop cooldown
         onCooldown = false;
         //Debug.Log("Cooldown Ended");
