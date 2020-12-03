@@ -931,10 +931,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: vittuvalotjamuutvittu
       objectReference: {fileID: 0}
-    - target: {fileID: 8128350341857195618, guid: f389ad5d97981d648b2c0f05b584b13d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8231113126657519066, guid: f389ad5d97981d648b2c0f05b584b13d, type: 3}
       propertyPath: text
       value: 
