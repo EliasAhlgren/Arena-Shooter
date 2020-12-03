@@ -22,15 +22,15 @@ public class NewMods : MonoBehaviour
     {
         modSelections = FindObjectsOfType<ModSelection>();
 
-        if (gameObject.GetComponent<GameManager>().wave == 10)
+        if (gameObject.GetComponent<GameManager>().wave == 5)
         {
             modPool.AddRange(level1);
         }
-        if (gameObject.GetComponent<GameManager>().wave == 15)
+        if (gameObject.GetComponent<GameManager>().wave == 10)
         {
             modPool.AddRange(level2);
         }
-        if (gameObject.GetComponent<GameManager>().wave == 20)
+        if (gameObject.GetComponent<GameManager>().wave == 15)
         {
             modPool.AddRange(level3);
         }

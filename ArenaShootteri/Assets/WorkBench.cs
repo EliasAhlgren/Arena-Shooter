@@ -5,46 +5,114 @@ using UnityEngine.UI;
 
 public class WorkBench : MonoBehaviour
 {
-    GunAttributes gunAttributes;
-    Transform player;
+    public GunAttributes gunAttributes;
 
-    public Text text;
-    
     public bool isModding;
     
-    
+    public float verticalFrequency = 1f;
+    public float vertical = 1f;
+    Vector3 position;
+
+    Camera cam;
+    GameObject player;
+
+    GameObject playerCanvas;
+    public GameObject perkCanvas;
+    public GameObject tooltip;
+
+    Text text;
+
+    bool isText = false;
     // Start is called before the first frame update
     void Start()
     {
-        gunAttributes = GameObject.Find("GUN2 1").GetComponent<GunAttributes>();
-        player = GameObject.FindWithTag("Player").transform;
+        cam = Camera.main;
+        player = GameObject.FindWithTag("Player");
+        playerCanvas = player.transform.Find("PlayerCanvas").gameObject;
+
+        text = playerCanvas.GetComponentInChildren<Text>();
+
+        position = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float dist = Vector3.Distance(GetComponent<Collider>().bounds.center, transform.position);
         
-        if (dist < 0.8f)
+
+        //Debug.Log(cameraDot);
+
+        if (Vector3.Distance(player.transform.position, position) < 4)
         {
-            if (!isModding)
+            float cameraDot = Vector3.Dot(cam.transform.forward, Vector3.Normalize(cam.transform.position - position));
+
+            if (cameraDot < -.8)
             {
-                text.enabled = true;
+                if (!isText && !isModding)
+                {
+                    text.text = "wörk";
+                    isText = true;
+                }
+                else if (isText && isModding)
+                {
+                    text.text = "";
+                    isText = false;
+                }
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    gunAttributes.ChangeUI();
+                }
+                
+                /*
+                if (Input.GetKeyDown(KeyCode.E) || isModding && Input.GetKeyDown(KeyCode.Escape) || isModding && Input.GetKeyDown(KeyCode.E))
+                {
+                    if (!isModding)
+                    {
+                        //[SOUND] perk altar activation sound (One Shot)
+
+                        Cursor.lockState = CursorLockMode.Confined;
+                        player.GetComponent<PlayerCharacterControllerRigidBody>().PlayerControl(false);
+                        gunAttributes.ChangeUI();
+                        isModding = true;
+                        //Debug.Log("Activate Altar");
+                    }
+                    else
+                    {
+                        //[SOUND] perk altar deactivation sound (One Shot)
+
+                        Cursor.lockState = CursorLockMode.Locked;
+                        player.GetComponent<PlayerCharacterControllerRigidBody>().PlayerControl(true);
+                        gunAttributes.ChangeUI();
+                        isModding = false;
+
+                        //Debug.Log("Deactivate Altar");
+                    }
+
+                }
+                
+                */
             }
-            if (Input.GetKeyDown(KeyCode.E))
+            else
             {
-                gunAttributes.ChangeUI();
-                isModding = !isModding;
+                if (isText)
+                {
+                    text.text = "";
+                    isText = false;
+                }
+                
             }
+            
+            //canvas.SetActive(true);
         }
         else
         {
-            text.enabled = false;
-            if (isModding)
+            if (isText)
             {
-                gunAttributes.ChangeUI();
-                isModding = !isModding;
+                text.text = "";
+                isText = false;
             }
-        }        
+            //canvas.SetActive(false);
+        }
     }
 }
