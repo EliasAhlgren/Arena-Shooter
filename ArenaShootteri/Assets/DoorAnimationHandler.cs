@@ -24,11 +24,12 @@ public class DoorAnimationHandler : MonoBehaviour
     {
         if (GameManager.waveEnd == true)
         {
-            doorLight.color = green1;
+            doorLight.enabled = false;
         }
         else
         {
-            doorLight.color = red1;
+            doorLight.enabled = true;
+            // doorLight.color = red1;
         }
 
     }
