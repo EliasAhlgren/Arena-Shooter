@@ -31,7 +31,7 @@ public class ImpAttackState : BaseState
     {
         // Play attack animation
         imp.animator.Play("Hit");
-        
+        SoundManager.PlaySound("ImpHit");
         imp.readyToAttack = false;
     }
 

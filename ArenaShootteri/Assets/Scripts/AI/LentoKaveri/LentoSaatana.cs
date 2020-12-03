@@ -65,6 +65,8 @@ public class LentoSaatana : MonoBehaviour, IDamage
         
         public void Die()
         {
+            PerkTreeReader.Instance.AddPerkPoint(3);
+            player.GetComponent<PlayerCharacterControllerRigidBody>().AddRageKill();
             Instantiate(deathExplosion, transform.position, Quaternion.identity);
             state = State.DoNothing;
             Destroy(gameObject);

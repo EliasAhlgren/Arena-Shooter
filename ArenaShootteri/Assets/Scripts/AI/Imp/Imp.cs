@@ -133,7 +133,9 @@ public class Imp : MonoBehaviour, IDamage
 
     public IEnumerator Die()
     {
-
+        PerkTreeReader.Instance.AddPerkPoint(1);
+        target.GetComponent<PlayerCharacterControllerRigidBody>().AddRageKill();
+        SoundManager.PlaySound("ImpDie");
         animator.SetBool("Dead", true);
         SetColliderState(true);
 

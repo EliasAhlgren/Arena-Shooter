@@ -93,6 +93,9 @@ public class LentoVipeltaja : MonoBehaviour, IDamage
 
     public IEnumerator Die()
     {
+        PerkTreeReader.Instance.AddPerkPoint(1);
+        target.GetComponent<PlayerCharacterControllerRigidBody>().AddRageKill();
+        SoundManager.PlaySound("vipDie");
         // Disable rigidbody and enable Colliders for each body part
         // for rigidbody death "animation"
         SetRigidbodyState(false);

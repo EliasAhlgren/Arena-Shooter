@@ -167,6 +167,9 @@ public class Grunt : MonoBehaviour, IDamage
     /// </summary>
     public IEnumerator Die()
     {
+        PerkTreeReader.Instance.AddPerkPoint(5);
+        target.GetComponent<PlayerCharacterControllerRigidBody>().AddRageKill();
+
         // Disable rigidbody and enable Colliders for each body part
         // for rigidbody death "animation"
         SetRigidbodyState(false);
