@@ -5501,6 +5501,7 @@ MonoBehaviour:
   wave: 0
   level: 1
   shadowOrbs: 0
+  textChanged: 0
   checkBox: {fileID: 0}
 --- !u!114 &8586498638390084397
 MonoBehaviour:
@@ -5557,11 +5558,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modPool: []
   level1:
-  - {fileID: 11400000, guid: 36b944f3a30004fecbf41dc3a21ec7e5, type: 2}
+  - {fileID: 11400000, guid: 1100fe54d173141c296cc42ac038eac5, type: 2}
   - {fileID: 11400000, guid: 0c2e7f30e4dd84c8698c2ed61dc526cf, type: 2}
   - {fileID: 11400000, guid: 27d0446e83ae34c56a224ec10a9194e2, type: 2}
   - {fileID: 11400000, guid: 1896a1ba76c324a84966311e378f6612, type: 2}
-  - {fileID: 11400000, guid: 659cf222df38749a6b7c073331fa9b28, type: 2}
   level2:
   - {fileID: 11400000, guid: 8e8f85309ce1043eb960a48bbcbb68aa, type: 2}
   - {fileID: 11400000, guid: 03653e36d8cefb44db81d2c27ad207e2, type: 2}

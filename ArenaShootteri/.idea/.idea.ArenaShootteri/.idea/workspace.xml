@@ -58,7 +58,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/NewSurfaceShader.shader" />
         <option value="$USER_HOME$/ThePhantomPayne/Assets/Scenes/testi.shader" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterController.cs" />
         <option value="$USER_HOME$/SmoothingTest/Assets/SimpleMovement.cs" />
@@ -109,6 +108,7 @@
         <option value="$PROJECT_DIR$/Assets/WorkBench.cs" />
         <option value="$PROJECT_DIR$/Assets/DoorAnimationHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/NewMods.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameManagement/SoundManager.cs" />
       </list>
     </option>
   </component>
