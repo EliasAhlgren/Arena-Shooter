@@ -42,14 +42,7 @@ public class WorkBench : MonoBehaviour
 
     private void Update()
     {
-        if (isModding)
-        {
-            player.GetComponent<PlayerCharacterControllerRigidBody>().playerControl = false;
-        }
-        else
-        {
-            player.GetComponent<PlayerCharacterControllerRigidBody>().playerControl = true;
-        }
+
         
             foreach (var VARIABLE in collidingObjects)
             {
@@ -58,6 +51,15 @@ public class WorkBench : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         isModding = !isModding;
+                        if (isModding)
+                        {
+                            player.GetComponent<PlayerCharacterControllerRigidBody>().playerControl = false;
+                        }
+                        else
+                        {
+                            player.GetComponent<PlayerCharacterControllerRigidBody>().playerControl = true;
+                        }
+
                         gunAttributes.ChangeUI();
                         text.text = "";
                     }

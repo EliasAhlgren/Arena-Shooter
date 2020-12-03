@@ -58,26 +58,26 @@ public class Altar : MonoBehaviour
                     isText = false;
                 }
                 
-                if (Input.GetKeyDown(KeyCode.E) || WorkBench.isModding && Input.GetKeyDown(KeyCode.Escape) || !WorkBench.isModding && Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E) || isAltarActive && Input.GetKeyDown(KeyCode.Escape) || !isAltarActive && Input.GetKeyDown(KeyCode.E))
                 {
 
-                    if (!WorkBench.isModding)
+                    if (!isAltarActive)
                     {
-                        WorkBench.isModding = true;
                         //[SOUND] perk altar activation sound (One Shot)
                         Cursor.lockState = CursorLockMode.Confined;
+                        playerRB.playerControl = false;
                         perkCanvas.SetActive(true);
                         isAltarActive = true;
                         //Debug.Log("Activate Altar");
                     }
                     else
                     {
-                        WorkBench.isModding = false;
+
                         //[SOUND] perk altar deactivation sound (One Shot)
                         Cursor.lockState = CursorLockMode.Locked;
                         perkCanvas.SetActive(false);
                         isAltarActive = false;
-
+                        playerRB.playerControl = true;
                         tooltip.SetActive(false);
                         //Debug.Log("Deactivate Altar");
                     }
