@@ -95,20 +95,20 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManagement/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/NewMods.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/ShotgunScript.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/GrenadeLauncher.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Shooting.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/WeaponRotationScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Aiming.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/CreateNodes.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterControllerRigidBody.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/GrenadeScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Recoil.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/LentoSaatana.cs" />
         <option value="$PROJECT_DIR$/Assets/DoorAnimationHandler.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/GunAttributes.cs" />
         <option value="$PROJECT_DIR$/Assets/missileScript.cs" />
         <option value="$PROJECT_DIR$/Assets/WorkBench.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/LentoSaatana.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Shooting.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/GunAttributes.cs" />
       </list>
     </option>
   </component>
@@ -207,7 +207,7 @@
       <workItem from="1606736654730" duration="11501000" />
       <workItem from="1606826050879" duration="7956000" />
       <workItem from="1606900852493" duration="3374000" />
-      <workItem from="1606986606253" duration="602000" />
+      <workItem from="1606986606253" duration="2083000" />
     </task>
     <servers />
   </component>

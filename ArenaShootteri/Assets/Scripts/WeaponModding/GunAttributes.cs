@@ -112,7 +112,7 @@ public class GunAttributes : MonoBehaviour
         
         foreach (var _stockSelection in GetComponentsInChildren<StockSelection>())
         {
-            Debug.Log("initialising with stats");
+            //debug.Log("initialising with stats");
             _stockSelection.OnModChosen += UpdateStats;
            
             if (_stockSelection.currenModStats)
@@ -177,7 +177,7 @@ public class GunAttributes : MonoBehaviour
         totalRecoil -= Mathf.RoundToInt(totalStats.y);
         totalDamage -= Mathf.RoundToInt(totalStats.z);
         
-        Debug.Log("Updating Stats");
+        //debug.Log("Updating Stats");
         
         foreach (var _modSelection in GetComponentsInChildren<ModSelection>())
         {
@@ -216,7 +216,7 @@ public class GunAttributes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(Time.timeScale);
+        ////debug.Log(Time.timeScale);
         
         //Recoil();
 
