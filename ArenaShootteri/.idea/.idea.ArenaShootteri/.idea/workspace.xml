@@ -90,7 +90,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManagement/PauseMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/DIsableRail.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/AlienScope.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameManagement/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/NewMods.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/ShotgunScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/GrenadeLauncher.cs" />
@@ -102,13 +101,14 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Recoil.cs" />
         <option value="$PROJECT_DIR$/Assets/DoorAnimationHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/missileScript.cs" />
-        <option value="$PROJECT_DIR$/Assets/WorkBench.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Shooting.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/GunAttributes.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI/Vipeltäjä/Vipeltaja.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentäväVipeltäjä/LentoVipeltaja.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/LentoSaatana.cs" />
+        <option value="$PROJECT_DIR$/Assets/WorkBench.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameManagement/GameManager.cs" />
       </list>
     </option>
   </component>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class GameManager : MonoBehaviour
     public int level = 1;
     public int shadowOrbs; //mahdollisen perk systeemin pointsit
 
+    private bool textChanged;
+    
     public BoxCollider checkBox;
 
     public static bool waveEnd = false;
@@ -80,9 +83,22 @@ public class GameManager : MonoBehaviour
         {
             waveIndicator.WaveEnd();
             checkBox.enabled = true;
+            if (wave == 1 && textChanged)
+            {
+                StartCoroutine(armoryText());
+            }
+            
         }
     }
 
+    IEnumerator armoryText()
+    {
+        textChanged = true;
+        GameObject.Find("Notification (1)").GetComponent<Text>().text = "Find the armory to progress to next wave";
+        yield return new WaitForSeconds(3f);
+        GameObject.Find("Notification (1)").GetComponent<Text>().text = "";
+    }
+    
     public static void StartWave()
     {
         waveEnd = false;
