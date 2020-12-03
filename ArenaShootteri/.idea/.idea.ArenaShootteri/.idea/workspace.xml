@@ -58,7 +58,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/KeepRotation.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/NewSurfaceShader.shader" />
         <option value="$USER_HOME$/ThePhantomPayne/Assets/Scenes/testi.shader" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterController.cs" />
@@ -83,7 +82,6 @@
         <option value="$PROJECT_DIR$/Assets/Reload.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/StockSelection.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI/Vipeltäjä/VipeltajaEscapeState.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AI/Vipeltäjä/Vipeltaja.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/EnemyState.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/Search.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player Hands/HandPoser.cs" />
@@ -106,9 +104,11 @@
         <option value="$PROJECT_DIR$/Assets/missileScript.cs" />
         <option value="$PROJECT_DIR$/Assets/WorkBench.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/ModSelection.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/LentoSaatana.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Shooting.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/GunAttributes.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI/Vipeltäjä/Vipeltaja.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentäväVipeltäjä/LentoVipeltaja.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/LentoSaatana.cs" />
       </list>
     </option>
   </component>
@@ -305,11 +305,11 @@
       <screen x="0" y="23" width="1399" height="877" />
     </state>
     <state x="194" y="82" width="678" height="735" key="find.popup/0.23.1399.877@0.23.1399.877" timestamp="1600864016679" />
-    <state x="-1423" y="223" width="923" height="805" key="search.everywhere.popup" timestamp="1606905836546">
-      <screen x="-1920" y="0" width="1920" height="1040" />
+    <state x="497" y="223" width="923" height="805" key="search.everywhere.popup" timestamp="1606996706402">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1423" y="223" width="923" height="805" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606905836546" />
-    <state x="497" y="223" width="923" height="805" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606902228525" />
+    <state x="497" y="223" width="923" height="805" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606996706402" />
     <state x="361" y="211" width="672" height="678" key="search.everywhere.popup/0.23.1397.877@0.23.1397.877" timestamp="1603379384954" />
     <state x="362" y="211" width="672" height="678" key="search.everywhere.popup/0.23.1399.877@0.23.1399.877" timestamp="1606412983385" />
   </component>

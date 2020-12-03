@@ -182,6 +182,8 @@ public class Vipeltaja : MonoBehaviour, IDamage
     public IEnumerator Die()
     {
 
+        PerkTreeReader.Instance.AddPerkPoint(2);
+        target.GetComponent<PlayerCharacterControllerRigidBody>().AddRageKill();
 
         // Disable rigidbody and enable Colliders for each body part
         // for rigidbody death "animation"
