@@ -73,6 +73,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 1071201868}
   doorLight: {fileID: 0}
+  red1: {r: 0, g: 0, b: 0, a: 0}
+  green1: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &194960956
 GameObject:
   m_ObjectHideFlags: 0
@@ -6071,7 +6073,7 @@ GameObject:
   - component: {fileID: 2973606015071009790}
   - component: {fileID: 8288503921419008880}
   m_Layer: 0
-  m_Name: Point Light (7)
+  m_Name: yleisvalo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
