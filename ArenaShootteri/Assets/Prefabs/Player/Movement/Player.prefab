@@ -208,6 +208,7 @@ MonoBehaviour:
   damageAuraTime: 10
   theHolyLightRange: 10
   theHolyLightCooldown: 10
+  theHolyLightDamage: 10
   divineShieldCooldown: 10
   divineShieldTime: 10
   speedMod: 0.05
@@ -285,7 +286,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  availablePoints: 100
+  savePerks: 0
+  availablePoints: 0
 --- !u!1001 &161460548027401576
 PrefabInstance:
   m_ObjectHideFlags: 0

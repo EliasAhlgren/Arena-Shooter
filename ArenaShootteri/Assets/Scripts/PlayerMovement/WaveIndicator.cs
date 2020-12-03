@@ -10,8 +10,6 @@ public class WaveIndicator : MonoBehaviour
 
     public void UpdateWaveIndicator(int wave)
     {
-        wave -= 1;
-
         if (wave > 99)
         {
             waveImage.sprite = spriteArray[99];
