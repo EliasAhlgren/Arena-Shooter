@@ -24,7 +24,7 @@ public class HealthPickup : Pickup
             else
             {
                 //[SOUND] pickup failed sound (One Shot)
-
+                DeSpawn();
                 //Debug.Log("health full");
             }
         }
