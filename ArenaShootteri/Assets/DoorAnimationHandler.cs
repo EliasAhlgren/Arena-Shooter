@@ -9,6 +9,8 @@ public class DoorAnimationHandler : MonoBehaviour
     public Color red1, green1;
 
     private Collider oviCollider;
+
+    public bool hasChecked;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +40,13 @@ public class DoorAnimationHandler : MonoBehaviour
     {
         if(other.transform.CompareTag("Player"))
         {
-            GameObject.FindWithTag("GameManagement").GetComponent<NewMods>().CheckMods();
+            if (!hasChecked)
+            {
+                GameObject.FindWithTag("GameManagement").GetComponent<NewMods>().CheckMods();
+                hasChecked = true;
+            }
+            
+            
             anim.Play("OvenAvaus");
             SoundManager.PlaySound("GateOpen");
             oviCollider.enabled = false;
@@ -49,6 +57,7 @@ public class DoorAnimationHandler : MonoBehaviour
     {
         if(other.transform.CompareTag("Player"))
         {
+            hasChecked = false;
             anim.Play("OvenSulku");
             SoundManager.PlaySound("GateClose");
             oviCollider.enabled = true;

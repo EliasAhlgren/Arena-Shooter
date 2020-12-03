@@ -12,6 +12,7 @@
         <e p="ChargeTriggerContoller.cs" t="Include" />
         <e p="DIsableRail.cs" t="Include" />
         <e p="DoorAnimationHandler.cs" t="Include" />
+        <e p="DoorLightController.cs" t="Include" />
         <e p="HandSetter.cs" t="Include" />
         <e p="LaserScript.cs" t="Include" />
         <e p="Lava_Flowing_Shader" t="Include">
