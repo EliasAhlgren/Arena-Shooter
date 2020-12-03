@@ -1,79 +1,84 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class WorkBench : MonoBehaviour
 {
     public GunAttributes gunAttributes;
 
+    private GameObject player;
+    
     public bool isModding;
 
-    public float verticalFrequency = 1f;
-    public float vertical = 1f;
-    Vector3 position;
-
-    Camera cam;
-    GameObject player;
+    public List<GameObject> collidingObjects;
 
     public Text text;
 
-    bool isText = false;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        gunAttributes = GameObject.Find("GUN2 1").GetComponent<GunAttributes>();
+    public GameManager gameManager;
+    
+    void Start() {
+        collidingObjects = new List<GameObject>();
         player = GameObject.FindWithTag("Player");
-        cam = Camera.main;
-        player = GameObject.FindWithTag("Player");
-
-        
-
-        position = transform.position;
+        gameManager = GameObject.FindWithTag("GameManagement").GetComponent<GameManager>();
+    }
+     
+    void OnTriggerEnter(Collider collision) {
+        if (!collidingObjects.Contains(collision.gameObject))
+        {
+            collidingObjects.Add(collision.gameObject);
+        }
+    } 
+     
+    void OnTriggerExit(Collider collision) {
+        if (collidingObjects.Contains(collision.gameObject))
+        {
+            collidingObjects.Remove(collision.gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        float dist = Vector3.Distance(GetComponent<Collider>().bounds.center, transform.position);
-
-        if (dist < 0.8f)
-
-            //Debug.Log(cameraDot);
-
-            if (Vector3.Distance(player.transform.position, position) < 4)
+        if (isModding)
+        {
+            player.GetComponent<PlayerCharacterControllerRigidBody>().playerControl = false;
+        }
+        else
+        {
+            player.GetComponent<PlayerCharacterControllerRigidBody>().playerControl = true;
+        }
+        
+            foreach (var VARIABLE in collidingObjects)
             {
-
-                float cameraDot = Vector3.Dot(cam.transform.forward,
-                    Vector3.Normalize(cam.transform.position - position));
-
-                if (cameraDot < -.8)
+                if (VARIABLE == player)
                 {
-                    text.enabled = true;
-                    if (!isModding)
-                    {
-                        text.text = "wörk";
-                        isText = true;
-                    }
-                    else if (isModding)
-                    {
-                        text.text = "";
-                        isText = false;
-                    }
-
                     if (Input.GetKeyDown(KeyCode.E))
                     {
+                        isModding = !isModding;
                         gunAttributes.ChangeUI();
+                        
                     }
 
-
+                    if (!isModding)
+                    {
+                         text.text = "E to interact";
+                    }
+                   
                 }
+                else 
+                {
+                    if (!gameManager.textChanged)
+                    {
+                        text.text = "";
+                    }
 
-
-                //canvas.SetActive(true);
+                    
+                    
+                }
             }
-
+        
     }
 }
 

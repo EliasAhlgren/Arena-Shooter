@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public int level = 1;
     public int shadowOrbs; //mahdollisen perk systeemin pointsit
 
-    private bool textChanged;
+    public bool textChanged;
     
     public BoxCollider checkBox;
 
