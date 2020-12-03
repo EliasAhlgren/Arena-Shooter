@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1.8793687, g: 1.3028423, b: 1.0897758, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -340,17 +340,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bde4208525968449bd59b6fe4465189, type: 3}
---- !u!114 &379804846 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 379804846, guid: 603b90250a0fbda4bab83a5bfb825f4e, type: 3}
-  m_PrefabInstance: {fileID: 757172496}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &429449681
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1059,32 +1048,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: vittuvalotjamuutvittu
       objectReference: {fileID: 0}
-    - target: {fileID: 5324136733375977974, guid: f389ad5d97981d648b2c0f05b584b13d, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5324136733375977974, guid: f389ad5d97981d648b2c0f05b584b13d, type: 3}
-      propertyPath: m_Size.z
-      value: 1.5859908
-      objectReference: {fileID: 0}
-    - target: {fileID: 5324136733375977974, guid: f389ad5d97981d648b2c0f05b584b13d, type: 3}
-      propertyPath: m_Center.x
-      value: -0.0000037954765
-      objectReference: {fileID: 0}
-    - target: {fileID: 5324136733375977974, guid: f389ad5d97981d648b2c0f05b584b13d, type: 3}
-      propertyPath: m_Center.y
-      value: 0.42666396
-      objectReference: {fileID: 0}
-    - target: {fileID: 5324136733375977974, guid: f389ad5d97981d648b2c0f05b584b13d, type: 3}
-      propertyPath: m_Center.z
-      value: -0.3020488
-      objectReference: {fileID: 0}
-    - target: {fileID: 8231113126657519066, guid: f389ad5d97981d648b2c0f05b584b13d, type: 3}
-      propertyPath: text
-      value: 
-      objectReference: {fileID: 379804846}
-    m_RemovedComponents:
-    - {fileID: 5324136733375977974, guid: f389ad5d97981d648b2c0f05b584b13d, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f389ad5d97981d648b2c0f05b584b13d, type: 3}
 --- !u!1 &1075567288 stripped
 GameObject:
