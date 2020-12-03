@@ -353,6 +353,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pressurised
       objectReference: {fileID: 0}
+    - target: {fileID: 2990696634001112326, guid: 6a9bbd2acf3a3f6448af97a487627e7f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2993738164038243548, guid: 6a9bbd2acf3a3f6448af97a487627e7f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 125.15
@@ -622,6 +626,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2990696633026009566, guid: 10a499201184b8b4b8e9be9fa42e7820, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990696634410153378, guid: 10a499201184b8b4b8e9be9fa42e7820, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990696634787629437, guid: 10a499201184b8b4b8e9be9fa42e7820, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3735652361044706229, guid: 10a499201184b8b4b8e9be9fa42e7820, type: 3}
       propertyPath: m_Name
       value: level-26-11
