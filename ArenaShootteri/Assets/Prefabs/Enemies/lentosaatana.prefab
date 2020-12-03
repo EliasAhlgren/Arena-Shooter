@@ -2695,7 +2695,7 @@ MonoBehaviour:
   atPosition: 0
   canSee: 0
   state: 0
-  deathExplosion: {fileID: 1279528818407080142}
+  deathExplosion: {fileID: 6647285706134638300, guid: 66c8ab0e1dc11a846b78dba3577671df, type: 3}
   missile: {fileID: 8283934904321396898, guid: 0bce3701a81f0a64aa95e03459b23fd8, type: 3}
   spawns:
   - {fileID: 1872302568}
@@ -3443,11 +3443,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbec4f1976f8cfe4ab7206f18ee72fe9, type: 3}
---- !u!1 &1279528818407080142 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1279528816958023289, guid: cbec4f1976f8cfe4ab7206f18ee72fe9, type: 3}
-  m_PrefabInstance: {fileID: 1538205367}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8257404973324918656 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8257404971859605815, guid: cbec4f1976f8cfe4ab7206f18ee72fe9, type: 3}
