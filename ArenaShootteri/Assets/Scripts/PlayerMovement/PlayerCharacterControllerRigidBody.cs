@@ -611,7 +611,8 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                 movement.isCrouching = false;
                 isAlive = false;
                 playerControl = false;
-
+                Time.timeScale = 0;
+                Cursor.lockState = CursorLockMode.None;
                 deathCanvas.SetActive(true);
             }
 
