@@ -148,6 +148,8 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
     public GameObject groundSlamEffect;
     bool resurection = true;
 
+    public GameObject deathCanvas;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -609,6 +611,8 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
                 movement.isCrouching = false;
                 isAlive = false;
                 playerControl = false;
+
+                deathCanvas.SetActive(true);
             }
 
         }
