@@ -2336,7 +2336,7 @@ MonoBehaviour:
   canAttack: 1
   walkSpeedBase: 5
   speed: 5
-  damage: 5
+  damage: 10
   attackRange: 3
   attackCounter: 0
   attackCooldown: 2.2
