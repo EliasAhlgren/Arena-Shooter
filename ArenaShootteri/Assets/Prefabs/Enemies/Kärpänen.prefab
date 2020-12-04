@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1408328268402200644}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: persjalka_L_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4141291134948138595}
   - component: {fileID: 6087474354625315405}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: lentovip_siipi_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1378877568255290246}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Siipi_R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 699548508941607293}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: curve1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1838337896822578779}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: persjalka_R_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2228505945106938965}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: etutassu_L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,7 +246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6131668770264815919}
   - component: {fileID: 6847900986528413966}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: lentovip_perse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -332,7 +332,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2749689396995199596}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: persjalka_R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,7 +362,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1009059577062127447}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: etutassu_R_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -393,7 +393,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 631685401373708286}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: perse4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,7 +424,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 873945044196079771}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Siipi_L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -455,7 +455,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4369257901146242651}
   - component: {fileID: 7635501838995257593}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: lentovip_perspiikki
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -538,7 +538,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2669426621977723283}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: etutassu_R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -569,7 +569,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2147407981925410237}
   - component: {fileID: 3172789270839788199}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: lentovip_etujalka_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -662,7 +662,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2119457461846746086}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: perse3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -693,7 +693,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8158255605838675854}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: etutassu_L_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -724,7 +724,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6746819492222254629}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: takajalka_R_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -755,7 +755,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1595774482065981680}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: etujalka_L_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -786,7 +786,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6374624565269251709}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: lentovip_geo 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -830,7 +830,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1973876405242984653}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: takajalka_L_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -861,7 +861,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4915559430091240776}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: etujalka_R_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -892,7 +892,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 795585760275778173}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: takajalka_L_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -924,7 +924,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4736241183908083359}
   - component: {fileID: 1187895562055979615}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: lentovip_etujalka_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1017,7 +1017,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5814466040894814690}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: etutassu_R_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1049,7 +1049,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6409060080821720487}
   - component: {fileID: 4406975483271477857}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: lentovip_persjalka_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1146,7 +1146,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2266938562765424368}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: etujalka_L_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1177,7 +1177,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3573503216999159854}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: takajalka_L_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1209,7 +1209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6981458560608227682}
   - component: {fileID: 1635317437407373504}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: lentovip_takajalka_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1306,7 +1306,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7351428666622852126}
   - component: {fileID: 8421563612865342262}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: lentovip_body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1390,7 +1390,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7056539185971008262}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: etujalka_R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1420,7 +1420,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7490729985088946130}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: body_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1450,7 +1450,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2578574814784562259}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: etujalka_R_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1481,7 +1481,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3864596519076202288}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: persjalka_R_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1512,7 +1512,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4407111974449825205}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: persjalka_R_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1543,7 +1543,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6035548147656004152}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: etutassu_L_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1574,7 +1574,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6594304658681821519}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: persjalka_L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1604,7 +1604,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4791521343529484177}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: persjalka_L_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1635,7 +1635,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2146035762148268737}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Siipi_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1666,7 +1666,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4510263563304963038}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: body1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1710,7 +1710,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6615873705099918407}
   - component: {fileID: 3051912529644783321}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: lentovip_silmat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1794,7 +1794,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5335871798401759736}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: perse_emd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1825,7 +1825,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2341901624002992051}
   - component: {fileID: 6883108088024926783}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: lentovip_etutassu_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1918,7 +1918,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1956551273799766226}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: etujalka_L_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1949,7 +1949,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6757657207799750486}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: takajalka_R_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1980,7 +1980,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2570226947005737349}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: perse2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2012,7 +2012,7 @@ GameObject:
   m_Component:
   - component: {fileID: 823387342234509461}
   - component: {fileID: 2723941662380813870}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: lentovip_siipi_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2095,7 +2095,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2867782009180184941}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: persjalka_L_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2126,7 +2126,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6042997399453468670}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: takajalka_L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2157,7 +2157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6361954652538440262}
   - component: {fileID: 853453237869341167}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: lentovip_etutassu_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2255,7 +2255,7 @@ GameObject:
   - component: {fileID: 7753433601794505030}
   - component: {fileID: 7753433601794505025}
   - component: {fileID: 7753433601794505027}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: "K\xE4rp\xE4nen"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2325,7 +2325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   rb: {fileID: 0}
-  walkSpeedBase: 6
+  walkSpeedBase: 7
   jumpSpeedBase: 20
   speed: 0
   turnSpeed: 2
@@ -2334,6 +2334,7 @@ MonoBehaviour:
   attackCooldown: 2
   readyToAttack: 1
   drainPlayer: 1
+  giveCurrency: 1
   agent: {fileID: 7753433601794505025}
   animator: {fileID: 7753433601794505024}
 --- !u!195 &7753433601794505025
@@ -2380,7 +2381,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5352964400607803666}
   - component: {fileID: 3714289835085832856}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Identifier
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2424,7 +2425,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2443572872305113838}
   - component: {fileID: 5603216818863187102}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: lentovip_persjalka_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2521,7 +2522,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 777939180667497405}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: body2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2552,7 +2553,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4147784848031541304}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: takajalka_R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2582,7 +2583,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 932477221810841758}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: perse5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2613,7 +2614,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1972696420737581314}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: etujalka_L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2643,7 +2644,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3385764420867985580}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: takajalka_R_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2674,7 +2675,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6421787297364346399}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Siipi_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2705,7 +2706,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 602944648849201154}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: etujalka_R_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2737,7 +2738,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6831440064961293250}
   - component: {fileID: 121847529451846612}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: lentovip_takajalka_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2833,7 +2834,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3494700309278153618}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: perse1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2864,7 +2865,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8079277983096388907}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: etutassu_R_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2895,7 +2896,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 699084447991655292}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: lentovip_bones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2926,7 +2927,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4795928312371147068}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: perse6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2957,7 +2958,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7797276806088597146}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: etutassu_L_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

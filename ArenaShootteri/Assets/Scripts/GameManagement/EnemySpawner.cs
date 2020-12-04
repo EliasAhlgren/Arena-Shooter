@@ -62,11 +62,9 @@ public class EnemySpawner : MonoBehaviour
             spawnWave = false;
             if (wave == 1)
             {
-                Debug.Log("LOL");
                 spawning = true;
                 spawnWave = false;
                 SpawnWave(0, 0, 10, 0, 0);
-                
             }
             else if (wave == 2)
             {
@@ -212,7 +210,6 @@ public class EnemySpawner : MonoBehaviour
                 gruntit -= 1;
             }
         }
-        Debug.Log("Hello spawning enemies. Enemies left: " + enemies.Count);
         SpawnEnemies(enemies);
 
         for (int x = 0; x < lento; x++)
@@ -288,13 +285,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemies(List<GameObject> enemies)
     {
-        Debug.Log("Enemies: " +enemies.Count+" Pacmans: " +pacmanList.Length);
         int i = enemies.Count;
         foreach(var pacman in pacmanList)
         {
             if (enemies.Count > 0)
             {
-                Debug.Log(pacman.transform.name);
                 Spawning(enemies[0], pacman.transform);
                 i++;
             }

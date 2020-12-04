@@ -98,8 +98,7 @@ public class PerkTreeReader : MonoBehaviour
 
             // Populate a dictionary with the perk id and the perk data itself
             for (int i = 0; i < _perkTree.Length; ++i)
-            {
-                Debug.Log(_perkTree[i].id_Perk);
+            { 
                 _perks.Add(_perkTree[i].id_Perk, _perkTree[i]);
             }
         }

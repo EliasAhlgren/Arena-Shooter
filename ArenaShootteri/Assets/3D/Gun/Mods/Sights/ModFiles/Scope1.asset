@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Scope1
   m_EditorClassIdentifier: 
   rail: Top Sight Rail
-  AimHeight: -0.25
+  AimHeight: -0.13
   PoseNumber: 0
   Prefab: {fileID: 2382697287326544064, guid: 5240f6962b9834f8088541c3be11c1e2, type: 3}
   Icon: {fileID: 21300000, guid: f3bc5b8ccfaef4c4696b851cea77cd53, type: 3}
