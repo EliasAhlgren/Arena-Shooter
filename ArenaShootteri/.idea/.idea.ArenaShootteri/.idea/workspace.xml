@@ -88,7 +88,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManagement/PauseMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/DIsableRail.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/AlienScope.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/ShotgunScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/WeaponRotationScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Aiming.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/CreateNodes.cs" />
@@ -109,6 +108,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/AI/Grunt/Grunt.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/NewMods.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/GrenadeLauncher.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/ShotgunScript.cs" />
       </list>
     </option>
   </component>
@@ -216,7 +216,7 @@
       <workItem from="1606826050879" duration="7956000" />
       <workItem from="1606900852493" duration="3374000" />
       <workItem from="1606986606253" duration="2083000" />
-      <workItem from="1607067888035" duration="1309000" />
+      <workItem from="1607067888035" duration="2026000" />
     </task>
     <servers />
   </component>
