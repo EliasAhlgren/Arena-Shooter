@@ -23,7 +23,7 @@ public class Altar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cam = Camera.main;
+        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         player = GameObject.FindWithTag("Player");
         playerCanvas = player.transform.Find("PlayerCanvas").gameObject;
         playerRB = player.GetComponent<PlayerCharacterControllerRigidBody>();

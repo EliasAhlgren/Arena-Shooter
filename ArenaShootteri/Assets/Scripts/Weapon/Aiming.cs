@@ -82,9 +82,7 @@ public class Aiming : MonoBehaviour
     }
 
     private void Reload()
-    {
-        Debug.Log("is reloading");
-
+    { 
         isAiming = false;
         _recoil.DisableLazyGun = true;
 

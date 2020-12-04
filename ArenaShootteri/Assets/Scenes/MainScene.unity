@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1.8481661, g: 1.2635685, b: 1.036951, a: 1}
+  m_IndirectSpecularColor: {r: 1.8847514, g: 1.310144, b: 1.1005528, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -599,7 +599,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 0.99999994}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!114 &493293537 stripped
 MonoBehaviour:
@@ -1138,31 +1138,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: vittuvalotjamuutvittu
       objectReference: {fileID: 0}
-    - target: {fileID: 8128350340002584192, guid: f389ad5d97981d648b2c0f05b584b13d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8128350341680819170, guid: f389ad5d97981d648b2c0f05b584b13d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8231113126657519066, guid: f389ad5d97981d648b2c0f05b584b13d, type: 3}
       propertyPath: text
       value: 
       objectReference: {fileID: 379804846}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f389ad5d97981d648b2c0f05b584b13d, type: 3}
---- !u!114 &1026236104 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5715924896424062306, guid: 603b90250a0fbda4bab83a5bfb825f4e, type: 3}
-  m_PrefabInstance: {fileID: 757172496}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9f145f98ca6c428aab663240c8b5301, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1037727277 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4383131419312325940, guid: 603b90250a0fbda4bab83a5bfb825f4e, type: 3}
@@ -2106,10 +2087,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6415226458168174776, guid: 5dba137988eabef4495b9cee7d6612b2, type: 3}
-      propertyPath: _WeaponRotationScript
-      value: 
-      objectReference: {fileID: 1026236104}
     - target: {fileID: 6415226458168174777, guid: 5dba137988eabef4495b9cee7d6612b2, type: 3}
       propertyPath: m_Name
       value: PerkAltar
@@ -2162,7 +2139,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8545884717834309420, guid: 9314a5232abe80048954aa20e5e08cb2, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8545884717834309420, guid: 9314a5232abe80048954aa20e5e08cb2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

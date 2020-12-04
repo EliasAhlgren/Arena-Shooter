@@ -927,6 +927,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   verticalFrequency: 1
   vertical: 0.1
+  player: {fileID: 0}
+  playerRB: {fileID: 0}
   perkCanvas: {fileID: 8216450808770535958}
   tooltip: {fileID: 2903647794658300959}
 --- !u!1 &7359956892681720539
