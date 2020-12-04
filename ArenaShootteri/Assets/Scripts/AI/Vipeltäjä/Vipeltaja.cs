@@ -352,21 +352,6 @@ public class Vipeltaja : MonoBehaviour, IDamage
 
     public void IsAlone()
     {
-        int nearbyEnemies = 0;
-        GameObject[] vipeltajat = GameObject.FindGameObjectsWithTag("Vipeltaja");
-        
-        foreach (GameObject vipeltaja in vipeltajat)
-        {
-            if(vipeltaja.gameObject != this.gameObject && Vector3.Distance(vipeltaja.transform.position, gameObject.transform.position) < 20)
-            {
-                nearbyEnemies++;
-            }
-        }
-
-        if (nearbyEnemies < 2)
-        {
-            GetFeared();
-        }
 
         if (UnityEngine.Random.Range(0, 101) > 80)
         {
