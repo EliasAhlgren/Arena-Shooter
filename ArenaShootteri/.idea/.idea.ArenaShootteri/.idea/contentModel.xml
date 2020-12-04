@@ -10,6 +10,7 @@
       <e p="Assets" t="Include">
         <e p="BounceScript.cs" t="Include" />
         <e p="ChargeTriggerContoller.cs" t="Include" />
+        <e p="DeathScript.cs" t="Include" />
         <e p="DIsableRail.cs" t="Include" />
         <e p="DoorAnimationHandler.cs" t="Include" />
         <e p="DoorLightController.cs" t="Include" />
@@ -61,7 +62,6 @@
               <e p="LentoVipeltajaAttackState.cs" t="Include" />
               <e p="LentoVipeltajaChaseState.cs" t="Include" />
             </e>
-            <e p="RunTest.cs" t="Include" />
             <e p="Vipeltäjä" t="Include">
               <e p="Vipeltaja.cs" t="Include" />
               <e p="Vipeltaja_StateMachine.cs" t="Include" />

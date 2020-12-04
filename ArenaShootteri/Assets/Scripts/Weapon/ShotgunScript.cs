@@ -46,9 +46,9 @@ public class ShotgunScript : MonoBehaviour
         _canShoot = true;
     }
     
-    private void FixedUpdate()
+    private void Update()
     {
-        if (Input.GetButtonDown("Fire3") && _canShoot && shellsLeft > 0)
+        if (Input.GetMouseButtonDown(2) && _canShoot && shellsLeft > 0)
         {
             shellsLeft--;
             vfx.Play();
@@ -63,7 +63,7 @@ public class ShotgunScript : MonoBehaviour
                 var Damageable = VARIABLE.transform.parent.GetComponent<IDamage>();
                 if (Damageable != null)
                 {
-                    Damageable.TakeDamage(shotgunMod.Damage / Vector3.Distance(transform.position, VARIABLE.transform.position));
+                    Damageable.TakeDamage(30f);
                     Debug.Log(VARIABLE.gameObject + "" + shotgunMod.Damage /
                         Vector3.Distance(transform.position, VARIABLE.transform.position));
                 }

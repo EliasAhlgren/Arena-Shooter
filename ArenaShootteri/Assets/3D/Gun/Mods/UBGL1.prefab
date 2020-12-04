@@ -45,9 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grenadePrefab: {fileID: 8166365901831713770, guid: bd02e76845b6843618950df141c534a5, type: 3}
-  speeeed: 0
-  damage: 0
+  speeeed: 40
+  damage: 50
   direction: {x: 0, y: 10, z: 60}
+  canFire: 1
+  grenadesLeft: 6
 --- !u!1 &5194321477344796841
 GameObject:
   m_ObjectHideFlags: 0

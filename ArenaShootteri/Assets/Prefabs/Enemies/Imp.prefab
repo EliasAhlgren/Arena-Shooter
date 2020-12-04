@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5134741330564140943}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:Reft_indexend
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5307846668993802568}
   - component: {fileID: 4693215630078793017}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:QuickLigCharacter1_LightHand
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3750115754920552443}
   - component: {fileID: 8977286370509775665}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:QuickRigCharacter1_LeftFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6254912076645072545}
   - component: {fileID: 6791868425983799815}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:QuickRigCharacter1_RightHand
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6483529510681550808}
   - component: {fileID: 5832314059342149222}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:QuickRigCharacter1_Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8990660438973786051}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:SKELETON
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,7 +258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8756313667229346553}
   - component: {fileID: 2176640693417308315}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:Left_thumb_end
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -303,7 +303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5735019559004957870}
   - component: {fileID: 7922194164076398868}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:Reft_pinky1
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -349,7 +349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6825321464873368637}
   - component: {fileID: 1603825651892097353}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:Reft_thumb2
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -395,7 +395,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5961497894044657222}
   - component: {fileID: 7341052258364764919}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:QuickRigCharacter1_LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -441,7 +441,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8353102275814734044}
   - component: {fileID: 8673490160118304772}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:Reft_pinky3
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -486,7 +486,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7994872024801169939}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:Reft_pinky_end
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -517,7 +517,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3282349727330709403}
   - component: {fileID: 3132480692162962506}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:QuickRigCharacter1_Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -563,7 +563,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6521354326601475462}
   - component: {fileID: 2157054878433665768}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:Left_thumb2
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -609,7 +609,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5207354171541283437}
   - component: {fileID: 7078692029850378729}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:Left_index3
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -655,7 +655,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6432537832262877151}
   - component: {fileID: 6558925818788725571}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:Reft_index2
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -700,7 +700,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7201054156681258752}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:QuickRigCharacter1_Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -735,7 +735,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6368671377532913419}
   - component: {fileID: 168723244499974398}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:Reft_index1
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -781,7 +781,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1996573913945821423}
   - component: {fileID: 2247160973054195208}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:QuickLigCharacter1_LightShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -827,7 +827,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9043371729663345062}
   - component: {fileID: 5385241479646974287}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:QuickRigCharacter1_RightFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -873,7 +873,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1018101288973712883}
   - component: {fileID: 8276508807247438272}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:Left_pinky1
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -919,7 +919,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6644389402630355350}
   - component: {fileID: 5187377563776379275}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:Left_pinky2
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -966,7 +966,7 @@ GameObject:
   - component: {fileID: 3240448560391218402}
   - component: {fileID: 817434892116322088}
   - component: {fileID: 4674357014116829387}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Identifier
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1026,7 +1026,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9049392090795163778}
   - component: {fileID: 340552325624442683}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:Reft_pinky2
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -1072,7 +1072,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5401774214878000062}
   - component: {fileID: 1341128918848597611}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:Left_index1
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -1118,7 +1118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2324895014578499385}
   - component: {fileID: 3160361067068776406}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:QuickRigCharacter1_RightUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1164,7 +1164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8197250027852301823}
   - component: {fileID: 7465339021922069084}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1208,7 +1208,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2208937061818778373}
   - component: {fileID: 6006162672772142790}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:QuickLigCharacter1_LightArm
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -1254,7 +1254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2893857050045317790}
   - component: {fileID: 185788777169784024}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:QuickRigCharacter1_RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1300,7 +1300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6588780015314543346}
   - component: {fileID: 3807799277556815122}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:QuickLigCharacter1_LightForeArm
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -1346,7 +1346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3573155659146286236}
   - component: {fileID: 2822334041559751737}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:QuickRigCharacter1_Spine2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1393,7 +1393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8824237432209744190}
   - component: {fileID: 7711448128005846338}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:Reft_thumb_1
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -1439,7 +1439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2427729295024212179}
   - component: {fileID: 8054101162876448945}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:Reft_thumb_end
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -1483,7 +1483,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2911579859829218426}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:Left_indexend
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -1514,7 +1514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2132500235948802950}
   - component: {fileID: 8320283081763109536}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:Left_thumb_1
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -1560,7 +1560,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3052893897799049900}
   - component: {fileID: 640825935667476303}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:QuickRigCharacter1_RightShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1605,7 +1605,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4235556131999894510}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:tail2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1636,7 +1636,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2017450021467172951}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:QuickRigCharacter1_LeftToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1668,7 +1668,7 @@ GameObject:
   m_Component:
   - component: {fileID: 666909071710567454}
   - component: {fileID: 7569532807651387631}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:Left_index2
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -1714,7 +1714,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8298484274184724948}
   - component: {fileID: 7260806304067097017}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:QuickRigCharacter1_Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1759,7 +1759,7 @@ GameObject:
   m_Component:
   - component: {fileID: 212472446154073662}
   - component: {fileID: 1612870515963284610}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:Left_pinky3
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -1805,7 +1805,7 @@ GameObject:
   m_Component:
   - component: {fileID: 394708088471067570}
   - component: {fileID: 5839043160536982118}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:QuickRigCharacter1_RightArm
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -1850,7 +1850,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3407402073288734324}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:Left_pinky_end
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -1880,7 +1880,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4943494070056139278}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:tail1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1911,7 +1911,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4362873963724962008}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:tail_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1942,7 +1942,7 @@ GameObject:
   m_Component:
   - component: {fileID: 842383981352760541}
   - component: {fileID: 7583223475262643070}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1985,7 +1985,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7413427829444825851}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:QuickRigCharacter1_RightToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2017,7 +2017,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4894694603485842267}
   - component: {fileID: 2805852915863490861}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2148,7 +2148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3356201970521606902}
   - component: {fileID: 3470276676965660680}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:QuickRigCharacter1_LeftUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2194,7 +2194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6063208896935846684}
   - component: {fileID: 2087078613294836057}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:Reft_index3
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -2243,7 +2243,7 @@ GameObject:
   - component: {fileID: 8931074901600759019}
   - component: {fileID: 8931074901600759016}
   - component: {fileID: 8931074901600759017}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Imp
   m_TagString: Imp
   m_Icon: {fileID: 0}
@@ -2343,6 +2343,7 @@ MonoBehaviour:
   readyToAttack: 1
   agent: {fileID: 8931074901600759019}
   animator: {fileID: 8931074901600759014}
+  giveCurrency: 1
 --- !u!1 &8696522347408542988
 GameObject:
   m_ObjectHideFlags: 0
@@ -2353,7 +2354,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6429826182052134631}
   - component: {fileID: 4224044387591027476}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:QuickRigCharacter1_Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2399,7 +2400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3079341749148871310}
   - component: {fileID: 8556974528683815224}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:QuickRigCharacter1_RightForeArm
   m_TagString: ImpAttackHitbox
   m_Icon: {fileID: 0}
@@ -2444,7 +2445,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7904050622554164316}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rigi:joint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

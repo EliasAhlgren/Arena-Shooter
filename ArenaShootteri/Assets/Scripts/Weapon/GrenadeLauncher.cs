@@ -32,14 +32,14 @@ public class GrenadeLauncher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire3") && canFire && grenadesLeft > 0)
+        if (Input.GetMouseButtonDown(2) && canFire && grenadesLeft > 0)
         {
             //
             // Kranaatinheittimen ääni tähän
             SoundManager.PlaySound("GrenadeShoot");
             //
             grenadesLeft--;
-            var _grenade = Instantiate(grenadePrefab, transform.position, Quaternion.identity);
+            var _grenade = Instantiate(grenadePrefab, transform.position + transform.forward * 2, Quaternion.identity);
             _grenade.GetComponent<Rigidbody>().AddRelativeForce(_gunParent.forward * speeeed, ForceMode.Impulse);
             StartCoroutine(timeOut());
         }

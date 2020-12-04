@@ -61,7 +61,7 @@ public class NewMods : MonoBehaviour
             if (selectedMods.Length > 0)
             {
                 Debug.Log("setting mod " + instance.gameObject);
-                instance.selectedMods[0] = selectedMods[0];
+                instance.selectedMods[0] = selectedMods[Random.Range(0, selectedMods.Length)];
             }
 
         }

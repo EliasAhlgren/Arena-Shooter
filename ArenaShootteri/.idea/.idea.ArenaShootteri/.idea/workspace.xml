@@ -89,7 +89,6 @@
         <option value="$PROJECT_DIR$/Assets/DIsableRail.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/AlienScope.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/ShotgunScript.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/GrenadeLauncher.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/WeaponRotationScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/Aiming.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI/LentoKaveri/CreateNodes.cs" />
@@ -104,11 +103,12 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement/PlayerCharacterControllerRigidBody.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManagement/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/DoorAnimationHandler.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/NewMods.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManagement/SoundManager.cs" />
         <option value="$PROJECT_DIR$/Assets/WorkBench.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/GunAttributes.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI/Grunt/Grunt.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WeaponModding/NewMods.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/GrenadeLauncher.cs" />
       </list>
     </option>
   </component>
@@ -135,6 +135,14 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../vitthuhelvettisaatana\The Pit.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\häh\Desktop\vitthuhelvettisaatana" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
@@ -208,6 +216,7 @@
       <workItem from="1606826050879" duration="7956000" />
       <workItem from="1606900852493" duration="3374000" />
       <workItem from="1606986606253" duration="2083000" />
+      <workItem from="1607067888035" duration="1309000" />
     </task>
     <servers />
   </component>
@@ -305,11 +314,11 @@
       <screen x="0" y="23" width="1399" height="877" />
     </state>
     <state x="194" y="82" width="678" height="735" key="find.popup/0.23.1399.877@0.23.1399.877" timestamp="1600864016679" />
-    <state x="497" y="223" width="923" height="805" key="search.everywhere.popup" timestamp="1607030521375">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="-1423" y="223" width="923" height="805" key="search.everywhere.popup" timestamp="1607069190180">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1423" y="223" width="923" height="805" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1607028171771" />
-    <state x="497" y="223" width="923" height="805" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607030521375" />
+    <state x="-1423" y="223" width="923" height="805" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1607069190180" />
+    <state x="497" y="223" width="923" height="805" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1607067988625" />
     <state x="361" y="211" width="672" height="678" key="search.everywhere.popup/0.23.1397.877@0.23.1397.877" timestamp="1603379384954" />
     <state x="362" y="211" width="672" height="678" key="search.everywhere.popup/0.23.1399.877@0.23.1399.877" timestamp="1606412983385" />
   </component>

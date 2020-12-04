@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930889784995992}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_thumb2
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 2484930889859078715}
   - component: {fileID: 2484930889859078714}
   - component: {fileID: 5044915489982439854}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Grunt
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -132,6 +132,7 @@ MonoBehaviour:
   isCharging: 0
   chargeForce: 10
   immune: 1
+  giveCurrency: 1
   audioMixer: {fileID: 0}
 --- !u!195 &2484930889859078714
 NavMeshAgent:
@@ -263,7 +264,7 @@ GameObject:
   - component: {fileID: 2484930889868381395}
   - component: {fileID: 2484930889868381394}
   - component: {fileID: 2484930889868381393}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_lowerArm
   m_TagString: GruntAttackHitbox
   m_Icon: {fileID: 0}
@@ -370,7 +371,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930889891384878}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_middle2
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -404,7 +405,7 @@ GameObject:
   - component: {fileID: 2484930889894612709}
   - component: {fileID: 2484930889894612708}
   - component: {fileID: 2484930889894612707}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_shin
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -511,7 +512,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930889904662162}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_thumb1
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -542,7 +543,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930889916322199}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_middle4
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -573,7 +574,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930889922621715}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: loc_masterConstraint
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -604,7 +605,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930889931001883}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_ring1
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -635,7 +636,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930889974635006}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_eye
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -665,7 +666,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890008233670}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_middle1
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -696,7 +697,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890008267144}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: sr_grp_rootCtrl
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -727,7 +728,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890014528030}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJntEnd_L_ring
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -758,7 +759,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2484930890024347919}
   - component: {fileID: 2484930890024347920}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ChargeCollider
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -801,7 +802,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890029850917}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_clavicle
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -832,7 +833,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890048998024}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: grp_bakeJoints
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -863,7 +864,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890049928783}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_clavicle
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -895,7 +896,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2484930890069549243}
   - component: {fileID: 2484930890069549244}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_toe Hitbox
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -939,7 +940,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890070456014}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_ring4
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -970,7 +971,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890086092116}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_ring4
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -1002,7 +1003,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2484930890129776376}
   - component: {fileID: 2484930890129776377}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_toe
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -1048,7 +1049,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890143866232}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_middle3
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -1079,7 +1080,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890152268334}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJntEnd_R_pinky
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -1110,7 +1111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2484930890156049261}
   - component: {fileID: 2484930890156049262}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_lowerArm Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1154,7 +1155,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890168697766}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJntEnd_L_middle
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -1184,7 +1185,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890231426820}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: sp_grp_back
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -1215,7 +1216,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890240734989}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJntEnd_L_toeTip
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -1245,7 +1246,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890262792083}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJntEnd_R_thumb
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -1278,7 +1279,7 @@ GameObject:
   - component: {fileID: 2484930890281461975}
   - component: {fileID: 2484930890281461974}
   - component: {fileID: 2484930890281461973}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_upperArm
   m_TagString: GruntAttackHitbox
   m_Icon: {fileID: 0}
@@ -1385,7 +1386,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890285223121}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJntEnd_headTop
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -1415,7 +1416,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890307270938}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJntDrv_R_eye
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -1448,7 +1449,7 @@ GameObject:
   - component: {fileID: 2484930890323077885}
   - component: {fileID: 2484930890323077887}
   - component: {fileID: 2484930890323077886}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJntDrv_head
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -1505,7 +1506,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890340336425}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_thumb3
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -1536,7 +1537,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890343425180}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_index3
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -1570,7 +1571,7 @@ GameObject:
   - component: {fileID: 2484930890351382648}
   - component: {fileID: 2484930890351382647}
   - component: {fileID: 2484930890351382646}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_shin
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -1677,7 +1678,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890353747732}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_neck
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -1708,7 +1709,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890358100260}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: jntEnd_R_ring
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -1738,7 +1739,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890395725854}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: grp_rootCtrl_orient
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -1770,7 +1771,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2484930890413828886}
   - component: {fileID: 2484930890413828887}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_wrist Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1814,7 +1815,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890448262305}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_index1
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -1845,7 +1846,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890467267675}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJntDrv_jaw
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -1876,7 +1877,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890479532057}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJntEnd_L_pinky
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -1906,7 +1907,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890489976302}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: grp_ctrlRig_scale
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -1938,7 +1939,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890496855088}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: grp_ctrlRig_globalScale
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -1969,7 +1970,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890498580100}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: scalePoint_pelvis
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -1999,7 +2000,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890506759118}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJntEnd_R_middle
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -2030,7 +2031,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2484930890519404497}
   - component: {fileID: 2484930890519404498}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_back Hitbox
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -2074,7 +2075,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2484930890531330231}
   - component: {fileID: 2484930890531330232}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_wrist
   m_TagString: GruntAttackHitbox
   m_Icon: {fileID: 0}
@@ -2124,7 +2125,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890548827548}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ctrl_upperSpine_attributes
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -2154,7 +2155,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890556508222}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_index3
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -2185,7 +2186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890579729166}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: grp_rootParent
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -2218,7 +2219,7 @@ GameObject:
   - component: {fileID: 2484930890584745365}
   - component: {fileID: 2484930890584745367}
   - component: {fileID: 2484930890584745366}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: VisionCone
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -2275,7 +2276,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890592408322}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_ring3
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -2306,7 +2307,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890597927995}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJntEnd_R_toeTip
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -2336,7 +2337,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890632301560}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ctrl_root_IK
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -2366,7 +2367,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890645751314}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: sr_grp_root
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -2396,7 +2397,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890650990042}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_thumb2
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -2427,7 +2428,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890651574378}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: sp_grp_pelvis
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -2459,7 +2460,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2484930890654078994}
   - component: {fileID: 2484930890654078995}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_ball Hitbox
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -2503,7 +2504,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890665895152}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: grp_ctrl
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -2534,7 +2535,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890679826538}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_middle3
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -2565,7 +2566,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890685325609}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_middle2
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -2599,7 +2600,7 @@ GameObject:
   - component: {fileID: 2484930890706983967}
   - component: {fileID: 2484930890706983966}
   - component: {fileID: 2484930890706983965}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_head
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -2707,7 +2708,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890751134077}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: jntBnd_root
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -2737,7 +2738,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890769696119}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_chest
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -2770,7 +2771,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890770310668}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_index2
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -2801,7 +2802,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890781613921}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_pinky1
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -2832,7 +2833,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890784411995}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_index1
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -2863,7 +2864,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890815698046}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_ring2
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -2895,7 +2896,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2484930890822147761}
   - component: {fileID: 2484930890822147762}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_lowerArm Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2940,7 +2941,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2484930890864807927}
   - component: {fileID: 2484930890864807928}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_pelvis Hitbox
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -2983,7 +2984,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890866029400}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJntMir_R_arm
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -3014,7 +3015,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890883899311}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJntDrv_L_shoulder
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -3045,7 +3046,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890943714596}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: grp_rootCtrl_pos_offset
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -3076,7 +3077,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890944917347}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_pinky2
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -3107,7 +3108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930890995576060}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_pinky4
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -3138,7 +3139,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891006425775}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_middle4
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -3169,7 +3170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891013549043}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: grp_joints
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -3200,7 +3201,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891065247682}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_thumb1
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -3231,7 +3232,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891090325043}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: grp_rootCtrl_pos
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -3265,7 +3266,7 @@ GameObject:
   - component: {fileID: 2484930891093905809}
   - component: {fileID: 2484930891093905808}
   - component: {fileID: 2484930891093905807}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_back
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -3371,7 +3372,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891132411690}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJntDrv_L_eye
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -3402,7 +3403,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891139021960}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_index4
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -3434,7 +3435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2484930891163560898}
   - component: {fileID: 2484930891163560899}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_ball
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -3481,7 +3482,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2484930891186410231}
   - component: {fileID: 2484930891186410232}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_thigh Hitbox
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -3526,7 +3527,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2484930891208284729}
   - component: {fileID: 2484930891208284730}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_shin Hitbox
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -3571,7 +3572,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2484930891217754212}
   - component: {fileID: 2484930891217754213}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_toe Hitbox
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -3615,7 +3616,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891246818794}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: scalePoint_body_upAxis
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -3648,7 +3649,7 @@ GameObject:
   - component: {fileID: 2484930891256927222}
   - component: {fileID: 2484930891256927221}
   - component: {fileID: 2484930891256927220}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_thigh
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -3755,7 +3756,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891279397506}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_middle1
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -3786,7 +3787,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891314701767}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_root
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -3818,7 +3819,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891339507369}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: loc_rootConstraint
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -3849,7 +3850,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891349107989}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_ring3
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -3881,7 +3882,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2484930891351639340}
   - component: {fileID: 2484930891351639341}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 'bkJnt_R_shin Hitbox '
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -3928,7 +3929,7 @@ GameObject:
   - component: {fileID: 2484930891357407715}
   - component: {fileID: 2484930891357407714}
   - component: {fileID: 2484930891357407713}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_thigh
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -4035,7 +4036,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891367356214}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: grp_rootCtrl
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -4066,7 +4067,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891372391369}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJntMir_R_leg
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -4098,7 +4099,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2484930891379846374}
   - component: {fileID: 2484930891379846375}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_upperArm Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4143,7 +4144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2484930891382292298}
   - component: {fileID: 2484930891382292299}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJtn_L_upperArm Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4188,7 +4189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2484930891395328653}
   - component: {fileID: 2484930891395328654}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_ball
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -4234,7 +4235,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891414802707}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: grp_mesh
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -4265,7 +4266,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891416545973}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJntDrv_R_shoulder
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -4296,7 +4297,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891417848379}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJntEnd_jaw
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -4326,7 +4327,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891422722413}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_pinky3
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -4358,7 +4359,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2484930891425360831}
   - component: {fileID: 2484930891425360768}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: korjaus:ZBrushPolyMesh3D
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -4520,7 +4521,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891439529157}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_pinky2
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -4551,7 +4552,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891456948103}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJntDrv_R_clavicle
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -4582,7 +4583,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891463676337}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_index2
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -4613,7 +4614,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891478544633}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: grp_rootCtrl_orient_offset
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -4647,7 +4648,7 @@ GameObject:
   - component: {fileID: 2484930891498469608}
   - component: {fileID: 2484930891498469607}
   - component: {fileID: 2484930891498469606}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_lowerArm
   m_TagString: GruntAttackHitbox
   m_Icon: {fileID: 0}
@@ -4754,7 +4755,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891513747585}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_jaw
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -4785,7 +4786,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891514828013}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Vision
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -4816,7 +4817,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891522107905}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: sp_grp_body_upAxis
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -4847,7 +4848,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891523693339}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJntEnd_L_index
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -4877,7 +4878,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891523787318}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ctrl_root
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -4908,7 +4909,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891533610910}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_ring2
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -4939,7 +4940,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891536757380}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: grpCtrl_root_IK
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -4970,7 +4971,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891570200522}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJntEnd_L_thumb
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -5000,7 +5001,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891575019707}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: scalePoint_back
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -5032,7 +5033,7 @@ GameObject:
   - component: {fileID: 2484930891609961830}
   - component: {fileID: 2484930891609961828}
   - component: {fileID: 2484930891609961829}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_pelvis
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -5094,7 +5095,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891622378412}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: grpCtrl_upperSpine_attrs
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -5126,7 +5127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2484930891625618471}
   - component: {fileID: 2484930891625618472}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_thigh Hitbox
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -5171,7 +5172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2484930891645065533}
   - component: {fileID: 2484930891645065534}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_toe
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -5218,7 +5219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2484930891704570203}
   - component: {fileID: 2484930891704570204}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_wrist
   m_TagString: GruntAttackHitbox
   m_Icon: {fileID: 0}
@@ -5268,7 +5269,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891728367956}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_thumb3
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -5299,7 +5300,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891742174809}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_pinky1
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -5330,7 +5331,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891743981520}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_index4
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -5361,7 +5362,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891754039628}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJntDrv_L_clavicle
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -5392,7 +5393,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891769599828}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJntEnd_R_index
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -5422,7 +5423,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891791007515}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_ring1
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -5453,7 +5454,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891801995162}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_pinky3
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -5485,7 +5486,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2484930891808674203}
   - component: {fileID: 2484930891808674204}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_wrist Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5532,7 +5533,7 @@ GameObject:
   - component: {fileID: 2484930891817510333}
   - component: {fileID: 2484930891817510332}
   - component: {fileID: 2484930891817510331}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_upperArm
   m_TagString: GruntAttackHitbox
   m_Icon: {fileID: 0}
@@ -5639,7 +5640,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891825118963}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: sr_grp_rootCtrl_offset
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -5669,7 +5670,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891830980624}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_L_eye
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -5699,7 +5700,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891838978235}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: grp_scalePoints
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -5730,7 +5731,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891860459343}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_pinky4
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -5762,7 +5763,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2484930891872805541}
   - component: {fileID: 2484930891872805542}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bkJnt_R_ball hitbox
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -5806,7 +5807,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891889452512}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: scalePoints_master
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -5841,7 +5842,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891891743907}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: grpCtrl_attributes
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -5872,7 +5873,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484930891903528118}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ctrl_master
   m_TagString: Grunt
   m_Icon: {fileID: 0}
@@ -5905,7 +5906,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1087773361183697236}
   - component: {fileID: 3229094835524897187}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Identifier
   m_TagString: Enemy
   m_Icon: {fileID: 0}

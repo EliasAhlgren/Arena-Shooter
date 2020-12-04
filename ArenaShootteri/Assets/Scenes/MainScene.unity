@@ -207,6 +207,14 @@ PrefabInstance:
       propertyPath: modSelections.Array.data[5]
       value: 
       objectReference: {fileID: 46846933}
+    - target: {fileID: 171092750, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
+      propertyPath: level1.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1100fe54d173141c296cc42ac038eac5, type: 2}
+    - target: {fileID: 171092750, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
+      propertyPath: level1.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0c2e7f30e4dd84c8698c2ed61dc526cf, type: 2}
     - target: {fileID: 8586498638390084386, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
       propertyPath: m_Name
       value: GameManagement
@@ -965,6 +973,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 575392157, guid: 603b90250a0fbda4bab83a5bfb825f4e, type: 3}
+      propertyPath: clearColorMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 575392159, guid: 603b90250a0fbda4bab83a5bfb825f4e, type: 3}
+      propertyPath: m_Depth
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 907592271446149349, guid: 603b90250a0fbda4bab83a5bfb825f4e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1037,7 +1053,8 @@ PrefabInstance:
       propertyPath: deathCanvas
       value: 
       objectReference: {fileID: 1561888356}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 575392158, guid: 603b90250a0fbda4bab83a5bfb825f4e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 603b90250a0fbda4bab83a5bfb825f4e, type: 3}
 --- !u!114 &757172497 stripped
 MonoBehaviour:
