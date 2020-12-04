@@ -62,7 +62,8 @@ public class Pickup : MonoBehaviour
     {
         if (platfromIS)
         {
-            platformSript.PickupRespawn(respawnTime * playerScript.spawnRateModifier);
+            platformSript.pickupActive = false;
+            //platformSript.PickupRespawn(respawnTime * playerScript.spawnRateModifier);
             gameObject.SetActive(false);
         }
         else if (gameObject.GetComponentInParent<PickupSpawnPoint>())
