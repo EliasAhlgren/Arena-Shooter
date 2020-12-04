@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 1.8764266, g: 1.2989038, b: 1.0840424, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -184,18 +184,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 932497293}
     - target: {fileID: 171092750, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
-      propertyPath: level2.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 171092750, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
-      propertyPath: level3.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 171092750, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
-      propertyPath: level1.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 171092750, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
       propertyPath: modSelections.Array.data[0]
       value: 
       objectReference: {fileID: 1037727277}
@@ -219,34 +207,6 @@ PrefabInstance:
       propertyPath: modSelections.Array.data[5]
       value: 
       objectReference: {fileID: 46846933}
-    - target: {fileID: 171092750, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
-      propertyPath: level1.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 1100fe54d173141c296cc42ac038eac5, type: 2}
-    - target: {fileID: 171092750, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
-      propertyPath: level1.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: 0c2e7f30e4dd84c8698c2ed61dc526cf, type: 2}
-    - target: {fileID: 171092750, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
-      propertyPath: level2.Array.data[6]
-      value: 
-      objectReference: {fileID: 11400000, guid: 82a162748af22314b923a5570f68b11c, type: 2}
-    - target: {fileID: 171092750, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
-      propertyPath: level2.Array.data[7]
-      value: 
-      objectReference: {fileID: 11400000, guid: 82a162748af22314b923a5570f68b11c, type: 2}
-    - target: {fileID: 171092750, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
-      propertyPath: level3.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: 82a162748af22314b923a5570f68b11c, type: 2}
-    - target: {fileID: 171092750, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
-      propertyPath: level1.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: 320b51469e25d4c0d9dabd45653beec2, type: 2}
-    - target: {fileID: 171092750, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
-      propertyPath: level2.Array.data[5]
-      value: 
-      objectReference: {fileID: 11400000, guid: 82a162748af22314b923a5570f68b11c, type: 2}
     - target: {fileID: 8586498638390084386, guid: 0c144937b49eca948b4c074cae8ca081, type: 3}
       propertyPath: m_Name
       value: GameManagement
@@ -1005,14 +965,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 575392157, guid: 603b90250a0fbda4bab83a5bfb825f4e, type: 3}
-      propertyPath: clearColorMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 575392159, guid: 603b90250a0fbda4bab83a5bfb825f4e, type: 3}
-      propertyPath: m_Depth
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 907592271446149349, guid: 603b90250a0fbda4bab83a5bfb825f4e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1032,6 +984,14 @@ PrefabInstance:
     - target: {fileID: 907592272534871403, guid: 603b90250a0fbda4bab83a5bfb825f4e, type: 3}
       propertyPath: m_Materials.Array.data[3]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715924897633638767, guid: 603b90250a0fbda4bab83a5bfb825f4e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715924897633638767, guid: 603b90250a0fbda4bab83a5bfb825f4e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.04
       objectReference: {fileID: 0}
     - target: {fileID: 5736615959980424124, guid: 603b90250a0fbda4bab83a5bfb825f4e, type: 3}
       propertyPath: m_Name
@@ -1085,8 +1045,7 @@ PrefabInstance:
       propertyPath: deathCanvas
       value: 
       objectReference: {fileID: 1561888356}
-    m_RemovedComponents:
-    - {fileID: 575392158, guid: 603b90250a0fbda4bab83a5bfb825f4e, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 603b90250a0fbda4bab83a5bfb825f4e, type: 3}
 --- !u!114 &757172497 stripped
 MonoBehaviour:
@@ -2390,6 +2349,10 @@ PrefabInstance:
     - target: {fileID: 8545884717834309410, guid: 9314a5232abe80048954aa20e5e08cb2, type: 3}
       propertyPath: m_Name
       value: FlyingPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545884717834309411, guid: 9314a5232abe80048954aa20e5e08cb2, type: 3}
+      propertyPath: scale
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8545884717834309420, guid: 9314a5232abe80048954aa20e5e08cb2, type: 3}
       propertyPath: m_LocalPosition.x
