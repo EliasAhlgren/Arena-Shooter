@@ -12,8 +12,6 @@ public class PacManHandler : MonoBehaviour
         
         if(other.transform.CompareTag("Enemy"))
         {
-
-            Debug.Log(other.transform.root.name + " sisaan");
             count++;
             empty = false;
             if (count == 1)
@@ -27,18 +25,15 @@ public class PacManHandler : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (other.transform.CompareTag("Enemy"))
-        {
-            Debug.Log(other.transform.root.name + " ulos");
+        { 
             count--;
             if (count == 0)
             {
                 empty = true;
                 GetComponent<Animator>().Play("PacManSulku");
 
-                Debug.Log(EnemySpawner.enemies.Count);
                 if (EnemySpawner.enemies.Count > 0)
                 {
-                    Debug.Log("Spawn next");
                     EnemySpawner.SpawnNext(transform);
                 }
 

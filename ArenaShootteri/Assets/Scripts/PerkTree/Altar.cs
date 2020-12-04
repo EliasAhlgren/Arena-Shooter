@@ -27,7 +27,6 @@ public class Altar : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerCanvas = player.transform.Find("PlayerCanvas").gameObject;
         playerRB = player.GetComponent<PlayerCharacterControllerRigidBody>();
-        Debug.Log(playerRB);
         text = playerCanvas.GetComponentInChildren<Text>();
 
         position = transform.position;
