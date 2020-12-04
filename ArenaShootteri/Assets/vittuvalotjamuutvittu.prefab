@@ -537,7 +537,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8128350340002584199
 Transform:
   m_ObjectHideFlags: 0
@@ -627,10 +627,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunAttributes: {fileID: 0}
-  isModding: 0
-  verticalFrequency: 1
-  vertical: 1
+  collidingObjects: []
   text: {fileID: 0}
+  gameManager: {fileID: 0}
 --- !u!1 &8128350340006433251
 GameObject:
   m_ObjectHideFlags: 0
@@ -17007,7 +17006,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8128350341680819169
 Transform:
   m_ObjectHideFlags: 0

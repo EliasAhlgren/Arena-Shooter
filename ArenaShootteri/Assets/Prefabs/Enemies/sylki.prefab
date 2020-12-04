@@ -252,9 +252,9 @@ MeshCollider:
   m_GameObject: {fileID: 6460598049561572831}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3069536115504565623, guid: 9e7a48ec2d4a7864382befdde19f83a0, type: 3}
 --- !u!1 &7047385989156688848
@@ -268,7 +268,6 @@ GameObject:
   - component: {fileID: 7675972816148072810}
   - component: {fileID: 7857710314163278166}
   - component: {fileID: 7857710314163278153}
-  - component: {fileID: 7857710314163278165}
   - component: {fileID: 7857710314163278167}
   - component: {fileID: 443075541549441807}
   - component: {fileID: 1986407041656289202}
@@ -310,7 +309,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!135 &7857710314163278153
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -324,21 +323,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.017773416
   m_Center: {x: 0, y: 0, z: -0.009058715}
---- !u!111 &7857710314163278165
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7047385989156688848}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 6772346586110684636, guid: 9e7a48ec2d4a7864382befdde19f83a0, type: 3}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &7857710314163278167
 MonoBehaviour:
   m_ObjectHideFlags: 0

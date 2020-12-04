@@ -18,7 +18,7 @@ public class WorkBench : MonoBehaviour
     public Text text;
 
     public GameManager gameManager;
-    
+        
     void Start() {
         collidingObjects = new List<GameObject>();
         player = GameObject.FindWithTag("Player");
