@@ -1146,6 +1146,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5736615959980424125}
     m_Modifications:
+    - target: {fileID: 328004801885037109, guid: b5c78fa3ff76ca040aba23d80d812faa, type: 3}
+      propertyPath: m_Depth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 328004801885037111, guid: b5c78fa3ff76ca040aba23d80d812faa, type: 3}
+      propertyPath: clearColorMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3389246901199972347, guid: b5c78fa3ff76ca040aba23d80d812faa, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1198,7 +1206,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 328004801885037108, guid: b5c78fa3ff76ca040aba23d80d812faa, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b5c78fa3ff76ca040aba23d80d812faa, type: 3}
 --- !u!224 &8964929326285169729 stripped
 RectTransform:
