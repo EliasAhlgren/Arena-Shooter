@@ -75,6 +75,11 @@ public class GameManager : MonoBehaviour
             checkBox.enabled = false;
             waveIndicator.UpdateWaveIndicator(wave);
             Debug.Log("Käynnistä uusi wave");
+            PickupPlatform[] platformSpawns = FindObjectsOfType<PickupPlatform>();
+            foreach(var platform in platformSpawns)
+            {
+                platform.SpawnPlatformPickup();
+            }
             EnemySpawner.spawnWave = true; // käynnistää EnemySpawner scriptin
             EnemySpawner.wave = wave;
             // Debug.Log("wave: " + wave);

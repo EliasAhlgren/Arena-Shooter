@@ -29,7 +29,7 @@ public class LentoVipeltaja : MonoBehaviour, IDamage
     public float attackCooldown = 2f;
     public bool readyToAttack = true;
     public bool drainPlayer = true;
-
+    public bool giveCurrency = true;
     public NavMeshAgent agent;
     public Animator animator;
 
@@ -93,8 +93,12 @@ public class LentoVipeltaja : MonoBehaviour, IDamage
 
     public IEnumerator Die()
     {
-        PerkTreeReader.Instance.AddPerkPoint(1);
-        target.GetComponent<PlayerCharacterControllerRigidBody>().AddRageKill();
+        if (giveCurrency)
+        {
+            giveCurrency = false;
+            PerkTreeReader.Instance.AddPerkPoint(1);
+            target.GetComponent<PlayerCharacterControllerRigidBody>().AddRageKill();
+        }
         SoundManager.PlaySound("vipDie");
         // Disable rigidbody and enable Colliders for each body part
         // for rigidbody death "animation"

@@ -123,7 +123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunAttributes: {fileID: 0}
-  isModding: 0
   collidingObjects: []
   text: {fileID: 0}
   gameManager: {fileID: 0}

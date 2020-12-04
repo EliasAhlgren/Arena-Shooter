@@ -39,6 +39,7 @@ public class Grunt : MonoBehaviour, IDamage
     
     public float IHealth { get; set; } = 110f;
     public bool immune = true;
+    public bool giveCurrency = true;
 
     //sounds
     public static AudioClip shout, footsteps, murina, hit, death;
@@ -167,9 +168,14 @@ public class Grunt : MonoBehaviour, IDamage
     /// </summary>
     public IEnumerator Die()
     {
-        PerkTreeReader.Instance.AddPerkPoint(5);
-        target.GetComponent<PlayerCharacterControllerRigidBody>().AddRageKill();
+        Debug.Log("kuolema");
+        if (giveCurrency)
+        {
+            giveCurrency = false;
+            PerkTreeReader.Instance.AddPerkPoint(5);
+            target.GetComponent<PlayerCharacterControllerRigidBody>().AddRageKill();
 
+        }
         // Disable rigidbody and enable Colliders for each body part
         // for rigidbody death "animation"
         SetRigidbodyState(false);

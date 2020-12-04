@@ -5,13 +5,22 @@ using UnityEngine;
 public class PickupPlatform : MonoBehaviour
 {
     public GameObject pickup;
-    Pickup pickupScript;
+    //Pickup pickupScript;
 
-    public bool spawnAtStart = false;
+    //public bool spawnAtStart = false;
 
-    bool pickupActive = false;
-    float cooldown;
+    public bool pickupActive = false;
+    //float cooldown;
 
+
+    public void SpawnPlatformPickup()
+    {
+        if (!pickupActive)
+        {
+            pickup.SetActive(true);
+        }
+    }
+    /*
     // Start is called before the first frame update
     void Start()
     {
@@ -49,4 +58,6 @@ public class PickupPlatform : MonoBehaviour
             }
         }
     }
+
+    */
 }

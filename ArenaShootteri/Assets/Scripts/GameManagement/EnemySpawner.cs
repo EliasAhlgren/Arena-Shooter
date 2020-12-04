@@ -34,9 +34,10 @@ public class EnemySpawner : MonoBehaviour
     private Vector3 spawnPos;
     public static int enemyCount = 0;
     public static int wave = 1;
-    public static bool spawnWave = true;
+    public static bool spawnWave = false;
     public bool onCooldown = false;
     public static List<GameObject> enemies;
+    public bool spawned = false;
 
     // Start is called before the first frame update
     void Start()
@@ -61,9 +62,9 @@ public class EnemySpawner : MonoBehaviour
             spawnWave = false;
             if (wave == 1)
             {
-                Debug.Log("LOL");
+                spawning = true;
+                spawnWave = false;
                 SpawnWave(0, 0, 10, 0, 0);
-                
             }
             else if (wave == 2)
             {
@@ -151,11 +152,11 @@ public class EnemySpawner : MonoBehaviour
             }
             else
             {
-                int grunts = 1 + (int)Math.Round(wave * 0.2, MidpointRounding.AwayFromZero);
-                int lentovilpe = 10 + (int)Math.Round(wave * 0.5, MidpointRounding.AwayFromZero);
-                int imps = 10 + wave;
-                int vipe = 5 + (int)Math.Round(wave * 0.5, MidpointRounding.AwayFromZero);
-                int lentod = 1 + (int)Math.Round(wave * 0.2, MidpointRounding.AwayFromZero);
+                int grunts = UnityEngine.Random.Range(0, 6) + (int)Math.Round(wave * 0.15, MidpointRounding.AwayFromZero);
+                int lentovilpe = UnityEngine.Random.Range(5, 16) + (int)Math.Round(wave * 0.8, MidpointRounding.AwayFromZero);
+                int imps = UnityEngine.Random.Range(5, 21) + (int)Math.Round(wave * 0.8, MidpointRounding.AwayFromZero);
+                int vipe = UnityEngine.Random.Range(5, 11) + (int)Math.Round(wave * 0.5, MidpointRounding.AwayFromZero);
+                int lentod = UnityEngine.Random.Range(0, 4) + (int)Math.Round(wave * 0.1, MidpointRounding.AwayFromZero);
                 spawning = true;
                 spawnWave = false;
                 SpawnWave(grunts, lentovilpe, imps, vipe, lentod);
@@ -163,10 +164,11 @@ public class EnemySpawner : MonoBehaviour
         }
         if (spawnWave == false && spawning == false)
         {
-            if (enemyCount == 0)
+            if (enemyCount == 0 && spawned == true)
             {
-                
+                spawned = false;
                 GameManager.waveEnd = true;
+
             }
         }
     }
@@ -208,7 +210,6 @@ public class EnemySpawner : MonoBehaviour
                 gruntit -= 1;
             }
         }
-        Debug.Log("Hello spawning enemies. Enemies left: " + enemies.Count);
         SpawnEnemies(enemies);
 
         for (int x = 0; x < lento; x++)
@@ -218,6 +219,7 @@ public class EnemySpawner : MonoBehaviour
 
         // enemies.Clear();
         spawning = false;
+        spawned = true;
     }
 
     List<Transform> SpawnEnemy(GameObject _enemy, List<Transform> spawnit) // satunnainen spawn kohta, spawnataan, nostetaan vihollismäärää ja poistetaan spawn listasta
@@ -283,13 +285,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemies(List<GameObject> enemies)
     {
-        Debug.Log("Enemies: " +enemies.Count+" Pacmans: " +pacmanList.Length);
         int i = enemies.Count;
         foreach(var pacman in pacmanList)
         {
             if (enemies.Count > 0)
             {
-                Debug.Log(pacman.transform.name);
                 Spawning(enemies[0], pacman.transform);
                 i++;
             }

@@ -992,6 +992,22 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 17
       objectReference: {fileID: 0}
+    - target: {fileID: 5715924896594780720, guid: 1065f889e04624c88b3e2faf406a6fbb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715924896594780720, guid: 1065f889e04624c88b3e2faf406a6fbb, type: 3}
+      propertyPath: rotationSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715924896594780720, guid: 1065f889e04624c88b3e2faf406a6fbb, type: 3}
+      propertyPath: minValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715924896594780720, guid: 1065f889e04624c88b3e2faf406a6fbb, type: 3}
+      propertyPath: maxValue
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5715924896594780723, guid: 1065f889e04624c88b3e2faf406a6fbb, type: 3}
       propertyPath: mainCamera
       value: 

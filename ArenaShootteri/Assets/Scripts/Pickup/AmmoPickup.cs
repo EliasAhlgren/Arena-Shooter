@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public enum AmmoType { rifle, shotgun, grenade };
 
@@ -12,13 +14,18 @@ public class AmmoPickup : Pickup
     public GameObject shotgunAmmoPickup;
     public GameObject grenadeAmmoPickup;
 
+    public bool onCooldown = false;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.name == player.name)
         {
             //[SOUND] ammo pickup sound (pickup sound?) (One Shot)
-
-            if (ammoType == AmmoType.rifle)
+            if (!onCooldown) { 
+                StartCoroutine(Cooldown());
+                SoundManager.PlaySound("AmmoPickup");
+            }
+        if (ammoType == AmmoType.rifle)
             {
                 gun.totalAmmo += ammoRecovered;
             }
@@ -63,5 +70,18 @@ public class AmmoPickup : Pickup
             Destroy(gameObject);
         }
         
+    }
+
+    private IEnumerator Cooldown()
+    {
+        // Start cooldown
+        onCooldown = true;
+        // Wait for time you want
+        yield return new WaitForSeconds(2.0f);
+        // Stop cooldown
+        onCooldown = false;
+        //Debug.Log("Cooldown Ended");
+        //GameManager.waveStart = true;
+        //GameManager.waveEnd = false;
     }
 }

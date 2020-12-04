@@ -44,7 +44,7 @@ public class DeathScript : MonoBehaviour
         {
             VARIABLE._shouldEnable = false;
         }
-
+        Time.timeScale = 1;
         SceneManager.LoadScene(1);
         deathPanel.SetActive(false);
     }
