@@ -569,9 +569,20 @@ public class PlayerCharacterControllerRigidBody : MonoBehaviour
             health = maxHealth;
         }
 
-        playerHP.text = health.ToString();
-
-        playerHP.text = health.ToString() + " / " + maxHealth.ToString();
+        //playerHP.text = health.ToString("0");
+        if (health < 1 && health > 0)
+        {
+            playerHP.text = "1 / " + maxHealth.ToString("0");
+        }
+        else if (health <= 0)
+        {
+            playerHP.text = "0 / " + maxHealth.ToString("0");
+        }
+        else
+        {
+            playerHP.text = health.ToString("0") + " / " + maxHealth.ToString("0");
+        }
+        
     }
 
     public void killPlayer()
